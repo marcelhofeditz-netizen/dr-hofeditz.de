@@ -13,17 +13,38 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="min-h-[92vh] flex items-center px-[5vw] py-20">
         <div className="max-w-[1100px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Photo — shows first on mobile */}
+          <div className="flex justify-center md:justify-end order-first md:order-last">
+            <div className="relative">
+              <div className="absolute inset-0 translate-x-3 translate-y-3 -z-10 border border-grey-light" />
+              <Image
+                src="/IMG_8225.webp"
+                alt="Dr. Marcel Hofeditz"
+                width={380}
+                height={460}
+                className="object-cover object-top"
+                style={{
+                  maxWidth: 'clamp(240px, 30vw, 380px)',
+                  width: '100%',
+                  height: 'auto',
+                  aspectRatio: '5/6',
+                }}
+                priority
+              />
+            </div>
+          </div>
+
           <div>
             <span className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8 text-grey-secondary">
               {d.home.badge}
             </span>
 
             <h1
-              className="font-serif font-light leading-[1.05] mb-8 text-text-primary"
-              style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.8rem)' }}
+              className="font-sans font-medium tracking-[-0.02em] leading-[1.08] mb-8 text-text-primary"
+              style={{ fontSize: 'clamp(2.6rem, 5vw, 4.2rem)' }}
             >
               Dr. Marcel<br />
-              <em className="italic">Hofeditz</em>
+              Hofeditz
             </h1>
 
             {/* Three role lines */}
@@ -47,28 +68,6 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <BtnPrimary href="/plattform">OffMarketPool</BtnPrimary>
               <BtnOutline href="/buch">{d.home.toBook}</BtnOutline>
-            </div>
-          </div>
-
-          {/* Photo */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative">
-              <div className="absolute inset-0 translate-x-3 translate-y-3 -z-10 border border-grey-light" />
-              <Image
-                src="/IMG_8225.webp"
-                alt="Dr. Marcel Hofeditz"
-                width={380}
-                height={460}
-                className="object-cover object-top"
-                style={{
-                  filter: 'grayscale(100%) contrast(1.05)',
-                  maxWidth: 'clamp(240px, 30vw, 380px)',
-                  width: '100%',
-                  height: 'auto',
-                  aspectRatio: '5/6',
-                }}
-                priority
-              />
             </div>
           </div>
         </div>
