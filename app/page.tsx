@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { Eyebrow, SectionTitle, ProjectCard, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import Link from 'next/link'
+import { Eyebrow, SectionTitle, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
 import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
@@ -9,30 +10,42 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section className="min-h-[92vh] flex items-center px-[5vw] py-20">
         <div className="max-w-[1100px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
           <div>
             <span className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8 text-grey-secondary">
               {d.home.badge}
             </span>
 
             <h1
-              className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
-              style={{ fontSize: 'clamp(3rem, 6vw, 5.2rem)' }}
+              className="font-serif font-light leading-[1.05] mb-8 text-text-primary"
+              style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.8rem)' }}
             >
-              {d.home.heroTitle1}<br />
-              <em className="italic">{d.home.heroTitle2}</em><br />
-              {d.home.heroTitle3}
+              Dr. Marcel<br />
+              <em className="italic">Hofeditz</em>
             </h1>
 
-            <p className="text-[0.95rem] leading-relaxed mb-10 max-w-[40ch] text-grey-secondary">
+            {/* Three role lines */}
+            <div className="space-y-2 mb-8">
+              {[d.home.heroRole1, d.home.heroRole2, d.home.heroRole3].map((role) => (
+                <p
+                  key={role}
+                  className="text-[0.88rem] tracking-[0.04em] text-grey-secondary flex items-start gap-3"
+                >
+                  <span className="text-text-primary flex-shrink-0 mt-[1px]">&mdash;</span>
+                  {role}
+                </p>
+              ))}
+            </div>
+
+            {/* Intersection paragraph */}
+            <p className="text-[0.92rem] leading-[1.7] mb-10 max-w-[44ch] text-grey-secondary">
               {d.home.heroDesc}
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/plattform">Offmarketpool</BtnPrimary>
+              <BtnPrimary href="/plattform">OffMarketPool</BtnPrimary>
               <BtnOutline href="/buch">{d.home.toBook}</BtnOutline>
             </div>
           </div>
@@ -61,58 +74,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS STRIP */}
-      <div
-        className="py-12 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-grey-light"
-      >
+      {/* ── AUTHORITY STRIP ── */}
+      <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
         <Stat number={d.home.stat1n} label={d.home.stat1l} />
         <Stat number={d.home.stat2n} label={d.home.stat2l} />
         <Stat number={d.home.stat3n} label={d.home.stat3l} />
         <Stat number={d.home.stat4n} label={d.home.stat4l} />
       </div>
 
-      {/* THREE PROJECTS */}
-      <section className="px-[5vw] py-24">
+      {/* ── ECOSYSTEM ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>{d.home.threeProjects}</Eyebrow>
+          <Eyebrow>{d.home.ecosystem}</Eyebrow>
           <SectionTitle className="mb-4 max-w-[24ch]">
-            {d.home.projectsHeadline}
+            {d.home.ecosystemHeadline}
           </SectionTitle>
-          <p className="text-[0.9rem] mb-14 max-w-[52ch] text-grey-secondary">
-            {d.home.projectsDesc}
+          <p className="text-[0.9rem] leading-relaxed mb-16 max-w-[52ch] text-grey-secondary">
+            {d.home.ecosystemDesc}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <ProjectCard
-              eyebrow={d.home.platformEyebrow}
-              title="Offmarketpool"
-              description={d.home.platformDesc}
-              cta={d.home.toPlatform}
-              href="https://offmarketpool.vercel.app"
-              external
-            />
-            <ProjectCard
-              eyebrow={d.home.bookEyebrow}
-              title="Die Immobilien&shy;luge"
-              description={d.home.bookDesc}
-              cta={d.home.toBook}
-              href="/buch"
-            />
-            <ProjectCard
-              eyebrow={d.home.coachingEyebrow}
-              title="Immolab"
-              description={d.home.coachingDesc}
-              cta={d.home.toCoaching}
-              href="/coaching"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-grey-light">
+            {[
+              {
+                eyebrow: d.home.pillar1Eyebrow,
+                title: d.home.pillar1Title,
+                desc: d.home.pillar1Desc,
+                cta: d.home.pillar1Cta,
+                href: '/forschung',
+                marker: '01',
+              },
+              {
+                eyebrow: d.home.pillar2Eyebrow,
+                title: d.home.pillar2Title,
+                desc: d.home.pillar2Desc,
+                cta: d.home.pillar2Cta,
+                href: '/buch',
+                marker: '02',
+              },
+              {
+                eyebrow: d.home.pillar3Eyebrow,
+                title: d.home.pillar3Title,
+                desc: d.home.pillar3Desc,
+                cta: d.home.pillar3Cta,
+                href: 'https://offmarketpool.vercel.app',
+                external: true,
+                marker: '03',
+              },
+            ].map(({ eyebrow, title, desc, cta, href, external, marker }) => {
+              const content = (
+                <div className="group p-8 md:p-10 flex flex-col justify-between h-full border-b md:border-b-0 md:border-r border-grey-light last:border-0 transition-colors duration-300 hover:bg-[#FAFAFA]">
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-[0.65rem] tracking-[0.22em] uppercase text-grey-secondary">
+                        {eyebrow}
+                      </span>
+                      <span className="font-serif text-[0.85rem] text-grey-light">
+                        {marker}
+                      </span>
+                    </div>
+                    <h3
+                      className="font-serif font-light leading-[1.15] mb-4 text-text-primary"
+                      style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)' }}
+                    >
+                      {title}
+                    </h3>
+                    <p className="text-[0.84rem] leading-relaxed text-grey-secondary">
+                      {desc}
+                    </p>
+                  </div>
+                  <div className="mt-8 pt-6 border-t border-grey-light">
+                    <span className="text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 text-text-primary group-hover:text-grey-secondary">
+                      {cta} &rarr;
+                    </span>
+                  </div>
+                </div>
+              )
+
+              if (external) {
+                return (
+                  <a key={title} href={href} target="_blank" rel="noopener noreferrer" className="block">
+                    {content}
+                  </a>
+                )
+              }
+              return (
+                <Link key={title} href={href} className="block">
+                  {content}
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
 
       <Divider />
 
-      {/* ABOUT / BIO */}
-      <section className="px-[5vw] py-24" id="ueber">
+      {/* ── ABOUT / BIO ── */}
+      <section className="px-[5vw] py-28" id="ueber">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div>
             <Eyebrow>{d.home.aboutMe}</Eyebrow>
@@ -125,7 +183,7 @@ export default function Home() {
               {d.home.roleDesc}
             </p>
 
-            <div className="space-y-4 text-[0.92rem] text-grey-secondary">
+            <div className="space-y-4 text-[0.92rem] leading-[1.7] text-grey-secondary">
               <p>
                 {d.home.bio1}{' '}
                 <strong className="text-text-primary font-normal">{d.home.bio1bold}</strong>{' '}
@@ -144,31 +202,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Credentials grid */}
-          <div className="grid grid-cols-1 gap-4 mt-2">
+          {/* Credentials */}
+          <div className="grid grid-cols-1 gap-5 mt-2">
             {[
-              {
-                label: d.home.academic,
-                items: d.home.academicItems,
-              },
-              {
-                label: d.home.entrepreneurial,
-                items: d.home.entrepreneurialItems,
-              },
+              { label: d.home.academic, items: d.home.academicItems },
+              { label: d.home.entrepreneurial, items: d.home.entrepreneurialItems },
             ].map(({ label, items }) => (
-              <div
-                key={label}
-                className="p-6 border border-grey-light"
-              >
-                <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
+              <div key={label} className="p-7 border border-grey-light">
+                <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-5 text-grey-secondary">
                   {label}
                 </span>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-[0.82rem] text-grey-secondary"
-                    >
+                    <li key={item} className="flex gap-3 text-[0.82rem] text-grey-secondary">
                       <span className="text-text-primary flex-shrink-0">&mdash;</span>
                       {item}
                     </li>
@@ -182,18 +228,28 @@ export default function Home() {
 
       <Divider />
 
-      {/* OFFMARKETPOOL TEASER */}
-      <section className="px-[5vw] py-24">
+      {/* ── PLATFORM REFERENCE ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
             <Eyebrow>{d.home.platformSection}</Eyebrow>
-            <SectionTitle className="mb-6">
+            <SectionTitle className="mb-3">
               {d.home.platformHeadline1}<br />
               <em className="italic">{d.home.platformHeadline2}</em>
             </SectionTitle>
-            <p className="text-[0.92rem] leading-relaxed mb-8 max-w-[44ch] text-grey-secondary">
+
+            {/* Exact positioning text */}
+            <p className="font-serif text-[1.1rem] leading-[1.6] mb-4 text-text-primary">
+              {d.home.platformPositioning}
+            </p>
+            <p className="font-serif text-[1.1rem] leading-[1.6] mb-8 text-text-primary">
+              {d.home.platformScale}
+            </p>
+
+            <p className="text-[0.9rem] leading-relaxed mb-10 max-w-[44ch] text-grey-secondary">
               {d.home.platformSectionDesc}
             </p>
+
             <div className="flex flex-wrap gap-4">
               <BtnPrimary href="https://offmarketpool.vercel.app" external>
                 {d.home.toPlatform} &rarr;
@@ -205,35 +261,16 @@ export default function Home() {
           {/* Feature list */}
           <div className="space-y-4">
             {[
-              {
-                title: d.home.featureMatching,
-                desc: d.home.featureMatchingDesc,
-              },
-              {
-                title: d.home.featureInvestors,
-                desc: d.home.featureInvestorsDesc,
-              },
-              {
-                title: d.home.featurePool,
-                desc: d.home.featurePoolDesc,
-              },
-              {
-                title: d.home.featureDoc,
-                desc: d.home.featureDocDesc,
-              },
+              { title: d.home.featureMatching, desc: d.home.featureMatchingDesc },
+              { title: d.home.featureInvestors, desc: d.home.featureInvestorsDesc },
+              { title: d.home.featurePool, desc: d.home.featurePoolDesc },
+              { title: d.home.featureDoc, desc: d.home.featureDocDesc },
             ].map(({ title, desc }) => (
-              <div
-                key={title}
-                className="flex gap-4 p-5 border border-grey-light"
-              >
+              <div key={title} className="flex gap-4 p-6 border border-grey-light">
                 <span className="text-text-primary flex-shrink-0 mt-[2px]">&bull;</span>
                 <div>
-                  <p className="text-[0.88rem] mb-1 text-text-primary font-normal">
-                    {title}
-                  </p>
-                  <p className="text-[0.8rem] text-grey-secondary">
-                    {desc}
-                  </p>
+                  <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
+                  <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
                 </div>
               </div>
             ))}
@@ -243,10 +280,10 @@ export default function Home() {
 
       <Divider />
 
-      {/* BOOK TEASER */}
-      <section className="px-[5vw] py-24">
+      {/* ── BOOK TEASER ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Book cover SVG – monochrome */}
+          {/* Book cover SVG */}
           <div className="flex justify-center">
             <div
               className="relative"
@@ -291,12 +328,10 @@ export default function Home() {
               {d.home.bookHeadline1}<br />
               <em className="italic">{d.home.bookHeadline2}</em>
             </SectionTitle>
-            <p className="text-[0.92rem] leading-relaxed mb-6 max-w-[44ch] text-grey-secondary">
+            <p className="text-[0.92rem] leading-[1.7] mb-6 max-w-[44ch] text-grey-secondary">
               {d.home.bookSectionDesc}
             </p>
-            <blockquote
-              className="font-serif font-light italic text-[1.1rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary"
-            >
+            <blockquote className="font-serif font-light italic text-[1.05rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary">
               {d.home.bookQuote}
             </blockquote>
             <div className="flex flex-wrap gap-4">
@@ -309,62 +344,50 @@ export default function Home() {
 
       <Divider />
 
-      {/* IMMOLAB TEASER */}
-      <section className="px-[5vw] py-24">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div>
-              <Eyebrow>{d.home.coachingSection}</Eyebrow>
-              <SectionTitle className="mb-6">
-                {d.home.coachingHeadline1}<br />
-                <em className="italic">{d.home.coachingHeadline2}</em>
-              </SectionTitle>
-              <p className="text-[0.92rem] leading-relaxed mb-8 text-grey-secondary">
-                {d.home.coachingSectionDesc}
-              </p>
-              <BtnPrimary href="/coaching">{d.home.toCoaching}</BtnPrimary>
-            </div>
+      {/* ── COACHING TEASER ── */}
+      <section className="px-[5vw] py-28">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <Eyebrow>{d.home.coachingSection}</Eyebrow>
+            <SectionTitle className="mb-6">
+              {d.home.coachingHeadline1}<br />
+              <em className="italic">{d.home.coachingHeadline2}</em>
+            </SectionTitle>
+            <p className="text-[0.92rem] leading-[1.7] mb-10 text-grey-secondary">
+              {d.home.coachingSectionDesc}
+            </p>
+            <BtnPrimary href="/coaching">{d.home.toCoaching}</BtnPrimary>
+          </div>
 
-            <div className="grid grid-cols-1 gap-4">
-              {[
-                { title: d.home.coachingFeature1, desc: d.home.coachingFeature1Desc },
-                { title: d.home.coachingFeature2, desc: d.home.coachingFeature2Desc },
-                { title: d.home.coachingFeature3, desc: d.home.coachingFeature3Desc },
-                { title: d.home.coachingFeature4, desc: d.home.coachingFeature4Desc },
-              ].map(({ title, desc }) => (
-                <div
-                  key={title}
-                  className="p-5 border border-grey-light"
-                >
-                  <p className="text-[0.88rem] mb-1 text-text-primary font-normal">
-                    {title}
-                  </p>
-                  <p className="text-[0.8rem] text-grey-secondary">
-                    {desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              { title: d.home.coachingFeature1, desc: d.home.coachingFeature1Desc },
+              { title: d.home.coachingFeature2, desc: d.home.coachingFeature2Desc },
+              { title: d.home.coachingFeature3, desc: d.home.coachingFeature3Desc },
+              { title: d.home.coachingFeature4, desc: d.home.coachingFeature4Desc },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 border border-grey-light">
+                <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
+                <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <Divider />
 
-      {/* CONTACT CTA */}
-      <section className="px-[5vw] py-28 text-center border-t border-grey-light">
+      {/* ── CONTACT CTA ── */}
+      <section className="px-[5vw] py-32 text-center">
         <Eyebrow>{d.home.directContact}</Eyebrow>
         <h2
           className="font-serif font-light leading-[1.1] mb-6 mx-auto text-text-primary"
-          style={{
-            fontSize: 'clamp(2.2rem, 5vw, 4rem)',
-            maxWidth: '22ch',
-          }}
+          style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', maxWidth: '22ch' }}
         >
           {d.home.ctaHeadline1}
           <em className="italic">{d.home.ctaHeadline2}</em>
         </h2>
-        <p className="text-[0.9rem] mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
+        <p className="text-[0.9rem] leading-relaxed mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
           {d.home.ctaDesc}
         </p>
         <BtnPrimary href="/kontakt">{d.home.inquireNow}</BtnPrimary>
