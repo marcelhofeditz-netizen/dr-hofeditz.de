@@ -1,30 +1,29 @@
-import { Eyebrow, SectionTitle } from '@/components/ui'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Kontakt – Dr. Marcel Hofeditz',
-}
+import { Eyebrow, SectionTitle } from '@/components/ui'
+import { useLocale } from '@/lib/locale-context'
 
 export default function KontaktPage() {
+  const { d } = useLocale()
+
   return (
     <section className="px-[5vw] py-24 min-h-[80vh]">
       <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         <div>
-          <Eyebrow>Direktkontakt</Eyebrow>
+          <Eyebrow>{d.contact.eyebrow}</Eyebrow>
           <SectionTitle className="mb-6">
-            Lassen Sie uns<br />
-            <em className="italic">sprechen.</em>
+            {d.contact.headline1}<br />
+            <em className="italic">{d.contact.headline2}</em>
           </SectionTitle>
           <p className="text-[0.92rem] leading-relaxed mb-10 max-w-[42ch] text-grey-secondary">
-            Ob Offmarket-Transaktion, Buchvorbestellung, Immolab-Erstgesprach
-            oder Presseanfrage – schreiben Sie mir direkt.
+            {d.contact.desc}
           </p>
 
           <div className="space-y-6">
             {[
-              { label: 'Adresse', value: 'Jevenstedter Strasse 176a\nHamburg' },
-              { label: 'Burozeiten', value: 'Montag – Freitag' },
-              { label: 'Plattform', value: 'offmarketpool.vercel.app', link: 'https://offmarketpool.vercel.app' },
+              { label: d.contact.address, value: `${d.footer.address}\nHamburg` },
+              { label: d.contact.hours, value: d.contact.hoursValue },
+              { label: d.contact.platformLabel, value: 'offmarketpool.vercel.app', link: 'https://offmarketpool.vercel.app' },
             ].map(({ label, value, link }) => (
               <div key={label}>
                 <span className="text-[0.65rem] tracking-[0.18em] uppercase block mb-1 text-grey-secondary">
@@ -52,13 +51,13 @@ export default function KontaktPage() {
         {/* Form */}
         <div className="p-8 border border-grey-light">
           <p className="text-[0.68rem] tracking-[0.18em] uppercase mb-6 text-grey-secondary">
-            Nachricht senden
+            {d.contact.sendMessage}
           </p>
 
           <div className="space-y-4">
             {[
-              { id: 'name', label: 'Name', type: 'text', placeholder: 'Ihr vollstandiger Name' },
-              { id: 'email', label: 'E-Mail', type: 'email', placeholder: 'ihre@email.de' },
+              { id: 'name', label: d.contact.name, type: 'text', placeholder: d.contact.namePlaceholder },
+              { id: 'email', label: d.contact.email, type: 'email', placeholder: d.contact.emailPlaceholder },
             ].map(({ id, label, type, placeholder }) => (
               <div key={id}>
                 <label
@@ -81,19 +80,19 @@ export default function KontaktPage() {
                 htmlFor="anliegen"
                 className="text-[0.72rem] tracking-[0.1em] uppercase block mb-2 text-grey-secondary"
               >
-                Anliegen
+                {d.contact.subject}
               </label>
               <select
                 id="anliegen"
                 className="w-full border border-grey-light px-4 py-3 outline-none text-[0.85rem] text-grey-secondary transition-colors duration-200 focus:border-text-primary"
                 style={{ background: '#F6F6F6' }}
               >
-                <option value="">Bitte wahlen ...</option>
-                <option value="offmarket">Offmarket-Transaktion</option>
-                <option value="buch">Buch / Buchkauf</option>
-                <option value="immolab">Immolab Coaching</option>
-                <option value="presse">Presse / Interview</option>
-                <option value="sonstiges">Sonstiges</option>
+                <option value="">{d.contact.subjectDefault}</option>
+                <option value="offmarket">{d.contact.subjectOffmarket}</option>
+                <option value="buch">{d.contact.subjectBook}</option>
+                <option value="immolab">{d.contact.subjectCoaching}</option>
+                <option value="presse">{d.contact.subjectPress}</option>
+                <option value="sonstiges">{d.contact.subjectOther}</option>
               </select>
             </div>
 
@@ -102,22 +101,22 @@ export default function KontaktPage() {
                 htmlFor="nachricht"
                 className="text-[0.72rem] tracking-[0.1em] uppercase block mb-2 text-grey-secondary"
               >
-                Nachricht
+                {d.contact.message}
               </label>
               <textarea
                 id="nachricht"
                 rows={5}
-                placeholder="Ihre Nachricht ..."
+                placeholder={d.contact.messagePlaceholder}
                 className="w-full bg-transparent border border-grey-light px-4 py-3 outline-none text-[0.85rem] text-text-primary resize-none transition-colors duration-200 focus:border-text-primary"
               />
             </div>
 
             <button className="w-full py-3 text-[0.76rem] tracking-[0.12em] uppercase font-medium transition-all duration-200 hover:opacity-80 bg-black text-white">
-              Nachricht senden
+              {d.contact.send}
             </button>
 
             <p className="text-[0.7rem] text-center text-grey-secondary">
-              Ich antworte personlich innerhalb von 24 Stunden.
+              {d.contact.responseTime}
             </p>
           </div>
         </div>

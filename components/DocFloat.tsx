@@ -2,24 +2,33 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { useLocale } from '@/lib/locale-context'
 
 const BOOK_KNOWLEDGE = `
-Du bist "Doc", der offizielle KI-Agent von Dr. Marcel Hofeditz.
+Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Research: Organizational Trust, Compliance, Strategy. Co-CEO Mollerherm Immobilien (2015–2023), €600M+ transaction volume. Founder Dr. Hofeditz Real Estate GmbH. Author "Die Immobilienluge".
 
-AUTOR: Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy. Co-CEO Mollerherm Immobilien (2015–2023), 600+ Mio. EUR Transaktionsvolumen. Grunder Dr. Hofeditz Real Estate GmbH. Autor von "Die Immobilienluge".
+PROJECTS:
+1. Offmarketpool – Europe's leading off-market real estate platform. AI matching, 7,000+ investor profiles. 361 deals, €6.2B asset volume.
+2. Die Immobilienluge – Non-fiction (2026). 21 chapters on behavioral economics, game theory, market psychology.
+3. Immolab – Individual coaching for real estate investors.
 
-PROJEKTE:
-1. Offmarketpool – Deutschlands Plattform fur diskrete Immobilientransaktionen. KI-basiertes Matching, 7.000+ Investorenprofile.
-2. Die Immobilienluge – Sachbuch (2026). Warum wir mit Immobilien nicht reich werden. 21 Kapitel uber Verhaltensokonomie, Spieltheorie und Marktpsychologie.
-3. Immolab – Einzelberatung und Coaching fur Immobilieninvestoren.
-
-KERNTHESE BUCH: Der deutsche Immobilienmarkt ist nicht fundamental-, sondern erwartungsgetrieben. Immobilien = nicht rationaler Markt, sondern psychologischer.
-
-FORSCHUNG: 5 Journal-Artikel (HRM, Personnel Review, IJBM, zfo), 5 Konferenzbeitrage, 3 Working Papers. 400+ Zitationen.
+RESEARCH: 5 journal articles (HRM, Personnel Review, IJBM, zfo), 5 conference papers, 3 working papers. 400+ citations.
 `
 
-const SYSTEM_PROMPT = `${BOOK_KNOWLEDGE}
+function getSystemPrompt(locale: string) {
+  if (locale === 'en') {
+    return `${BOOK_KNOWLEDGE}
+ROLE: You are Doc, the personal AI assistant on dr-hofeditz.de. Answer questions about:
+- Dr. Marcel Hofeditz and his work
+- Offmarketpool platform
+- The book "Die Immobilienluge"
+- Immolab coaching
+- Real estate questions
+- Research and publications
 
+STYLE: Factual, precise, friendly. English. Max 150 words. Reference relevant pages (/buch, /plattform, /coaching, /forschung, /kontakt).`
+  }
+  return `${BOOK_KNOWLEDGE}
 ROLLE: Du bist Doc, der personliche KI-Assistent auf dr-hofeditz.de. Du beantwortest Fragen zu:
 - Dr. Marcel Hofeditz und seiner Arbeit
 - Offmarketpool Plattform
@@ -29,6 +38,7 @@ ROLLE: Du bist Doc, der personliche KI-Assistent auf dr-hofeditz.de. Du beantwor
 - Forschung und Publikationen
 
 STIL: Sachlich, prazise, freundlich. Deutsch. Max. 150 Worter. Verweise auf die passende Unterseite wenn sinnvoll (/buch, /plattform, /coaching, /forschung, /kontakt).`
+}
 
 type Message = {
   role: 'user' | 'assistant'
@@ -36,17 +46,19 @@ type Message = {
 }
 
 export function DocFloat() {
+  const { locale, d } = useLocale()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content:
-        'Guten Tag! Ich bin **Doc**, der KI-Assistent von Dr. Hofeditz. Wie kann ich Ihnen helfen?',
-    },
+    { role: 'assistant', content: d.doc.greeting },
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Reset greeting when locale changes
+  useEffect(() => {
+    setMessages([{ role: 'assistant', content: d.doc.greeting }])
+  }, [locale, d.doc.greeting])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -67,19 +79,19 @@ export function DocFloat() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: newMessages,
-          system: SYSTEM_PROMPT,
+          system: getSystemPrompt(locale),
           maxTokens: 400,
         }),
       })
       const data = await response.json()
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: data.content ?? 'Entschuldigung, es gab einen Fehler.' },
+        { role: 'assistant', content: data.content ?? (locale === 'en' ? 'Sorry, an error occurred.' : 'Entschuldigung, es gab einen Fehler.') },
       ])
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
+        { role: 'assistant', content: locale === 'en' ? 'Technical error. Please try again.' : 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
       ])
     }
     setLoading(false)
@@ -142,14 +154,14 @@ export function DocFloat() {
                 <p className="text-[0.88rem] font-medium text-text-primary">Doc</p>
                 <p className="text-[0.65rem] flex items-center gap-1.5 text-grey-secondary">
                   <span className="w-[6px] h-[6px] rounded-full inline-block bg-text-primary" />
-                  KI-Agent &middot; Online
+                  {d.doc.agentOnline}
                 </p>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
               className="w-8 h-8 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-grey-light text-grey-secondary"
-              aria-label="Schliessen"
+              aria-label={d.doc.close}
             >
               &times;
             </button>
@@ -200,7 +212,7 @@ export function DocFloat() {
 
           {/* Quick suggestions */}
           <div className="px-3 py-2 flex gap-1.5 flex-wrap flex-shrink-0 border-t border-grey-light">
-            {['Offmarketpool?', 'Das Buch?', 'Coaching?', 'Kontakt?'].map((s) => (
+            {d.doc.suggestions.map((s: string) => (
               <button
                 key={s}
                 onClick={() => sendMessage(s)}
@@ -222,7 +234,7 @@ export function DocFloat() {
                   sendMessage()
                 }
               }}
-              placeholder="Frage stellen ..."
+              placeholder={d.doc.askQuestion}
               className="flex-1 bg-transparent outline-none px-4 py-3.5 text-[0.82rem] text-text-primary"
             />
             <button

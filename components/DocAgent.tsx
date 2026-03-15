@@ -1,46 +1,23 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useLocale } from '@/lib/locale-context'
 
 const BOOK_KNOWLEDGE = `
-Du bist "Doc", der offizielle KI-Agent zum Buch "Die Immobilienluge: Warum wir mit Immobilien nicht reich werden" von Dr. Marcel Hofeditz.
+"Doc" – AI agent for the book "Die Immobilienluge: Warum wir mit Immobilien nicht reich werden" by Dr. Marcel Hofeditz.
 
-AUTOR: Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy.
+AUTHOR: Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (University of Munster). Research: Organizational Trust, Compliance, Strategy.
 
-KERNTHESE: Der deutsche Immobilienmarkt ist nicht fundamental-, sondern erwartungsgetrieben. Immobilien = nicht rationaler Markt, sondern psychologischer.
+CORE THESIS: The German real estate market is not fundamentals-driven but expectation-driven. Real estate = not a rational market, but a psychological one.
 
-AUFBAU (5 Akte):
-TEIL 1 (Kap. 1–5): Psychologie der Kaufentscheidung
-- Kap. 1: Besitztumseffekt (Endowment Effect)
-- Kap. 2: Ankereffekt
-- Kap. 3: Herdentrieb / FOMO
-- Kap. 4: Projektionsfehler
-- Kap. 5: Reziprozitat
+STRUCTURE (5 Acts):
+Part 1 (Ch. 1–5): Psychology of Purchase Decisions (Endowment Effect, Anchoring, Herd Behavior, Projection Error, Reciprocity)
+Part 2 (Ch. 6–10): Financing & Valuation (Winner's Curse, Loss Aversion, Sunk Cost, Mental Accounting, Prevalence Error)
+Part 3 (Ch. 11–15): Game Theory (Information Asymmetry, Principal-Agent, Prisoner's Dilemma, Coordination Dilemma, Centipede Game)
+Part 4 (Ch. 16–20): Systemic Lies (Greenwashing, Hyperbolic Discounting, Narrative Economics, Dunning-Kruger, Trust but Verify)
+Ch. 21 (Bonus): AI as Lie Detector
 
-TEIL 2 (Kap. 6–10): Finanzierung & Bewertung
-- Kap. 6: Winner's Curse / Bieterverfahren
-- Kap. 7: Verlustaversion
-- Kap. 8: Sunk Cost Falle
-- Kap. 9: Mentale Buchfuhrung
-- Kap. 10: Pravalenzfehler
-
-TEIL 3 (Kap. 11–15): Spieltheorie
-- Kap. 11: Informationsasymmetrie
-- Kap. 12: Prinzipal-Agent-Problem
-- Kap. 13: Gefangenendilemma
-- Kap. 14: Koordinationsdilemma
-- Kap. 15: Tausendfussler-Spiel
-
-TEIL 4 (Kap. 16–20): Systemische Lugen
-- Kap. 16: Greenwashing/Signaling
-- Kap. 17: Hyperbolische Diskontierung
-- Kap. 18: Narrative Okonomie (Shiller)
-- Kap. 19: Dunning-Kruger / Selbstuberschatzung
-- Kap. 20: Trust but Verify – Das Manifest
-
-KAP. 21 (Bonus): KI als Lugendetektor
-
-POSITIONIERUNG: Nicht Crash-Buch, nicht Anti-Immobilien. Analytisches Prufmodell. Schnittstelle: Narrative Economics (Shiller) + Behavioral Finance + Spieltheorie.
+POSITIONING: Not a crash book, not anti-real-estate. Analytical testing model. Intersection: Narrative Economics (Shiller) + Behavioral Finance + Game Theory.
 `
 
 // Code validation (SHA-256 hashes, 16 chars each)
@@ -48,13 +25,20 @@ const VALID_CODE_HASHES: string[] = [
   'a1b2c3d4e5f6a7b8',
 ]
 
-type Message = {
-  role: 'user' | 'assistant'
-  content: string
-}
+function getFreeSystem(locale: string) {
+  if (locale === 'en') {
+    return `${BOOK_KNOWLEDGE}
+ROLE – BASIC ACCESS:
+In basic access you can:
+1. Answer general real estate questions
+2. Explain book structure, core thesis, and acts
+3. Give max. 2 real in-depth answers from the book
+4. After that: short teasers + friendly reference to purchase
 
-const FREE_SYSTEM = `${BOOK_KNOWLEDGE}
-
+STYLE: Factual, precise, academic but accessible. English. Max 180 words. Structured lists when appropriate.
+Enter book code above for full access.`
+  }
+  return `${BOOK_KNOWLEDGE}
 ROLLE – BASIS-ZUGANG:
 Im Basis-Zugang kannst du:
 1. Allgemeine Immobilienfragen beantworten
@@ -64,9 +48,23 @@ Im Basis-Zugang kannst du:
 
 STIL: Sachlich, prazise, akademisch aber zuganglich. Deutsch. Max. 180 Worter. Strukturierte Aufzahlungen wenn sinnvoll.
 Buchcode eingeben oben fur vollen Zugang.`
+}
 
-const FULL_SYSTEM = `${BOOK_KNOWLEDGE}
+function getFullSystem(locale: string) {
+  if (locale === 'en') {
+    return `${BOOK_KNOWLEDGE}
+ROLE – FULL ACCESS (Book buyer):
+You have access to all 21 chapters + appendices. Provide maximum value:
+- Explain all chapters in detail
+- Personal case analyses: describe situation → identify cognitive biases → control strategy from book
+- Walk through checklists from Appendix 3
+- Explain and apply AI prompts from Chapter 21
+- Apply game theory scenarios to real negotiations
+- Reference direct book quotes and case studies
 
+STYLE: In-depth, analytical, like a personal book consultant. English. Detailed answers. Reference chapters directly.`
+  }
+  return `${BOOK_KNOWLEDGE}
 ROLLE – VOLLER ZUGANG (Buchkaufer):
 Du hast Zugriff auf alle 21 Kapitel + Anhange. Biete maximalen Mehrwert:
 - Alle Kapitel detailliert erklaren
@@ -77,14 +75,22 @@ Du hast Zugriff auf alle 21 Kapitel + Anhange. Biete maximalen Mehrwert:
 - Direkte Buchzitate und Fallbeispiele referenzieren
 
 STIL: Tiefgrundig, analytisch, wie personlicher Buchberater. Deutsch. Ausfuhrliche Antworten. Referenziere Kapitel direkt.`
+}
+
+type Message = {
+  role: 'user' | 'assistant'
+  content: string
+}
 
 export function DocAgent() {
+  const { locale, d } = useLocale()
+
+  const getGreeting = () => locale === 'en'
+    ? 'Hello! I am **Doc** – the AI agent for Dr. Hofeditz\'s book *"Die Immobilienlüge"*.\n\nI answer questions about real estate, the book, and its theses. Book buyers get full access with a code.'
+    : 'Guten Tag! Ich bin **Doc** – der KI-Agent zu Dr. Hofeditz\' Buch *"Die Immobilienlüge"*.\n\nIch beantworte Fragen zu Immobilien, zum Buch und zu den Thesen. Buchkäufer erhalten vollen Zugang mit Code.'
+
   const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content:
-        'Guten Tag! Ich bin **Doc** – der KI-Agent zu Dr. Hofeditz\' Buch *"Die Immobilienluge"*.\n\nIch beantworte Fragen zu Immobilien, zum Buch und zu den Thesen. Buchkaufer erhalten vollen Zugang mit Code.',
-    },
+    { role: 'assistant', content: getGreeting() },
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -97,6 +103,12 @@ export function DocAgent() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
+
+  // Reset greeting when locale changes
+  useEffect(() => {
+    setMessages([{ role: 'assistant', content: getGreeting() }])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale])
 
   async function tryUnlock() {
     const val = codeInput.trim().toUpperCase()
@@ -115,8 +127,9 @@ export function DocAgent() {
         ...prev,
         {
           role: 'assistant',
-          content:
-            '**Voller Zugang freigeschaltet!** Willkommen als Buchkaufer. Ich stehe Ihnen jetzt mit dem vollstandigen Wissen aus allen 21 Kapiteln zur Verfugung.',
+          content: locale === 'en'
+            ? '**Full access unlocked!** Welcome as a book buyer. I am now available with the complete knowledge from all 21 chapters.'
+            : '**Voller Zugang freigeschaltet!** Willkommen als Buchkäufer. Ich stehe Ihnen jetzt mit dem vollständigen Wissen aus allen 21 Kapiteln zur Verfügung.',
         },
       ])
     } else {
@@ -141,13 +154,13 @@ export function DocAgent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: newMessages,
-          system: hasFullAccess ? FULL_SYSTEM : FREE_SYSTEM,
+          system: hasFullAccess ? getFullSystem(locale) : getFreeSystem(locale),
           maxTokens: hasFullAccess ? 800 : 350,
         }),
       })
 
       const data = await response.json()
-      const reply = data.content ?? 'Entschuldigung, es gab einen Fehler.'
+      const reply = data.content ?? (locale === 'en' ? 'Sorry, an error occurred.' : 'Entschuldigung, es gab einen Fehler.')
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
 
       if (!hasFullAccess && demoCount >= 1) {
@@ -156,8 +169,9 @@ export function DocAgent() {
             ...prev,
             {
               role: 'assistant',
-              content:
-                '**Hinweis:** Sie haben die kostenlose Demo-Tiefe erreicht. Fur vollstandige Analysen, alle Kapitelinhalte und personliche Fallanalysen – erwerben Sie das Buch und geben Sie Ihren Code ein.',
+              content: locale === 'en'
+                ? '**Note:** You have reached the free demo depth. For complete analyses, all chapter contents, and personal case analyses – purchase the book and enter your code.'
+                : '**Hinweis:** Sie haben die kostenlose Demo-Tiefe erreicht. Für vollständige Analysen, alle Kapitelinhalte und persönliche Fallanalysen – erwerben Sie das Buch und geben Sie Ihren Code ein.',
             },
           ])
         }, 600)
@@ -165,15 +179,19 @@ export function DocAgent() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
+        { role: 'assistant', content: locale === 'en' ? 'Technical error. Please try again.' : 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
       ])
     }
     setLoading(false)
   }
 
   const suggestions = hasFullAccess
-    ? ['Analysiere meine Situation', 'Kap. 21: KI-Prompts erklaren', 'Lugendetektor-Checkliste', 'Kaufen vs. Mieten rechnen']
-    : ['Worum geht es im Buch?', 'Was ist der Besitztumseffekt?', 'Wie ist das Buch aufgebaut?', 'Ist Kaufen besser als Mieten?']
+    ? (locale === 'en'
+      ? ['Analyze my situation', 'Ch. 21: AI prompts', 'Lie detector checklist', 'Buy vs. rent calculation']
+      : ['Analysiere meine Situation', 'Kap. 21: KI-Prompts erklären', 'Lügendetektor-Checkliste', 'Kaufen vs. Mieten rechnen'])
+    : (locale === 'en'
+      ? ['What is the book about?', 'What is the endowment effect?', 'How is the book structured?', 'Is buying better than renting?']
+      : ['Worum geht es im Buch?', 'Was ist der Besitztumseffekt?', 'Wie ist das Buch aufgebaut?', 'Ist Kaufen besser als Mieten?'])
 
   return (
     <section
@@ -188,33 +206,27 @@ export function DocAgent() {
               className="w-[7px] h-[7px] rounded-full bg-text-primary"
               style={{ animation: 'pulse 2s infinite' }}
             />
-            KI-Agent &middot; Live
+            {d.book.docAgentLive}
           </div>
 
           <h2
             className="font-serif font-light leading-[1.1] mb-5 text-text-primary"
             style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
           >
-            Frag <em className="italic">Doc</em> –<br />
-            den Agenten<br />zum Buch
+            {d.book.askDoc} <em className="italic">{d.book.docName}</em> –<br />
+            {d.book.agentSubline}
           </h2>
 
           <p className="text-[0.88rem] mb-7 max-w-[36ch] text-grey-secondary">
-            Doc kennt alle Thesen, Fallbeispiele und Werkzeuge aus der
-            &bdquo;Immobilienluge&ldquo;. Buchkaufer erhalten vollen Zugang.
+            {d.book.docDesc}
           </p>
 
           {/* Tier list */}
           <div className="space-y-3">
             <p className="text-[0.65rem] tracking-[0.18em] uppercase mb-2 text-grey-secondary">
-              Kostenloser Zugang
+              {d.book.freeAccess}
             </p>
-            {[
-              'Allgemeine Immobilienfragen',
-              'Kapitelubersicht & Buchvorschau',
-              '2 Demo-Antworten aus dem Buch',
-              'Teaser & Kaufmotivation',
-            ].map((item) => (
+            {d.book.freeItems.map((item: string) => (
               <div key={item} className="flex items-center gap-3 text-[0.8rem] text-text-primary">
                 <span className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border border-grey-light bg-white">
                   &check;
@@ -224,14 +236,9 @@ export function DocAgent() {
             ))}
 
             <p className="text-[0.65rem] tracking-[0.18em] uppercase mt-5 mb-2 text-grey-secondary">
-              Nach Buchkauf (Code erforderlich)
+              {d.book.paidAccess}
             </p>
-            {[
-              'Vollstandiges Buchwissen (21 Kapitel)',
-              'Personliche Fallanalysen & Checklisten',
-              'KI-Prompts aus Kapitel 21',
-              'Unbegrenzte Tiefenanalysen',
-            ].map((item) => (
+            {d.book.paidItems.map((item: string) => (
               <div
                 key={item}
                 className={`flex items-center gap-3 text-[0.8rem] ${hasFullAccess ? 'text-text-primary' : 'text-grey-secondary'}`}
@@ -265,7 +272,7 @@ export function DocAgent() {
               <div>
                 <p className="text-[0.88rem] font-medium text-text-primary">Doc</p>
                 <p className="text-[0.68rem] text-grey-secondary">
-                  KI-Agent &middot; Die Immobilienluge
+                  {d.book.docAgentLive} &middot; Die Immobilienlüge
                 </p>
               </div>
             </div>
@@ -276,7 +283,9 @@ export function DocAgent() {
                   : 'bg-white border-grey-light text-grey-secondary'
               }`}
             >
-              {hasFullAccess ? '\u2713 Voller Zugang' : 'Basis-Zugang'}
+              {hasFullAccess
+                ? (locale === 'en' ? '\u2713 Full Access' : '\u2713 Voller Zugang')
+                : (locale === 'en' ? 'Basic Access' : 'Basis-Zugang')}
             </span>
           </div>
 
@@ -284,7 +293,7 @@ export function DocAgent() {
           {!hasFullAccess && (
             <div className="flex items-center gap-3 px-5 py-2 flex-shrink-0 bg-white border-b border-grey-light">
               <span className="text-[0.72rem] flex-shrink-0 text-grey-secondary">
-                Buchcode:
+                {locale === 'en' ? 'Book code:' : 'Buchcode:'}
               </span>
               <input
                 value={codeInput}
@@ -300,11 +309,11 @@ export function DocAgent() {
                 onClick={tryUnlock}
                 className="px-3 py-1 text-[0.7rem] tracking-[0.08em] uppercase font-medium flex-shrink-0 transition-colors duration-200 bg-black text-white"
               >
-                Freischalten
+                {locale === 'en' ? 'Unlock' : 'Freischalten'}
               </button>
               {codeError && (
                 <span className="text-[0.68rem] flex-shrink-0 text-red-500">
-                  Ungultig
+                  {locale === 'en' ? 'Invalid' : 'Ungültig'}
                 </span>
               )}
             </div>
@@ -389,7 +398,7 @@ export function DocAgent() {
                   sendMessage()
                 }
               }}
-              placeholder="Frage an Doc stellen ..."
+              placeholder={locale === 'en' ? 'Ask Doc a question ...' : 'Frage an Doc stellen ...'}
               className="flex-1 bg-transparent outline-none px-5 py-4 text-[0.84rem] text-text-primary"
             />
             <button
@@ -397,7 +406,7 @@ export function DocAgent() {
               disabled={loading || !input.trim()}
               className="px-5 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-all duration-200 disabled:opacity-30 bg-black text-white"
             >
-              Senden
+              {locale === 'en' ? 'Send' : 'Senden'}
             </button>
           </div>
         </div>

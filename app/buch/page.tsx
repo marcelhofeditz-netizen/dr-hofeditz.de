@@ -1,22 +1,12 @@
-import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+'use client'
+
+import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, Stat } from '@/components/ui'
 import { DocAgent } from '@/components/DocAgent'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Die Immobilienluge – Das Buch',
-  description:
-    'Die Immobilienluge von Dr. Marcel Hofeditz. Warum wir mit Immobilien nicht reich werden. Mit KI-Agent Doc. Erscheint 2026.',
-}
-
-const kapitel = [
-  { nr: '01–05', titel: 'Die Psychologie der Kaufentscheidung', sub: 'Besitztumseffekt · Ankereffekt · Herdentrieb · Projektionsfehler · Reziprozitat' },
-  { nr: '06–10', titel: 'Die Falle der Finanzierung', sub: "Winner's Curse · Verlustaversion · Sunk Cost · Mentale Buchfuhrung · Pravalenzfehler" },
-  { nr: '11–15', titel: 'Das Spiel der Akteure', sub: 'Informationsasymmetrie · Prinzipal-Agent · Gefangenendilemma · Koordinationsdilemma · Tausendfussler-Spiel' },
-  { nr: '16–20', titel: 'Systemische Lugen', sub: 'Greenwashing · Hyperb. Diskontierung · Narrative Okonomie · Selbstuberschatzung · Trust but Verify' },
-  { nr: '21', titel: 'KI als Lugendetektor (Bonus)', sub: 'Konkrete KI-Prompts fur Due Diligence, Bewertung, Verhandlung und Risikoanalyse' },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export default function BuchPage() {
+  const { d } = useLocale()
+
   return (
     <>
       {/* DOC AGENT SECTION */}
@@ -59,26 +49,23 @@ export default function BuchPage() {
           </div>
 
           <div>
-            <Eyebrow>Sachbuch &middot; Wirtschaft &middot; 2026</Eyebrow>
+            <Eyebrow>{d.book.heroEyebrow}</Eyebrow>
             <SectionTitle className="mb-6">
               Die<br />
               <em className="italic">Immobilien&shy;luge</em>
             </SectionTitle>
             <p className="text-[0.92rem] leading-relaxed mb-3 max-w-[44ch] text-grey-secondary">
-              Warum wir mit Immobilien nicht reich werden – und welche
-              psychologischen Fallen uns daran hindern, es zu erkennen.
+              {d.book.heroDesc1}
             </p>
             <p className="text-[0.88rem] leading-relaxed mb-8 max-w-[44ch] text-grey-secondary">
-              Ca. 230 Seiten. 21 Kapitel. 20+ Fallbeispiele.
-              Verhaltensokonomie, Spieltheorie und Marktmechanik.
+              {d.book.heroDesc2}
             </p>
             <blockquote className="font-serif italic text-[1.1rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary">
-              &bdquo;Der Immobilienmarkt ist kein Markt aus Beton –
-              er ist ein Markt aus Psychologie.&ldquo;
+              &bdquo;{d.book.quote}&ldquo;
             </blockquote>
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="#doc-agent">Frag Doc, den KI-Agenten</BtnPrimary>
-              <BtnOutline href="/kontakt">Erscheinungsdatum</BtnOutline>
+              <BtnPrimary href="#doc-agent">{d.book.askDocAgent}</BtnPrimary>
+              <BtnOutline href="/kontakt">{d.book.releaseDate}</BtnOutline>
             </div>
           </div>
         </div>
@@ -89,10 +76,10 @@ export default function BuchPage() {
       {/* KAPITEL */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Inhalt</Eyebrow>
-          <SectionTitle className="mb-14">Funf Akte. Ein Urteil.</SectionTitle>
+          <Eyebrow>{d.book.contentEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.book.fiveActs}</SectionTitle>
           <div className="space-y-3">
-            {kapitel.map(({ nr, titel, sub }) => (
+            {d.book.chapters.map(({ nr, titel, sub }: { nr: string; titel: string; sub: string }) => (
               <div
                 key={nr}
                 className="flex gap-6 p-6 border border-grey-light group hover:border-text-primary transition-colors duration-300"
@@ -120,10 +107,10 @@ export default function BuchPage() {
       <section className="px-[5vw] py-16 border-y border-grey-light">
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { n: '21', l: 'Kapitel + KI-Bonus' },
-            { n: '20+', l: 'Reale Fallbeispiele' },
-            { n: '50 J.', l: 'Realrendite-Vergleiche' },
-            { n: '1', l: 'KI-Agent Doc' },
+            { n: d.book.stat1n, l: d.book.stat1l },
+            { n: d.book.stat2n, l: d.book.stat2l },
+            { n: d.book.stat3n, l: d.book.stat3l },
+            { n: d.book.stat4n, l: d.book.stat4l },
           ].map(({ n, l }) => (
             <div key={l}>
               <div className="font-serif font-light leading-none mb-2 text-text-primary"
@@ -138,18 +125,40 @@ export default function BuchPage() {
         </div>
       </section>
 
+      <Divider />
+
+      {/* BRIDGE – Book → OffMarketPool */}
+      <section className="px-[5vw] py-24">
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>{d.book.bridgeEyebrow}</Eyebrow>
+          <SectionTitle className="mb-6">
+            {d.book.bridgeHeadline.split('*')[0]}
+            <em className="italic">{d.book.bridgeHeadline.split('*')[1]}</em>
+            {d.book.bridgeHeadline.split('*')[2] || ''}
+          </SectionTitle>
+          <p className="text-[0.92rem] leading-relaxed mb-10 max-w-[52ch] text-grey-secondary">
+            {d.book.bridgeDesc}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <Stat number={d.platform.stat1n} label={d.platform.stat1l} />
+            <Stat number={d.platform.stat2n} label={d.platform.stat2l} />
+            <Stat number={d.platform.stat3n} label={d.platform.stat3l} />
+          </div>
+          <BtnPrimary href="/plattform">{d.book.bridgeCta}</BtnPrimary>
+        </div>
+      </section>
+
       {/* CTA / Notify */}
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
-        <Eyebrow>Erscheint 2026</Eyebrow>
+        <Eyebrow>{d.book.notifyEyebrow}</Eyebrow>
         <h2
           className="font-serif font-light mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
-          Wer zuerst pruft, gewinnt.
+          {d.book.notifyHeadline}
         </h2>
         <p className="mb-10 text-[0.9rem] mx-auto max-w-[44ch] text-grey-secondary">
-          Eintragen und Erscheinungsdatum, exklusive Leseproben
-          und den KI-Prompt-Guide vorab erhalten.
+          {d.book.notifyDesc}
         </p>
         <NotifyForm />
       </section>
@@ -158,15 +167,17 @@ export default function BuchPage() {
 }
 
 function NotifyForm() {
+  const { d } = useLocale()
+
   return (
     <div className="flex max-w-[420px] mx-auto border border-grey-light">
       <input
         type="email"
-        placeholder="Ihre E-Mail-Adresse"
+        placeholder={d.book.emailPlaceholder}
         className="flex-1 px-5 py-3 bg-transparent outline-none text-[0.84rem] text-text-primary"
       />
       <button className="px-6 py-3 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-colors duration-200 hover:opacity-80 bg-black text-white">
-        Vormerken
+        {d.book.preorder}
       </button>
     </div>
   )

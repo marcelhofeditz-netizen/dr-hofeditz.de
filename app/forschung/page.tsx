@@ -1,11 +1,7 @@
-import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Forschung – Dr. Marcel Hofeditz',
-  description:
-    'Wissenschaftliche Publikationen von Dr. Marcel Hofeditz. Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy. Universitat Munster.',
-}
+import { useLocale } from '@/lib/locale-context'
+import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
 
 const journalPapers = [
   {
@@ -104,45 +100,42 @@ const workingPapers = [
   },
 ]
 
-const schwerpunkte = [
-  {
-    title: 'Organizational Trust',
-    desc: 'Wie entsteht Vertrauen in Organisationen? Welche Mechanismen starken oder zerstoren es?',
-  },
-  {
-    title: 'Compliance & Motivation',
-    desc: 'Warum befolgen Menschen Regeln – und wann werden Compliance-Systeme kontraproduktiv?',
-  },
-  {
-    title: 'Strategy & Risk',
-    desc: 'Strategisches Risikomanagement und Entscheidungsfindung unter Unsicherheit.',
-  },
-]
-
 export default function ForschungPage() {
+  const { locale, d } = useLocale()
+
+  const schwerpunkte = [
+    { title: d.research.focus1, desc: d.research.focus1Desc },
+    { title: d.research.focus2, desc: d.research.focus2Desc },
+    { title: d.research.focus3, desc: d.research.focus3Desc },
+  ]
+
+  const stats = [
+    { n: d.research.stat1n, l: d.research.stat1l },
+    { n: d.research.stat2n, l: d.research.stat2l },
+    { n: d.research.stat3n, l: d.research.stat3l },
+    { n: d.research.stat4n, l: d.research.stat4l },
+  ]
+
   return (
     <>
       {/* HERO */}
       <section className="px-[5vw] py-24 min-h-[50vh] flex items-center">
         <div className="max-w-[1100px] mx-auto w-full">
-          <Eyebrow>Wissenschaft &middot; Universitat Munster</Eyebrow>
+          <Eyebrow>{d.research.heroEyebrow}</Eyebrow>
           <h1
             className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
             style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
           >
-            For<em className="italic">schung</em>
+            {locale === 'de' ? 'For' : 'Re'}<em className="italic">{locale === 'de' ? 'schung' : 'search'}</em>
           </h1>
           <p className="text-[1rem] leading-relaxed mb-4 max-w-[52ch] text-grey-secondary">
-            Promoviert mit summa cum laude an der Universitat Munster.
-            Forschungsschwerpunkte: Organizational Trust, Compliance und
-            strategisches Management. Uber 400 Zitationen auf Google Scholar.
+            {d.research.heroDesc}
           </p>
           <p className="text-[0.88rem] leading-relaxed mb-10 max-w-[52ch] text-grey-secondary">
-            Seit 2015 als Postdoc und Gastdozent am Center for Management (CfM)
-            der Westfalischen Wilhelms-Universitat Munster tatig.
+            {d.research.heroDesc2}
           </p>
           <BtnPrimary href="https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en" external>
-            Google Scholar Profil &rarr;
+            {d.research.googleScholar} &rarr;
           </BtnPrimary>
         </div>
       </section>
@@ -166,8 +159,8 @@ export default function ForschungPage() {
       {/* Journal Papers */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Forschungsartikel (Zeitschrift)</Eyebrow>
-          <SectionTitle className="mb-14">Peer-Reviewed Publications</SectionTitle>
+          <Eyebrow>{d.research.journalEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.journalHeadline}</SectionTitle>
 
           <div className="space-y-5">
             {journalPapers.map(({ year, title, authors, journal, details, link }) => (
@@ -195,7 +188,7 @@ export default function ForschungPage() {
                         <em>{journal}</em>, {details}
                       </p>
                       <span className="inline-block mt-4 text-[0.7rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
-                        Paper lesen &rarr;
+                        {d.research.readPaper} &rarr;
                       </span>
                     </div>
                   </div>
@@ -211,8 +204,8 @@ export default function ForschungPage() {
       {/* Conference Papers */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Forschungsartikel in Sammelband (Konferenz)</Eyebrow>
-          <SectionTitle className="mb-14">Konferenzbeitrage</SectionTitle>
+          <Eyebrow>{d.research.conferenceEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.conferenceHeadline}</SectionTitle>
 
           <div className="space-y-4">
             {conferencePapers.map(({ year, title, authors, venue }) => (
@@ -247,8 +240,8 @@ export default function ForschungPage() {
       {/* Working Papers */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Arbeitspapier / Working Paper</Eyebrow>
-          <SectionTitle className="mb-14">Working Papers</SectionTitle>
+          <Eyebrow>{d.research.workingEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.workingHeadline}</SectionTitle>
 
           <div className="space-y-4">
             {workingPapers.map(({ year, title, authors, venue }) => (
@@ -283,12 +276,7 @@ export default function ForschungPage() {
       {/* Stats */}
       <section className="px-[5vw] py-16 border-y border-grey-light">
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { n: '400+', l: 'Zitationen' },
-            { n: '13', l: 'Publikationen' },
-            { n: '10+', l: 'Jahre Forschung' },
-            { n: 'summa', l: 'cum laude' },
-          ].map(({ n, l }) => (
+          {stats.map(({ n, l }) => (
             <div key={l}>
               <div className="font-serif font-light leading-none mb-2 text-text-primary"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
@@ -304,18 +292,17 @@ export default function ForschungPage() {
 
       {/* CTA */}
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
-        <Eyebrow>Verbindung</Eyebrow>
+        <Eyebrow>{d.research.ctaEyebrow}</Eyebrow>
         <h2
           className="font-serif font-light mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '24ch', lineHeight: 1.1 }}
         >
-          Forschung trifft <em className="italic">Praxis</em>
+          {d.research.ctaHeadline1} <em className="italic">{d.research.ctaHeadline2}</em>
         </h2>
         <p className="mb-10 text-[0.9rem] mx-auto max-w-[44ch] text-grey-secondary">
-          Die wissenschaftlichen Erkenntnisse fliessen direkt in das Buch
-          &bdquo;Die Immobilienluge&ldquo;, die Offmarketpool-Plattform und das Immolab Coaching ein.
+          {d.research.ctaDesc}
         </p>
-        <BtnPrimary href="/buch">Zum Buch</BtnPrimary>
+        <BtnPrimary href="/buch">{d.research.toBook}</BtnPrimary>
       </section>
     </>
   )

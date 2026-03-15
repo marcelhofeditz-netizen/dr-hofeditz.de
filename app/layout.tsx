@@ -3,6 +3,7 @@ import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
 import { DocFloat } from '@/components/DocFloat'
+import { LocaleProvider } from '@/lib/locale-context'
 
 export const metadata: Metadata = {
   title: {
@@ -39,10 +40,12 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
-        <Nav />
-        <main className="relative z-10">{children}</main>
-        <Footer />
-        <DocFloat />
+        <LocaleProvider>
+          <Nav />
+          <main className="relative z-10">{children}</main>
+          <Footer />
+          <DocFloat />
+        </LocaleProvider>
       </body>
     </html>
   )

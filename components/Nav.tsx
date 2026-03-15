@@ -3,19 +3,21 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-
-const links = [
-  { href: '/', label: 'Start' },
-  { href: '/plattform', label: 'Offmarketpool' },
-  { href: '/buch', label: 'Das Buch' },
-  { href: '/coaching', label: 'Immolab' },
-  { href: '/forschung', label: 'Forschung' },
-  { href: '/kontakt', label: 'Kontakt' },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export function Nav() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { locale, setLocale, d } = useLocale()
+
+  const links = [
+    { href: '/', label: d.nav.start },
+    { href: '/plattform', label: d.nav.platform },
+    { href: '/buch', label: d.nav.book },
+    { href: '/coaching', label: d.nav.coaching },
+    { href: '/forschung', label: d.nav.research },
+    { href: '/kontakt', label: d.nav.contact },
+  ]
 
   return (
     <nav
@@ -30,7 +32,7 @@ export function Nav() {
       </Link>
 
       {/* Desktop links */}
-      <ul className="hidden md:flex items-center gap-8">
+      <ul className="hidden md:flex items-center gap-7">
         {links.map(({ href, label }) => {
           const active = pathname === href
           return (
@@ -53,21 +55,37 @@ export function Nav() {
             rel="noopener noreferrer"
             className="text-[0.74rem] tracking-[0.1em] uppercase px-4 py-2 transition-all duration-200 bg-black text-white hover:opacity-80"
           >
-            Zur Plattform
+            {d.nav.toPlatform}
           </a>
+        </li>
+        <li>
+          <button
+            onClick={() => setLocale(locale === 'de' ? 'en' : 'de')}
+            className="text-[0.72rem] tracking-[0.14em] uppercase px-3 py-1.5 border border-grey-light text-grey-secondary hover:text-text-primary hover:border-text-primary transition-all duration-200"
+          >
+            {d.nav.langToggle}
+          </button>
         </li>
       </ul>
 
       {/* Mobile burger */}
-      <button
-        className="md:hidden flex flex-col gap-[5px] p-2"
-        onClick={() => setOpen(!open)}
-        aria-label="Menu"
-      >
-        <span className="block w-5 h-px bg-text-primary" />
-        <span className="block w-5 h-px bg-text-primary" />
-        <span className="block w-3 h-px bg-text-primary" />
-      </button>
+      <div className="md:hidden flex items-center gap-3">
+        <button
+          onClick={() => setLocale(locale === 'de' ? 'en' : 'de')}
+          className="text-[0.72rem] tracking-[0.14em] uppercase px-2 py-1 border border-grey-light text-grey-secondary"
+        >
+          {d.nav.langToggle}
+        </button>
+        <button
+          className="flex flex-col gap-[5px] p-2"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
+          <span className="block w-5 h-px bg-text-primary" />
+          <span className="block w-5 h-px bg-text-primary" />
+          <span className="block w-3 h-px bg-text-primary" />
+        </button>
+      </div>
 
       {/* Mobile menu */}
       {open && (
@@ -93,7 +111,7 @@ export function Nav() {
             rel="noopener noreferrer"
             className="px-[5vw] py-4 text-[0.8rem] tracking-[0.1em] uppercase text-text-primary"
           >
-            Zur Plattform
+            {d.nav.toPlatform}
           </a>
         </div>
       )}

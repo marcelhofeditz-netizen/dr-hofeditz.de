@@ -1,17 +1,12 @@
+'use client'
+
 import Image from 'next/image'
 import { Eyebrow, SectionTitle, ProjectCard, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Dr. Marcel Hofeditz – Forscher. Unternehmer. Autor.',
-}
-
-const partners = [
-  'GIG', 'onOffice', 'Behrend', 'Futunova', 'THB',
-  'Asset', 'Huttig', 'Wenzel', 'onX', 'Invesio', 'Immo', 'Mietenhaus',
-]
+import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
+  const { d } = useLocale()
+
   return (
     <>
       {/* HERO */}
@@ -20,27 +15,25 @@ export default function Home() {
           {/* Text */}
           <div>
             <span className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8 text-grey-secondary">
-              Hamburg &middot; 2026
+              {d.home.badge}
             </span>
 
             <h1
               className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
               style={{ fontSize: 'clamp(3rem, 6vw, 5.2rem)' }}
             >
-              Forscher.<br />
-              <em className="italic">Unternehmer.</em><br />
-              Autor.
+              {d.home.heroTitle1}<br />
+              <em className="italic">{d.home.heroTitle2}</em><br />
+              {d.home.heroTitle3}
             </h1>
 
             <p className="text-[0.95rem] leading-relaxed mb-10 max-w-[40ch] text-grey-secondary">
-              Dr. Marcel Hofeditz verbindet Managementforschung mit
-              operativer Immobilienpraxis. Drei Projekte. Eine Mission:
-              Entscheidungen besser machen.
+              {d.home.heroDesc}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <BtnPrimary href="/plattform">Offmarketpool</BtnPrimary>
-              <BtnOutline href="/buch">Das Buch</BtnOutline>
+              <BtnOutline href="/buch">{d.home.toBook}</BtnOutline>
             </div>
           </div>
 
@@ -72,45 +65,44 @@ export default function Home() {
       <div
         className="py-12 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-grey-light"
       >
-        <Stat number="600+" label="Mio. EUR Transaktionsvolumen" />
-        <Stat number="400+" label="Wissenschaftliche Zitationen" />
-        <Stat number="Top 5" label="Familiegefuhrte Makler DE" />
-        <Stat number="2026" label="Buchveroffentlichung" />
+        <Stat number={d.home.stat1n} label={d.home.stat1l} />
+        <Stat number={d.home.stat2n} label={d.home.stat2l} />
+        <Stat number={d.home.stat3n} label={d.home.stat3l} />
+        <Stat number={d.home.stat4n} label={d.home.stat4l} />
       </div>
 
       {/* THREE PROJECTS */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Drei Projekte</Eyebrow>
+          <Eyebrow>{d.home.threeProjects}</Eyebrow>
           <SectionTitle className="mb-4 max-w-[24ch]">
-            Plattform. Buch. Coaching.
+            {d.home.projectsHeadline}
           </SectionTitle>
           <p className="text-[0.9rem] mb-14 max-w-[52ch] text-grey-secondary">
-            Jedes Projekt fur sich stark – zusammen ein System, das
-            Immobilienentscheidungen auf ein neues Level hebt.
+            {d.home.projectsDesc}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <ProjectCard
-              eyebrow="Plattform &middot; Offmarket"
+              eyebrow={d.home.platformEyebrow}
               title="Offmarketpool"
-              description="Deutschlands Plattform fur diskrete Immobilientransaktionen. KI-basiertes Matching, 7.000+ Investorenprofile."
-              cta="Zur Plattform"
+              description={d.home.platformDesc}
+              cta={d.home.toPlatform}
               href="https://offmarketpool.vercel.app"
               external
             />
             <ProjectCard
-              eyebrow="Buch &middot; 2026"
+              eyebrow={d.home.bookEyebrow}
               title="Die Immobilien&shy;luge"
-              description="Warum wir mit Immobilien nicht reich werden – und welche psychologischen Fallen uns daran hindern, es zu erkennen."
-              cta="Zum Buch"
+              description={d.home.bookDesc}
+              cta={d.home.toBook}
               href="/buch"
             />
             <ProjectCard
-              eyebrow="Coaching &middot; Immolab"
+              eyebrow={d.home.coachingEyebrow}
               title="Immolab"
-              description="Einzelberatung und Coaching fur Immobilieninvestoren – von der personlichen Risikobewertung bis zum konkreten Deal."
-              cta="Zum Immolab"
+              description={d.home.coachingDesc}
+              cta={d.home.toCoaching}
               href="/coaching"
             />
           </div>
@@ -123,38 +115,31 @@ export default function Home() {
       <section className="px-[5vw] py-24" id="ueber">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div>
-            <Eyebrow>Uber mich</Eyebrow>
+            <Eyebrow>{d.home.aboutMe}</Eyebrow>
             <SectionTitle className="mb-8">
               Dr. Marcel<br />
               <em className="italic">Hofeditz</em>
             </SectionTitle>
 
             <p className="text-[0.85rem] tracking-[0.08em] uppercase mb-6 text-grey-secondary">
-              Managementforscher &middot; Immobilienunternehmer &middot; Autor
+              {d.home.roleDesc}
             </p>
 
             <div className="space-y-4 text-[0.92rem] text-grey-secondary">
               <p>
-                Nach meiner Promotion in Betriebswirtschaftslehre mit dem
-                Schwerpunkt <strong className="text-text-primary font-normal">Organizational Trust,
-                Compliance und Strategy</strong> an der Universitat Munster
-                (summa cum laude) bin ich direkt in das Immobiliengeschaft
-                eingestiegen.
+                {d.home.bio1}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio1bold}</strong>{' '}
+                {d.home.bio1end}
               </p>
               <p>
-                Als Co-CEO von Mollerherm Immobilien habe ich das Unternehmen
-                in sieben Jahren in die{' '}
-                <strong className="text-text-primary font-normal">Top 5 der familiengefuhrten
-                Makler Deutschlands</strong>{' '}
-                gefuhrt – mit 4,2 Mio. EUR Nettoprovisionsumsatz und uber
-                600 Mio. EUR verantworteten Transaktionsvolumen.
+                {d.home.bio2}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio2bold}</strong>{' '}
+                {d.home.bio2end}
               </p>
               <p>
-                Seit 2023 fuhre ich die{' '}
-                <strong className="text-text-primary font-normal">Dr. Hofeditz Real Estate GmbH</strong>{' '}
-                mit Fokus auf Investment- und Offmarket-Transaktionen.
-                Parallel bin ich als Postdoc und Gastdozent an der
-                Universitat Munster tatig.
+                {d.home.bio3}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio3bold}</strong>{' '}
+                {d.home.bio3end}
               </p>
             </div>
           </div>
@@ -163,22 +148,12 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4 mt-2">
             {[
               {
-                label: 'Akademisch',
-                items: [
-                  'Dr. rer. pol., summa cum laude (Uni Munster)',
-                  'Postdoc & Gastdozent Universitat Munster seit 2015',
-                  'Publikationen in Personnel Review, IJBM, HRM',
-                  'Uber 400 Zitationen (Google Scholar)',
-                ],
+                label: d.home.academic,
+                items: d.home.academicItems,
               },
               {
-                label: 'Unternehmerisch',
-                items: [
-                  'Co-CEO Mollerherm Immobilien 2015–2023',
-                  '600+ Mio. EUR Transaktionsvolumen',
-                  'Capital Makler-Kompass Nr. 1 Hamburg / Kiel / Lubeck',
-                  'Buros in HH, Kiel, LU, Bremen, Hannover, Berlin',
-                ],
+                label: d.home.entrepreneurial,
+                items: d.home.entrepreneurialItems,
               },
             ].map(({ label, items }) => (
               <div
@@ -211,21 +186,19 @@ export default function Home() {
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <Eyebrow>Plattform</Eyebrow>
+            <Eyebrow>{d.home.platformSection}</Eyebrow>
             <SectionTitle className="mb-6">
-              Offmarketpool –<br />
-              <em className="italic">diskret. prazise. digital.</em>
+              {d.home.platformHeadline1}<br />
+              <em className="italic">{d.home.platformHeadline2}</em>
             </SectionTitle>
             <p className="text-[0.92rem] leading-relaxed mb-8 max-w-[44ch] text-grey-secondary">
-              Nach uber 7 Jahren Datenbankarbeit und 7.000+ Investorenprofile:
-              Deutschlands fuhrende Plattform fur Off-Market-Immobilientransaktionen
-              mit KI-basiertem Matching-Algorithmus.
+              {d.home.platformSectionDesc}
             </p>
             <div className="flex flex-wrap gap-4">
               <BtnPrimary href="https://offmarketpool.vercel.app" external>
-                Zur Plattform &rarr;
+                {d.home.toPlatform} &rarr;
               </BtnPrimary>
-              <BtnOutline href="/plattform">Mehr erfahren</BtnOutline>
+              <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>
             </div>
           </div>
 
@@ -233,20 +206,20 @@ export default function Home() {
           <div className="space-y-4">
             {[
               {
-                title: 'KI-basiertes Matching',
-                desc: 'Einzigartig entwickelter Algorithmus – 100+ gewichtete Kriterien fur diskrete Platzierung.',
+                title: d.home.featureMatching,
+                desc: d.home.featureMatchingDesc,
               },
               {
-                title: 'VIP Investorendatenbank',
-                desc: 'Zugriff auf 7.000+ Investoren mit hinterlegtem Suchprofil und Sofortkauf-Interesse.',
+                title: d.home.featureInvestors,
+                desc: d.home.featureInvestorsDesc,
               },
               {
-                title: '100+ Objekte im Pool',
-                desc: 'Deutschlandweites Angebot von Wohn- bis Heavy-Industrial – nicht offentlich inseriert.',
+                title: d.home.featurePool,
+                desc: d.home.featurePoolDesc,
               },
               {
-                title: 'KI-Agent Doc',
-                desc: 'Intelligenter Assistent beantwortet Investorenfragen rund um die Uhr.',
+                title: d.home.featureDoc,
+                desc: d.home.featureDocDesc,
               },
             ].map(({ title, desc }) => (
               <div
@@ -313,25 +286,22 @@ export default function Home() {
           </div>
 
           <div>
-            <Eyebrow>Sachbuch &middot; Erscheint 2026</Eyebrow>
+            <Eyebrow>{d.home.bookSection}</Eyebrow>
             <SectionTitle className="mb-6">
-              Die<br />
-              <em className="italic">Immobilienluge</em>
+              {d.home.bookHeadline1}<br />
+              <em className="italic">{d.home.bookHeadline2}</em>
             </SectionTitle>
             <p className="text-[0.92rem] leading-relaxed mb-6 max-w-[44ch] text-grey-secondary">
-              Warum Millionen Deutsche ihre grosste Vermogensentscheidung nicht
-              auf Basis nuchterner Kalkulation treffen – sondern auf Grundlage
-              von Erwartungsnarrativen, Verhaltensfehlern und falschen Akteuren.
+              {d.home.bookSectionDesc}
             </p>
             <blockquote
               className="font-serif font-light italic text-[1.1rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary"
             >
-              &bdquo;Der Immobilienmarkt ist kein Markt aus Beton –
-              er ist ein Markt aus Psychologie.&ldquo;
+              {d.home.bookQuote}
             </blockquote>
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/buch">Zum Buch + KI-Agent</BtnPrimary>
-              <BtnOutline href="/buch">Leseprobe</BtnOutline>
+              <BtnPrimary href="/buch">{d.home.toBookAgent}</BtnPrimary>
+              <BtnOutline href="/buch">{d.home.leseprobe}</BtnOutline>
             </div>
           </div>
         </div>
@@ -344,26 +314,23 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div>
-              <Eyebrow>Coaching</Eyebrow>
+              <Eyebrow>{d.home.coachingSection}</Eyebrow>
               <SectionTitle className="mb-6">
-                Immolab –<br />
-                <em className="italic">Einzelberatung fur Investoren</em>
+                {d.home.coachingHeadline1}<br />
+                <em className="italic">{d.home.coachingHeadline2}</em>
               </SectionTitle>
               <p className="text-[0.92rem] leading-relaxed mb-8 text-grey-secondary">
-                Ob erfahrener Investor oder Einsteiger: Das Immolab bietet
-                individuelle Begleitung – von der ersten Risikobewertung bis
-                zum professionellen Bestandsaufbau. Basierend auf akademischer
-                Methodik und 600+ Mio. EUR Praxiserfahrung.
+                {d.home.coachingSectionDesc}
               </p>
-              <BtnPrimary href="/coaching">Zum Immolab</BtnPrimary>
+              <BtnPrimary href="/coaching">{d.home.toCoaching}</BtnPrimary>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
               {[
-                { title: 'Personliche Risikobewertung', desc: 'Individuelle Analyse Ihrer finanziellen Ausgangslage und Risikobereitschaft.' },
-                { title: 'Investmentstrategie', desc: 'Entwicklung einer klaren Strategie fur nachhaltigen Bestandsaufbau.' },
-                { title: 'Deal-Analyse & Due Diligence', desc: 'Fundierte Bewertung konkreter Objekte nach akademischem Standard.' },
-                { title: 'Laufendes Investor-Mentoring', desc: 'Begleitung uber mehrere Monate – von der Suche bis zum Abschluss.' },
+                { title: d.home.coachingFeature1, desc: d.home.coachingFeature1Desc },
+                { title: d.home.coachingFeature2, desc: d.home.coachingFeature2Desc },
+                { title: d.home.coachingFeature3, desc: d.home.coachingFeature3Desc },
+                { title: d.home.coachingFeature4, desc: d.home.coachingFeature4Desc },
               ].map(({ title, desc }) => (
                 <div
                   key={title}
@@ -384,29 +351,9 @@ export default function Home() {
 
       <Divider />
 
-      {/* PARTNER LOGOS */}
-      <section className="px-[5vw] py-16">
-        <div className="max-w-[1100px] mx-auto">
-          <p className="text-center text-[0.68rem] tracking-[0.22em] uppercase mb-10 text-grey-secondary">
-            Vertrauen uns
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-5">
-            {partners.map((p) => (
-              <span
-                key={p}
-                className="text-[0.75rem] tracking-[0.14em] uppercase text-grey-light"
-                style={{ color: 'rgba(107,107,107,0.4)' }}
-              >
-                {p}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CONTACT CTA */}
       <section className="px-[5vw] py-28 text-center border-t border-grey-light">
-        <Eyebrow>Direktkontakt</Eyebrow>
+        <Eyebrow>{d.home.directContact}</Eyebrow>
         <h2
           className="font-serif font-light leading-[1.1] mb-6 mx-auto text-text-primary"
           style={{
@@ -414,14 +361,13 @@ export default function Home() {
             maxWidth: '22ch',
           }}
         >
-          Lassen Sie uns gemeinsam
-          <em className="italic"> entscheiden.</em>
+          {d.home.ctaHeadline1}
+          <em className="italic">{d.home.ctaHeadline2}</em>
         </h2>
         <p className="text-[0.9rem] mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
-          Ob Offmarket-Transaktion, Buchkauf oder Immolab-Coaching –
-          nehmen Sie Kontakt auf.
+          {d.home.ctaDesc}
         </p>
-        <BtnPrimary href="/kontakt">Jetzt anfragen</BtnPrimary>
+        <BtnPrimary href="/kontakt">{d.home.inquireNow}</BtnPrimary>
       </section>
     </>
   )

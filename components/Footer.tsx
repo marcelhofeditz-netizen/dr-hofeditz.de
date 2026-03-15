@@ -1,25 +1,25 @@
+'use client'
+
 import Link from 'next/link'
-
-const footerLinks = [
-  { href: '/plattform', label: 'Offmarketpool' },
-  { href: '/buch', label: 'Die Immobilienluge' },
-  { href: '/coaching', label: 'Immolab' },
-  { href: '/forschung', label: 'Forschung' },
-  { href: '/kontakt', label: 'Kontakt' },
-]
-
-const ecosystemLinks = [
-  { href: 'https://dr-hofeditz.de', label: 'Dr. Hofeditz', external: false },
-  { href: 'https://offmarketpool.vercel.app', label: 'OffMarketPool', external: true },
-  { href: '/buch', label: 'Die Immobilienluge', external: false },
-]
-
-const legalLinks = [
-  { href: '/impressum', label: 'Impressum' },
-  { href: '/datenschutz', label: 'Datenschutz' },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export function Footer() {
+  const { d } = useLocale()
+
+  const footerLinks = [
+    { href: '/plattform', label: d.nav.platform },
+    { href: '/buch', label: d.nav.book },
+    { href: '/coaching', label: d.nav.coaching },
+    { href: '/forschung', label: d.nav.research },
+    { href: '/kontakt', label: d.nav.contact },
+  ]
+
+  const ecosystemLinks = [
+    { label: d.footer.drHofeditz, sub: d.footer.founderResearch, href: '/', external: false },
+    { label: d.footer.offmarketpool, sub: d.footer.platformExecution, href: 'https://offmarketpool.vercel.app', external: true },
+    { label: d.footer.dieImmobilienluge, sub: d.footer.thesisFramework, href: '/buch', external: false },
+  ]
+
   return (
     <footer className="relative z-10 mt-0 border-t border-grey-light">
       <div className="px-[5vw] py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -29,15 +29,14 @@ export function Footer() {
             Dr. Marcel Hofeditz
           </span>
           <p className="text-[0.82rem] leading-relaxed max-w-[28ch] text-grey-secondary">
-            Promovierter Managementforscher, Immobilienunternehmer und Autor.
-            Hamburg, 2026.
+            {d.footer.desc}
           </p>
         </div>
 
         {/* Navigation */}
         <div>
           <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
-            Seiten
+            {d.footer.pages}
           </span>
           <ul className="flex flex-col gap-2">
             {footerLinks.map(({ href, label }) => (
@@ -56,26 +55,29 @@ export function Footer() {
         {/* Ecosystem */}
         <div>
           <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
-            Ecosystem
+            {d.footer.ecosystem}
           </span>
-          <ul className="flex flex-col gap-2">
-            {ecosystemLinks.map(({ href, label, external }) => (
+          <ul className="flex flex-col gap-3">
+            {ecosystemLinks.map(({ label, sub, href, external }) => (
               <li key={href}>
                 {external ? (
                   <a
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[0.8rem] text-grey-secondary transition-colors duration-200 hover:text-text-primary"
+                    className="block group"
                   >
-                    {label} &nearr;
+                    <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
+                      {label} &nearr;
+                    </span>
+                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
                   </a>
                 ) : (
-                  <Link
-                    href={href}
-                    className="text-[0.8rem] text-grey-secondary transition-colors duration-200 hover:text-text-primary"
-                  >
-                    {label}
+                  <Link href={href} className="block group">
+                    <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
+                      {label}
+                    </span>
+                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
                   </Link>
                 )}
               </li>
@@ -86,17 +88,17 @@ export function Footer() {
         {/* Contact */}
         <div>
           <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
-            Kontakt
+            {d.footer.contact}
           </span>
           <p className="text-[0.8rem] mb-3 text-grey-secondary">
-            Jevenstedter Strasse 176a<br />
+            {d.footer.address}<br />
             Hamburg
           </p>
           <Link
             href="/kontakt"
             className="text-[0.76rem] tracking-[0.1em] uppercase text-text-primary transition-colors duration-200 hover:text-grey-secondary"
           >
-            Nachricht senden &rarr;
+            {d.footer.sendMessage} &rarr;
           </Link>
         </div>
       </div>
@@ -107,15 +109,12 @@ export function Footer() {
           &copy; {new Date().getFullYear()} Dr. Marcel Hofeditz
         </span>
         <div className="flex gap-5">
-          {legalLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary"
-            >
-              {label}
-            </Link>
-          ))}
+          <Link href="/impressum" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+            {d.footer.impressum}
+          </Link>
+          <Link href="/datenschutz" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+            {d.footer.datenschutz}
+          </Link>
         </div>
       </div>
     </footer>
