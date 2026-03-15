@@ -9,6 +9,7 @@ const links = [
   { href: '/plattform', label: 'Offmarketpool' },
   { href: '/buch', label: 'Das Buch' },
   { href: '/coaching', label: 'Immolab' },
+  { href: '/forschung', label: 'Forschung' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
