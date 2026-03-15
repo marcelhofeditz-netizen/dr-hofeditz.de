@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
+import { DocFloat } from '@/components/DocFloat'
 
 export const metadata: Metadata = {
   title: {
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Nav />
         <main className="relative z-10">{children}</main>
         <Footer />
+        <DocFloat />
       </body>
     </html>
   )
