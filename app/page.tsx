@@ -1,62 +1,59 @@
+'use client'
+
 import Image from 'next/image'
-import { Eyebrow, SectionTitle, ProjectCard, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Dr. Marcel Hofeditz – Forscher. Unternehmer. Autor.',
-}
-
-const partners = [
-  'GIG', 'onOffice', 'Behrend', 'Futunova', 'THB',
-  'Asset', 'Hüttig', 'Wenzel', 'onX', 'Invesio', 'Immo', 'Mietenhaus',
-]
+import Link from 'next/link'
+import { Eyebrow, SectionTitle, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
+  const { d } = useLocale()
+
   return (
     <>
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section className="min-h-[92vh] flex items-center px-[5vw] py-20">
         <div className="max-w-[1100px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
           <div>
-            <span
-              className="inline-flex items-center gap-2 border text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8"
-              style={{ color: '#c8a84b', borderColor: 'rgba(200,168,75,0.25)' }}
-            >
-              Hamburg · 2026
+            <span className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8 text-grey-secondary">
+              {d.home.badge}
             </span>
 
             <h1
-              className="font-serif font-light leading-[1.05] mb-6"
-              style={{ fontSize: 'clamp(3rem, 6vw, 5.2rem)', color: '#f0eae0' }}
+              className="font-serif font-light leading-[1.05] mb-8 text-text-primary"
+              style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.8rem)' }}
             >
-              Forscher.<br />
-              <em className="italic" style={{ color: '#c8a84b' }}>Unternehmer.</em><br />
-              Autor.
+              Dr. Marcel<br />
+              <em className="italic">Hofeditz</em>
             </h1>
 
-            <p
-              className="text-[0.95rem] leading-relaxed mb-10 max-w-[40ch]"
-              style={{ color: '#8a9ab0' }}
-            >
-              Dr. Marcel Hofeditz verbindet Managementforschung mit
-              operativer Immobilienpraxis. Drei Projekte. Eine Mission:
-              Entscheidungen besser machen.
+            {/* Three role lines */}
+            <div className="space-y-2 mb-8">
+              {[d.home.heroRole1, d.home.heroRole2, d.home.heroRole3].map((role) => (
+                <p
+                  key={role}
+                  className="text-[0.88rem] tracking-[0.04em] text-grey-secondary flex items-start gap-3"
+                >
+                  <span className="text-text-primary flex-shrink-0 mt-[1px]">&mdash;</span>
+                  {role}
+                </p>
+              ))}
+            </div>
+
+            {/* Intersection paragraph */}
+            <p className="text-[0.92rem] leading-[1.7] mb-10 max-w-[44ch] text-grey-secondary">
+              {d.home.heroDesc}
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/plattform">Offmarketpool</BtnPrimary>
-              <BtnOutline href="/buch">Das Buch</BtnOutline>
+              <BtnPrimary href="/plattform">OffMarketPool</BtnPrimary>
+              <BtnOutline href="/buch">{d.home.toBook}</BtnOutline>
             </div>
           </div>
 
           {/* Photo */}
           <div className="flex justify-center md:justify-end">
             <div className="relative">
-              <div
-                className="absolute inset-0 translate-x-3 translate-y-3 -z-10 border"
-                style={{ borderColor: '#c8a84b', opacity: 0.3 }}
-              />
+              <div className="absolute inset-0 translate-x-3 translate-y-3 -z-10 border border-grey-light" />
               <Image
                 src="/IMG_8225.webp"
                 alt="Dr. Marcel Hofeditz"
@@ -64,7 +61,7 @@ export default function Home() {
                 height={460}
                 className="object-cover object-top"
                 style={{
-                  filter: 'grayscale(20%) contrast(1.05)',
+                  filter: 'grayscale(100%) contrast(1.05)',
                   maxWidth: 'clamp(240px, 30vw, 380px)',
                   width: '100%',
                   height: 'auto',
@@ -77,153 +74,148 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS STRIP */}
-      <div
-        className="py-12 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-6"
-        style={{
-          background: '#0d1a2d',
-          borderTop: '1px solid rgba(200,168,75,0.14)',
-          borderBottom: '1px solid rgba(200,168,75,0.14)',
-        }}
-      >
-        <Stat number="600+" label="Mio. € Transaktionsvolumen" />
-        <Stat number="400+" label="Wissenschaftliche Zitationen" />
-        <Stat number="Top 5" label="Familiengeführte Makler DE" />
-        <Stat number="2026" label="Buchveröffentlichung" />
+      {/* ── AUTHORITY STRIP ── */}
+      <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
+        <Stat number={d.home.stat1n} label={d.home.stat1l} />
+        <Stat number={d.home.stat2n} label={d.home.stat2l} />
+        <Stat number={d.home.stat3n} label={d.home.stat3l} />
+        <Stat number={d.home.stat4n} label={d.home.stat4l} />
       </div>
 
-      {/* THREE PROJECTS */}
-      <section className="px-[5vw] py-24">
+      {/* ── ECOSYSTEM ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Drei Projekte</Eyebrow>
+          <Eyebrow>{d.home.ecosystem}</Eyebrow>
           <SectionTitle className="mb-4 max-w-[24ch]">
-            Plattform. Buch. Coaching.
+            {d.home.ecosystemHeadline}
           </SectionTitle>
-          <p
-            className="text-[0.9rem] mb-14 max-w-[52ch]"
-            style={{ color: '#8a9ab0' }}
-          >
-            Jedes Projekt für sich stark – zusammen ein System, das
-            Immobilienentscheidungen auf ein neues Level hebt.
+          <p className="text-[0.9rem] leading-relaxed mb-16 max-w-[52ch] text-grey-secondary">
+            {d.home.ecosystemDesc}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <ProjectCard
-              eyebrow="Plattform · Offmarket"
-              title="Offmarketpool"
-              description="Deutschlands Plattform für diskrete Immobilientransaktionen. KI-basiertes Matching, 7.000+ Investorenprofile."
-              cta="Zur Plattform"
-              href="https://offmarketpool.vercel.app"
-              external
-            />
-            <ProjectCard
-              eyebrow="Buch · 2026"
-              title="Die Immobilien&shy;lüge"
-              description="Warum wir mit Immobilien nicht reich werden – und welche psychologischen Fallen uns daran hindern, es zu erkennen."
-              cta="Zum Buch"
-              href="/buch"
-            />
-            <ProjectCard
-              eyebrow="Coaching · Immolab"
-              title="Immolab"
-              description="Einzelberatung und Coaching für Immobilieninvestoren – von der persönlichen Risikobewertung bis zum konkreten Deal."
-              cta="Zum Immolab"
-              href="/coaching"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-grey-light">
+            {[
+              {
+                eyebrow: d.home.pillar1Eyebrow,
+                title: d.home.pillar1Title,
+                desc: d.home.pillar1Desc,
+                cta: d.home.pillar1Cta,
+                href: '/forschung',
+                marker: '01',
+              },
+              {
+                eyebrow: d.home.pillar2Eyebrow,
+                title: d.home.pillar2Title,
+                desc: d.home.pillar2Desc,
+                cta: d.home.pillar2Cta,
+                href: '/buch',
+                marker: '02',
+              },
+              {
+                eyebrow: d.home.pillar3Eyebrow,
+                title: d.home.pillar3Title,
+                desc: d.home.pillar3Desc,
+                cta: d.home.pillar3Cta,
+                href: 'https://offmarketpool.vercel.app',
+                external: true,
+                marker: '03',
+              },
+            ].map(({ eyebrow, title, desc, cta, href, external, marker }) => {
+              const content = (
+                <div className="group p-8 md:p-10 flex flex-col justify-between h-full border-b md:border-b-0 md:border-r border-grey-light last:border-0 transition-colors duration-300 hover:bg-[#FAFAFA]">
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-[0.65rem] tracking-[0.22em] uppercase text-grey-secondary">
+                        {eyebrow}
+                      </span>
+                      <span className="font-serif text-[0.85rem] text-grey-light">
+                        {marker}
+                      </span>
+                    </div>
+                    <h3
+                      className="font-serif font-light leading-[1.15] mb-4 text-text-primary"
+                      style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)' }}
+                    >
+                      {title}
+                    </h3>
+                    <p className="text-[0.84rem] leading-relaxed text-grey-secondary">
+                      {desc}
+                    </p>
+                  </div>
+                  <div className="mt-8 pt-6 border-t border-grey-light">
+                    <span className="text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 text-text-primary group-hover:text-grey-secondary">
+                      {cta} &rarr;
+                    </span>
+                  </div>
+                </div>
+              )
+
+              if (external) {
+                return (
+                  <a key={title} href={href} target="_blank" rel="noopener noreferrer" className="block">
+                    {content}
+                  </a>
+                )
+              }
+              return (
+                <Link key={title} href={href} className="block">
+                  {content}
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
 
       <Divider />
 
-      {/* ABOUT / BIO */}
-      <section
-        className="px-[5vw] py-24"
-        style={{ background: '#0d1a2d' }}
-        id="ueber"
-      >
+      {/* ── ABOUT / BIO ── */}
+      <section className="px-[5vw] py-28" id="ueber">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div>
-            <Eyebrow>Über mich</Eyebrow>
+            <Eyebrow>{d.home.aboutMe}</Eyebrow>
             <SectionTitle className="mb-8">
               Dr. Marcel<br />
-              <em className="italic" style={{ color: '#c8a84b' }}>Hofeditz</em>
+              <em className="italic">Hofeditz</em>
             </SectionTitle>
 
-            <p
-              className="text-[0.85rem] tracking-[0.08em] uppercase mb-6"
-              style={{ color: '#c8a84b' }}
-            >
-              Managementforscher · Immobilienunternehmer · Autor
+            <p className="text-[0.85rem] tracking-[0.08em] uppercase mb-6 text-grey-secondary">
+              {d.home.roleDesc}
             </p>
 
-            <div className="space-y-4 text-[0.92rem]" style={{ color: '#8a9ab0' }}>
+            <div className="space-y-4 text-[0.92rem] leading-[1.7] text-grey-secondary">
               <p>
-                Nach meiner Promotion in Betriebswirtschaftslehre mit dem
-                Schwerpunkt <strong style={{ color: '#f0eae0', fontWeight: 400 }}>Organizational Trust,
-                Compliance und Strategy</strong> an der Universität Münster
-                (summa cum laude) bin ich direkt in das Immobiliengeschäft
-                eingestiegen.
+                {d.home.bio1}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio1bold}</strong>{' '}
+                {d.home.bio1end}
               </p>
               <p>
-                Als Co-CEO von Möllerherm Immobilien habe ich das Unternehmen
-                in sieben Jahren in die{' '}
-                <strong style={{ color: '#f0eae0', fontWeight: 400 }}>Top 5 der familiengeführten
-                Makler Deutschlands</strong>{' '}
-                geführt – mit 4,2 Mio. € Nettoprovisionsumsatz und über
-                600 Mio. € verantworteten Transaktionsvolumen.
+                {d.home.bio2}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio2bold}</strong>{' '}
+                {d.home.bio2end}
               </p>
               <p>
-                Seit 2023 führe ich die{' '}
-                <strong style={{ color: '#f0eae0', fontWeight: 400 }}>Dr. Hofeditz Real Estate GmbH</strong>{' '}
-                mit Fokus auf Investment- und Offmarket-Transaktionen.
-                Parallel bin ich als Postdoc und Gastdozent an der
-                Universität Münster tätig.
+                {d.home.bio3}{' '}
+                <strong className="text-text-primary font-normal">{d.home.bio3bold}</strong>{' '}
+                {d.home.bio3end}
               </p>
             </div>
           </div>
 
-          {/* Credentials grid */}
-          <div className="grid grid-cols-1 gap-4 mt-2">
+          {/* Credentials */}
+          <div className="grid grid-cols-1 gap-5 mt-2">
             {[
-              {
-                label: 'Akademisch',
-                items: [
-                  'Dr. rer. pol., summa cum laude (Uni Münster)',
-                  'Postdoc & Gastdozent Universität Münster seit 2015',
-                  'Publikationen in Personnel Review, IJBM, HRM',
-                  'Über 400 Zitationen (Google Scholar)',
-                ],
-              },
-              {
-                label: 'Unternehmerisch',
-                items: [
-                  'Co-CEO Möllerherm Immobilien 2015–2023',
-                  '600+ Mio. € Transaktionsvolumen',
-                  'Capital Makler-Kompass Nr. 1 Hamburg / Kiel / Lübeck',
-                  'Büros in HH, Kiel, LÜ, Bremen, Hannover, Berlin',
-                ],
-              },
+              { label: d.home.academic, items: d.home.academicItems },
+              { label: d.home.entrepreneurial, items: d.home.entrepreneurialItems },
             ].map(({ label, items }) => (
-              <div
-                key={label}
-                className="p-6 border"
-                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
-              >
-                <span
-                  className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4"
-                  style={{ color: '#c8a84b' }}
-                >
+              <div key={label} className="p-7 border border-grey-light">
+                <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-5 text-grey-secondary">
                   {label}
                 </span>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-[0.82rem]"
-                      style={{ color: '#8a9ab0' }}
-                    >
-                      <span style={{ color: '#c8a84b', flexShrink: 0 }}>—</span>
+                    <li key={item} className="flex gap-3 text-[0.82rem] text-grey-secondary">
+                      <span className="text-text-primary flex-shrink-0">&mdash;</span>
                       {item}
                     </li>
                   ))}
@@ -236,67 +228,49 @@ export default function Home() {
 
       <Divider />
 
-      {/* OFFMARKETPOOL TEASER */}
-      <section className="px-[5vw] py-24">
+      {/* ── PLATFORM REFERENCE ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <Eyebrow>Plattform</Eyebrow>
-            <SectionTitle className="mb-6">
-              Offmarketpool –<br />
-              <em className="italic" style={{ color: '#c8a84b' }}>diskret. präzise. digital.</em>
+            <Eyebrow>{d.home.platformSection}</Eyebrow>
+            <SectionTitle className="mb-3">
+              {d.home.platformHeadline1}<br />
+              <em className="italic">{d.home.platformHeadline2}</em>
             </SectionTitle>
-            <p
-              className="text-[0.92rem] leading-relaxed mb-8 max-w-[44ch]"
-              style={{ color: '#8a9ab0' }}
-            >
-              Nach über 7 Jahren Datenbankarbeit und 7.000+ Investorenprofile:
-              Deutschlands führende Plattform für Off-Market-Immobilientransaktionen
-              mit KI-basiertem Matching-Algorithmus.
+
+            {/* Exact positioning text */}
+            <p className="font-serif text-[1.1rem] leading-[1.6] mb-4 text-text-primary">
+              {d.home.platformPositioning}
             </p>
+            <p className="font-serif text-[1.1rem] leading-[1.6] mb-8 text-text-primary">
+              {d.home.platformScale}
+            </p>
+
+            <p className="text-[0.9rem] leading-relaxed mb-10 max-w-[44ch] text-grey-secondary">
+              {d.home.platformSectionDesc}
+            </p>
+
             <div className="flex flex-wrap gap-4">
               <BtnPrimary href="https://offmarketpool.vercel.app" external>
-                Zur Plattform →
+                {d.home.toPlatform} &rarr;
               </BtnPrimary>
-              <BtnOutline href="/plattform">Mehr erfahren</BtnOutline>
+              <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>
             </div>
           </div>
 
           {/* Feature list */}
           <div className="space-y-4">
             {[
-              {
-                title: 'KI-basiertes Matching',
-                desc: 'Einzigartig entwickelter Algorithmus – 100+ gewichtete Kriterien für diskrete Platzierung.',
-              },
-              {
-                title: 'VIP Investorendatenbank',
-                desc: 'Zugriff auf 7.000+ Investoren mit hinterlegtem Suchprofil und Sofortkauf-Interesse.',
-              },
-              {
-                title: '100+ Objekte im Pool',
-                desc: 'Deutschlandweites Angebot von Wohn- bis Heavy-Industrial – nicht öffentlich inseriert.',
-              },
-              {
-                title: 'KI-Agent Doc',
-                desc: 'Intelligenter Assistent beantwortet Investorenfragen rund um die Uhr.',
-              },
+              { title: d.home.featureMatching, desc: d.home.featureMatchingDesc },
+              { title: d.home.featureInvestors, desc: d.home.featureInvestorsDesc },
+              { title: d.home.featurePool, desc: d.home.featurePoolDesc },
+              { title: d.home.featureDoc, desc: d.home.featureDocDesc },
             ].map(({ title, desc }) => (
-              <div
-                key={title}
-                className="flex gap-4 p-5 border"
-                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
-              >
-                <span style={{ color: '#c8a84b', flexShrink: 0, marginTop: 2 }}>■</span>
+              <div key={title} className="flex gap-4 p-6 border border-grey-light">
+                <span className="text-text-primary flex-shrink-0 mt-[2px]">&bull;</span>
                 <div>
-                  <p
-                    className="text-[0.88rem] mb-1"
-                    style={{ color: '#f0eae0', fontWeight: 400 }}
-                  >
-                    {title}
-                  </p>
-                  <p className="text-[0.8rem]" style={{ color: '#8a9ab0' }}>
-                    {desc}
-                  </p>
+                  <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
+                  <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
                 </div>
               </div>
             ))}
@@ -306,11 +280,8 @@ export default function Home() {
 
       <Divider />
 
-      {/* BOOK TEASER */}
-      <section
-        className="px-[5vw] py-24"
-        style={{ background: '#0d1a2d' }}
-      >
+      {/* ── BOOK TEASER ── */}
+      <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Book cover SVG */}
           <div className="flex justify-center">
@@ -322,68 +293,50 @@ export default function Home() {
               }}
             >
               <svg viewBox="0 0 300 440" xmlns="http://www.w3.org/2000/svg"
-                style={{ width: 'clamp(180px, 22vw, 280px)', filter: 'drop-shadow(-12px 20px 40px rgba(0,0,0,0.6))' }}>
-                <defs>
-                  <radialGradient id="bookbg" cx="50%" cy="40%" r="55%">
-                    <stop offset="0%" stopColor="#1a2d4a"/>
-                    <stop offset="100%" stopColor="#071020"/>
-                  </radialGradient>
-                </defs>
-                <rect width="300" height="440" fill="url(#bookbg)" rx="2"/>
-                <text x="150" y="60" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="32" fontWeight="500" letterSpacing="1" fill="#c8a84b">DIE</text>
-                <text x="150" y="98" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#f0eae0">IMMOBILIEN</text>
-                <text x="150" y="130" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#c8a84b">LÜGE</text>
-                <text x="150" y="156" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#8a9ab0">WARUM WIR MIT IMMOBILIEN</text>
-                <text x="150" y="172" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#8a9ab0">NICHT REICH WERDEN</text>
+                style={{ width: 'clamp(180px, 22vw, 280px)', filter: 'drop-shadow(-8px 16px 40px rgba(0,0,0,0.15))' }}>
+                <rect width="300" height="440" fill="#0B0B0B" rx="2"/>
+                <text x="150" y="60" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="32" fontWeight="500" letterSpacing="1" fill="#F6F6F6">DIE</text>
+                <text x="150" y="98" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#F6F6F6">IMMOBILIEN</text>
+                <text x="150" y="130" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#F6F6F6">LUGE</text>
+                <text x="150" y="156" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#6B6B6B">WARUM WIR MIT IMMOBILIEN</text>
+                <text x="150" y="172" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#6B6B6B">NICHT REICH WERDEN</text>
                 <g transform="translate(110,190)">
-                  <rect x="10" y="45" width="70" height="62" fill="#c8a84b" rx="1"/>
-                  <polygon points="0,47 40,8 80,47" fill="#e8c96a"/>
-                  <rect x="27" y="78" width="20" height="29" fill="#8a6e28" rx="1"/>
-                  <rect x="14" y="60" width="16" height="13" fill="#071020" rx="1" opacity="0.7"/>
-                  <rect x="54" y="60" width="16" height="13" fill="#071020" rx="1" opacity="0.7"/>
+                  <rect x="10" y="45" width="70" height="62" fill="#F6F6F6" rx="1"/>
+                  <polygon points="0,47 40,8 80,47" fill="#EAEAEA"/>
+                  <rect x="27" y="78" width="20" height="29" fill="#6B6B6B" rx="1"/>
+                  <rect x="14" y="60" width="16" height="13" fill="#0B0B0B" rx="1" opacity="0.7"/>
+                  <rect x="54" y="60" width="16" height="13" fill="#0B0B0B" rx="1" opacity="0.7"/>
                 </g>
-                <g transform="translate(140,285)" opacity="0.65">
-                  <rect x="-40" y="26" width="80" height="10" fill="#8a9ab0" rx="2"/>
-                  <path d="M -28 26 Q -18 0 0 -4 Q 18 -8 28 26" fill="none" stroke="#8a9ab0" strokeWidth="2.5" strokeLinecap="round"/>
+                <g transform="translate(140,285)" opacity="0.5">
+                  <rect x="-40" y="26" width="80" height="10" fill="#6B6B6B" rx="2"/>
+                  <path d="M -28 26 Q -18 0 0 -4 Q 18 -8 28 26" fill="none" stroke="#6B6B6B" strokeWidth="2.5" strokeLinecap="round"/>
                 </g>
-                <circle cx="70" cy="305" r="30" fill="#c0392b"/>
-                <text x="70" y="298" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="7.5" fill="white">Mit KI</text>
-                <text x="70" y="309" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="7.5" fill="white" fontWeight="600">Lügendetektor</text>
-                <text x="70" y="320" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="7.5" fill="white">zur Hilfe</text>
-                <rect x="0" y="375" width="300" height="65" fill="#c8a84b" opacity="0.95"/>
-                <text x="150" y="415" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="17" fontWeight="500" letterSpacing="2" fill="#07101f">DR. MARCEL HOFEDITZ</text>
-                <rect x="2" y="2" width="296" height="436" fill="none" stroke="#c8a84b" strokeWidth="1" opacity="0.25"/>
+                <circle cx="70" cy="305" r="30" fill="#F6F6F6"/>
+                <text x="70" y="298" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B">Mit KI</text>
+                <text x="70" y="309" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B" fontWeight="600">Lugendetektor</text>
+                <text x="70" y="320" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B">zur Hilfe</text>
+                <rect x="0" y="375" width="300" height="65" fill="#F6F6F6" opacity="0.95"/>
+                <text x="150" y="415" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="17" fontWeight="500" letterSpacing="2" fill="#0B0B0B">DR. MARCEL HOFEDITZ</text>
+                <rect x="2" y="2" width="296" height="436" fill="none" stroke="#F6F6F6" strokeWidth="1" opacity="0.15"/>
               </svg>
             </div>
           </div>
 
           <div>
-            <Eyebrow>Sachbuch · Erscheint 2026</Eyebrow>
+            <Eyebrow>{d.home.bookSection}</Eyebrow>
             <SectionTitle className="mb-6">
-              Die<br />
-              <em className="italic" style={{ color: '#c8a84b' }}>Immobilienlüge</em>
+              {d.home.bookHeadline1}<br />
+              <em className="italic">{d.home.bookHeadline2}</em>
             </SectionTitle>
-            <p
-              className="text-[0.92rem] leading-relaxed mb-6 max-w-[44ch]"
-              style={{ color: '#8a9ab0' }}
-            >
-              Warum Millionen Deutsche ihre größte Vermögensentscheidung nicht
-              auf Basis nüchterner Kalkulation treffen – sondern auf Grundlage
-              von Erwartungsnarrativen, Verhaltensfehlern und falschen Akteuren.
+            <p className="text-[0.92rem] leading-[1.7] mb-6 max-w-[44ch] text-grey-secondary">
+              {d.home.bookSectionDesc}
             </p>
-            <blockquote
-              className="font-serif font-light italic text-[1.1rem] leading-relaxed mb-8 pl-5"
-              style={{
-                borderLeft: '2px solid #c8a84b',
-                color: '#f0eae0',
-              }}
-            >
-              „Der Immobilienmarkt ist kein Markt aus Beton –
-              er ist ein Markt aus Psychologie."
+            <blockquote className="font-serif font-light italic text-[1.05rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary">
+              {d.home.bookQuote}
             </blockquote>
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/buch">Zum Buch + KI-Agent</BtnPrimary>
-              <BtnOutline href="/buch">Leseprobe</BtnOutline>
+              <BtnPrimary href="/buch">{d.home.toBookAgent}</BtnPrimary>
+              <BtnOutline href="/buch">{d.home.leseprobe}</BtnOutline>
             </div>
           </div>
         </div>
@@ -391,112 +344,53 @@ export default function Home() {
 
       <Divider />
 
-      {/* IMMOLAB TEASER */}
-      <section className="px-[5vw] py-24">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div>
-              <Eyebrow>Coaching</Eyebrow>
-              <SectionTitle className="mb-6">
-                Immolab –<br />
-                <em className="italic" style={{ color: '#c8a84b' }}>Einzelberatung für Investoren</em>
-              </SectionTitle>
-              <p
-                className="text-[0.92rem] leading-relaxed mb-8"
-                style={{ color: '#8a9ab0' }}
-              >
-                Ob erfahrener Investor oder Einsteiger: Das Immolab bietet
-                individuelle Begleitung – von der ersten Risikobewertung bis
-                zum professionellen Bestandsaufbau. Basierend auf akademischer
-                Methodik und 600+ Mio. € Praxiserfahrung.
-              </p>
-              <BtnPrimary href="/coaching">Zum Immolab</BtnPrimary>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4">
-              {[
-                { title: 'Persönliche Risikobewertung', desc: 'Individuelle Analyse Ihrer finanziellen Ausgangslage und Risikobereitschaft.' },
-                { title: 'Investmentstrategie', desc: 'Entwicklung einer klaren Strategie für nachhaltigen Bestandsaufbau.' },
-                { title: 'Deal-Analyse & Due Diligence', desc: 'Fundierte Bewertung konkreter Objekte nach akademischem Standard.' },
-                { title: 'Laufendes Investor-Mentoring', desc: 'Begleitung über mehrere Monate – von der Suche bis zum Abschluss.' },
-              ].map(({ title, desc }) => (
-                <div
-                  key={title}
-                  className="p-5 border"
-                  style={{ borderColor: 'rgba(200,168,75,0.14)' }}
-                >
-                  <p
-                    className="text-[0.88rem] mb-1"
-                    style={{ color: '#f0eae0', fontWeight: 400 }}
-                  >
-                    {title}
-                  </p>
-                  <p className="text-[0.8rem]" style={{ color: '#8a9ab0' }}>
-                    {desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+      {/* ── COACHING TEASER ── */}
+      <section className="px-[5vw] py-28">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <Eyebrow>{d.home.coachingSection}</Eyebrow>
+            <SectionTitle className="mb-6">
+              {d.home.coachingHeadline1}<br />
+              <em className="italic">{d.home.coachingHeadline2}</em>
+            </SectionTitle>
+            <p className="text-[0.92rem] leading-[1.7] mb-10 text-grey-secondary">
+              {d.home.coachingSectionDesc}
+            </p>
+            <BtnPrimary href="/coaching">{d.home.toCoaching}</BtnPrimary>
           </div>
-        </div>
-      </section>
 
-      <Divider />
-
-      {/* PARTNER LOGOS */}
-      <section
-        className="px-[5vw] py-16"
-        style={{ background: '#0d1a2d' }}
-      >
-        <div className="max-w-[1100px] mx-auto">
-          <p
-            className="text-center text-[0.68rem] tracking-[0.22em] uppercase mb-10"
-            style={{ color: '#8a9ab0' }}
-          >
-            Vertrauen uns
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-5">
-            {partners.map((p) => (
-              <span
-                key={p}
-                className="text-[0.75rem] tracking-[0.14em] uppercase"
-                style={{ color: 'rgba(138,154,176,0.5)' }}
-              >
-                {p}
-              </span>
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              { title: d.home.coachingFeature1, desc: d.home.coachingFeature1Desc },
+              { title: d.home.coachingFeature2, desc: d.home.coachingFeature2Desc },
+              { title: d.home.coachingFeature3, desc: d.home.coachingFeature3Desc },
+              { title: d.home.coachingFeature4, desc: d.home.coachingFeature4Desc },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 border border-grey-light">
+                <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
+                <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CONTACT CTA */}
-      <section
-        className="px-[5vw] py-28 text-center"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(200,168,75,0.07) 0%, transparent 65%)',
-          borderTop: '1px solid rgba(200,168,75,0.14)',
-        }}
-      >
-        <Eyebrow>Direktkontakt</Eyebrow>
+      <Divider />
+
+      {/* ── CONTACT CTA ── */}
+      <section className="px-[5vw] py-32 text-center">
+        <Eyebrow>{d.home.directContact}</Eyebrow>
         <h2
-          className="font-serif font-light leading-[1.1] mb-6 mx-auto"
-          style={{
-            fontSize: 'clamp(2.2rem, 5vw, 4rem)',
-            maxWidth: '22ch',
-            color: '#f0eae0',
-          }}
+          className="font-serif font-light leading-[1.1] mb-6 mx-auto text-text-primary"
+          style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', maxWidth: '22ch' }}
         >
-          Lassen Sie uns gemeinsam
-          <em className="italic" style={{ color: '#c8a84b' }}> entscheiden.</em>
+          {d.home.ctaHeadline1}
+          <em className="italic">{d.home.ctaHeadline2}</em>
         </h2>
-        <p
-          className="text-[0.9rem] mb-10 mx-auto"
-          style={{ color: '#8a9ab0', maxWidth: '44ch' }}
-        >
-          Ob Offmarket-Transaktion, Buchkauf oder Immolab-Coaching –
-          nehmen Sie Kontakt auf.
+        <p className="text-[0.9rem] leading-relaxed mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
+          {d.home.ctaDesc}
         </p>
-        <BtnPrimary href="/kontakt">Jetzt anfragen</BtnPrimary>
+        <BtnPrimary href="/kontakt">{d.home.inquireNow}</BtnPrimary>
       </section>
     </>
   )

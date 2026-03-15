@@ -1,13 +1,8 @@
+'use client'
+
+import { useLocale } from '@/lib/locale-context'
 import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
-import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Forschung – Dr. Marcel Hofeditz',
-  description:
-    'Wissenschaftliche Publikationen von Dr. Marcel Hofeditz. Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy. Universität Münster.',
-}
-
-// ── Peer-Reviewed Journal Articles ──
 const journalPapers = [
   {
     year: '2017',
@@ -35,9 +30,9 @@ const journalPapers = [
   },
   {
     year: '2014',
-    title: 'Risikomanagement im herstellenden Mittelstand — Verschwendungen durch Über- oder Untersteuerung von Risiken erkennen',
+    title: 'Risikomanagement im herstellenden Mittelstand — Verschwendungen durch Uber- oder Untersteuerung von Risiken erkennen',
     authors: 'Neyer, B. & Hofeditz, M.',
-    journal: 'Zeitschrift Führung + Organisation (zfo)',
+    journal: 'Zeitschrift Fuhrung + Organisation (zfo)',
     details: '83(4), 227–232',
     link: 'https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en',
   },
@@ -45,13 +40,12 @@ const journalPapers = [
     year: '2014',
     title: 'Risk Management of Mid-Sized Companies — Don\'t Over-Steer nor Understeer!',
     authors: 'Neyer, B. & Hofeditz, M.',
-    journal: 'Journal of Leadership and Organisation (Zeitschrift für Führung und Organisation)',
+    journal: 'Journal of Leadership and Organisation (Zeitschrift fur Fuhrung und Organisation)',
     details: '2014(83), 272–332',
     link: 'https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en',
   },
 ]
 
-// ── Conference Papers (Sammelband) ──
 const conferencePapers = [
   {
     year: '2015',
@@ -85,95 +79,75 @@ const conferencePapers = [
   },
 ]
 
-// ── Working Papers ──
 const workingPapers = [
   {
     year: '2013',
     title: 'Compliance-Motivation im Einkauf und Vertrieb',
     authors: 'Hofeditz, M., Schewe, G. & Sass, V.',
-    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universität Münster',
+    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universitat Munster',
   },
   {
     year: '2013',
-    title: 'Compliance-Delikte in deutschen Großunternehmen',
+    title: 'Compliance-Delikte in deutschen Grossunternehmen',
     authors: 'Schewe, G. & Hofeditz, M.',
-    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universität Münster',
+    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universitat Munster',
   },
   {
     year: '2013',
     title: 'The Empirical Research Landscape of Divestiture — A Review of Antecedent, Process and Outcome Measures',
-    authors: 'Schewe, G., Hofeditz, M. & Liesenkötter, B.',
-    venue: 'Arbeitspapiere des Lehrstuhls für BWL, insb. Organisation, Personal und Innovation, Vol. 87, WWU Münster',
-  },
-]
-
-const schwerpunkte = [
-  {
-    title: 'Organizational Trust',
-    desc: 'Wie entsteht Vertrauen in Organisationen? Welche Mechanismen stärken oder zerstören es?',
-  },
-  {
-    title: 'Compliance & Motivation',
-    desc: 'Warum befolgen Menschen Regeln – und wann werden Compliance-Systeme kontraproduktiv?',
-  },
-  {
-    title: 'Strategy & Risk',
-    desc: 'Strategisches Risikomanagement und Entscheidungsfindung unter Unsicherheit.',
+    authors: 'Schewe, G., Hofeditz, M. & Liesenkotter, B.',
+    venue: 'Arbeitspapiere des Lehrstuhls fur BWL, insb. Organisation, Personal und Innovation, Vol. 87, WWU Munster',
   },
 ]
 
 export default function ForschungPage() {
+  const { locale, d } = useLocale()
+
+  const schwerpunkte = [
+    { title: d.research.focus1, desc: d.research.focus1Desc },
+    { title: d.research.focus2, desc: d.research.focus2Desc },
+    { title: d.research.focus3, desc: d.research.focus3Desc },
+  ]
+
+  const stats = [
+    { n: d.research.stat1n, l: d.research.stat1l },
+    { n: d.research.stat2n, l: d.research.stat2l },
+    { n: d.research.stat3n, l: d.research.stat3l },
+    { n: d.research.stat4n, l: d.research.stat4l },
+  ]
+
   return (
     <>
       {/* HERO */}
       <section className="px-[5vw] py-24 min-h-[50vh] flex items-center">
         <div className="max-w-[1100px] mx-auto w-full">
-          <Eyebrow>Wissenschaft · Universität Münster</Eyebrow>
+          <Eyebrow>{d.research.heroEyebrow}</Eyebrow>
           <h1
-            className="font-serif font-light leading-[1.05] mb-6"
-            style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', color: '#f0eae0' }}
+            className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
           >
-            For<em className="italic" style={{ color: '#c8a84b' }}>schung</em>
+            {locale === 'de' ? 'For' : 'Re'}<em className="italic">{locale === 'de' ? 'schung' : 'search'}</em>
           </h1>
-          <p
-            className="text-[1rem] leading-relaxed mb-4 max-w-[52ch]"
-            style={{ color: '#8a9ab0' }}
-          >
-            Promoviert mit summa cum laude an der Universität Münster.
-            Forschungsschwerpunkte: Organizational Trust, Compliance und
-            strategisches Management. Über 400 Zitationen auf Google Scholar.
+          <p className="text-[1rem] leading-relaxed mb-4 max-w-[52ch] text-grey-secondary">
+            {d.research.heroDesc}
           </p>
-          <p
-            className="text-[0.88rem] leading-relaxed mb-10 max-w-[52ch]"
-            style={{ color: '#8a9ab0' }}
-          >
-            Seit 2015 als Postdoc und Gastdozent am Center for Management (CfM)
-            der Westfälischen Wilhelms-Universität Münster tätig.
+          <p className="text-[0.88rem] leading-relaxed mb-10 max-w-[52ch] text-grey-secondary">
+            {d.research.heroDesc2}
           </p>
           <BtnPrimary href="https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en" external>
-            Google Scholar Profil →
+            {d.research.googleScholar} &rarr;
           </BtnPrimary>
         </div>
       </section>
 
       {/* Schwerpunkte */}
-      <div
-        className="px-[5vw] py-12 grid grid-cols-1 md:grid-cols-3 gap-6"
-        style={{
-          background: '#0d1a2d',
-          borderTop: '1px solid rgba(200,168,75,0.14)',
-          borderBottom: '1px solid rgba(200,168,75,0.14)',
-        }}
-      >
+      <div className="px-[5vw] py-12 grid grid-cols-1 md:grid-cols-3 gap-6 border-y border-grey-light">
         {schwerpunkte.map(({ title, desc }) => (
           <div key={title} className="text-center px-4">
-            <p
-              className="font-serif font-light text-[1.1rem] mb-2"
-              style={{ color: '#c8a84b' }}
-            >
+            <p className="font-serif font-light text-[1.1rem] mb-2 text-text-primary">
               {title}
             </p>
-            <p className="text-[0.8rem]" style={{ color: '#8a9ab0' }}>
+            <p className="text-[0.8rem] text-grey-secondary">
               {desc}
             </p>
           </div>
@@ -182,11 +156,11 @@ export default function ForschungPage() {
 
       <Divider />
 
-      {/* Forschungsartikel (Zeitschrift) */}
+      {/* Journal Papers */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Forschungsartikel (Zeitschrift)</Eyebrow>
-          <SectionTitle className="mb-14">Peer-Reviewed Publications</SectionTitle>
+          <Eyebrow>{d.research.journalEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.journalHeadline}</SectionTitle>
 
           <div className="space-y-5">
             {journalPapers.map(({ year, title, authors, journal, details, link }) => (
@@ -197,39 +171,24 @@ export default function ForschungPage() {
                 rel="noopener noreferrer"
                 className="block group"
               >
-                <div
-                  className="p-7 border group-hover:border-[rgba(200,168,75,0.4)] transition-colors duration-300 relative"
-                  style={{ borderColor: 'rgba(200,168,75,0.14)' }}
-                >
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"
-                    style={{ background: '#c8a84b' }}
-                  />
+                <div className="p-7 border border-grey-light group-hover:border-text-primary transition-colors duration-300 relative">
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
                   <div className="flex gap-6 items-start">
-                    <span
-                      className="font-serif font-light text-[2rem] leading-none flex-shrink-0 w-16"
-                      style={{ color: 'rgba(200,168,75,0.25)' }}
-                    >
+                    <span className="font-serif font-light text-[2rem] leading-none flex-shrink-0 w-16 text-grey-light">
                       {year}
                     </span>
                     <div className="flex-1">
-                      <h3
-                        className="font-serif font-light text-[1.1rem] leading-[1.3] mb-2 group-hover:text-[#e8c96a] transition-colors duration-200"
-                        style={{ color: '#f0eae0' }}
-                      >
+                      <h3 className="font-serif font-light text-[1.1rem] leading-[1.3] mb-2 text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                         {title}
                       </h3>
-                      <p className="text-[0.78rem] mb-3" style={{ color: '#8a9ab0' }}>
+                      <p className="text-[0.78rem] mb-3 text-grey-secondary">
                         {authors}
                       </p>
-                      <p className="text-[0.78rem]" style={{ color: '#c8a84b' }}>
+                      <p className="text-[0.78rem] text-text-primary">
                         <em>{journal}</em>, {details}
                       </p>
-                      <span
-                        className="inline-block mt-4 text-[0.7rem] tracking-[0.12em] uppercase group-hover:text-[#e8c96a] transition-colors duration-200"
-                        style={{ color: '#c8a84b' }}
-                      >
-                        Paper lesen →
+                      <span className="inline-block mt-4 text-[0.7rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                        {d.research.readPaper} &rarr;
                       </span>
                     </div>
                   </div>
@@ -242,40 +201,30 @@ export default function ForschungPage() {
 
       <Divider />
 
-      {/* Konferenz-Papers */}
-      <section
-        className="px-[5vw] py-24"
-        style={{ background: '#0d1a2d' }}
-      >
+      {/* Conference Papers */}
+      <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Forschungsartikel in Sammelband (Konferenz)</Eyebrow>
-          <SectionTitle className="mb-14">Konferenzbeiträge</SectionTitle>
+          <Eyebrow>{d.research.conferenceEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.conferenceHeadline}</SectionTitle>
 
           <div className="space-y-4">
             {conferencePapers.map(({ year, title, authors, venue }) => (
               <div
                 key={title}
-                className="p-6 border"
-                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
+                className="p-6 border border-grey-light"
               >
                 <div className="flex gap-6 items-start">
-                  <span
-                    className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14"
-                    style={{ color: 'rgba(200,168,75,0.2)' }}
-                  >
+                  <span className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
                     {year}
                   </span>
                   <div className="flex-1">
-                    <h3
-                      className="font-serif font-light text-[1rem] leading-[1.3] mb-2"
-                      style={{ color: '#f0eae0' }}
-                    >
+                    <h3 className="font-serif font-light text-[1rem] leading-[1.3] mb-2 text-text-primary">
                       {title}
                     </h3>
-                    <p className="text-[0.78rem] mb-2" style={{ color: '#8a9ab0' }}>
+                    <p className="text-[0.78rem] mb-2 text-grey-secondary">
                       {authors}
                     </p>
-                    <p className="text-[0.75rem] italic" style={{ color: '#8a9ab0' }}>
+                    <p className="text-[0.75rem] italic text-grey-secondary">
                       {venue}
                     </p>
                   </div>
@@ -291,34 +240,27 @@ export default function ForschungPage() {
       {/* Working Papers */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Arbeitspapier / Working Paper</Eyebrow>
-          <SectionTitle className="mb-14">Working Papers</SectionTitle>
+          <Eyebrow>{d.research.workingEyebrow}</Eyebrow>
+          <SectionTitle className="mb-14">{d.research.workingHeadline}</SectionTitle>
 
           <div className="space-y-4">
             {workingPapers.map(({ year, title, authors, venue }) => (
               <div
                 key={title}
-                className="p-6 border"
-                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
+                className="p-6 border border-grey-light"
               >
                 <div className="flex gap-6 items-start">
-                  <span
-                    className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14"
-                    style={{ color: 'rgba(200,168,75,0.2)' }}
-                  >
+                  <span className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
                     {year}
                   </span>
                   <div className="flex-1">
-                    <h3
-                      className="font-serif font-light text-[1rem] leading-[1.3] mb-2"
-                      style={{ color: '#f0eae0' }}
-                    >
+                    <h3 className="font-serif font-light text-[1rem] leading-[1.3] mb-2 text-text-primary">
                       {title}
                     </h3>
-                    <p className="text-[0.78rem] mb-2" style={{ color: '#8a9ab0' }}>
+                    <p className="text-[0.78rem] mb-2 text-grey-secondary">
                       {authors}
                     </p>
-                    <p className="text-[0.75rem] italic" style={{ color: '#8a9ab0' }}>
+                    <p className="text-[0.75rem] italic text-grey-secondary">
                       {venue}
                     </p>
                   </div>
@@ -332,25 +274,15 @@ export default function ForschungPage() {
       <Divider />
 
       {/* Stats */}
-      <section
-        className="px-[5vw] py-16"
-        style={{ background: '#0d1a2d' }}
-      >
+      <section className="px-[5vw] py-16 border-y border-grey-light">
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            { n: '400+', l: 'Zitationen' },
-            { n: '13', l: 'Publikationen' },
-            { n: '10+', l: 'Jahre Forschung' },
-            { n: 'summa', l: 'cum laude' },
-          ].map(({ n, l }) => (
+          {stats.map(({ n, l }) => (
             <div key={l}>
-              <div
-                className="font-serif font-light leading-none mb-2"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#c8a84b' }}
-              >
+              <div className="font-serif font-light leading-none mb-2 text-text-primary"
+                style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {n}
               </div>
-              <div className="text-[0.7rem] tracking-[0.12em] uppercase" style={{ color: '#8a9ab0' }}>
+              <div className="text-[0.7rem] tracking-[0.12em] uppercase text-grey-secondary">
                 {l}
               </div>
             </div>
@@ -359,25 +291,18 @@ export default function ForschungPage() {
       </section>
 
       {/* CTA */}
-      <section
-        className="px-[5vw] py-24 text-center"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(200,168,75,0.07) 0%, transparent 65%)',
-          borderTop: '1px solid rgba(200,168,75,0.14)',
-        }}
-      >
-        <Eyebrow>Verbindung</Eyebrow>
+      <section className="px-[5vw] py-24 text-center border-t border-grey-light">
+        <Eyebrow>{d.research.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-serif font-light mb-6 mx-auto"
+          className="font-serif font-light mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '24ch', lineHeight: 1.1 }}
         >
-          Forschung trifft <em className="italic" style={{ color: '#c8a84b' }}>Praxis</em>
+          {d.research.ctaHeadline1} <em className="italic">{d.research.ctaHeadline2}</em>
         </h2>
-        <p className="mb-10 text-[0.9rem] mx-auto max-w-[44ch]" style={{ color: '#8a9ab0' }}>
-          Die wissenschaftlichen Erkenntnisse fließen direkt in das Buch
-          „Die Immobilienlüge", die Offmarketpool-Plattform und das Immolab Coaching ein.
+        <p className="mb-10 text-[0.9rem] mx-auto max-w-[44ch] text-grey-secondary">
+          {d.research.ctaDesc}
         </p>
-        <BtnPrimary href="/buch">Zum Buch</BtnPrimary>
+        <BtnPrimary href="/buch">{d.research.toBook}</BtnPrimary>
       </section>
     </>
   )

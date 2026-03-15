@@ -1,46 +1,23 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useLocale } from '@/lib/locale-context'
 
 const BOOK_KNOWLEDGE = `
-Du bist "Doc", der offizielle KI-Agent zum Buch "Die Immobilienlüge: Warum wir mit Immobilien nicht reich werden" von Dr. Marcel Hofeditz.
+"Doc" – AI agent for the book "Die Immobilienluge: Warum wir mit Immobilien nicht reich werden" by Dr. Marcel Hofeditz.
 
-AUTOR: Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universität Münster). Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy.
+AUTHOR: Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (University of Munster). Research: Organizational Trust, Compliance, Strategy.
 
-KERNTHESE: Der deutsche Immobilienmarkt ist nicht fundamental-, sondern erwartungsgetrieben. Immobilien = nicht rationaler Markt, sondern psychologischer.
+CORE THESIS: The German real estate market is not fundamentals-driven but expectation-driven. Real estate = not a rational market, but a psychological one.
 
-AUFBAU (5 Akte):
-TEIL 1 (Kap. 1–5): Psychologie der Kaufentscheidung
-- Kap. 1: Besitztumseffekt (Endowment Effect)
-- Kap. 2: Ankereffekt
-- Kap. 3: Herdentrieb / FOMO
-- Kap. 4: Projektionsfehler
-- Kap. 5: Reziprozität
+STRUCTURE (5 Acts):
+Part 1 (Ch. 1–5): Psychology of Purchase Decisions (Endowment Effect, Anchoring, Herd Behavior, Projection Error, Reciprocity)
+Part 2 (Ch. 6–10): Financing & Valuation (Winner's Curse, Loss Aversion, Sunk Cost, Mental Accounting, Prevalence Error)
+Part 3 (Ch. 11–15): Game Theory (Information Asymmetry, Principal-Agent, Prisoner's Dilemma, Coordination Dilemma, Centipede Game)
+Part 4 (Ch. 16–20): Systemic Lies (Greenwashing, Hyperbolic Discounting, Narrative Economics, Dunning-Kruger, Trust but Verify)
+Ch. 21 (Bonus): AI as Lie Detector
 
-TEIL 2 (Kap. 6–10): Finanzierung & Bewertung
-- Kap. 6: Winner's Curse / Bieterverfahren
-- Kap. 7: Verlustaversion
-- Kap. 8: Sunk Cost Falle
-- Kap. 9: Mentale Buchführung
-- Kap. 10: Prävalenzfehler
-
-TEIL 3 (Kap. 11–15): Spieltheorie
-- Kap. 11: Informationsasymmetrie
-- Kap. 12: Prinzipal-Agent-Problem
-- Kap. 13: Gefangenendilemma
-- Kap. 14: Koordinationsdilemma
-- Kap. 15: Tausendfüßler-Spiel
-
-TEIL 4 (Kap. 16–20): Systemische Lügen
-- Kap. 16: Greenwashing/Signaling
-- Kap. 17: Hyperbolische Diskontierung
-- Kap. 18: Narrative Ökonomie (Shiller)
-- Kap. 19: Dunning-Kruger / Selbstüberschätzung
-- Kap. 20: Trust but Verify – Das Manifest
-
-KAP. 21 (Bonus): KI als Lügendetektor
-
-POSITIONIERUNG: Nicht Crash-Buch, nicht Anti-Immobilien. Analytisches Prüfmodell. Schnittstelle: Narrative Economics (Shiller) + Behavioral Finance + Spieltheorie.
+POSITIONING: Not a crash book, not anti-real-estate. Analytical testing model. Intersection: Narrative Economics (Shiller) + Behavioral Finance + Game Theory.
 `
 
 // Code validation (SHA-256 hashes, 16 chars each)
@@ -48,43 +25,72 @@ const VALID_CODE_HASHES: string[] = [
   'a1b2c3d4e5f6a7b8',
 ]
 
+function getFreeSystem(locale: string) {
+  if (locale === 'en') {
+    return `${BOOK_KNOWLEDGE}
+ROLE – BASIC ACCESS:
+In basic access you can:
+1. Answer general real estate questions
+2. Explain book structure, core thesis, and acts
+3. Give max. 2 real in-depth answers from the book
+4. After that: short teasers + friendly reference to purchase
+
+STYLE: Factual, precise, academic but accessible. English. Max 180 words. Structured lists when appropriate.
+Enter book code above for full access.`
+  }
+  return `${BOOK_KNOWLEDGE}
+ROLLE – BASIS-ZUGANG:
+Im Basis-Zugang kannst du:
+1. Allgemeine Immobilienfragen beantworten
+2. Buchstruktur, Kernthese und Akte erklaren
+3. Max. 2 echte Tiefen-Antworten aus dem Buch geben
+4. Danach: kurze Teaser + freundlicher Verweis auf Buchkauf
+
+STIL: Sachlich, prazise, akademisch aber zuganglich. Deutsch. Max. 180 Worter. Strukturierte Aufzahlungen wenn sinnvoll.
+Buchcode eingeben oben fur vollen Zugang.`
+}
+
+function getFullSystem(locale: string) {
+  if (locale === 'en') {
+    return `${BOOK_KNOWLEDGE}
+ROLE – FULL ACCESS (Book buyer):
+You have access to all 21 chapters + appendices. Provide maximum value:
+- Explain all chapters in detail
+- Personal case analyses: describe situation → identify cognitive biases → control strategy from book
+- Walk through checklists from Appendix 3
+- Explain and apply AI prompts from Chapter 21
+- Apply game theory scenarios to real negotiations
+- Reference direct book quotes and case studies
+
+STYLE: In-depth, analytical, like a personal book consultant. English. Detailed answers. Reference chapters directly.`
+  }
+  return `${BOOK_KNOWLEDGE}
+ROLLE – VOLLER ZUGANG (Buchkaufer):
+Du hast Zugriff auf alle 21 Kapitel + Anhange. Biete maximalen Mehrwert:
+- Alle Kapitel detailliert erklaren
+- Personliche Fallanalysen: Situation schildern → Denkfehler identifizieren → Kontrollstrategie aus Buch
+- Checklisten aus Anhang 3 durchgehen
+- KI-Prompts aus Kapitel 21 erklaren und anwenden
+- Spieltheoretische Szenarien auf reale Verhandlungen ubertragen
+- Direkte Buchzitate und Fallbeispiele referenzieren
+
+STIL: Tiefgrundig, analytisch, wie personlicher Buchberater. Deutsch. Ausfuhrliche Antworten. Referenziere Kapitel direkt.`
+}
+
 type Message = {
   role: 'user' | 'assistant'
   content: string
 }
 
-const FREE_SYSTEM = `${BOOK_KNOWLEDGE}
-
-ROLLE – BASIS-ZUGANG:
-Im Basis-Zugang kannst du:
-1. Allgemeine Immobilienfragen beantworten
-2. Buchstruktur, Kernthese und Akte erklären
-3. Max. 2 echte Tiefen-Antworten aus dem Buch geben
-4. Danach: kurze Teaser + freundlicher Verweis auf Buchkauf
-
-STIL: Sachlich, präzise, akademisch aber zugänglich. Deutsch. Max. 180 Wörter. Strukturierte Aufzählungen wenn sinnvoll.
-Buchcode eingeben oben für vollen Zugang.`
-
-const FULL_SYSTEM = `${BOOK_KNOWLEDGE}
-
-ROLLE – VOLLER ZUGANG (Buchkäufer):
-Du hast Zugriff auf alle 21 Kapitel + Anhänge. Biete maximalen Mehrwert:
-- Alle Kapitel detailliert erklären
-- Persönliche Fallanalysen: Situation schildern → Denkfehler identifizieren → Kontrollstrategie aus Buch
-- Checklisten aus Anhang 3 durchgehen
-- KI-Prompts aus Kapitel 21 erklären und anwenden
-- Spieltheoretische Szenarien auf reale Verhandlungen übertragen
-- Direkte Buchzitate und Fallbeispiele referenzieren
-
-STIL: Tiefgründig, analytisch, wie persönlicher Buchberater. Deutsch. Ausführliche Antworten. Referenziere Kapitel direkt.`
-
 export function DocAgent() {
+  const { locale, d } = useLocale()
+
+  const getGreeting = () => locale === 'en'
+    ? 'Hello! I am **Doc** – the AI agent for Dr. Hofeditz\'s book *"Die Immobilienlüge"*.\n\nI answer questions about real estate, the book, and its theses. Book buyers get full access with a code.'
+    : 'Guten Tag! Ich bin **Doc** – der KI-Agent zu Dr. Hofeditz\' Buch *"Die Immobilienlüge"*.\n\nIch beantworte Fragen zu Immobilien, zum Buch und zu den Thesen. Buchkäufer erhalten vollen Zugang mit Code.'
+
   const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content:
-        'Guten Tag! Ich bin **Doc** – der KI-Agent zu Dr. Hofeditz\' Buch *„Die Immobilienlüge"*.\n\nIch beantworte Fragen zu Immobilien, zum Buch und zu den Thesen. Buchkäufer erhalten vollen Zugang mit Code.',
-    },
+    { role: 'assistant', content: getGreeting() },
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -97,6 +103,12 @@ export function DocAgent() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
+
+  // Reset greeting when locale changes
+  useEffect(() => {
+    setMessages([{ role: 'assistant', content: getGreeting() }])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale])
 
   async function tryUnlock() {
     const val = codeInput.trim().toUpperCase()
@@ -115,8 +127,9 @@ export function DocAgent() {
         ...prev,
         {
           role: 'assistant',
-          content:
-            '**Voller Zugang freigeschaltet!** Willkommen als Buchkäufer. Ich stehe Ihnen jetzt mit dem vollständigen Wissen aus allen 21 Kapiteln zur Verfügung.',
+          content: locale === 'en'
+            ? '**Full access unlocked!** Welcome as a book buyer. I am now available with the complete knowledge from all 21 chapters.'
+            : '**Voller Zugang freigeschaltet!** Willkommen als Buchkäufer. Ich stehe Ihnen jetzt mit dem vollständigen Wissen aus allen 21 Kapiteln zur Verfügung.',
         },
       ])
     } else {
@@ -141,13 +154,13 @@ export function DocAgent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: newMessages,
-          system: hasFullAccess ? FULL_SYSTEM : FREE_SYSTEM,
+          system: hasFullAccess ? getFullSystem(locale) : getFreeSystem(locale),
           maxTokens: hasFullAccess ? 800 : 350,
         }),
       })
 
       const data = await response.json()
-      const reply = data.content ?? 'Entschuldigung, es gab einen Fehler.'
+      const reply = data.content ?? (locale === 'en' ? 'Sorry, an error occurred.' : 'Entschuldigung, es gab einen Fehler.')
       setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
 
       if (!hasFullAccess && demoCount >= 1) {
@@ -156,8 +169,9 @@ export function DocAgent() {
             ...prev,
             {
               role: 'assistant',
-              content:
-                '**Hinweis:** Sie haben die kostenlose Demo-Tiefe erreicht. Für vollständige Analysen, alle Kapitelinhalte und persönliche Fallanalysen – erwerben Sie das Buch und geben Sie Ihren Code ein.',
+              content: locale === 'en'
+                ? '**Note:** You have reached the free demo depth. For complete analyses, all chapter contents, and personal case analyses – purchase the book and enter your code.'
+                : '**Hinweis:** Sie haben die kostenlose Demo-Tiefe erreicht. Für vollständige Analysen, alle Kapitelinhalte und persönliche Fallanalysen – erwerben Sie das Buch und geben Sie Ihren Code ein.',
             },
           ])
         }, 600)
@@ -165,94 +179,78 @@ export function DocAgent() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
+        { role: 'assistant', content: locale === 'en' ? 'Technical error. Please try again.' : 'Technischer Fehler. Bitte versuchen Sie es erneut.' },
       ])
     }
     setLoading(false)
   }
 
   const suggestions = hasFullAccess
-    ? ['Analysiere meine Situation', 'Kap. 21: KI-Prompts erklären', 'Lügendetektor-Checkliste', 'Kaufen vs. Mieten rechnen']
-    : ['Worum geht es im Buch?', 'Was ist der Besitztumseffekt?', 'Wie ist das Buch aufgebaut?', 'Ist Kaufen besser als Mieten?']
+    ? (locale === 'en'
+      ? ['Analyze my situation', 'Ch. 21: AI prompts', 'Lie detector checklist', 'Buy vs. rent calculation']
+      : ['Analysiere meine Situation', 'Kap. 21: KI-Prompts erklären', 'Lügendetektor-Checkliste', 'Kaufen vs. Mieten rechnen'])
+    : (locale === 'en'
+      ? ['What is the book about?', 'What is the endowment effect?', 'How is the book structured?', 'Is buying better than renting?']
+      : ['Worum geht es im Buch?', 'Was ist der Besitztumseffekt?', 'Wie ist das Buch aufgebaut?', 'Ist Kaufen besser als Mieten?'])
 
   return (
     <section
       id="doc-agent"
-      className="px-[5vw] py-0"
-      style={{ background: '#0d1a2d', borderBottom: '1px solid rgba(200,168,75,0.14)' }}
+      className="px-[5vw] py-0 border-b border-grey-light"
     >
       <div className="max-w-[1100px] mx-auto pt-14 pb-0 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-[5vw] items-start">
         {/* Left: intro */}
         <div className="pb-14">
-          <div
-            className="inline-flex items-center gap-2 border text-[0.68rem] tracking-[0.18em] uppercase px-4 py-2 mb-7"
-            style={{ color: '#c8a84b', borderColor: 'rgba(200,168,75,0.25)' }}
-          >
+          <div className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.18em] uppercase px-4 py-2 mb-7 text-grey-secondary">
             <span
-              className="w-[7px] h-[7px] rounded-full"
-              style={{ background: '#c8a84b', animation: 'pulse 2s infinite' }}
+              className="w-[7px] h-[7px] rounded-full bg-text-primary"
+              style={{ animation: 'pulse 2s infinite' }}
             />
-            KI-Agent · Live
+            {d.book.docAgentLive}
           </div>
 
           <h2
-            className="font-serif font-light leading-[1.1] mb-5"
-            style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', color: '#f0eae0' }}
+            className="font-serif font-light leading-[1.1] mb-5 text-text-primary"
+            style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
           >
-            Frag <em className="italic" style={{ color: '#c8a84b' }}>Doc</em> –<br />
-            den Agenten<br />zum Buch
+            {d.book.askDoc} <em className="italic">{d.book.docName}</em> –<br />
+            {d.book.agentSubline}
           </h2>
 
-          <p className="text-[0.88rem] mb-7 max-w-[36ch]" style={{ color: '#8a9ab0' }}>
-            Doc kennt alle Thesen, Fallbeispiele und Werkzeuge aus der
-            „Immobilienlüge". Buchkäufer erhalten vollen Zugang.
+          <p className="text-[0.88rem] mb-7 max-w-[36ch] text-grey-secondary">
+            {d.book.docDesc}
           </p>
 
           {/* Tier list */}
           <div className="space-y-3">
-            <p className="text-[0.65rem] tracking-[0.18em] uppercase mb-2" style={{ color: '#8a9ab0' }}>
-              Kostenloser Zugang
+            <p className="text-[0.65rem] tracking-[0.18em] uppercase mb-2 text-grey-secondary">
+              {d.book.freeAccess}
             </p>
-            {[
-              'Allgemeine Immobilienfragen',
-              'Kapitelübersicht & Buchvorschau',
-              '2 Demo-Antworten aus dem Buch',
-              'Teaser & Kaufmotivation',
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-3 text-[0.8rem]" style={{ color: '#f0eae0' }}>
-                <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border"
-                  style={{ background: 'rgba(200,168,75,0.12)', borderColor: 'rgba(200,168,75,0.2)', color: '#c8a84b' }}
-                >
-                  ✓
+            {d.book.freeItems.map((item: string) => (
+              <div key={item} className="flex items-center gap-3 text-[0.8rem] text-text-primary">
+                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border border-grey-light bg-white">
+                  &check;
                 </span>
                 {item}
               </div>
             ))}
 
-            <p className="text-[0.65rem] tracking-[0.18em] uppercase mt-5 mb-2" style={{ color: '#8a9ab0' }}>
-              Nach Buchkauf (Code erforderlich)
+            <p className="text-[0.65rem] tracking-[0.18em] uppercase mt-5 mb-2 text-grey-secondary">
+              {d.book.paidAccess}
             </p>
-            {[
-              'Vollständiges Buchwissen (21 Kapitel)',
-              'Persönliche Fallanalysen & Checklisten',
-              'KI-Prompts aus Kapitel 21',
-              'Unbegrenzte Tiefenanalysen',
-            ].map((item) => (
+            {d.book.paidItems.map((item: string) => (
               <div
                 key={item}
-                className="flex items-center gap-3 text-[0.8rem]"
-                style={{ color: hasFullAccess ? '#f0eae0' : '#8a9ab0' }}
+                className={`flex items-center gap-3 text-[0.8rem] ${hasFullAccess ? 'text-text-primary' : 'text-grey-secondary'}`}
               >
                 <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border"
-                  style={{
-                    background: hasFullAccess ? 'rgba(200,168,75,0.2)' : 'rgba(138,154,176,0.08)',
-                    borderColor: hasFullAccess ? '#c8a84b' : 'rgba(138,154,176,0.2)',
-                    color: hasFullAccess ? '#c8a84b' : '#8a9ab0',
-                  }}
+                  className={`w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border ${
+                    hasFullAccess
+                      ? 'border-text-primary bg-black text-white'
+                      : 'border-grey-light bg-white text-grey-secondary'
+                  }`}
                 >
-                  {hasFullAccess ? '✓' : '■'}
+                  {hasFullAccess ? '\u2713' : '\u25A0'}
                 </span>
                 {item}
               </div>
@@ -262,56 +260,40 @@ export function DocAgent() {
 
         {/* Right: Chat panel */}
         <div
-          className="flex flex-col rounded-t-xl overflow-hidden"
-          style={{
-            height: 580,
-            border: '1px solid rgba(200,168,75,0.18)',
-            borderBottom: 'none',
-            background: 'rgba(13,26,45,0.8)',
-          }}
+          className="flex flex-col rounded-t-xl overflow-hidden border border-grey-light border-b-0"
+          style={{ height: 580, background: '#F6F6F6' }}
         >
           {/* Header */}
-          <div
-            className="flex items-center justify-between px-5 py-3 flex-shrink-0"
-            style={{ background: '#111f33', borderBottom: '1px solid rgba(200,168,75,0.14)' }}
-          >
+          <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 bg-white border-b border-grey-light">
             <div className="flex items-center gap-3">
-              <div
-                className="w-9 h-9 rounded-full flex items-center justify-center font-serif text-lg font-semibold flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #c8a84b, #8a6e28)', color: '#07101f' }}
-              >
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-serif text-lg font-semibold flex-shrink-0 bg-black text-white">
                 D
               </div>
               <div>
-                <p className="text-[0.88rem] font-medium" style={{ color: '#f0eae0' }}>Doc</p>
-                <p className="text-[0.68rem]" style={{ color: '#8a9ab0' }}>
-                  KI-Agent · Die Immobilienlüge
+                <p className="text-[0.88rem] font-medium text-text-primary">Doc</p>
+                <p className="text-[0.68rem] text-grey-secondary">
+                  {d.book.docAgentLive} &middot; Die Immobilienlüge
                 </p>
               </div>
             </div>
             <span
-              className="text-[0.65rem] tracking-[0.1em] uppercase px-3 py-1 rounded-full border"
-              style={
+              className={`text-[0.65rem] tracking-[0.1em] uppercase px-3 py-1 rounded-full border ${
                 hasFullAccess
-                  ? { background: 'rgba(200,168,75,0.18)', borderColor: '#c8a84b', color: '#e8c96a' }
-                  : { background: 'rgba(200,168,75,0.08)', borderColor: 'rgba(200,168,75,0.2)', color: '#c8a84b' }
-              }
+                  ? 'bg-black border-black text-white'
+                  : 'bg-white border-grey-light text-grey-secondary'
+              }`}
             >
-              {hasFullAccess ? '✓ Voller Zugang' : 'Basis-Zugang'}
+              {hasFullAccess
+                ? (locale === 'en' ? '\u2713 Full Access' : '\u2713 Voller Zugang')
+                : (locale === 'en' ? 'Basic Access' : 'Basis-Zugang')}
             </span>
           </div>
 
           {/* Unlock bar */}
           {!hasFullAccess && (
-            <div
-              className="flex items-center gap-3 px-5 py-2 flex-shrink-0"
-              style={{
-                background: 'rgba(200,168,75,0.03)',
-                borderBottom: '1px solid rgba(200,168,75,0.12)',
-              }}
-            >
-              <span className="text-[0.72rem] flex-shrink-0" style={{ color: '#8a9ab0' }}>
-                Buchcode:
+            <div className="flex items-center gap-3 px-5 py-2 flex-shrink-0 bg-white border-b border-grey-light">
+              <span className="text-[0.72rem] flex-shrink-0 text-grey-secondary">
+                {locale === 'en' ? 'Book code:' : 'Buchcode:'}
               </span>
               <input
                 value={codeInput}
@@ -319,22 +301,19 @@ export function DocAgent() {
                 onKeyDown={(e) => e.key === 'Enter' && tryUnlock()}
                 placeholder="XXXXXXXX"
                 maxLength={12}
-                className="flex-1 bg-transparent border outline-none text-[0.78rem] px-3 py-1 uppercase tracking-widest transition-colors duration-200"
-                style={{
-                  borderColor: codeError ? '#e74c3c' : 'rgba(200,168,75,0.2)',
-                  color: '#f0eae0',
-                }}
+                className={`flex-1 bg-transparent border outline-none text-[0.78rem] px-3 py-1 uppercase tracking-widest transition-colors duration-200 text-text-primary ${
+                  codeError ? 'border-red-500' : 'border-grey-light'
+                }`}
               />
               <button
                 onClick={tryUnlock}
-                className="px-3 py-1 text-[0.7rem] tracking-[0.08em] uppercase font-medium flex-shrink-0 transition-colors duration-200"
-                style={{ background: '#c8a84b', color: '#07101f' }}
+                className="px-3 py-1 text-[0.7rem] tracking-[0.08em] uppercase font-medium flex-shrink-0 transition-colors duration-200 bg-black text-white"
               >
-                Freischalten
+                {locale === 'en' ? 'Unlock' : 'Freischalten'}
               </button>
               {codeError && (
-                <span className="text-[0.68rem] flex-shrink-0" style={{ color: '#e74c3c' }}>
-                  Ungültig
+                <span className="text-[0.68rem] flex-shrink-0 text-red-500">
+                  {locale === 'en' ? 'Invalid' : 'Ungültig'}
                 </span>
               )}
             </div>
@@ -348,38 +327,24 @@ export function DocAgent() {
                 className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
               >
                 <div
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[0.7rem] flex-shrink-0 mt-[2px]"
-                  style={
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-[0.7rem] flex-shrink-0 mt-[2px] ${
                     msg.role === 'assistant'
-                      ? { background: 'linear-gradient(135deg, #c8a84b, #8a6e28)', color: '#07101f', fontSize: '0.9rem', fontFamily: 'serif', fontWeight: 600 }
-                      : { background: 'rgba(138,154,176,0.2)', color: '#8a9ab0' }
-                  }
+                      ? 'bg-black text-white font-serif text-[0.9rem] font-semibold'
+                      : 'bg-grey-light text-grey-secondary'
+                  }`}
                 >
-                  {msg.role === 'assistant' ? 'D' : '✦'}
+                  {msg.role === 'assistant' ? 'D' : '\u2726'}
                 </div>
                 <div
-                  className="max-w-[82%] px-4 py-3 text-[0.84rem] leading-relaxed"
-                  style={
+                  className={`max-w-[82%] px-4 py-3 text-[0.84rem] leading-relaxed ${
                     msg.role === 'assistant'
-                      ? {
-                          background: '#111f33',
-                          border: '1px solid rgba(200,168,75,0.14)',
-                          color: '#f0eae0',
-                          borderTopLeftRadius: 0,
-                          borderRadius: '0 4px 4px 4px',
-                        }
-                      : {
-                          background: 'rgba(200,168,75,0.1)',
-                          border: '1px solid rgba(200,168,75,0.22)',
-                          color: '#f0eae0',
-                          borderTopRightRadius: 0,
-                          borderRadius: '4px 0 4px 4px',
-                        }
-                  }
+                      ? 'bg-white border border-grey-light text-text-primary rounded-[0_4px_4px_4px]'
+                      : 'bg-black text-white rounded-[4px_0_4px_4px]'
+                  }`}
                   dangerouslySetInnerHTML={{
                     __html: msg.content
-                      .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#c8a84b;font-weight:500">$1</strong>')
-                      .replace(/\*(.*?)\*/g, '<em style="color:#8a9ab0;font-style:italic">$1</em>')
+                      .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:500">$1</strong>')
+                      .replace(/\*(.*?)\*/g, '<em style="font-style:italic">$1</em>')
                       .replace(/\n/g, '<br/>'),
                   }}
                 />
@@ -388,23 +353,16 @@ export function DocAgent() {
 
             {loading && (
               <div className="flex gap-3">
-                <div
-                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'linear-gradient(135deg, #c8a84b, #8a6e28)', color: '#07101f', fontFamily: 'serif', fontWeight: 600, fontSize: '0.9rem' }}
-                >
+                <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 bg-black text-white font-serif font-semibold text-[0.9rem]">
                   D
                 </div>
-                <div
-                  className="px-4 py-3"
-                  style={{ background: '#111f33', border: '1px solid rgba(200,168,75,0.14)', borderRadius: '0 4px 4px 4px' }}
-                >
+                <div className="px-4 py-3 bg-white border border-grey-light rounded-[0_4px_4px_4px]">
                   <div className="flex gap-1 items-center py-1">
                     {[0, 1, 2].map((i) => (
                       <div
                         key={i}
-                        className="w-[6px] h-[6px] rounded-full"
+                        className="w-[6px] h-[6px] rounded-full bg-grey-secondary"
                         style={{
-                          background: '#8a9ab0',
                           animation: `typingBounce 1.2s ${i * 0.2}s infinite`,
                         }}
                       />
@@ -417,16 +375,12 @@ export function DocAgent() {
           </div>
 
           {/* Suggestions */}
-          <div
-            className="px-4 py-2 flex gap-2 flex-wrap flex-shrink-0"
-            style={{ borderTop: '1px solid rgba(200,168,75,0.1)', background: 'rgba(7,16,31,0.4)' }}
-          >
+          <div className="px-4 py-2 flex gap-2 flex-wrap flex-shrink-0 border-t border-grey-light">
             {suggestions.map((s) => (
               <button
                 key={s}
                 onClick={() => sendMessage(s)}
-                className="text-[0.7rem] px-3 py-1 border transition-all duration-200 hover:border-[rgba(200,168,75,0.5)] hover:text-[#c8a84b]"
-                style={{ borderColor: 'rgba(200,168,75,0.18)', color: '#8a9ab0', background: 'transparent' }}
+                className="text-[0.7rem] px-3 py-1 border border-grey-light text-grey-secondary transition-all duration-200 hover:border-text-primary hover:text-text-primary bg-transparent"
               >
                 {s}
               </button>
@@ -434,10 +388,7 @@ export function DocAgent() {
           </div>
 
           {/* Input */}
-          <div
-            className="flex flex-shrink-0"
-            style={{ borderTop: '1px solid rgba(200,168,75,0.14)', background: '#111f33' }}
-          >
+          <div className="flex flex-shrink-0 border-t border-grey-light bg-white">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -447,17 +398,15 @@ export function DocAgent() {
                   sendMessage()
                 }
               }}
-              placeholder="Frage an Doc stellen …"
-              className="flex-1 bg-transparent outline-none px-5 py-4 text-[0.84rem]"
-              style={{ color: '#f0eae0' }}
+              placeholder={locale === 'en' ? 'Ask Doc a question ...' : 'Frage an Doc stellen ...'}
+              className="flex-1 bg-transparent outline-none px-5 py-4 text-[0.84rem] text-text-primary"
             />
             <button
               onClick={() => sendMessage()}
               disabled={loading || !input.trim()}
-              className="px-5 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-all duration-200 disabled:opacity-30"
-              style={{ background: '#c8a84b', color: '#07101f' }}
+              className="px-5 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-all duration-200 disabled:opacity-30 bg-black text-white"
             >
-              Senden
+              {locale === 'en' ? 'Send' : 'Senden'}
             </button>
           </div>
         </div>

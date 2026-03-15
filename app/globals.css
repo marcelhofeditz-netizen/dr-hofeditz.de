@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --navy: #07101f;
-  --navy2: #0d1a2d;
-  --navy3: #111f33;
-  --gold: #c8a84b;
-  --gold2: #e8c96a;
-  --ivory: #f0eae0;
-  --muted: #8a9ab0;
-  --border: rgba(200,168,75,0.18);
+  --black: #0B0B0B;
+  --white: #F6F6F6;
+  --text: #111111;
+  --grey-light: #EAEAEA;
+  --grey: #6B6B6B;
+  --border: #EAEAEA;
 }
 
 html {
@@ -20,29 +18,18 @@ html {
 }
 
 body {
-  background: var(--navy);
-  color: var(--ivory);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
+  background: #F6F6F6;
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* Noise texture overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.55;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-track { background: #F6F6F6; }
+::-webkit-scrollbar-thumb { background: var(--grey-light); border-radius: 2px; }
 
 /* Animations */
 @keyframes fadeUp {
@@ -63,12 +50,14 @@ body::before {
 .animate-fade-up { animation: fadeUp 0.8s ease both; }
 .animate-fade-in { animation: fadeIn 1s ease both; }
 
-/* Gold gradient divider */
-.divider-gold {
+/* Divider */
+.divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.22;
+  background: var(--grey-light);
 }
 
-/* Border gold utility */
-.border-gold { border-color: var(--border); }
+/* Selection */
+::selection {
+  background: var(--black);
+  color: var(--white);
+}

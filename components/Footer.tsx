@@ -1,114 +1,120 @@
+'use client'
+
 import Link from 'next/link'
-
-const footerLinks = [
-  { href: '/plattform', label: 'Offmarketpool' },
-  { href: '/buch', label: 'Die Immobilienlüge' },
-  { href: '/coaching', label: 'Immolab' },
-  { href: '/forschung', label: 'Forschung' },
-  { href: '/kontakt', label: 'Kontakt' },
-]
-
-const legalLinks = [
-  { href: '/impressum', label: 'Impressum' },
-  { href: '/datenschutz', label: 'Datenschutz' },
-]
+import { useLocale } from '@/lib/locale-context'
 
 export function Footer() {
+  const { d } = useLocale()
+
+  const footerLinks = [
+    { href: '/plattform', label: d.nav.platform },
+    { href: '/buch', label: d.nav.book },
+    { href: '/coaching', label: d.nav.coaching },
+    { href: '/forschung', label: d.nav.research },
+    { href: '/kontakt', label: d.nav.contact },
+  ]
+
+  const ecosystemLinks = [
+    { label: d.footer.drHofeditz, sub: d.footer.founderResearch, href: '/', external: false },
+    { label: d.footer.offmarketpool, sub: d.footer.platformExecution, href: 'https://offmarketpool.vercel.app', external: true },
+    { label: d.footer.dieImmobilienluge, sub: d.footer.thesisFramework, href: '/buch', external: false },
+  ]
+
   return (
-    <footer
-      className="relative z-10 mt-0"
-      style={{ borderTop: '1px solid rgba(200,168,75,0.14)' }}
-    >
-      <div className="px-[5vw] py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className="relative z-10 mt-0 border-t border-grey-light">
+      <div className="px-[5vw] py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <span
-            className="font-serif text-base tracking-[0.14em] uppercase block mb-4"
-            style={{ color: '#c8a84b' }}
-          >
+          <span className="font-serif text-base tracking-[0.14em] uppercase block mb-4 text-text-primary">
             Dr. Marcel Hofeditz
           </span>
-          <p className="text-[0.82rem] leading-relaxed max-w-[28ch]" style={{ color: '#8a9ab0' }}>
-            Promovierter Managementforscher, Immobilienunternehmer und Autor.
-            Hamburg, 2026.
+          <p className="text-[0.82rem] leading-relaxed max-w-[28ch] text-grey-secondary">
+            {d.footer.desc}
           </p>
         </div>
 
         {/* Navigation */}
         <div>
-          <span
-            className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4"
-            style={{ color: '#c8a84b' }}
-          >
-            Projekte
+          <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
+            {d.footer.pages}
           </span>
           <ul className="flex flex-col gap-2">
             {footerLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-[0.8rem] transition-colors duration-200 hover:text-[#c8a84b]"
-                  style={{ color: '#8a9ab0' }}
+                  className="text-[0.8rem] text-grey-secondary transition-colors duration-200 hover:text-text-primary"
                 >
                   {label}
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href="https://offmarketpool.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[0.8rem] transition-colors duration-200 hover:text-[#c8a84b]"
-                style={{ color: '#8a9ab0' }}
-              >
-                → Plattform öffnen
-              </a>
-            </li>
           </ul>
         </div>
 
-        {/* Contact teaser */}
+        {/* Ecosystem */}
         <div>
-          <span
-            className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4"
-            style={{ color: '#c8a84b' }}
-          >
-            Kontakt
+          <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
+            {d.footer.ecosystem}
           </span>
-          <p className="text-[0.8rem] mb-3" style={{ color: '#8a9ab0' }}>
-            Jevenstedter Straße 176a<br />
+          <ul className="flex flex-col gap-3">
+            {ecosystemLinks.map(({ label, sub, href, external }) => (
+              <li key={href}>
+                {external ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group"
+                  >
+                    <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
+                      {label} &nearr;
+                    </span>
+                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
+                  </a>
+                ) : (
+                  <Link href={href} className="block group">
+                    <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
+                      {label}
+                    </span>
+                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-4 text-grey-secondary">
+            {d.footer.contact}
+          </span>
+          <p className="text-[0.8rem] mb-3 text-grey-secondary">
+            {d.footer.address}<br />
             Hamburg
           </p>
           <Link
             href="/kontakt"
-            className="text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200 hover:text-[#e8c96a]"
-            style={{ color: '#c8a84b' }}
+            className="text-[0.76rem] tracking-[0.1em] uppercase text-text-primary transition-colors duration-200 hover:text-grey-secondary"
           >
-            Nachricht senden →
+            {d.footer.sendMessage} &rarr;
           </Link>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div
-        className="px-[5vw] py-4 flex flex-wrap items-center justify-between gap-3"
-        style={{ borderTop: '1px solid rgba(200,168,75,0.1)' }}
-      >
-        <span className="font-serif text-[0.85rem]" style={{ color: '#8a9ab0' }}>
-          © {new Date().getFullYear()} Dr. Marcel Hofeditz
+      <div className="px-[5vw] py-4 flex flex-wrap items-center justify-between gap-3 border-t border-grey-light">
+        <span className="font-serif text-[0.85rem] text-grey-secondary">
+          &copy; {new Date().getFullYear()} Dr. Marcel Hofeditz
         </span>
         <div className="flex gap-5">
-          {legalLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-[0.7rem] tracking-[0.06em] transition-colors duration-200 hover:text-[#c8a84b]"
-              style={{ color: '#8a9ab0' }}
-            >
-              {label}
-            </Link>
-          ))}
+          <Link href="/impressum" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+            {d.footer.impressum}
+          </Link>
+          <Link href="/datenschutz" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+            {d.footer.datenschutz}
+          </Link>
         </div>
       </div>
     </footer>
