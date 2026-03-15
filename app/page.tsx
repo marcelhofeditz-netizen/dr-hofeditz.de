@@ -58,7 +58,7 @@ export default function Home() {
                 style={{ borderColor: '#c8a84b', opacity: 0.3 }}
               />
               <Image
-                src="/foto-marcel.jpg"
+                src="/IMG_8225.webp"
                 alt="Dr. Marcel Hofeditz"
                 width={380}
                 height={460}
