@@ -8,9 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        black: '#0B0B0B',
+        white: '#F6F6F6',
+        'text-primary': '#111111',
+        'grey-light': '#EAEAEA',
+        'grey-secondary': '#6B6B6B',
+        border: '#EAEAEA',
+      },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
     },
   },
