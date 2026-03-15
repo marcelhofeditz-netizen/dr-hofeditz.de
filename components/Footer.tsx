@@ -4,6 +4,7 @@ const footerLinks = [
   { href: '/plattform', label: 'Offmarketpool' },
   { href: '/buch', label: 'Die Immobilienlüge' },
   { href: '/coaching', label: 'Immolab' },
+  { href: '/forschung', label: 'Forschung' },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
