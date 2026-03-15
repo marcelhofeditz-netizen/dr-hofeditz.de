@@ -7,25 +7,22 @@ export const metadata: Metadata = {
     'Wissenschaftliche Publikationen von Dr. Marcel Hofeditz. Forschungsschwerpunkte: Organizational Trust, Compliance, Strategy. Universität Münster.',
 }
 
-const papers = [
+// ── Peer-Reviewed Journal Articles ──
+const journalPapers = [
   {
     year: '2017',
     title: '"Want to" Versus "Have to": Intrinsic and Extrinsic Motivators as Predictors of Compliance Behavior Intention',
     authors: 'Hofeditz, M., Nienaber, A., Dysvik, A. & Schewe, G.',
     journal: 'Human Resource Management',
-    details: 'Vol. 56, Nr. 1, S. 25–49',
-    abstract:
-      'Warum befolgen Mitarbeiter Regeln? Diese Studie zeigt, dass intrinsische Motivation ein stärkerer Treiber für Compliance ist als extrinsische Anreize – mit direkten Implikationen für HR-Management und Unternehmensführung.',
+    details: '56(1), 25–49',
     link: 'https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en',
   },
   {
     year: '2015',
     title: 'Vulnerability and Trust in Leader-Follower Relationships',
-    authors: 'Nienaber, A., Hofeditz, M. & Romeike, P.D.',
+    authors: 'Nienaber, A., Hofeditz, M. & Romeike, P.',
     journal: 'Personnel Review',
-    details: 'Vol. 44, Nr. 4, S. 567–591',
-    abstract:
-      'Wie entsteht Vertrauen zwischen Führungskräften und Mitarbeitern? Diese Arbeit analysiert die Rolle von Vulnerabilität als Schlüsselmechanismus in Führungsbeziehungen und zeigt, warum sich verletzlich zu zeigen Vertrauen aufbaut.',
+    details: '44(4), 567–591',
     link: 'https://www.emerald.com/insight/content/doi/10.1108/PR-09-2013-0162/full/html',
   },
   {
@@ -33,20 +30,80 @@ const papers = [
     title: 'Do We Bank on Regulation or Reputation? A Meta-Analysis and Meta-Regression of Organizational Trust in the Financial Services Sector',
     authors: 'Nienaber, A., Hofeditz, M. & Searle, R.',
     journal: 'International Journal of Bank Marketing',
-    details: 'Vol. 32, Nr. 5, S. 367–407',
-    abstract:
-      'Vertrauen wir Banken wegen Regulierung oder Reputation? Diese Meta-Analyse untersucht systematisch die Vertrauenstreiber im Finanzsektor – mit überraschenden Ergebnissen zur Wirksamkeit regulatorischer Maßnahmen.',
+    details: '35(5), 367–407',
     link: 'https://www.emerald.com/insight/content/doi/10.1108/IJBM-12-2013-0146/full/html',
   },
   {
     year: '2014',
-    title: 'Risikomanagement im herstellenden Mittelstand – Verschwendungen durch Über- oder Untersteuerung von Risiken erkennen',
+    title: 'Risikomanagement im herstellenden Mittelstand — Verschwendungen durch Über- oder Untersteuerung von Risiken erkennen',
     authors: 'Neyer, B. & Hofeditz, M.',
     journal: 'Zeitschrift Führung + Organisation (zfo)',
-    details: 'Vol. 83, Nr. 4, S. 227–232',
-    abstract:
-      'Wie steuern mittelständische Unternehmen Risiken? Diese Studie analysiert, warum sowohl Über- als auch Untersteuerung zu Ressourcenverschwendung führt – und liefert ein Praxismodell für effizientes Risikomanagement.',
+    details: '83(4), 227–232',
     link: 'https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en',
+  },
+  {
+    year: '2014',
+    title: 'Risk Management of Mid-Sized Companies — Don\'t Over-Steer nor Understeer!',
+    authors: 'Neyer, B. & Hofeditz, M.',
+    journal: 'Journal of Leadership and Organisation (Zeitschrift für Führung und Organisation)',
+    details: '2014(83), 272–332',
+    link: 'https://scholar.google.de/citations?user=SsmSw1kAAAAJ&hl=en',
+  },
+]
+
+// ── Conference Papers (Sammelband) ──
+const conferencePapers = [
+  {
+    year: '2015',
+    title: 'The Decline of the Resource-Based-View? A Meta-Analytic Investigation',
+    authors: 'Hofeditz, M., Hennemann, P. & Schewe, G.',
+    venue: 'Proceedings of the SMS Special Conference, Chile',
+  },
+  {
+    year: '2015',
+    title: 'Stuck in the Middle or Star in the Middle? A Meta-Analysis of Porter\'s Generic Strategies',
+    authors: 'Hofeditz, M. S. & S./, S. G.',
+    venue: 'Proceedings of the SMS Special Conference, Chile',
+  },
+  {
+    year: '2013',
+    title: 'Restoring Trust: Is It My Experience or That of My Friend That Matters Most?',
+    authors: 'Nienaber, A., Hofeditz, M. & Searle, R.',
+    venue: 'Proceedings of the Social Relations and Human Security Conference, Coventry, UK',
+  },
+  {
+    year: '2013',
+    title: 'Reputation Counts but the Relationship History Does Not Matter! Asian Characteristics in Business Relationships — A Meta-Analysis',
+    authors: 'Nienaber, A., Hofeditz, M., Searle, R. & Schewe, G.',
+    venue: 'Proceedings of the First International Network on Trust Symposium, Singapore',
+  },
+  {
+    year: '2013',
+    title: 'The Curvilinear Dynamics of INTEROrganizational Trust — A Meta-Analysis of Two Decades Trust Research',
+    authors: 'Nienaber, A., Hofeditz, M., Struchholz, K. & Schewe, G.',
+    venue: 'Proceedings of the WK ORG Workshop 2013, Jena, Deutschland',
+  },
+]
+
+// ── Working Papers ──
+const workingPapers = [
+  {
+    year: '2013',
+    title: 'Compliance-Motivation im Einkauf und Vertrieb',
+    authors: 'Hofeditz, M., Schewe, G. & Sass, V.',
+    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universität Münster',
+  },
+  {
+    year: '2013',
+    title: 'Compliance-Delikte in deutschen Großunternehmen',
+    authors: 'Schewe, G. & Hofeditz, M.',
+    venue: 'Forschungsbericht des Risk & Compliance Research Center, Universität Münster',
+  },
+  {
+    year: '2013',
+    title: 'The Empirical Research Landscape of Divestiture — A Review of Antecedent, Process and Outcome Measures',
+    authors: 'Schewe, G., Hofeditz, M. & Liesenkötter, B.',
+    venue: 'Arbeitspapiere des Lehrstuhls für BWL, insb. Organisation, Personal und Innovation, Vol. 87, WWU Münster',
   },
 ]
 
@@ -125,14 +182,14 @@ export default function ForschungPage() {
 
       <Divider />
 
-      {/* Publikationen */}
+      {/* Forschungsartikel (Zeitschrift) */}
       <section className="px-[5vw] py-24">
         <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>Peer-Reviewed Publications</Eyebrow>
-          <SectionTitle className="mb-14">Vier Studien. Ein roter Faden.</SectionTitle>
+          <Eyebrow>Forschungsartikel (Zeitschrift)</Eyebrow>
+          <SectionTitle className="mb-14">Peer-Reviewed Publications</SectionTitle>
 
           <div className="space-y-5">
-            {papers.map(({ year, title, authors, journal, details, abstract, link }) => (
+            {journalPapers.map(({ year, title, authors, journal, details, link }) => (
               <a
                 key={title}
                 href={link}
@@ -144,12 +201,10 @@ export default function ForschungPage() {
                   className="p-7 border group-hover:border-[rgba(200,168,75,0.4)] transition-colors duration-300 relative"
                   style={{ borderColor: 'rgba(200,168,75,0.14)' }}
                 >
-                  {/* Top bar accent */}
                   <div
                     className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"
                     style={{ background: '#c8a84b' }}
                   />
-
                   <div className="flex gap-6 items-start">
                     <span
                       className="font-serif font-light text-[2rem] leading-none flex-shrink-0 w-16"
@@ -157,7 +212,6 @@ export default function ForschungPage() {
                     >
                       {year}
                     </span>
-
                     <div className="flex-1">
                       <h3
                         className="font-serif font-light text-[1.1rem] leading-[1.3] mb-2 group-hover:text-[#e8c96a] transition-colors duration-200"
@@ -165,19 +219,12 @@ export default function ForschungPage() {
                       >
                         {title}
                       </h3>
-
                       <p className="text-[0.78rem] mb-3" style={{ color: '#8a9ab0' }}>
                         {authors}
                       </p>
-
-                      <p className="text-[0.78rem] mb-4" style={{ color: '#c8a84b' }}>
-                        <em>{journal}</em> · {details}
+                      <p className="text-[0.78rem]" style={{ color: '#c8a84b' }}>
+                        <em>{journal}</em>, {details}
                       </p>
-
-                      <p className="text-[0.83rem] leading-relaxed" style={{ color: '#8a9ab0' }}>
-                        {abstract}
-                      </p>
-
                       <span
                         className="inline-block mt-4 text-[0.7rem] tracking-[0.12em] uppercase group-hover:text-[#e8c96a] transition-colors duration-200"
                         style={{ color: '#c8a84b' }}
@@ -195,6 +242,95 @@ export default function ForschungPage() {
 
       <Divider />
 
+      {/* Konferenz-Papers */}
+      <section
+        className="px-[5vw] py-24"
+        style={{ background: '#0d1a2d' }}
+      >
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>Forschungsartikel in Sammelband (Konferenz)</Eyebrow>
+          <SectionTitle className="mb-14">Konferenzbeiträge</SectionTitle>
+
+          <div className="space-y-4">
+            {conferencePapers.map(({ year, title, authors, venue }) => (
+              <div
+                key={title}
+                className="p-6 border"
+                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
+              >
+                <div className="flex gap-6 items-start">
+                  <span
+                    className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14"
+                    style={{ color: 'rgba(200,168,75,0.2)' }}
+                  >
+                    {year}
+                  </span>
+                  <div className="flex-1">
+                    <h3
+                      className="font-serif font-light text-[1rem] leading-[1.3] mb-2"
+                      style={{ color: '#f0eae0' }}
+                    >
+                      {title}
+                    </h3>
+                    <p className="text-[0.78rem] mb-2" style={{ color: '#8a9ab0' }}>
+                      {authors}
+                    </p>
+                    <p className="text-[0.75rem] italic" style={{ color: '#8a9ab0' }}>
+                      {venue}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Working Papers */}
+      <section className="px-[5vw] py-24">
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>Arbeitspapier / Working Paper</Eyebrow>
+          <SectionTitle className="mb-14">Working Papers</SectionTitle>
+
+          <div className="space-y-4">
+            {workingPapers.map(({ year, title, authors, venue }) => (
+              <div
+                key={title}
+                className="p-6 border"
+                style={{ borderColor: 'rgba(200,168,75,0.14)' }}
+              >
+                <div className="flex gap-6 items-start">
+                  <span
+                    className="font-serif font-light text-[1.6rem] leading-none flex-shrink-0 w-14"
+                    style={{ color: 'rgba(200,168,75,0.2)' }}
+                  >
+                    {year}
+                  </span>
+                  <div className="flex-1">
+                    <h3
+                      className="font-serif font-light text-[1rem] leading-[1.3] mb-2"
+                      style={{ color: '#f0eae0' }}
+                    >
+                      {title}
+                    </h3>
+                    <p className="text-[0.78rem] mb-2" style={{ color: '#8a9ab0' }}>
+                      {authors}
+                    </p>
+                    <p className="text-[0.75rem] italic" style={{ color: '#8a9ab0' }}>
+                      {venue}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
       {/* Stats */}
       <section
         className="px-[5vw] py-16"
@@ -203,7 +339,7 @@ export default function ForschungPage() {
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { n: '400+', l: 'Zitationen' },
-            { n: '4', l: 'Peer-Reviewed Papers' },
+            { n: '13', l: 'Publikationen' },
             { n: '10+', l: 'Jahre Forschung' },
             { n: 'summa', l: 'cum laude' },
           ].map(({ n, l }) => (
