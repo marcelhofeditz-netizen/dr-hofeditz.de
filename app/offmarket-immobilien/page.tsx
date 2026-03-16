@@ -51,7 +51,7 @@ export default function OffmarketImmobilienPage() {
 
       {/* Stats */}
       <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
-        <Stat number="361" label={isEn ? 'Completed Deals' : 'Abgeschlossene Deals'} />
+        <Stat number="607" label={isEn ? 'Completed Deals' : 'Abgeschlossene Deals'} />
         <Stat number="€6,2 Mrd." label={isEn ? 'Asset Volume' : 'Asset-Volumen'} />
         <Stat number="7.000+" label={isEn ? 'Investor Profiles' : 'Investorenprofile'} />
         <Stat number="KI" label={isEn ? 'Matching Algorithm' : 'Matching-Algorithmus'} />
@@ -173,8 +173,8 @@ export default function OffmarketImmobilienPage() {
               {
                 q: isEn ? 'What is OffMarketPool?' : 'Was ist OffMarketPool?',
                 a: isEn
-                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 361 completed deals, €6.2B+ asset volume.'
-                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, 361 abgeschlossene Deals und ein Asset-Volumen von über €6,2 Milliarden.',
+                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 607 completed deals, €6.2B+ asset volume.'
+                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, 607 abgeschlossene Deals und ein Asset-Volumen von über €6,2 Milliarden.',
               },
             ].map(({ q, a }) => (
               <div key={q} className="p-6 border border-grey-light">
@@ -205,8 +205,8 @@ export default function OffmarketImmobilienPage() {
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
                 {isEn
-                  ? 'AI matching, 361 deals, €6.2B volume.'
-                  : 'KI-Matching, 361 Deals, €6,2 Mrd. Volumen.'}
+                  ? 'AI matching, 607 deals, €6.2B volume.'
+                  : 'KI-Matching, 607 Deals, €6,2 Mrd. Volumen.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {isEn ? 'Learn more' : 'Mehr erfahren'} &rarr;

@@ -9,7 +9,7 @@ const faqJsonLd = {
       name: 'Was unterscheidet OffMarketPool von anderen Plattformen?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'OffMarketPool ist Europas führende Offmarket-Plattform mit einem einzigartigen KI-Matching-System, 361 abgeschlossenen Deals und einem Asset-Volumen von über €6,2 Milliarden.',
+        text: 'OffMarketPool ist Europas führende Offmarket-Plattform mit einem einzigartigen KI-Matching-System, 607 abgeschlossenen Deals und einem Asset-Volumen von über €6,2 Milliarden.',
       },
     },
     {
@@ -42,14 +42,14 @@ const faqJsonLd = {
 export const metadata: Metadata = {
   title: 'OffMarketPool – Europas führende Offmarket-Immobilienplattform',
   description:
-    'Diskrete Immobilientransaktionen mit KI-basiertem Matching. 361 Deals, €6,2 Mrd. Asset-Volumen, 7.000+ Investorenprofile. Offmarket verkaufen und kaufen.',
+    'Diskrete Immobilientransaktionen mit KI-basiertem Matching. 607 Deals, €6,2 Mrd. Asset-Volumen, 7.000+ Investorenprofile. Offmarket verkaufen und kaufen.',
   alternates: {
     canonical: 'https://www.dr-hofeditz.de/plattform',
   },
   openGraph: {
     title: 'OffMarketPool – Europas führende Offmarket-Immobilienplattform',
     description:
-      '361 Deals, €6,2 Mrd. Asset-Volumen. KI-basiertes Matching mit 7.000+ Investoren. Diskret. Präzise. Europäisch.',
+      '607 Deals, €6,2 Mrd. Asset-Volumen. KI-basiertes Matching mit 7.000+ Investoren. Diskret. Präzise. Europäisch.',
     url: 'https://www.dr-hofeditz.de/plattform',
     type: 'website',
   },
