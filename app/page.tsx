@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Eyebrow, SectionTitle, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import { PodcastSection } from '@/components/PodcastSection'
+import { SocialSection } from '@/components/SocialSection'
 import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
@@ -226,6 +228,12 @@ export default function Home() {
       </section>
 
       <Divider />
+
+      {/* ── PODCAST ── */}
+      <PodcastSection />
+
+      {/* ── SOCIAL ── */}
+      <SocialSection />
 
       {/* ── PLATFORM REFERENCE ── */}
       <section className="px-[5vw] py-28">

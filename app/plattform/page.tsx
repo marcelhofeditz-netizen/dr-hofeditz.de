@@ -1,6 +1,7 @@
 'use client'
 
 import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import { PodcastSection } from '@/components/PodcastSection'
 import { useLocale } from '@/lib/locale-context'
 
 export default function PlattformPage() {
@@ -143,6 +144,9 @@ export default function PlattformPage() {
           </div>
         </div>
       </section>
+
+      {/* Podcast */}
+      <PodcastSection />
 
       {/* CTA */}
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">

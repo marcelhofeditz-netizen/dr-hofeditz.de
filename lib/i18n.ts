@@ -310,6 +310,30 @@ const de = {
     askQuestion: 'Frage stellen ...',
     suggestions: ['Offmarketpool?', 'Das Buch?', 'Coaching?', 'Kontakt?'],
   },
+  podcast: {
+    eyebrow: 'Podcast',
+    headline: 'OffMarketPool Podcast',
+    desc: 'Der OffMarketPool Podcast behandelt Off-Market-Transaktionen, Immobilienmärkte und Investorenperspektiven.',
+    listenOnSpotify: 'Podcast auf Spotify hören',
+  },
+  social: {
+    eyebrow: 'Social Media',
+    headline: 'Dr. Marcel Hofeditz online',
+    linkedin: 'LinkedIn',
+    linkedinDesc: 'Marktanalysen, Immobilienperspektiven und Plattformupdates.',
+    instagram: 'Instagram',
+    instagramDesc: 'Einblicke in Projekte, Reisen und Immobilienmärkte.',
+    tiktok: 'TikTok',
+    tiktokDesc: 'Kurze Analysen zu Immobilien und Investitionen.',
+    whatsapp: 'WhatsApp',
+    whatsappDesc: 'Direkter Kontakt für Investoren und Partner.',
+    follow: 'Folgen',
+    contact: 'Kontakt',
+  },
+  bookExtras: {
+    eyebrow: 'Weitere Inhalte',
+    headline: 'Weitere Inhalte von Dr. Marcel Hofeditz',
+  },
 }
 
 /* ── English ── */
@@ -621,6 +645,30 @@ const en = {
     close: 'Close',
     askQuestion: 'Ask a question ...',
     suggestions: ['Offmarketpool?', 'The Book?', 'Coaching?', 'Contact?'],
+  },
+  podcast: {
+    eyebrow: 'Podcast',
+    headline: 'OffMarketPool Podcast',
+    desc: 'The OffMarketPool Podcast discusses off-market transactions, real estate markets and investor perspectives.',
+    listenOnSpotify: 'Listen on Spotify',
+  },
+  social: {
+    eyebrow: 'Social Media',
+    headline: 'Follow Dr. Marcel Hofeditz',
+    linkedin: 'LinkedIn',
+    linkedinDesc: 'Market analyses, real estate perspectives and platform updates.',
+    instagram: 'Instagram',
+    instagramDesc: 'Insights into projects, travel and real estate markets.',
+    tiktok: 'TikTok',
+    tiktokDesc: 'Short analyses on real estate and investments.',
+    whatsapp: 'WhatsApp',
+    whatsappDesc: 'Direct contact for investors and partners.',
+    follow: 'Follow',
+    contact: 'Contact',
+  },
+  bookExtras: {
+    eyebrow: 'More Content',
+    headline: 'More content by Dr. Marcel Hofeditz',
   },
 }
 
