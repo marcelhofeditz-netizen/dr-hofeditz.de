@@ -56,6 +56,12 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 .slide.active .benefit-card:nth-child(4){animation:fadeUp .6s .6s ease forwards}
 .slide.active .benefit-card:nth-child(5){animation:fadeUp .6s .7s ease forwards}
 
+/* Stat growth bars */
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+
 .cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
 .cta-btn{display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;background:var(--text);color:var(--bg);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
 .slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
@@ -161,11 +167,11 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
   <div class="eyebrow">Asset Pool</div>
   <h1>Premium Assets.<br>Premium Network.</h1>
   <div class="stats">
-    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Active Deals</div></div>
-    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div></div>
-    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Sold in 2025</div></div>
-    <div class="stat"><div class="stat-number">€7M</div><div class="stat-label">Sold in 2026 YTD</div></div>
-    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partners · Top 12 Cities</div></div>
+    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Active Deals</div><div class="stat-bar"><div class="stat-fill" style="--w:85%"></div></div></div>
+    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
+    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Sold in 2025</div><div class="stat-bar"><div class="stat-fill" style="--w:38%"></div></div></div>
+    <div class="stat"><div class="stat-number">€7M</div><div class="stat-label">Sold in 2026 YTD</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:14%"></div></div></div>
+    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partners · Top 12 Cities</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:50%"></div></div></div>
   </div>
 </div>
 

@@ -65,6 +65,43 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 .slide.active .timeline-connector:nth-child(6){animation:fadeIn .4s .85s ease forwards}
 .slide.active .timeline-node:nth-child(7){animation:fadeUp .5s .95s ease forwards}
 
+/* Charts */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.chart-box{border:1px solid var(--border);padding:1.2rem 1.5rem;opacity:0;transform:translateY(20px)}
+.slide.active .chart-box:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .chart-box:nth-child(2){animation:fadeUp .7s .5s ease forwards}
+.chart-title{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.8rem}
+.chart-svg{width:100%;height:auto;display:block}
+.chart-svg text{font-family:'Inter',system-ui,sans-serif}
+.chart-svg .axis{stroke:var(--border);stroke-width:1}
+.chart-svg .data-line{fill:none;stroke:var(--text);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.chart-svg .data-area{fill:rgba(246,246,246,0.05)}
+.chart-svg .data-bar{fill:var(--text)}
+.chart-svg .data-bar-accent{fill:#4ade80}
+.chart-svg .data-bar-target{fill:none;stroke:var(--text-muted);stroke-width:1.5;stroke-dasharray:4 3}
+.chart-svg .lbl{font-size:9px;fill:var(--text-muted)}
+.chart-svg .val{font-size:11px;fill:var(--text);font-weight:500}
+.chart-svg .val-accent{font-size:11px;fill:#4ade80;font-weight:500}
+.data-line-draw{stroke-dasharray:500;stroke-dashoffset:500}
+.slide.active .data-line-draw{animation:drawLine 1.5s .6s ease-out forwards}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+.chart-svg .show{opacity:0}.slide.active .chart-svg .show{animation:fadeIn .5s 1.2s ease forwards}
+.chart-svg .show-2{opacity:0}.slide.active .chart-svg .show-2{animation:fadeIn .5s 1.4s ease forwards}
+.chart-svg .show-3{opacity:0}.slide.active .chart-svg .show-3{animation:fadeIn .5s 1.6s ease forwards}
+.kpi-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.kpi{opacity:0;transform:translateY(15px)}
+.kpi-val{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:500;margin-right:.4rem}
+.kpi-lbl{font-size:.7rem;color:var(--text-secondary)}
+.slide.active .kpi:nth-child(1){animation:fadeUp .6s .8s ease forwards}
+.slide.active .kpi:nth-child(2){animation:fadeUp .6s .9s ease forwards}
+.slide.active .kpi:nth-child(3){animation:fadeUp .6s 1s ease forwards}
+
+/* Stat growth bars */
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+
 .cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
 .cta-btn{display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;background:var(--text);color:var(--bg);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
 .slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
@@ -77,7 +114,7 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 @keyframes fadeRight{to{opacity:1;transform:translateX(0)}}
 @keyframes fadeIn{to{opacity:1}}
-@media(max-width:600px){.slide{padding:6vw 7vw}.stats{grid-template-columns:repeat(2,1fr)}.timeline{flex-direction:column;gap:.8rem}.timeline-connector{width:1px;height:1.5rem}}
+@media(max-width:600px){.slide{padding:6vw 7vw}.stats{grid-template-columns:repeat(2,1fr)}.timeline{flex-direction:column;gap:.8rem}.timeline-connector{width:1px;height:1.5rem}.chart-grid{grid-template-columns:1fr}.kpi-row{gap:1.5rem}}
 </style>
 </head>
 <body>

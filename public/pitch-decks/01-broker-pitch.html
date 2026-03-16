@@ -105,6 +105,12 @@ h1{
 .slide.active .asset-item:nth-child(8){animation:fadeUp .5s .86s ease forwards}
 .slide.active .asset-item:nth-child(9){animation:fadeUp .5s .94s ease forwards}
 
+/* Stat growth bars */
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+
 /* ── CTA slide ── */
 .cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
 .cta-btn{
@@ -286,11 +292,11 @@ h1{
   <div class="eyebrow">Platform at a Glance</div>
   <h1>The Numbers</h1>
   <div class="stats">
-    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Active Deals</div></div>
-    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div></div>
-    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Sold in 2025</div></div>
-    <div class="stat"><div class="stat-number">€7M</div><div class="stat-label">Sold in 2026 YTD</div></div>
-    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partners · Top 12 Cities</div></div>
+    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Active Deals</div><div class="stat-bar"><div class="stat-fill" style="--w:85%"></div></div></div>
+    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
+    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Sold in 2025</div><div class="stat-bar"><div class="stat-fill" style="--w:38%"></div></div></div>
+    <div class="stat"><div class="stat-number">€7M</div><div class="stat-label">Sold in 2026 YTD</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:14%"></div></div></div>
+    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partners · Top 12 Cities</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:50%"></div></div></div>
   </div>
 </div>
 

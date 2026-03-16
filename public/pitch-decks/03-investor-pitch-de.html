@@ -62,6 +62,12 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 .slide.active .asset-item:nth-child(8){animation:fadeUp .5s .86s ease forwards}
 .slide.active .asset-item:nth-child(9){animation:fadeUp .5s .94s ease forwards}
 
+/* Stat growth bars */
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+
 .cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
 .cta-btn{display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;background:var(--text);color:var(--bg);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
 .slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
