@@ -4,150 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>OffMarketPool – Broker Pitch (DE)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0B0B0B;--bg-card:#111111;--bg-elevated:#161616;
   --text:#F6F6F6;--text-secondary:#888888;--text-muted:#555555;
   --border:#1E1E1E;--border-hover:#333333;
+  --accent:#4ade80;--accent-dim:rgba(74,222,128,.12);
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-
-/* ── Slide container ── */
 .deck{position:relative;width:100%;height:100%}
-.slide{
-  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
-  padding:8vw;opacity:0;pointer-events:none;transition:none;
-}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:6vw 8vw;opacity:0;pointer-events:none;overflow-y:auto}
 .slide.active{opacity:1;pointer-events:auto}
-
-/* ── Typography ── */
-.eyebrow{
-  font-size:clamp(.6rem,.9vw,.75rem);letter-spacing:.22em;text-transform:uppercase;
-  color:var(--text-secondary);margin-bottom:1.5rem;
-  opacity:0;transform:translateY(20px);
-}
+.eyebrow{font-size:clamp(.55rem,.8vw,.7rem);letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:1.2rem;opacity:0;transform:translateY(20px)}
 .slide.active .eyebrow{animation:fadeUp .7s ease forwards}
-
-h1{
-  font-weight:500;letter-spacing:-.02em;line-height:1.05;
-  font-size:clamp(2rem,5vw,4.2rem);margin-bottom:1.2rem;
-  opacity:0;transform:translateY(30px);
-}
+h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem,4.5vw,3.8rem);margin-bottom:.8rem;opacity:0;transform:translateY(30px)}
 .slide.active h1{animation:fadeUp .8s .15s ease forwards}
-
-.subtitle{
-  font-size:clamp(1rem,2vw,1.6rem);font-weight:300;color:var(--text-secondary);
-  margin-bottom:2.5rem;max-width:36ch;line-height:1.4;
-  opacity:0;transform:translateY(25px);
-}
+.subtitle{font-size:clamp(.85rem,1.5vw,1.3rem);font-weight:300;color:var(--text-secondary);margin-bottom:2rem;max-width:42ch;line-height:1.45;opacity:0;transform:translateY(25px)}
 .slide.active .subtitle{animation:fadeUp .8s .25s ease forwards}
 
-/* ── Bullet list ── */
-.bullets{list-style:none;display:flex;flex-direction:column;gap:.9rem;max-width:52ch}
-.bullets li{
-  font-size:clamp(.78rem,1.1vw,.95rem);line-height:1.6;color:var(--text-secondary);
-  padding-left:1.4em;position:relative;
-  opacity:0;transform:translateY(18px);
-}
-.bullets li::before{
-  content:'';position:absolute;left:0;top:.55em;
-  width:6px;height:6px;border-radius:50%;background:var(--text-muted);
-}
-.slide.active .bullets li:nth-child(1){animation:fadeUp .6s .35s ease forwards}
-.slide.active .bullets li:nth-child(2){animation:fadeUp .6s .45s ease forwards}
-.slide.active .bullets li:nth-child(3){animation:fadeUp .6s .55s ease forwards}
-.slide.active .bullets li:nth-child(4){animation:fadeUp .6s .65s ease forwards}
-.slide.active .bullets li:nth-child(5){animation:fadeUp .6s .75s ease forwards}
-.slide.active .bullets li:nth-child(6){animation:fadeUp .6s .85s ease forwards}
+/* Metric cards */
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.2rem;margin-top:1.5rem}
+.metric-card{border:1px solid var(--border);padding:1.2rem 1.5rem;opacity:0;transform:translateY(20px)}
+.metric-card .num{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.metric-card .num.accent{color:var(--accent)}
+.metric-card .lbl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-top:.35rem}
+.slide.active .metric-card:nth-child(1){animation:fadeUp .6s .3s ease forwards}
+.slide.active .metric-card:nth-child(2){animation:fadeUp .6s .4s ease forwards}
+.slide.active .metric-card:nth-child(3){animation:fadeUp .6s .5s ease forwards}
+.slide.active .metric-card:nth-child(4){animation:fadeUp .6s .6s ease forwards}
+.slide.active .metric-card:nth-child(5){animation:fadeUp .6s .7s ease forwards}
 
-/* ── Stat grid ── */
+/* Visual blocks */
+.block-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.v-block{border:1px solid var(--border);padding:1.2rem 1.4rem;opacity:0;transform:translateY(18px)}
+.v-block .icon{font-size:1.3rem;margin-bottom:.6rem;display:block}
+.v-block .title{font-size:.8rem;font-weight:500;margin-bottom:.3rem;letter-spacing:-.01em}
+.v-block .desc{font-size:.7rem;color:var(--text-secondary);line-height:1.5}
+.slide.active .v-block:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .v-block:nth-child(2){animation:fadeUp .5s .4s ease forwards}
+.slide.active .v-block:nth-child(3){animation:fadeUp .5s .5s ease forwards}
+.slide.active .v-block:nth-child(4){animation:fadeUp .5s .6s ease forwards}
+.slide.active .v-block:nth-child(5){animation:fadeUp .5s .7s ease forwards}
+
+/* Pipeline */
+.pipeline{display:flex;align-items:center;gap:0;margin-top:2rem;flex-wrap:wrap}
+.pipe-step{display:flex;flex-direction:column;align-items:center;text-align:center;width:clamp(80px,12vw,120px);opacity:0;transform:translateY(20px)}
+.pipe-icon{width:44px;height:44px;border:1.5px solid var(--border-hover);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.5rem;background:var(--bg-card)}
+.pipe-label{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);line-height:1.3}
+.pipe-arrow{color:var(--text-muted);font-size:1rem;opacity:0;margin:0 .2rem;flex-shrink:0}
+.slide.active .pipe-step:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .pipe-arrow:nth-child(2){animation:fadeIn .4s .45s ease forwards}
+.slide.active .pipe-step:nth-child(3){animation:fadeUp .5s .5s ease forwards}
+.slide.active .pipe-arrow:nth-child(4){animation:fadeIn .4s .6s ease forwards}
+.slide.active .pipe-step:nth-child(5){animation:fadeUp .5s .65s ease forwards}
+.slide.active .pipe-arrow:nth-child(6){animation:fadeIn .4s .75s ease forwards}
+.slide.active .pipe-step:nth-child(7){animation:fadeUp .5s .8s ease forwards}
+.slide.active .pipe-arrow:nth-child(8){animation:fadeIn .4s .9s ease forwards}
+.slide.active .pipe-step:nth-child(9){animation:fadeUp .5s .95s ease forwards}
+
+/* Stats row */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;margin-top:2rem}
 .stat{text-align:center;opacity:0;transform:translateY(20px)}
-.stat-number{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:500;letter-spacing:-.01em}
-.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-top:.4rem}
+.stat-number{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:600;letter-spacing:-.02em}
+.stat-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-top:.4rem}
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:var(--accent)}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
 .slide.active .stat:nth-child(1){animation:fadeUp .7s .3s ease forwards}
 .slide.active .stat:nth-child(2){animation:fadeUp .7s .4s ease forwards}
 .slide.active .stat:nth-child(3){animation:fadeUp .7s .5s ease forwards}
 .slide.active .stat:nth-child(4){animation:fadeUp .7s .6s ease forwards}
 .slide.active .stat:nth-child(5){animation:fadeUp .7s .7s ease forwards}
-.slide.active .stat:nth-child(6){animation:fadeUp .7s .8s ease forwards}
 
-/* ── Steps ── */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem}
-.step{
-  padding:2rem;border:1px solid var(--border);
-  opacity:0;transform:translateY(20px);
-}
-.step-num{font-size:2.5rem;font-weight:500;color:var(--border-hover);margin-bottom:.8rem}
-.step-title{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
-.step-desc{font-size:.82rem;line-height:1.6;color:var(--text-secondary)}
-.slide.active .step:nth-child(1){animation:fadeUp .7s .3s ease forwards}
-.slide.active .step:nth-child(2){animation:fadeUp .7s .45s ease forwards}
-.slide.active .step:nth-child(3){animation:fadeUp .7s .6s ease forwards}
+/* KPI row */
+.kpi-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.kpi{opacity:0;transform:translateY(15px)}
+.kpi-val{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:600;margin-right:.4rem}
+.kpi-lbl{font-size:.65rem;color:var(--text-secondary);letter-spacing:.05em}
+.slide.active .kpi:nth-child(1){animation:fadeUp .6s .8s ease forwards}
+.slide.active .kpi:nth-child(2){animation:fadeUp .6s .9s ease forwards}
+.slide.active .kpi:nth-child(3){animation:fadeUp .6s 1s ease forwards}
 
-/* ── Asset grid ── */
-.asset-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;margin-top:2rem;
-}
-.asset-item{
-  padding:1rem 1.2rem;border:1px solid var(--border);font-size:.85rem;color:var(--text-secondary);
-  opacity:0;transform:translateY(15px);
-}
-.slide.active .asset-item:nth-child(1){animation:fadeUp .5s .3s ease forwards}
-.slide.active .asset-item:nth-child(2){animation:fadeUp .5s .38s ease forwards}
-.slide.active .asset-item:nth-child(3){animation:fadeUp .5s .46s ease forwards}
-.slide.active .asset-item:nth-child(4){animation:fadeUp .5s .54s ease forwards}
-.slide.active .asset-item:nth-child(5){animation:fadeUp .5s .62s ease forwards}
-.slide.active .asset-item:nth-child(6){animation:fadeUp .5s .70s ease forwards}
-.slide.active .asset-item:nth-child(7){animation:fadeUp .5s .78s ease forwards}
-.slide.active .asset-item:nth-child(8){animation:fadeUp .5s .86s ease forwards}
-.slide.active .asset-item:nth-child(9){animation:fadeUp .5s .94s ease forwards}
-
-/* Stat growth bars */
-.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
-.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
-.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
-.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
-
-/* ── CTA slide ── */
-.cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
-.cta-btn{
-  display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;
-  background:var(--text);color:var(--bg);font-size:.76rem;
-  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
-  font-weight:500;opacity:0;transform:translateY(15px);
-}
-.slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
-
-/* ── Progress bar ── */
-.progress{position:fixed;bottom:0;left:0;height:2px;background:var(--text);transition:width .4s ease;z-index:100}
-
-/* ── Slide counter ── */
-.counter{
-  position:fixed;bottom:1.5rem;right:2rem;font-size:.7rem;
-  letter-spacing:.1em;color:var(--text-muted);z-index:100;
-}
-
-/* ── Nav hint ── */
-.nav-hint{
-  position:fixed;bottom:1.5rem;left:2rem;font-size:.65rem;
-  letter-spacing:.08em;color:var(--text-muted);z-index:100;
-  opacity:1;transition:opacity 1s ease;
-}
-.nav-hint.hidden{opacity:0}
-
-/* ── Language toggle ── */
-.lang-toggle{position:fixed;top:1.5rem;right:2rem;z-index:200;text-decoration:none;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);padding:.35rem .8rem;transition:color .3s,border-color .3s}
-.lang-toggle:hover{color:var(--text);border-color:var(--border-hover)}
-
-/* ── Keyframes ── */
 /* Founder card */
 .founder-card{display:flex;gap:2.5rem;align-items:flex-start;margin-top:1.5rem;flex-wrap:wrap;opacity:0;transform:translateY(20px)}
 .slide.active .founder-card{animation:fadeUp .7s .3s ease forwards}
-.founder-avatar{width:clamp(80px,10vw,110px);height:clamp(80px,10vw,110px);border-radius:50%;background:var(--bg-elevated,#161616);border:1.5px solid var(--border-hover,#333);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.founder-avatar{width:clamp(80px,10vw,110px);height:clamp(80px,10vw,110px);border-radius:50%;background:var(--bg-elevated);border:1.5px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:300;color:var(--text-muted);flex-shrink:0}
 .founder-info{flex:1;min-width:200px}
+.founder-name{font-size:clamp(1rem,1.8vw,1.4rem);font-weight:500;margin-bottom:.1rem}
+.founder-role{font-size:.7rem;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
 .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 .cred{opacity:0;transform:translateY(12px)}
 .cred .cred-val{font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:500}
@@ -156,166 +103,236 @@ h1{
 .slide.active .cred:nth-child(2){animation:fadeUp .5s .6s ease forwards}
 .slide.active .cred:nth-child(3){animation:fadeUp .5s .7s ease forwards}
 .slide.active .cred:nth-child(4){animation:fadeUp .5s .8s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* ── Mobile ── */
+/* Asset grid */
+.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.asset-card{border:1px solid var(--border);padding:1rem 1.3rem;opacity:0;transform:translateY(18px)}
+.asset-card .asset-icon{font-size:1.2rem;margin-bottom:.5rem;display:block}
+.asset-card .asset-name{font-size:.75rem;font-weight:500;letter-spacing:-.01em}
+.slide.active .asset-card:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .asset-card:nth-child(2){animation:fadeUp .5s .35s ease forwards}
+.slide.active .asset-card:nth-child(3){animation:fadeUp .5s .4s ease forwards}
+.slide.active .asset-card:nth-child(4){animation:fadeUp .5s .45s ease forwards}
+.slide.active .asset-card:nth-child(5){animation:fadeUp .5s .5s ease forwards}
+.slide.active .asset-card:nth-child(6){animation:fadeUp .5s .55s ease forwards}
+.slide.active .asset-card:nth-child(7){animation:fadeUp .5s .6s ease forwards}
+.slide.active .asset-card:nth-child(8){animation:fadeUp .5s .65s ease forwards}
+.slide.active .asset-card:nth-child(9){animation:fadeUp .5s .7s ease forwards}
+
+/* CTA */
+.cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cta-btn{display:inline-block;margin-top:1.5rem;padding:.85rem 2.4rem;background:var(--text);color:var(--bg);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
+.slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
+
+/* Nav */
+.progress{position:fixed;bottom:0;left:0;height:2px;background:var(--text);transition:width .4s ease;z-index:100}
+.counter{position:fixed;bottom:1.5rem;right:2rem;font-size:.65rem;letter-spacing:.1em;color:var(--text-muted);z-index:100}
+.nav-hint{position:fixed;bottom:1.5rem;left:2rem;font-size:.6rem;letter-spacing:.08em;color:var(--text-muted);z-index:100;opacity:1;transition:opacity 1s ease}
+.nav-hint.hidden{opacity:0}
+.lang-toggle{position:fixed;top:1.5rem;right:2rem;z-index:200;text-decoration:none;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);padding:.3rem .7rem;transition:color .3s,border-color .3s}
+.lang-toggle:hover{color:var(--text);border-color:var(--border-hover)}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes fadeRight{to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
 @media(max-width:600px){
-  .slide{padding:6vw 7vw}
-  .steps{grid-template-columns:1fr}
+  .slide{padding:5vw 6vw}
   .stats{grid-template-columns:repeat(2,1fr)}
+  .metric-row{grid-template-columns:repeat(2,1fr)}
+  .block-grid{grid-template-columns:1fr}
+  .asset-grid{grid-template-columns:1fr 1fr}
+  .cred-grid{grid-template-columns:1fr}
+  .pipeline{flex-direction:column;gap:.5rem}
+  .pipe-arrow{transform:rotate(90deg)}
+  .kpi-row{gap:1.5rem}
 }
 </style>
 </head>
 <body>
 <a href="01-broker-pitch.html" class="lang-toggle" onclick="event.stopPropagation()">EN</a>
-
 <div class="deck" id="deck">
 
-<!-- Slide 1: Title -->
+<!-- SLIDE 1: Cover -->
 <div class="slide active">
-  <div class="eyebrow">Makler-Pitch</div>
+  <div class="eyebrow">Broker Pitch · 2026</div>
   <h1>Mehr Käufer.<br>Schnellere Abschlüsse.</h1>
   <p class="subtitle">Europas führende Off-Market-Immobilienplattform</p>
-  <ul class="bullets">
-    <li>607 aktive Deals · €6.2B Objektvolumen · 7.000+ Investorenprofile</li>
-    <li>€19M verkauft in 2025 (seit April-Launch) · €7M bereits in 2026</li>
-    <li>12 Partner in Deutschlands Top-12-Städten · Paneuropäisches Netzwerk</li>
-    <li>KI-basiertes Matching · Diskret. Präzise. Europäisch.</li>
-  </ul>
+  <div class="metric-row">
+    <div class="metric-card"><div class="num">607</div><div class="lbl">Aktive Deals</div></div>
+    <div class="metric-card"><div class="num">€6,2 Mrd.</div><div class="lbl">Objektvolumen</div></div>
+    <div class="metric-card"><div class="num">7.000+</div><div class="lbl">Investorenprofile</div></div>
+    <div class="metric-card"><div class="num accent">€19M</div><div class="lbl">Verkauft in 2025</div></div>
+  </div>
 </div>
 
-<!-- Slide 2: Problem -->
+<!-- SLIDE 2: Problem -->
 <div class="slide">
   <div class="eyebrow">Das Problem</div>
   <h1>Off-Market-Vermarktung<br>ist ineffizient</h1>
-  <ul class="bullets">
-    <li>Makler verlassen sich auf persönliche Netzwerke, die nicht skalieren</li>
-    <li>Manuelle Deal-Verteilung ist langsam und ineffizient</li>
-    <li>Immobilien bleiben zu lange ohne passenden Käufer</li>
-    <li>Kein strukturierter Zugang zu institutionellem und grenzüberschreitendem Kapital</li>
-    <li>Ergebnis: längere Deal-Zyklen, verlorene Provisionen, verbrannte Objekte</li>
-  </ul>
-</div>
-
-<!-- Slide 3: Solution -->
-<div class="slide">
-  <div class="eyebrow">Die Lösung</div>
-  <h1>Eine Plattform,<br>Tausende Käufer</h1>
-  <ul class="bullets">
-    <li>Laden Sie Ihr Objekt einmal hoch – erreichen Sie sofort 7.000+ qualifizierte Investoren</li>
-    <li>KI-gestütztes Matching über 100+ gewichtete Kriterien</li>
-    <li>Europäisches Netzwerk von Wohnimmobilien bis Schwerindustrie</li>
-    <li>Keine Portalexposition – volle Diskretion garantiert</li>
-    <li>Von Maklern entwickelt, für Makler gebaut</li>
-  </ul>
-</div>
-
-<!-- Slide 4: How It Works -->
-<div class="slide">
-  <div class="eyebrow">So funktioniert's</div>
-  <h1>Drei Schritte<br>zum Abschluss</h1>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Diskret einreichen</div>
-      <div class="step-desc">Laden Sie Ihre Immobilie über die Plattform hoch. Kein Portal, keine öffentliche Listung.</div>
+  <div class="block-grid">
+    <div class="v-block">
+      <span class="icon">⊘</span>
+      <div class="title">Netzwerke skalieren nicht</div>
+      <div class="desc">Persönliche Kontakte stoßen an Grenzen — Sie erreichen nur einen Bruchteil potenzieller Käufer</div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">KI-Matching</div>
-      <div class="step-desc">Der Algorithmus identifiziert die passendsten Investorenprofile aus 7.000+ Kontakten.</div>
+    <div class="v-block">
+      <span class="icon">⟳</span>
+      <div class="title">Manuelle Verteilung</div>
+      <div class="desc">Stundenlange Excel-Listen, E-Mails und Telefonate für jeden einzelnen Deal</div>
     </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Diskreter Abschluss</div>
-      <div class="step-desc">Ausgewählte Interessenten werden persönlich kontaktiert. Keine Preiserosion, kein Marktverbrennen.</div>
+    <div class="v-block">
+      <span class="icon">◇</span>
+      <div class="title">Kein Käuferzugang</div>
+      <div class="desc">Die richtigen Investoren für Ihr Objekt sind da draußen — aber Sie kennen sie nicht</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">△</span>
+      <div class="title">Verbrannte Objekte</div>
+      <div class="desc">Zu breite Streuung oder falsche Ansprache beschädigt die Vermarktung nachhaltig</div>
     </div>
   </div>
 </div>
 
-<!-- Slide 5: AI Import -->
+<!-- SLIDE 3: Solution -->
+<div class="slide">
+  <div class="eyebrow">Die Lösung</div>
+  <h1>Eine Plattform,<br>Tausende Käufer</h1>
+  <p class="subtitle">Einmal hochladen — 7.000+ qualifizierte Investoren erreichen</p>
+  <div class="pipeline">
+    <div class="pipe-step"><div class="pipe-icon">📄</div><div class="pipe-label">Deal hochladen</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">⚙</div><div class="pipe-label">KI-Extraktion</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">◈</div><div class="pipe-label">Plattform-Eintrag</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">⎯</div><div class="pipe-label">Investor-Matching</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">✓</div><div class="pipe-label">Diskreter Abschluss</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 4: AI Technology -->
 <div class="slide">
   <div class="eyebrow">KI-Technologie</div>
   <h1>PDF hochladen.<br>Die KI erledigt den Rest.</h1>
-  <ul class="bullets">
-    <li>KI liest und strukturiert Ihr Exposé automatisch</li>
-    <li>Objektdaten, Finanzkennzahlen und Fotos werden in Sekunden extrahiert</li>
-    <li>Keine manuelle Dateneingabe erforderlich</li>
-    <li>Standardisiertes Format für konsistente Investorenpräsentation</li>
-    <li>Unterstützt alle gängigen Assetklassen und Dokumentformate</li>
-  </ul>
+  <div class="block-grid" style="grid-template-columns:repeat(5,1fr);gap:.6rem">
+    <div class="v-block" style="text-align:center;padding:1rem .8rem">
+      <span class="icon" style="font-size:1.5rem">📑</span>
+      <div class="title" style="font-size:.65rem">PDF Upload</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1rem .8rem">
+      <span class="icon" style="font-size:1.5rem">🔍</span>
+      <div class="title" style="font-size:.65rem">KI liest</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1rem .8rem">
+      <span class="icon" style="font-size:1.5rem">◉</span>
+      <div class="title" style="font-size:.65rem">Daten strukturiert</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1rem .8rem">
+      <span class="icon" style="font-size:1.5rem">⚡</span>
+      <div class="title" style="font-size:.65rem">Auto-Match</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1rem .8rem">
+      <span class="icon" style="font-size:1.5rem">📤</span>
+      <div class="title" style="font-size:.65rem">Investoren-Verteilung</div>
+    </div>
+  </div>
+  <div class="kpi-row" style="margin-top:1.5rem">
+    <div class="kpi"><span class="kpi-val">100+</span><span class="kpi-lbl">Kriterien</span></div>
+    <div class="kpi"><span class="kpi-val">7 Jahre</span><span class="kpi-lbl">Daten</span></div>
+    <div class="kpi"><span class="kpi-val">Alle</span><span class="kpi-lbl">Assetklassen</span></div>
+  </div>
 </div>
 
-<!-- Slide 6: Matching Engine -->
+<!-- SLIDE 5: Matching -->
 <div class="slide">
-  <div class="eyebrow">Matching-Algorithmus</div>
+  <div class="eyebrow">Intelligentes Matching</div>
   <h1>100+ Kriterien.<br>7.000+ Investoren.</h1>
-  <ul class="bullets">
-    <li>Proprietärer Algorithmus, entwickelt über 7 Jahre Markterfahrung</li>
-    <li>Gleicht Objektattribute mit gespeicherten Investoren-Suchprofilen ab</li>
-    <li>Gewichtete Kriterien: Standort, Assetklasse, Volumen, Rendite, Risikoprofil</li>
-    <li>Investoren mit sofortigem Kaufinteresse werden automatisch markiert</li>
-    <li>Kontinuierliches Lernen aus Transaktionsergebnissen und Investoren-Feedback</li>
-  </ul>
+  <div class="block-grid">
+    <div class="v-block">
+      <span class="icon">◎</span>
+      <div class="title">Gewichtetes Matching</div>
+      <div class="desc">Jeder Investor wird anhand von über 100 Kriterien mit Ihrem Objekt abgeglichen</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">⚡</span>
+      <div class="title">Sofortige Markierung</div>
+      <div class="desc">Passende Investoren werden in Echtzeit identifiziert und priorisiert</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">∞</span>
+      <div class="title">Lernendes System</div>
+      <div class="desc">Mit jeder Transaktion wird das Matching präziser und die Trefferquote höher</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">◈</span>
+      <div class="title">Vorqualifiziert</div>
+      <div class="desc">Nur verifizierte Investoren mit nachgewiesener Kaufkraft und Transaktionshistorie</div>
+    </div>
+  </div>
 </div>
 
-<!-- Slide 7: Network -->
+<!-- SLIDE 6: Network -->
 <div class="slide">
-  <div class="eyebrow">Netzwerkverteilung</div>
-  <h1>Ihr Objekt erreicht die<br>richtigen Käufer in ganz Europa</h1>
-  <ul class="bullets">
-    <li>Paneuropäisches Investorennetzwerk über alle wichtigen Märkte</li>
-    <li>Institutionelle Investoren, Family Offices und Privatanleger</li>
-    <li>Regionales Partnernetzwerk sichert lokales Marktwissen</li>
-    <li>Grenzüberschreitender Deal-Flow für internationale Kapitalplatzierung</li>
-    <li>Jeder Kontakt ist vorqualifiziert – keine Besichtigungstouristen</li>
-  </ul>
+  <div class="eyebrow">Netzwerk</div>
+  <h1>Ihr Deal erreicht<br>die richtigen Käufer</h1>
+  <div class="block-grid">
+    <div class="v-block">
+      <span class="icon">◈</span>
+      <div class="title">Paneuropäisch</div>
+      <div class="desc">Zugang zu Investoren in ganz Europa — weit über Ihr lokales Netzwerk hinaus</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">⊕</span>
+      <div class="title">Alle Investorentypen</div>
+      <div class="desc">Family Offices, institutionelle Käufer, Private Equity, Privatinvestoren und mehr</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">↗</span>
+      <div class="title">Grenzüberschreitend</div>
+      <div class="desc">Internationale Käufer suchen aktiv nach deutschen Immobilien — wir verbinden Sie</div>
+    </div>
+    <div class="v-block">
+      <span class="icon">◇</span>
+      <div class="title">Diskretion</div>
+      <div class="desc">Volle Kontrolle über Sichtbarkeit und Informationsfreigabe für jeden Deal</div>
+    </div>
+  </div>
 </div>
 
-<!-- Slide 8: Asset Classes -->
+<!-- SLIDE 7: Stats -->
+<div class="slide">
+  <div class="eyebrow">Plattform-Kennzahlen</div>
+  <h1>Die Zahlen</h1>
+  <div class="stats">
+    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Aktive Deals</div><div class="stat-bar"><div class="stat-fill" style="--w:80%"></div></div></div>
+    <div class="stat"><div class="stat-number">€6,2 Mrd.</div><div class="stat-label">Objektvolumen</div><div class="stat-bar"><div class="stat-fill" style="--w:90%"></div></div></div>
+    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Verkauft in 2025</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:55%"></div></div></div>
+    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partner</div><div class="stat-bar"><div class="stat-fill" style="--w:40%"></div></div></div>
+    <div class="stat"><div class="stat-number">7.000+</div><div class="stat-label">Investorenprofile</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Asset Classes -->
 <div class="slide">
   <div class="eyebrow">Assetklassen</div>
   <h1>Alle Immobilientypen.<br>Eine Plattform.</h1>
   <div class="asset-grid">
-    <div class="asset-item">Einfamilienhäuser</div>
-    <div class="asset-item">Eigentumswohnungen</div>
-    <div class="asset-item">Wohngebäude</div>
-    <div class="asset-item">Gewerbeimmobilien</div>
-    <div class="asset-item">Grundstücke & Projektentwicklung</div>
-    <div class="asset-item">Logistik</div>
-    <div class="asset-item">Büro & Hotel</div>
-    <div class="asset-item">Gesundheitsimmobilien</div>
-    <div class="asset-item">Schwerindustrie & Luxus</div>
+    <div class="asset-card"><span class="asset-icon">🏠</span><div class="asset-name">Einfamilienhäuser</div></div>
+    <div class="asset-card"><span class="asset-icon">🏢</span><div class="asset-name">Eigentumswohnungen</div></div>
+    <div class="asset-card"><span class="asset-icon">🏘</span><div class="asset-name">Wohngebäude</div></div>
+    <div class="asset-card"><span class="asset-icon">🏬</span><div class="asset-name">Gewerbeimmobilien</div></div>
+    <div class="asset-card"><span class="asset-icon">🏗</span><div class="asset-name">Grundstücke & Projektentwicklung</div></div>
+    <div class="asset-card"><span class="asset-icon">🏭</span><div class="asset-name">Logistik</div></div>
+    <div class="asset-card"><span class="asset-icon">🏛</span><div class="asset-name">Büro & Hotel</div></div>
+    <div class="asset-card"><span class="asset-icon">🏥</span><div class="asset-name">Gesundheitsimmobilien</div></div>
+    <div class="asset-card"><span class="asset-icon">💎</span><div class="asset-name">Schwerindustrie & Luxus</div></div>
   </div>
 </div>
 
-<!-- Slide 9: Efficiency -->
-<div class="slide">
-  <div class="eyebrow">Deal-Effizienz</div>
-  <h1>Mehr Abschlüsse<br>in kürzerer Zeit</h1>
-  <ul class="bullets">
-    <li>Eliminieren Sie manuelle Käufersuche und Kaltakquise</li>
-    <li>Strukturierte Deal-Pipeline mit Echtzeit-Statusverfolgung</li>
-    <li>Diskretion schützt Ihre Kundenbeziehung und Ihr Mandat</li>
-    <li>Höhere Abschlussquoten durch Präzisions-Matching</li>
-    <li>Konzentrieren Sie sich auf das, was Sie am besten können – Verhandlung und Abschluss</li>
-  </ul>
-</div>
-
-<!-- Slide 10: Stats -->
-<div class="slide">
-  <div class="eyebrow">Plattform auf einen Blick</div>
-  <h1>Die Zahlen</h1>
-  <div class="stats">
-    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Aktive Deals</div><div class="stat-bar"><div class="stat-fill" style="--w:85%"></div></div></div>
-    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Objektvolumen</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
-    <div class="stat"><div class="stat-number">€19M</div><div class="stat-label">Verkauft in 2025</div><div class="stat-bar"><div class="stat-fill" style="--w:38%"></div></div></div>
-    <div class="stat"><div class="stat-number">€7M</div><div class="stat-label">Verkauft in 2026 YTD</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:14%"></div></div></div>
-    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partner · Top 12 Städte</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:50%"></div></div></div>
-  </div>
-</div>
-
-<!-- Slide 11: Founder -->
+<!-- SLIDE 9: Founder -->
 <div class="slide">
   <div class="eyebrow">Gründer</div>
   <h1>Dr. Marcel Hofeditz</h1>
@@ -333,56 +350,25 @@ h1{
   </div>
 </div>
 
-<!-- Slide 12: CTA -->
+<!-- SLIDE 10: CTA -->
 <div class="slide cta-center">
   <div class="eyebrow">Jetzt starten</div>
   <h1>Starten Sie jetzt mit<br>intelligenter Vermarktung</h1>
-  <p class="subtitle" style="text-align:center">Laden Sie Ihr erstes Objekt auf OffMarketPool hoch.<br>Keine Vorabkosten – provisionsbasiertes Modell.</p>
-  <a href="https://offmarketpool.vercel.app" class="cta-btn" target="_blank">OffMarketPool öffnen &rarr;</a>
+  <p class="subtitle">Erreichen Sie Tausende qualifizierte Investoren mit einem Klick</p>
+  <a href="https://offmarketpool.vercel.app" class="cta-btn" target="_blank">OffMarketPool öffnen →</a>
 </div>
 
-</div><!-- /deck -->
-
+</div>
 <div class="progress" id="progress"></div>
 <div class="counter" id="counter"></div>
-<div class="nav-hint" id="navHint">Tippen oder &rarr; drücken zum Navigieren</div>
-
+<div class="nav-hint" id="navHint">Tippen oder → drücken zum Navigieren</div>
 <script>
-const slides=document.querySelectorAll('.slide');
-const progress=document.getElementById('progress');
-const counter=document.getElementById('counter');
-const navHint=document.getElementById('navHint');
-let cur=0,total=slides.length,touchX=0;
-
-function go(n){
-  if(n<0||n>=total)return;
-  slides[cur].classList.remove('active');
-  // reset animations by re-triggering reflow
-  const clone=slides[n];
-  clone.querySelectorAll('[style]');
-  slides[n].classList.add('active');
-  cur=n;
-  progress.style.width=((cur+1)/total*100)+'%';
-  counter.textContent=(cur+1)+' / '+total;
-  if(cur>0)navHint.classList.add('hidden');
-}
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter')go(cur+1);
-  if(e.key==='ArrowLeft'||e.key==='Backspace')go(cur-1);
-});
-
+const slides=document.querySelectorAll('.slide');const progress=document.getElementById('progress');const counter=document.getElementById('counter');const navHint=document.getElementById('navHint');let cur=0,total=slides.length,touchX=0;
+function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');slides[n].classList.add('active');cur=n;progress.style.width=((cur+1)/total*100)+'%';counter.textContent=(cur+1)+' / '+total;if(cur>0)navHint.classList.add('hidden')}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter')go(cur+1);if(e.key==='ArrowLeft'||e.key==='Backspace')go(cur-1)});
 document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX},{passive:true});
-document.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-touchX;
-  if(Math.abs(dx)>50){dx<0?go(cur+1):go(cur-1)}
-},{passive:true});
-
-document.addEventListener('click',e=>{
-  const x=e.clientX/window.innerWidth;
-  x>.3?go(cur+1):go(cur-1);
-});
-
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?go(cur+1):go(cur-1)}},{passive:true});
+document.addEventListener('click',e=>{const x=e.clientX/window.innerWidth;x>.3?go(cur+1):go(cur-1)});
 go(0);
 </script>
 </body>
