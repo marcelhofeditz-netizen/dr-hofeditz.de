@@ -291,7 +291,7 @@ export default function Home() {
               }}
             >
               <Image
-                src="/book-cover.jpg"
+                src="/book-cover.png"
                 alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
                 width={300}
                 height={440}
