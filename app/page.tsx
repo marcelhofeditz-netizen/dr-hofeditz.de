@@ -282,42 +282,26 @@ export default function Home() {
       {/* ── BOOK TEASER ── */}
       <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Book cover SVG */}
+          {/* Book cover */}
           <div className="flex justify-center">
             <div
-              className="relative"
               style={{
-                transform: 'perspective(900px) rotateY(-10deg) rotateX(2deg)',
+                transform: 'perspective(900px) rotateY(-8deg) rotateX(2deg)',
                 transition: 'transform 0.5s ease',
               }}
             >
-              <svg viewBox="0 0 300 440" xmlns="http://www.w3.org/2000/svg"
-                style={{ width: 'clamp(180px, 22vw, 280px)', filter: 'drop-shadow(-8px 16px 40px rgba(0,0,0,0.4))' }}>
-                <rect width="300" height="440" fill="#161616" rx="2"/>
-                <rect width="300" height="440" fill="none" stroke="#333" strokeWidth="1" rx="2"/>
-                <text x="150" y="60" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="32" fontWeight="500" letterSpacing="1" fill="#F6F6F6">DIE</text>
-                <text x="150" y="98" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#F6F6F6">IMMOBILIEN</text>
-                <text x="150" y="130" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="26" fontWeight="500" letterSpacing="2" fill="#F6F6F6">LÜGE</text>
-                <text x="150" y="156" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#888">WARUM WIR MIT IMMOBILIEN</text>
-                <text x="150" y="172" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="10" fontWeight="300" letterSpacing="1" fill="#888">NICHT REICH WERDEN</text>
-                <g transform="translate(110,190)">
-                  <rect x="10" y="45" width="70" height="62" fill="#F6F6F6" rx="1"/>
-                  <polygon points="0,47 40,8 80,47" fill="#DDD"/>
-                  <rect x="27" y="78" width="20" height="29" fill="#888" rx="1"/>
-                  <rect x="14" y="60" width="16" height="13" fill="#161616" rx="1" opacity="0.7"/>
-                  <rect x="54" y="60" width="16" height="13" fill="#161616" rx="1" opacity="0.7"/>
-                </g>
-                <g transform="translate(140,285)" opacity="0.5">
-                  <rect x="-40" y="26" width="80" height="10" fill="#888" rx="2"/>
-                  <path d="M -28 26 Q -18 0 0 -4 Q 18 -8 28 26" fill="none" stroke="#888" strokeWidth="2.5" strokeLinecap="round"/>
-                </g>
-                <circle cx="70" cy="305" r="30" fill="#F6F6F6"/>
-                <text x="70" y="298" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B">Mit KI</text>
-                <text x="70" y="309" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B" fontWeight="600">Lügendetektor</text>
-                <text x="70" y="320" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="7.5" fill="#0B0B0B">zur Hilfe</text>
-                <rect x="0" y="375" width="300" height="65" fill="#F6F6F6" opacity="0.95"/>
-                <text x="150" y="415" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="17" fontWeight="500" letterSpacing="2" fill="#0B0B0B">DR. MARCEL HOFEDITZ</text>
-              </svg>
+              <Image
+                src="/book-cover.jpg"
+                alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
+                width={300}
+                height={440}
+                className="object-cover"
+                style={{
+                  width: 'clamp(180px, 22vw, 300px)',
+                  height: 'auto',
+                  filter: 'drop-shadow(-8px 16px 40px rgba(0,0,0,0.5))',
+                }}
+              />
             </div>
           </div>
 
