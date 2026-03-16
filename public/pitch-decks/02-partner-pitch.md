@@ -95,7 +95,7 @@ This presentation explains the OffMarketPool partner model to prospective region
 
 - Access to the full OffMarketPool deal pipeline
 - Residential, commercial, logistics, office, healthcare, hotel, industrial
-- 607 completed deals · €6.2B asset volume on the platform
+- 607 active deals · €19M transaction volume on the platform since beta
 - AI matching connects your sourced deals with the best-fit investors
 - Focus on commercial and investment-grade assets
 

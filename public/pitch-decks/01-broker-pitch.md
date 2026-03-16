@@ -11,7 +11,7 @@ This presentation speaks to real estate brokers who want to place deals faster, 
 **OffMarketPool – More Buyers. Faster Closings.**
 
 - Europe's leading off-market real estate platform
-- 607 completed deals · €6.2B asset volume
+- 607 active deals · €19M transaction volume since beta
 - AI-based matching · 7,000+ investor profiles
 - Discreet. Precise. European.
 
@@ -117,8 +117,8 @@ This presentation speaks to real estate brokers who want to place deals faster, 
 
 **The Numbers**
 
-- 607 completed deals on the platform
-- €6.2 billion in asset volume
+- 607 active deals on the platform since beta launch (April 2025)
+- €19M in transaction volume closed since launch
 - 7,000+ investor profiles with stored search criteria
 - AI matching algorithm with 100+ weighted criteria
 - Pan-European off-market network
