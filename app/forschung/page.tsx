@@ -307,7 +307,7 @@ export default function ForschungPage() {
                 OffMarketPool
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
-                {locale === 'de' ? 'KI-Matching, 361 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 361 deals, €6.2B volume.'}
+                {locale === 'de' ? 'KI-Matching, 607 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 607 deals, €6.2B volume.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {locale === 'de' ? 'Mehr erfahren' : 'Learn more'} &rarr;

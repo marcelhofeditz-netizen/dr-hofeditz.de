@@ -136,7 +136,7 @@ function JsonLd() {
     url: 'https://offmarketpool.vercel.app',
     logo: `${BASE_URL}/IMG_8225.webp`,
     description:
-      'Europas führende Offmarket-Immobilienplattform. KI-basiertes Matching, 361 Deals, €6,2 Mrd. Asset-Volumen.',
+      'Europas führende Offmarket-Immobilienplattform. KI-basiertes Matching, 607 Deals, €6,2 Mrd. Asset-Volumen.',
     founder: { '@type': 'Person', name: 'Dr. Marcel Hofeditz' },
     foundingDate: '2025-04',
     areaServed: 'Europe',
