@@ -183,12 +183,27 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 <div class="slide">
   <div class="eyebrow">Netzwerkeffekte</div>
   <h1>Jeder Knotenpunkt macht<br>das Netzwerk wertvoller</h1>
-  <div class="flywheel">
-    <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Mehr Makler = mehr Deals</span></div>
-    <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Mehr Deals = mehr Investoren-Engagement</span></div>
-    <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Mehr Investoren = schnellere Abschlüsse</span></div>
-    <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Schnellere Abschlüsse = mehr Makler-Uploads</span></div>
-    <div class="flywheel-item"><span class="flywheel-arrow">&infin;</span><span class="flywheel-text">Daten-Flywheel: Jede Transaktion verbessert das Matching</span></div>
+  <div style="display:flex;align-items:center;gap:3rem;margin-top:2rem;flex-wrap:wrap">
+    <svg viewBox="0 0 260 260" style="width:min(260px,40vw);flex-shrink:0" class="chart-svg">
+      <circle cx="130" cy="130" r="100" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+      <circle cx="130" cy="130" r="100" fill="none" stroke="var(--text)" stroke-width="2" stroke-dasharray="628" stroke-dashoffset="628" stroke-linecap="round" class="data-line-draw" style="animation-duration:2s"/>
+      <text x="130" y="122" text-anchor="middle" style="font-size:10px;fill:var(--text-muted);letter-spacing:.1em;text-transform:uppercase">Daten-</text>
+      <text x="130" y="140" text-anchor="middle" style="font-size:10px;fill:var(--text-muted);letter-spacing:.1em;text-transform:uppercase">Flywheel</text>
+      <g class="show"><text x="130" y="32" text-anchor="middle" class="val">Mehr Makler</text></g>
+      <g class="show-2"><text x="228" y="134" text-anchor="middle" class="val">Mehr Deals</text></g>
+      <g class="show-3"><text x="130" y="240" text-anchor="middle" class="val">Mehr Investoren</text></g>
+      <g class="show"><text x="32" y="134" text-anchor="middle" class="val">Schnellere Abschlüsse</text></g>
+      <text x="180" y="62" style="font-size:16px;fill:var(--text-muted)" class="show">&#8594;</text>
+      <text x="210" y="190" style="font-size:16px;fill:var(--text-muted)" class="show-2">&#8594;</text>
+      <text x="70" y="200" style="font-size:16px;fill:var(--text-muted)" class="show-3">&#8592;</text>
+      <text x="55" y="70" style="font-size:16px;fill:var(--text-muted)" class="show">&#8593;</text>
+    </svg>
+    <div class="flywheel" style="gap:1rem">
+      <div class="flywheel-item"><span class="flywheel-arrow">&infin;</span><span class="flywheel-text">Jede Transaktion verbessert die Matching-Genauigkeit</span></div>
+      <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Besseres Matching = höhere Abschlussquoten</span></div>
+      <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Höhere Abschlussquoten ziehen mehr Makler an</span></div>
+      <div class="flywheel-item"><span class="flywheel-arrow">&rarr;</span><span class="flywheel-text">Netzwerk wächst exponentiell mit jedem neuen Knotenpunkt</span></div>
+    </div>
   </div>
 </div>
 
@@ -247,7 +262,24 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
   <div class="eyebrow">Expansionsstrategie</div>
   <h1>Markt-für-Markt<br>Partner-Rollout</h1>
   <p class="subtitle">Kapitaleffizientes Wachstum: Partner sind Vertrieb, keine Kosten</p>
-  <div class="timeline">
+  <div style="display:flex;align-items:flex-end;gap:2rem;margin-top:2rem;flex-wrap:wrap">
+    <svg viewBox="0 0 340 160" style="width:min(340px,55vw)" class="chart-svg">
+      <line x1="30" y1="130" x2="320" y2="130" class="axis"/>
+      <rect x="40" y="48" width="50" height="82" class="data-bar show" rx="2"/>
+      <text x="65" y="42" class="val show" text-anchor="middle">12</text>
+      <text x="65" y="148" class="lbl" text-anchor="middle">Jetzt</text>
+      <rect x="110" y="28" width="50" height="102" class="data-bar-target show-2" rx="2"/>
+      <text x="135" y="22" class="lbl show-2">25+</text>
+      <text x="135" y="148" class="lbl" text-anchor="middle">DACH</text>
+      <rect x="180" y="14" width="50" height="116" class="data-bar-target show-2" rx="2"/>
+      <text x="205" y="10" class="lbl show-2">40+</text>
+      <text x="205" y="148" class="lbl" text-anchor="middle">+Benelux</text>
+      <rect x="250" y="4" width="50" height="126" class="data-bar-target show-3" rx="2"/>
+      <text x="275" y="0" class="lbl show-3">75+</text>
+      <text x="275" y="148" class="lbl" text-anchor="middle">Pan-EU</text>
+    </svg>
+  </div>
+  <div class="timeline" style="margin-top:1.5rem">
     <div class="timeline-node"><div class="timeline-dot"></div><div class="timeline-label">DACH</div></div>
     <div class="timeline-connector"></div>
     <div class="timeline-node"><div class="timeline-dot"></div><div class="timeline-label">Benelux</div></div>
