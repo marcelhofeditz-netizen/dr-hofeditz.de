@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLocale } from '@/lib/locale-context'
 import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
 
@@ -100,6 +101,62 @@ export default function CoachingPage() {
                 {item}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Cross-links */}
+      <section className="px-[5vw] py-24">
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>{d.coaching.forWhom === 'Für wen' ? 'Weiterführend' : 'Related'}</Eyebrow>
+          <SectionTitle className="mb-10">
+            {d.coaching.forWhom === 'Für wen' ? 'Das Ecosystem entdecken' : 'Explore the ecosystem'}
+          </SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/plattform" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {d.coaching.forWhom === 'Für wen' ? 'Plattform' : 'Platform'}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                OffMarketPool
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {d.coaching.forWhom === 'Für wen' ? 'KI-Matching, 361 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 361 deals, €6.2B volume.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {d.coaching.forWhom === 'Für wen' ? 'Mehr erfahren' : 'Learn more'} &rarr;
+              </span>
+            </Link>
+            <Link href="/buch" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {d.coaching.forWhom === 'Für wen' ? 'Sachbuch' : 'Book'}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                Die Immobilienlüge
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {d.coaching.forWhom === 'Für wen' ? 'Warum wir mit Immobilien nicht reich werden.' : 'Why we don\'t get rich with real estate.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {d.coaching.forWhom === 'Für wen' ? 'Zum Buch' : 'To the book'} &rarr;
+              </span>
+            </Link>
+            <Link href="/forschung" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {d.coaching.forWhom === 'Für wen' ? 'Forschung' : 'Research'}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                {d.coaching.forWhom === 'Für wen' ? 'Akademische Arbeit' : 'Academic work'}
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {d.coaching.forWhom === 'Für wen' ? 'Trust, Compliance & Strategie.' : 'Trust, compliance & strategy.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {d.coaching.forWhom === 'Für wen' ? 'Mehr erfahren' : 'Learn more'} &rarr;
+              </span>
+            </Link>
           </div>
         </div>
       </section>
