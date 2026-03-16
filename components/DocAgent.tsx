@@ -210,7 +210,7 @@ export function DocAgent() {
           </div>
 
           <h2
-            className="font-serif font-light leading-[1.1] mb-5 text-text-primary"
+            className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-5 text-text-primary"
             style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
           >
             {d.book.askDoc} <em className="italic">{d.book.docName}</em> –<br />
@@ -228,7 +228,7 @@ export function DocAgent() {
             </p>
             {d.book.freeItems.map((item: string) => (
               <div key={item} className="flex items-center gap-3 text-[0.8rem] text-text-primary">
-                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border border-grey-light bg-white">
+                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border border-grey-light bg-bg-card">
                   &check;
                 </span>
                 {item}
@@ -247,7 +247,7 @@ export function DocAgent() {
                   className={`w-5 h-5 rounded-full flex items-center justify-center text-[0.6rem] flex-shrink-0 border ${
                     hasFullAccess
                       ? 'border-text-primary bg-black text-white'
-                      : 'border-grey-light bg-white text-grey-secondary'
+                      : 'border-grey-light bg-bg-card text-grey-secondary'
                   }`}
                 >
                   {hasFullAccess ? '\u2713' : '\u25A0'}
@@ -261,12 +261,12 @@ export function DocAgent() {
         {/* Right: Chat panel */}
         <div
           className="flex flex-col rounded-t-xl overflow-hidden border border-grey-light border-b-0"
-          style={{ height: 580, background: '#F6F6F6' }}
+          style={{ height: 580, background: '#0B0B0B' }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 bg-white border-b border-grey-light">
+          <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 bg-bg-card border-b border-grey-light">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center font-serif text-lg font-semibold flex-shrink-0 bg-black text-white">
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-sans text-lg font-semibold flex-shrink-0 bg-black text-white">
                 D
               </div>
               <div>
@@ -280,7 +280,7 @@ export function DocAgent() {
               className={`text-[0.65rem] tracking-[0.1em] uppercase px-3 py-1 rounded-full border ${
                 hasFullAccess
                   ? 'bg-black border-black text-white'
-                  : 'bg-white border-grey-light text-grey-secondary'
+                  : 'bg-bg-card border-grey-light text-grey-secondary'
               }`}
             >
               {hasFullAccess
@@ -291,7 +291,7 @@ export function DocAgent() {
 
           {/* Unlock bar */}
           {!hasFullAccess && (
-            <div className="flex items-center gap-3 px-5 py-2 flex-shrink-0 bg-white border-b border-grey-light">
+            <div className="flex items-center gap-3 px-5 py-2 flex-shrink-0 bg-bg-card border-b border-grey-light">
               <span className="text-[0.72rem] flex-shrink-0 text-grey-secondary">
                 {locale === 'en' ? 'Book code:' : 'Buchcode:'}
               </span>
@@ -329,7 +329,7 @@ export function DocAgent() {
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-[0.7rem] flex-shrink-0 mt-[2px] ${
                     msg.role === 'assistant'
-                      ? 'bg-black text-white font-serif text-[0.9rem] font-semibold'
+                      ? 'bg-black text-white font-sans text-[0.9rem] font-semibold'
                       : 'bg-grey-light text-grey-secondary'
                   }`}
                 >
@@ -338,7 +338,7 @@ export function DocAgent() {
                 <div
                   className={`max-w-[82%] px-4 py-3 text-[0.84rem] leading-relaxed ${
                     msg.role === 'assistant'
-                      ? 'bg-white border border-grey-light text-text-primary rounded-[0_4px_4px_4px]'
+                      ? 'bg-bg-card border border-grey-light text-text-primary rounded-[0_4px_4px_4px]'
                       : 'bg-black text-white rounded-[4px_0_4px_4px]'
                   }`}
                   dangerouslySetInnerHTML={{
@@ -353,10 +353,10 @@ export function DocAgent() {
 
             {loading && (
               <div className="flex gap-3">
-                <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 bg-black text-white font-serif font-semibold text-[0.9rem]">
+                <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 bg-black text-white font-sans font-semibold text-[0.9rem]">
                   D
                 </div>
-                <div className="px-4 py-3 bg-white border border-grey-light rounded-[0_4px_4px_4px]">
+                <div className="px-4 py-3 bg-bg-card border border-grey-light rounded-[0_4px_4px_4px]">
                   <div className="flex gap-1 items-center py-1">
                     {[0, 1, 2].map((i) => (
                       <div
@@ -388,7 +388,7 @@ export function DocAgent() {
           </div>
 
           {/* Input */}
-          <div className="flex flex-shrink-0 border-t border-grey-light bg-white">
+          <div className="flex flex-shrink-0 border-t border-grey-light bg-bg-card">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}

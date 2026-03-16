@@ -13,7 +13,7 @@ export default function CoachingPage() {
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>{d.coaching.heroEyebrow}</Eyebrow>
           <h1
-            className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
+            className="font-sans font-medium tracking-[-0.01em] leading-[1.05] mb-6 text-text-primary"
             style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
           >
             Immo<em className="italic">lab</em>
@@ -36,7 +36,7 @@ export default function CoachingPage() {
           { title: d.coaching.principle3, desc: d.coaching.principle3Desc },
         ].map(({ title, desc }) => (
           <div key={title} className="text-center px-4">
-            <p className="font-serif font-light text-[1.1rem] mb-2 text-text-primary">
+            <p className="font-sans font-medium tracking-[-0.01em] text-[1.1rem] mb-2 text-text-primary">
               {title}
             </p>
             <p className="text-[0.8rem] text-grey-secondary">
@@ -59,7 +59,7 @@ export default function CoachingPage() {
                 key={title}
                 className="p-7 border border-grey-light group hover:border-text-primary transition-colors duration-300"
               >
-                <h3 className="font-serif font-light text-[1.15rem] mb-3 text-text-primary">
+                <h3 className="font-sans font-medium tracking-[-0.01em] text-[1.15rem] mb-3 text-text-primary">
                   {title}
                 </h3>
                 <p className="text-[0.83rem] leading-relaxed mb-4 text-grey-secondary">
@@ -108,7 +108,7 @@ export default function CoachingPage() {
       <section className="px-[5vw] py-28 text-center border-t border-grey-light">
         <Eyebrow>{d.coaching.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-serif font-light mb-6 mx-auto text-text-primary"
+          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
           {d.coaching.ctaHeadline}

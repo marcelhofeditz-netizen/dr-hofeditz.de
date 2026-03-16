@@ -25,7 +25,7 @@ export function Footer() {
       <div className="px-[5vw] py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <span className="font-serif text-base tracking-[0.14em] uppercase block mb-4 text-text-primary">
+          <span className="text-[0.82rem] tracking-[0.18em] uppercase font-medium block mb-4 text-text-primary">
             Dr. Marcel Hofeditz
           </span>
           <p className="text-[0.82rem] leading-relaxed max-w-[28ch] text-grey-secondary">
@@ -70,14 +70,14 @@ export function Footer() {
                     <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
                       {label} &nearr;
                     </span>
-                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
+                    <span className="block text-[0.65rem] text-grey-muted mt-0.5">{sub}</span>
                   </a>
                 ) : (
                   <Link href={href} className="block group">
                     <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
                       {label}
                     </span>
-                    <span className="block text-[0.65rem] text-grey-secondary mt-0.5">{sub}</span>
+                    <span className="block text-[0.65rem] text-grey-muted mt-0.5">{sub}</span>
                   </Link>
                 )}
               </li>
@@ -105,14 +105,14 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="px-[5vw] py-4 flex flex-wrap items-center justify-between gap-3 border-t border-grey-light">
-        <span className="font-serif text-[0.85rem] text-grey-secondary">
+        <span className="text-[0.78rem] text-grey-secondary">
           &copy; {new Date().getFullYear()} Dr. Marcel Hofeditz
         </span>
         <div className="flex gap-5">
-          <Link href="/impressum" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+          <Link href="/impressum" className="text-[0.7rem] tracking-[0.06em] text-grey-muted transition-colors duration-200 hover:text-text-primary">
             {d.footer.impressum}
           </Link>
-          <Link href="/datenschutz" className="text-[0.7rem] tracking-[0.06em] text-grey-secondary transition-colors duration-200 hover:text-text-primary">
+          <Link href="/datenschutz" className="text-[0.7rem] tracking-[0.06em] text-grey-muted transition-colors duration-200 hover:text-text-primary">
             {d.footer.datenschutz}
           </Link>
         </div>

@@ -60,7 +60,7 @@ export default function BuchPage() {
             <p className="text-[0.88rem] leading-relaxed mb-8 max-w-[44ch] text-grey-secondary">
               {d.book.heroDesc2}
             </p>
-            <blockquote className="font-serif italic text-[1.1rem] leading-relaxed mb-8 pl-5 border-l-2 border-text-primary text-text-primary">
+            <blockquote className="font-sans italic text-[1.1rem] leading-relaxed mb-8 pl-5 border-l-2 border-grey-light text-grey-secondary">
               &bdquo;{d.book.quote}&ldquo;
             </blockquote>
             <div className="flex flex-wrap gap-4">
@@ -84,7 +84,7 @@ export default function BuchPage() {
                 key={nr}
                 className="flex gap-6 p-6 border border-grey-light group hover:border-text-primary transition-colors duration-300"
               >
-                <span className="font-serif font-light text-[1.8rem] leading-none flex-shrink-0 w-16 text-grey-light">
+                <span className="font-sans font-medium tracking-[-0.01em] text-[1.8rem] leading-none flex-shrink-0 w-16 text-grey-light">
                   {nr}
                 </span>
                 <div>
@@ -113,7 +113,7 @@ export default function BuchPage() {
             { n: d.book.stat4n, l: d.book.stat4l },
           ].map(({ n, l }) => (
             <div key={l}>
-              <div className="font-serif font-light leading-none mb-2 text-text-primary"
+              <div className="font-sans font-medium tracking-[-0.01em] leading-none mb-2 text-text-primary"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {n}
               </div>
@@ -152,7 +152,7 @@ export default function BuchPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{d.book.notifyEyebrow}</Eyebrow>
         <h2
-          className="font-serif font-light mb-6 mx-auto text-text-primary"
+          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
           {d.book.notifyHeadline}
@@ -176,7 +176,7 @@ function NotifyForm() {
         placeholder={d.book.emailPlaceholder}
         className="flex-1 px-5 py-3 bg-transparent outline-none text-[0.84rem] text-text-primary"
       />
-      <button className="px-6 py-3 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-colors duration-200 hover:opacity-80 bg-black text-white">
+      <button className="px-6 py-3 text-[0.74rem] tracking-[0.1em] uppercase font-medium transition-colors duration-200 hover:opacity-80 bg-text-primary text-black">
         {d.book.preorder}
       </button>
     </div>
