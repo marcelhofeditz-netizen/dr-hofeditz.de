@@ -141,6 +141,19 @@ h1{
 .lang-toggle:hover{color:var(--text);border-color:var(--border-hover)}
 
 /* ── Keyframes ── */
+/* Founder card */
+.founder-card{display:flex;gap:2.5rem;align-items:flex-start;margin-top:1.5rem;flex-wrap:wrap;opacity:0;transform:translateY(20px)}
+.slide.active .founder-card{animation:fadeUp .7s .3s ease forwards}
+.founder-avatar{width:clamp(80px,10vw,110px);height:clamp(80px,10vw,110px);border-radius:50%;background:var(--bg-elevated,#161616);border:1.5px solid var(--border-hover,#333);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.founder-info{flex:1;min-width:200px}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.cred{opacity:0;transform:translateY(12px)}
+.cred .cred-val{font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:500}
+.cred .cred-lbl{font-size:.6rem;color:var(--text-secondary);letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}
+.slide.active .cred:nth-child(1){animation:fadeUp .5s .5s ease forwards}
+.slide.active .cred:nth-child(2){animation:fadeUp .5s .6s ease forwards}
+.slide.active .cred:nth-child(3){animation:fadeUp .5s .7s ease forwards}
+.slide.active .cred:nth-child(4){animation:fadeUp .5s .8s ease forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
 /* ── Mobile ── */
@@ -302,16 +315,20 @@ h1{
 
 <!-- Slide 11: Founder -->
 <div class="slide">
-  <div class="eyebrow">Who We Are</div>
+  <div class="eyebrow">Founder</div>
   <h1>Dr. Marcel Hofeditz</h1>
-  <ul class="bullets">
-    <li>Dr. rer. pol., summa cum laude – University of Münster</li>
-    <li>Co-CEO of a Top 5 family-owned brokerage in Germany (2015–2023)</li>
-    <li>€600M+ personal transaction volume across Northern Germany</li>
-    <li>Capital Broker Compass No. 1 in Hamburg, Kiel, and Lübeck</li>
-    <li>Postdoc & Guest Lecturer at the University of Münster since 2015</li>
-    <li>Published researcher: 13 papers, 400+ citations · Author of "Die Immobilienlüge"</li>
-  </ul>
+  <p class="subtitle">Academic Rigor Meets Operational Excellence</p>
+  <div class="founder-card">
+    <img src="../IMG_8225.webp" alt="Dr. Marcel Hofeditz" class="founder-avatar" style="object-fit:cover">
+    <div class="founder-info">
+      <div class="cred-grid">
+        <div class="cred"><div class="cred-val">€600M+</div><div class="cred-lbl">Transaction Volume</div></div>
+        <div class="cred"><div class="cred-val">No. 1</div><div class="cred-lbl">Capital Broker Compass</div></div>
+        <div class="cred"><div class="cred-val">Dr. rer. pol.</div><div class="cred-lbl">Summa cum laude · Uni Münster</div></div>
+        <div class="cred"><div class="cred-val">13 Papers</div><div class="cred-lbl">400+ Citations · Guest Lecturer</div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Slide 12: CTA -->
