@@ -32,7 +32,7 @@ function LazyYouTubeEmbed() {
       {loaded ? (
         <iframe
           className="absolute inset-0 w-full h-full"
-          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLplaylistId"
+          src="https://www.youtube-nocookie.com/embed/EldDVaBX698"
           title="OffMarketPool Podcast"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
