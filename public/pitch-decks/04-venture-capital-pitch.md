@@ -133,9 +133,10 @@ This presentation positions OffMarketPool as a scalable technology company disru
 
 - Dr. Marcel Hofeditz – Founder and CEO
 - Dr. rer. pol., summa cum laude, University of Münster
-- Co-CEO Möllerherm Immobilien 2015–2023 (Top 5 family broker, Germany)
+- Co-CEO of a Top 5 family-owned brokerage in Germany (2015–2023)
 - €600M+ transaction volume · Capital Broker Compass No. 1 (Hamburg, Kiel, Lübeck)
-- Published researcher: 13 papers, 400+ citations, expertise in trust, compliance, strategy
+- Postdoc & Guest Lecturer at the University of Münster since 2015
+- Published researcher: 13 papers, 400+ citations · Author of "Die Immobilienlüge"
 
 ---
 

@@ -130,10 +130,11 @@ This presentation targets real estate investors looking for off-market deal acce
 **Founded by Dr. Marcel Hofeditz**
 
 - Dr. rer. pol., summa cum laude – University of Münster
-- Former Co-CEO of Möllerherm Immobilien, Top 5 family-owned broker in Germany
-- €600M+ personal transaction volume
-- Research in organizational trust, compliance, and strategic decision-making
-- 10+ years of operational market experience across Northern Germany
+- Co-CEO of a Top 5 family-owned brokerage in Germany (2015–2023)
+- €600M+ personal transaction volume across Northern Germany
+- Postdoc & Guest Lecturer at the University of Münster since 2015
+- Published researcher: 13 papers, 400+ citations · Author of "Die Immobilienlüge"
+- 10+ years of operational real estate market experience
 
 ---
 
