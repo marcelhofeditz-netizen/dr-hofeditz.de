@@ -137,10 +137,10 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
   <div class="eyebrow">Marktgröße</div>
   <h1>Ein riesiger,<br>unterversorgter Markt</h1>
   <div class="stats">
-    <div class="stat"><div class="stat-number">€10T+</div><div class="stat-label">Europäischer CRE-Markt</div></div>
-    <div class="stat"><div class="stat-number">20–40%</div><div class="stat-label">Off-Market gehandelt</div></div>
-    <div class="stat"><div class="stat-number">€2–4T</div><div class="stat-label">Jährlicher Off-Market-Flow</div></div>
-    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Dominante Plattformen</div></div>
+    <div class="stat"><div class="stat-number">€10T+</div><div class="stat-label">Europäischer CRE-Markt</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
+    <div class="stat"><div class="stat-number">20–40%</div><div class="stat-label">Off-Market gehandelt</div><div class="stat-bar"><div class="stat-fill" style="--w:35%"></div></div></div>
+    <div class="stat"><div class="stat-number">€2–4T</div><div class="stat-label">Jährlicher Off-Market-Flow</div><div class="stat-bar"><div class="stat-fill" style="--w:60%"></div></div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Dominante Plattformen</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:5%"></div></div></div>
   </div>
 </div>
 
@@ -195,16 +195,40 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 <div class="slide">
   <div class="eyebrow">Traktion</div>
   <h1>Bewiesener<br>Product-Market-Fit</h1>
-  <ul class="bullets">
-    <li>607 aktive Deals auf der Plattform seit Beta-Launch (April 2025)</li>
-    <li>€6,2 Mrd. Gesamtobjektvolumen auf der Plattform</li>
-    <li>€19M Transaktionsvolumen abgeschlossen in 2025 (seit April-Start)</li>
-    <li>2026 YTD: €7M abgeschlossen – Ziel €50M bis Jahresende</li>
-    <li>12 Partner in Deutschlands Top-12-Städten – Europäische Expansion läuft</li>
-    <li>7.000+ Investorenprofile mit gespeicherten Suchkriterien</li>
-    <li>KI-Matching-Algorithmus operativ und kontinuierlich verbessernd</li>
-    <li>Gründer-Track-Record: €600M+ Transaktionsvolumen, Top-5-Makler in Deutschland</li>
-  </ul>
+  <div class="chart-grid">
+    <div class="chart-box">
+      <div class="chart-title">Deal-Wachstum · Seit April 2025</div>
+      <svg viewBox="0 0 280 150" class="chart-svg">
+        <line x1="30" y1="120" x2="270" y2="120" class="axis"/>
+        <text x="30" y="140" class="lbl">Apr 25</text>
+        <text x="146" y="140" class="lbl">Okt</text>
+        <text x="248" y="140" class="lbl">Mär 26</text>
+        <path d="M30,118 L54,114 L78,107 L102,96 L126,82 L150,67 L174,53 L198,40 L222,28 L246,18 L270,10 L270,120 L30,120Z" class="data-area"/>
+        <polyline points="30,118 54,114 78,107 102,96 126,82 150,67 174,53 198,40 222,28 246,18 270,10" class="data-line data-line-draw"/>
+        <circle cx="270" cy="10" r="4" fill="var(--text)" class="show"/>
+        <text x="254" y="7" class="val show" text-anchor="end">607</text>
+      </svg>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Transaktionsvolumen</div>
+      <svg viewBox="0 0 280 150" class="chart-svg">
+        <line x1="30" y1="120" x2="270" y2="120" class="axis"/>
+        <rect x="50" y="78" width="60" height="42" class="data-bar show" rx="2"/>
+        <text x="80" y="72" class="val show" text-anchor="middle">€19M</text>
+        <text x="80" y="140" class="lbl" text-anchor="middle">2025</text>
+        <rect x="160" y="103" width="60" height="17" class="data-bar-accent show-2" rx="2"/>
+        <text x="190" y="97" class="val-accent show-2" text-anchor="middle">€7M YTD</text>
+        <rect x="160" y="10" width="60" height="110" class="data-bar-target show-3" rx="2"/>
+        <text x="190" y="140" class="lbl" text-anchor="middle">2026</text>
+        <text x="225" y="18" class="lbl show-3">Ziel €50M</text>
+      </svg>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-val">€6,2 Mrd.</span><span class="kpi-lbl">Objektvolumen</span></div>
+    <div class="kpi"><span class="kpi-val">12</span><span class="kpi-lbl">Partner · Top 12 Städte</span></div>
+    <div class="kpi"><span class="kpi-val">7.000+</span><span class="kpi-lbl">Investorenprofile</span></div>
+  </div>
 </div>
 
 <div class="slide">
