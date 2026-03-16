@@ -25,7 +25,7 @@ export default function BuchPage() {
               }}
             >
               <Image
-                src="/book-cover.jpg"
+                src="/book-cover.png"
                 alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
                 width={340}
                 height={500}
@@ -137,6 +137,66 @@ export default function BuchPage() {
             <Stat number={d.platform.stat3n} label={d.platform.stat3l} />
           </div>
           <BtnPrimary href="/plattform">{d.book.bridgeCta}</BtnPrimary>
+        </div>
+      </section>
+
+      {/* Weitere Inhalte */}
+      <section className="px-[5vw] py-24 border-t border-grey-light">
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>{d.bookExtras.eyebrow}</Eyebrow>
+          <SectionTitle className="mb-10">
+            {d.bookExtras.headline}
+          </SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a
+              href="https://youtube.com/@offmarketpool"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300"
+            >
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                Podcast
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                OffMarketPool Podcast
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                YouTube &rarr;
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dr-marcel-hofeditz-0b231432"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300"
+            >
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                Social
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                LinkedIn
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {d.social.follow} &rarr;
+              </span>
+            </a>
+            <a
+              href="https://offmarketpool.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300"
+            >
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {d.home.platformSection}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                OffMarketPool
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {d.home.toPlatform} &rarr;
+              </span>
+            </a>
+          </div>
         </div>
       </section>
 

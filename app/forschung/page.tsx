@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useLocale } from '@/lib/locale-context'
 import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
 
@@ -287,6 +288,60 @@ export default function ForschungPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Cross-links */}
+      <section className="px-[5vw] py-24">
+        <div className="max-w-[1100px] mx-auto">
+          <Eyebrow>{locale === 'de' ? 'Weiterführend' : 'Related'}</Eyebrow>
+          <SectionTitle className="mb-10">
+            {locale === 'de' ? 'Das Ecosystem entdecken' : 'Explore the ecosystem'}
+          </SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/plattform" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {locale === 'de' ? 'Plattform' : 'Platform'}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                OffMarketPool
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {locale === 'de' ? 'KI-Matching, 361 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 361 deals, €6.2B volume.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {locale === 'de' ? 'Mehr erfahren' : 'Learn more'} &rarr;
+              </span>
+            </Link>
+            <Link href="/buch" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                {locale === 'de' ? 'Sachbuch' : 'Book'}
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                Die Immobilienlüge
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {locale === 'de' ? 'Warum wir mit Immobilien nicht reich werden.' : 'Why we don\'t get rich with real estate.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {locale === 'de' ? 'Zum Buch' : 'To the book'} &rarr;
+              </span>
+            </Link>
+            <Link href="/coaching" className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300">
+              <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-3 text-grey-secondary">
+                Coaching
+              </span>
+              <span className="text-[0.92rem] font-medium text-text-primary block mb-1">
+                Immolab
+              </span>
+              <span className="text-[0.8rem] text-grey-secondary block mb-3">
+                {locale === 'de' ? 'Einzelberatung für Immobilieninvestoren.' : 'Individual coaching for real estate investors.'}
+              </span>
+              <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                {locale === 'de' ? 'Mehr erfahren' : 'Learn more'} &rarr;
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 

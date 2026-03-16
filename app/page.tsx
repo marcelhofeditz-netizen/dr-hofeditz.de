@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Eyebrow, SectionTitle, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import { PodcastSection } from '@/components/PodcastSection'
+import { SocialSection } from '@/components/SocialSection'
 import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
@@ -227,6 +229,12 @@ export default function Home() {
 
       <Divider />
 
+      {/* ── PODCAST ── */}
+      <PodcastSection />
+
+      {/* ── SOCIAL ── */}
+      <SocialSection />
+
       {/* ── PLATFORM REFERENCE ── */}
       <section className="px-[5vw] py-28">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -291,7 +299,7 @@ export default function Home() {
               }}
             >
               <Image
-                src="/book-cover.jpg"
+                src="/book-cover.png"
                 alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
                 width={300}
                 height={440}
