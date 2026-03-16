@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>OffMarketPool – Investor Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0B0B;--bg-card:#111111;--bg-elevated:#161616;
+  --text:#F6F6F6;--text-secondary:#888888;--text-muted:#555555;
+  --border:#1E1E1E;--border-hover:#333333;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:relative;width:100%;height:100%}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:8vw;opacity:0;pointer-events:none}
+.slide.active{opacity:1;pointer-events:auto}
+.eyebrow{font-size:clamp(.6rem,.9vw,.75rem);letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:1.5rem;opacity:0;transform:translateY(20px)}
+.slide.active .eyebrow{animation:fadeUp .7s ease forwards}
+h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5vw,4.2rem);margin-bottom:1.2rem;opacity:0;transform:translateY(30px)}
+.slide.active h1{animation:fadeUp .8s .15s ease forwards}
+.subtitle{font-size:clamp(1rem,2vw,1.6rem);font-weight:300;color:var(--text-secondary);margin-bottom:2.5rem;max-width:36ch;line-height:1.4;opacity:0;transform:translateY(25px)}
+.slide.active .subtitle{animation:fadeUp .8s .25s ease forwards}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:.9rem;max-width:52ch}
+.bullets li{font-size:clamp(.78rem,1.1vw,.95rem);line-height:1.6;color:var(--text-secondary);padding-left:1.4em;position:relative;opacity:0;transform:translateY(18px)}
+.bullets li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--text-muted)}
+.slide.active .bullets li:nth-child(1){animation:fadeUp .6s .35s ease forwards}
+.slide.active .bullets li:nth-child(2){animation:fadeUp .6s .45s ease forwards}
+.slide.active .bullets li:nth-child(3){animation:fadeUp .6s .55s ease forwards}
+.slide.active .bullets li:nth-child(4){animation:fadeUp .6s .65s ease forwards}
+.slide.active .bullets li:nth-child(5){animation:fadeUp .6s .75s ease forwards}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;margin-top:2rem}
+.stat{text-align:center;opacity:0;transform:translateY(20px)}
+.stat-number{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:500;letter-spacing:-.01em}
+.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-top:.4rem}
+.slide.active .stat:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .stat:nth-child(2){animation:fadeUp .7s .4s ease forwards}
+.slide.active .stat:nth-child(3){animation:fadeUp .7s .5s ease forwards}
+.slide.active .stat:nth-child(4){animation:fadeUp .7s .6s ease forwards}
+.slide.active .stat:nth-child(5){animation:fadeUp .7s .7s ease forwards}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem}
+.step{padding:2rem;border:1px solid var(--border);opacity:0;transform:translateY(20px)}
+.step-num{font-size:2.5rem;font-weight:500;color:var(--border-hover);margin-bottom:.8rem}
+.step-title{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
+.step-desc{font-size:.82rem;line-height:1.6;color:var(--text-secondary)}
+.slide.active .step:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .step:nth-child(2){animation:fadeUp .7s .45s ease forwards}
+.slide.active .step:nth-child(3){animation:fadeUp .7s .6s ease forwards}
+
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;margin-top:2rem}
+.asset-item{padding:1rem 1.2rem;border:1px solid var(--border);font-size:.85rem;color:var(--text-secondary);opacity:0;transform:translateY(15px)}
+.slide.active .asset-item:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .asset-item:nth-child(2){animation:fadeUp .5s .38s ease forwards}
+.slide.active .asset-item:nth-child(3){animation:fadeUp .5s .46s ease forwards}
+.slide.active .asset-item:nth-child(4){animation:fadeUp .5s .54s ease forwards}
+.slide.active .asset-item:nth-child(5){animation:fadeUp .5s .62s ease forwards}
+.slide.active .asset-item:nth-child(6){animation:fadeUp .5s .70s ease forwards}
+.slide.active .asset-item:nth-child(7){animation:fadeUp .5s .78s ease forwards}
+.slide.active .asset-item:nth-child(8){animation:fadeUp .5s .86s ease forwards}
+.slide.active .asset-item:nth-child(9){animation:fadeUp .5s .94s ease forwards}
+
+.cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cta-btn{display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;background:var(--text);color:var(--bg);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
+.slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
+.progress{position:fixed;bottom:0;left:0;height:2px;background:var(--text);transition:width .4s ease;z-index:100}
+.counter{position:fixed;bottom:1.5rem;right:2rem;font-size:.7rem;letter-spacing:.1em;color:var(--text-muted);z-index:100}
+.nav-hint{position:fixed;bottom:1.5rem;left:2rem;font-size:.65rem;letter-spacing:.08em;color:var(--text-muted);z-index:100;opacity:1;transition:opacity 1s ease}
+.nav-hint.hidden{opacity:0}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.slide{padding:6vw 7vw}.steps{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<div class="slide active">
+  <div class="eyebrow">Investor Pitch</div>
+  <h1>Off-Market Access<br>for Investors</h1>
+  <p class="subtitle">Europe's leading off-market real estate platform</p>
+  <ul class="bullets">
+    <li>607 deals · €6.2B asset volume</li>
+    <li>AI-based matching with your investment profile</li>
+    <li>Pan-European off-market deal network</li>
+    <li>Discreet. Precise. European.</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">The Challenge</div>
+  <h1>Finding Quality<br>Off-Market Deals Is Hard</h1>
+  <ul class="bullets">
+    <li>The best properties never appear on public portals</li>
+    <li>Access depends on personal networks that are limited by geography</li>
+    <li>Investors spend disproportionate time sourcing vs. analyzing</li>
+    <li>Cross-border off-market opportunities are nearly invisible</li>
+    <li>Result: missed deals, limited pipeline, concentration risk</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">The Solution</div>
+  <h1>Your European<br>Deal Network</h1>
+  <ul class="bullets">
+    <li>One platform connecting investors to off-market deal flow across Europe</li>
+    <li>Deals sourced by regional partners with local market expertise</li>
+    <li>AI matching delivers relevant opportunities to your profile automatically</li>
+    <li>No public portal exposure – every deal is discreet</li>
+    <li>From residential to heavy industrial, all asset classes covered</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">How It Works</div>
+  <h1>Three Steps to<br>Your Next Deal</h1>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Create Your Profile</div>
+      <div class="step-desc">Define your search criteria, asset preferences, and investment parameters.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">AI Matching</div>
+      <div class="step-desc">Algorithm matches incoming deals against your profile in real time.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Review & Act</div>
+      <div class="step-desc">Receive curated deal opportunities. Review and act on your terms.</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">AI Matching Engine</div>
+  <h1>Precision Matching.<br>Not Mass Distribution.</h1>
+  <ul class="bullets">
+    <li>Proprietary algorithm with 100+ weighted criteria</li>
+    <li>Matches property attributes to your specific investment parameters</li>
+    <li>Location, asset class, volume, yield target, risk profile all considered</li>
+    <li>Developed over 7 years based on real transaction data</li>
+    <li>Continuous refinement ensures increasingly accurate recommendations</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">European Deal Network</div>
+  <h1>Pan-European Coverage.<br>Local Expertise.</h1>
+  <ul class="bullets">
+    <li>Regional partners source deals across European markets</li>
+    <li>Local market knowledge combined with continental distribution</li>
+    <li>Cross-border deal flow accessible from a single platform</li>
+    <li>Deals from markets you may not have direct access to</li>
+    <li>Growing network continuously expands available opportunities</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">Deal Flow</div>
+  <h1>Quality at the Source</h1>
+  <ul class="bullets">
+    <li>Every deal is sourced by a vetted regional partner</li>
+    <li>Partners bring local relationships, market intelligence, and deal context</li>
+    <li>Source protection ensures deal integrity throughout the process</li>
+    <li>No recycled portal listings – genuine off-market opportunities only</li>
+    <li>Partner network spans residential, commercial, and specialty assets</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">Asset Classes</div>
+  <h1>All Property Types.<br>One Platform.</h1>
+  <div class="asset-grid">
+    <div class="asset-item">Single-Family Homes</div>
+    <div class="asset-item">Condominiums</div>
+    <div class="asset-item">Residential Buildings</div>
+    <div class="asset-item">Commercial Buildings</div>
+    <div class="asset-item">Development Sites</div>
+    <div class="asset-item">Logistics</div>
+    <div class="asset-item">Office & Hotel</div>
+    <div class="asset-item">Healthcare</div>
+    <div class="asset-item">Heavy Industrial & Luxury</div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">Deal Discovery</div>
+  <h1>Less Searching.<br>More Closing.</h1>
+  <ul class="bullets">
+    <li>Replace fragmented sourcing with one structured deal pipeline</li>
+    <li>AI filters eliminate irrelevant opportunities before they reach you</li>
+    <li>Standardized deal presentations for faster evaluation</li>
+    <li>Full discretion protects your investment strategy from the market</li>
+    <li>Focus your time on analysis and negotiation, not sourcing</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">Platform at a Glance</div>
+  <h1>The Numbers</h1>
+  <div class="stats">
+    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Completed Deals</div></div>
+    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div></div>
+    <div class="stat"><div class="stat-number">7,000+</div><div class="stat-label">Investor Profiles</div></div>
+    <div class="stat"><div class="stat-number">100+</div><div class="stat-label">Matching Criteria</div></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="eyebrow">Who We Are</div>
+  <h1>Dr. Marcel Hofeditz</h1>
+  <ul class="bullets">
+    <li>Dr. rer. pol., summa cum laude – University of Münster</li>
+    <li>Former Co-CEO of Möllerherm Immobilien, Top 5 family-owned broker</li>
+    <li>€600M+ personal transaction volume</li>
+    <li>Research in organizational trust, compliance, and strategic decision-making</li>
+    <li>10+ years of operational market experience across Northern Germany</li>
+  </ul>
+</div>
+
+<div class="slide cta-center">
+  <div class="eyebrow">Get Started</div>
+  <h1>Access Europe's<br>Off-Market Deal Flow</h1>
+  <p class="subtitle" style="text-align:center">Create your investor profile on OffMarketPool.<br>Define your criteria. Start receiving matched opportunities.</p>
+  <a href="https://offmarketpool.vercel.app" class="cta-btn" target="_blank">Create Profile &rarr;</a>
+</div>
+
+</div>
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="nav-hint" id="navHint">Tap or press &rarr; to navigate</div>
+<script>
+const slides=document.querySelectorAll('.slide');const progress=document.getElementById('progress');const counter=document.getElementById('counter');const navHint=document.getElementById('navHint');let cur=0,total=slides.length,touchX=0;
+function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');slides[n].classList.add('active');cur=n;progress.style.width=((cur+1)/total*100)+'%';counter.textContent=(cur+1)+' / '+total;if(cur>0)navHint.classList.add('hidden')}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter')go(cur+1);if(e.key==='ArrowLeft'||e.key==='Backspace')go(cur-1)});
+document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?go(cur+1):go(cur-1)}},{passive:true});
+document.addEventListener('click',e=>{const x=e.clientX/window.innerWidth;x>.3?go(cur+1):go(cur-1)});
+go(0);
+</script>
+</body>
+</html>
