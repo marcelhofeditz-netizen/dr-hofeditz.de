@@ -116,7 +116,7 @@ export function DocFloat() {
             alt="Doc – KI-Agent"
             fill
             className="object-cover"
-            style={{ filter: 'grayscale(100%)' }}
+            style={{  }}
           />
         </div>
         {/* Pulse ring */}
@@ -134,12 +134,12 @@ export function DocFloat() {
           style={{
             width: 'min(400px, calc(100vw - 48px))',
             height: 'min(520px, calc(100vh - 160px))',
-            background: '#F6F6F6',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(234,234,234,0.5)',
+            background: '#0B0B0B',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(30,30,30,0.8)',
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 bg-white border-b border-grey-light">
+          <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 bg-bg-card border-b border-grey-light">
             <div className="flex items-center gap-3">
               <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
                 <Image
@@ -147,7 +147,7 @@ export function DocFloat() {
                   alt="Doc"
                   fill
                   className="object-cover"
-                  style={{ filter: 'grayscale(100%)' }}
+                  style={{  }}
                 />
               </div>
               <div>
@@ -177,7 +177,7 @@ export function DocFloat() {
                 <div
                   className={`max-w-[85%] px-3.5 py-2.5 text-[0.82rem] leading-relaxed ${
                     msg.role === 'assistant'
-                      ? 'bg-white border border-grey-light text-text-primary rounded-[0_10px_10px_10px]'
+                      ? 'bg-bg-card border border-grey-light text-text-primary rounded-[0_10px_10px_10px]'
                       : 'bg-black text-white rounded-[10px_0_10px_10px]'
                   }`}
                   dangerouslySetInnerHTML={{
@@ -192,7 +192,7 @@ export function DocFloat() {
 
             {loading && (
               <div className="flex gap-2.5">
-                <div className="px-3.5 py-2.5 bg-white border border-grey-light rounded-[0_10px_10px_10px]">
+                <div className="px-3.5 py-2.5 bg-bg-card border border-grey-light rounded-[0_10px_10px_10px]">
                   <div className="flex gap-1 items-center py-1">
                     {[0, 1, 2].map((i) => (
                       <div
@@ -224,7 +224,7 @@ export function DocFloat() {
           </div>
 
           {/* Input */}
-          <div className="flex flex-shrink-0 border-t border-grey-light bg-white">
+          <div className="flex flex-shrink-0 border-t border-grey-light bg-bg-card">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}

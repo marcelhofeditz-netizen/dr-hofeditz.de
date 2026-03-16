@@ -20,7 +20,7 @@ export function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-serif font-light leading-[1.1] text-text-primary ${className}`}
+      className={`font-sans font-medium tracking-[-0.02em] leading-[1.1] text-text-primary ${className}`}
       style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
     >
       {children}
@@ -46,7 +46,7 @@ export function BtnPrimary({
   external?: boolean
 }) {
   const cls =
-    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 font-medium transition-all duration-200 hover:opacity-80 bg-black text-white'
+    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 font-medium transition-all duration-200 hover:opacity-80 bg-text-primary text-black'
 
   if (external) {
     return (
@@ -72,7 +72,7 @@ export function BtnOutline({
   external?: boolean
 }) {
   const cls =
-    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 transition-all duration-200 border border-grey-light text-text-primary hover:border-black'
+    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 transition-all duration-200 border border-grey-light text-text-primary hover:border-grey-secondary'
 
   if (external) {
     return (
@@ -107,15 +107,15 @@ export function ProjectCard({
   accent?: string
 }) {
   const inner = (
-    <div className="group h-full p-8 flex flex-col justify-between border border-grey-light transition-all duration-300 hover:border-black relative">
+    <div className="group h-full p-8 flex flex-col justify-between border border-grey-light bg-bg-card transition-all duration-300 hover:border-grey-secondary relative">
       {/* Top bar accent */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-text-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
       <div>
         <span className="text-[0.68rem] tracking-[0.2em] uppercase block mb-5 text-grey-secondary">
           {eyebrow}
         </span>
         <h3
-          className="font-serif font-light leading-[1.15] mb-4 text-text-primary"
+          className="font-sans font-medium tracking-[-0.01em] leading-[1.15] mb-4 text-text-primary"
           style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
@@ -153,12 +153,12 @@ export function Stat({ number, label }: { number: string; label: string }) {
   return (
     <div className="text-center">
       <div
-        className="font-serif font-light leading-none text-text-primary"
+        className="font-sans font-medium tracking-[-0.02em] leading-none text-text-primary"
         style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
       >
         {number}
       </div>
-      <div className="text-[0.72rem] tracking-[0.12em] uppercase mt-2 text-grey-secondary">
+      <div className="text-[0.72rem] tracking-[0.12em] uppercase mt-3 text-grey-secondary">
         {label}
       </div>
     </div>

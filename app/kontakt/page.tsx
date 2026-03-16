@@ -49,7 +49,7 @@ export default function KontaktPage() {
         </div>
 
         {/* Form */}
-        <div className="p-8 border border-grey-light">
+        <div className="p-8 border border-grey-light bg-bg-card">
           <p className="text-[0.68rem] tracking-[0.18em] uppercase mb-6 text-grey-secondary">
             {d.contact.sendMessage}
           </p>
@@ -85,7 +85,7 @@ export default function KontaktPage() {
               <select
                 id="anliegen"
                 className="w-full border border-grey-light px-4 py-3 outline-none text-[0.85rem] text-grey-secondary transition-colors duration-200 focus:border-text-primary"
-                style={{ background: '#F6F6F6' }}
+                style={{ background: '#111111' }}
               >
                 <option value="">{d.contact.subjectDefault}</option>
                 <option value="offmarket">{d.contact.subjectOffmarket}</option>
@@ -111,7 +111,7 @@ export default function KontaktPage() {
               />
             </div>
 
-            <button className="w-full py-3 text-[0.76rem] tracking-[0.12em] uppercase font-medium transition-all duration-200 hover:opacity-80 bg-black text-white">
+            <button className="w-full py-3 text-[0.76rem] tracking-[0.12em] uppercase font-medium transition-all duration-200 hover:opacity-80 bg-text-primary text-black">
               {d.contact.send}
             </button>
 

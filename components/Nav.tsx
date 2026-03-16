@@ -21,12 +21,12 @@ export function Nav() {
 
   return (
     <nav
-      className="sticky top-0 z-50 flex items-center justify-between px-[5vw] py-5 bg-white/90 backdrop-blur-md"
-      style={{ borderBottom: '1px solid #EAEAEA' }}
+      className="sticky top-0 z-50 flex items-center justify-between px-[5vw] py-5 backdrop-blur-md"
+      style={{ background: 'rgba(11,11,11,0.92)', borderBottom: '1px solid #1E1E1E' }}
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-3 group">
-        <span className="font-serif text-[1.05rem] tracking-[0.14em] uppercase text-text-primary">
+        <span className="text-[0.82rem] tracking-[0.18em] uppercase font-medium text-text-primary">
           Dr. Marcel Hofeditz
         </span>
       </Link>
@@ -39,7 +39,7 @@ export function Nav() {
             <li key={href}>
               <Link
                 href={href}
-                className={`text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200 ${
+                className={`text-[0.74rem] tracking-[0.1em] uppercase transition-colors duration-200 ${
                   active ? 'text-text-primary' : 'text-grey-secondary hover:text-text-primary'
                 }`}
               >
@@ -53,7 +53,7 @@ export function Nav() {
             href="https://offmarketpool.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[0.74rem] tracking-[0.1em] uppercase px-4 py-2 transition-all duration-200 bg-black text-white hover:opacity-80"
+            className="text-[0.74rem] tracking-[0.1em] uppercase px-4 py-2 transition-all duration-200 bg-text-primary text-black hover:opacity-80"
           >
             {d.nav.toPlatform}
           </a>
@@ -61,7 +61,7 @@ export function Nav() {
         <li>
           <button
             onClick={() => setLocale(locale === 'de' ? 'en' : 'de')}
-            className="text-[0.72rem] tracking-[0.14em] uppercase px-3 py-1.5 border border-grey-light text-grey-secondary hover:text-text-primary hover:border-text-primary transition-all duration-200"
+            className="text-[0.72rem] tracking-[0.14em] uppercase px-3 py-1.5 border border-grey-light text-grey-secondary hover:text-text-primary hover:border-grey-secondary transition-all duration-200"
           >
             {d.nav.langToggle}
           </button>
@@ -90,8 +90,8 @@ export function Nav() {
       {/* Mobile menu */}
       {open && (
         <div
-          className="absolute top-full left-0 right-0 flex flex-col bg-white"
-          style={{ borderBottom: '1px solid #EAEAEA' }}
+          className="absolute top-full left-0 right-0 flex flex-col"
+          style={{ background: 'rgba(11,11,11,0.98)', borderBottom: '1px solid #1E1E1E' }}
         >
           {links.map(({ href, label }) => (
             <Link

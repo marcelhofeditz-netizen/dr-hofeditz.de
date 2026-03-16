@@ -13,7 +13,7 @@ export default function PlattformPage() {
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>{d.platform.eyebrow}</Eyebrow>
           <h1
-            className="font-serif font-light leading-[1.05] mb-6 text-text-primary"
+            className="font-sans font-medium tracking-[-0.02em] leading-[1.05] mb-6 text-text-primary"
             style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
           >
             {d.platform.headline}
@@ -41,7 +41,7 @@ export default function PlattformPage() {
           { n: d.platform.stat4n, l: d.platform.stat4l },
         ].map(({ n, l }) => (
           <div key={l} className="text-center">
-            <div className="font-serif font-light leading-none text-text-primary"
+            <div className="font-sans font-medium tracking-[-0.01em] leading-none text-text-primary"
               style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}>
               {n}
             </div>
@@ -83,10 +83,10 @@ export default function PlattformPage() {
                 key={step}
                 className="p-8 border border-grey-light"
               >
-                <div className="font-serif font-light text-[3rem] leading-none mb-5 text-grey-light">
+                <div className="font-sans font-medium tracking-[-0.01em] text-[3rem] leading-none mb-5 text-grey-light">
                   {step}
                 </div>
-                <h3 className="font-serif font-light text-[1.2rem] mb-3 text-text-primary">
+                <h3 className="font-sans font-medium tracking-[-0.01em] text-[1.2rem] mb-3 text-text-primary">
                   {title}
                 </h3>
                 <p className="text-[0.82rem] leading-relaxed text-grey-secondary">
@@ -148,7 +148,7 @@ export default function PlattformPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{d.platform.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-serif font-light mb-6 mx-auto text-text-primary"
+          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '20ch', lineHeight: 1.1 }}
         >
           {d.platform.ctaHeadline}
