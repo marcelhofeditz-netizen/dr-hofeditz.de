@@ -11,7 +11,7 @@ This presentation targets real estate investors looking for off-market deal acce
 **OffMarketPool – Off-Market Access for Investors**
 
 - Europe's leading off-market real estate platform
-- 361 deals · €6.2B asset volume
+- 607 deals · €6.2B asset volume
 - AI-based matching with your investment profile
 - Discreet. Precise. European.
 
@@ -117,7 +117,7 @@ This presentation targets real estate investors looking for off-market deal acce
 
 **The Numbers**
 
-- 361 completed deals on the platform
+- 607 completed deals on the platform
 - €6.2 billion in total asset volume
 - 7,000+ investor profiles in the network
 - 100+ matching criteria in the AI algorithm
