@@ -352,23 +352,37 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
 <!-- SLIDE 6: Network Effects -->
 <div class="slide">
   <div class="eyebrow">Netzwerkeffekte</div>
-  <h1>Jeder Knotenpunkt<br>stärkt das Netzwerk</h1>
+  <h1>Marktplatz-Flywheel.<br>Sich selbst verstärkend.</h1>
   <div class="flywheel-wrap">
-    <svg viewBox="0 0 260 260" style="width:min(240px,35vw);flex-shrink:0" class="chart-svg">
-      <circle cx="130" cy="130" r="100" fill="none" stroke="var(--border)" stroke-width="1"/>
-      <circle cx="130" cy="130" r="100" fill="none" stroke="var(--text)" stroke-width="2" stroke-dasharray="628" stroke-dashoffset="628" stroke-linecap="round" class="data-line-draw" style="animation-duration:2s"/>
-      <text x="130" y="126" text-anchor="middle" style="font-size:9px;fill:var(--text-muted);letter-spacing:.12em;text-transform:uppercase">Daten-</text>
-      <text x="130" y="140" text-anchor="middle" style="font-size:9px;fill:var(--text-muted);letter-spacing:.12em;text-transform:uppercase">Flywheel</text>
-      <g class="show"><text x="130" y="22" text-anchor="middle" class="val">Mehr Makler</text></g>
-      <g class="show-2"><text x="240" y="134" text-anchor="middle" class="val">Mehr Deals</text></g>
-      <g class="show-3"><text x="130" y="250" text-anchor="middle" class="val">Mehr Investoren</text></g>
-      <g class="show"><text x="20" y="134" text-anchor="middle" class="val" style="font-size:9px">Schnellere<tspan x="20" dy="14">Abschlüsse</tspan></text></g>
+    <svg viewBox="0 0 300 300" style="width:min(280px,38vw);flex-shrink:0" class="chart-svg">
+      <!-- Outer ring -->
+      <circle cx="150" cy="150" r="120" fill="none" stroke="var(--border)" stroke-width="1"/>
+      <circle cx="150" cy="150" r="120" fill="none" stroke="var(--text)" stroke-width="2" stroke-dasharray="754" stroke-dashoffset="754" stroke-linecap="round" class="data-line-draw" style="animation-duration:2.5s"/>
+      <!-- Inner ring -->
+      <circle cx="150" cy="150" r="55" fill="none" stroke="var(--border)" stroke-width=".5"/>
+      <text x="150" y="146" text-anchor="middle" style="font-size:8px;fill:var(--text-muted);letter-spacing:.12em;text-transform:uppercase">Netzwerk-</text>
+      <text x="150" y="158" text-anchor="middle" style="font-size:8px;fill:var(--text-muted);letter-spacing:.12em;text-transform:uppercase">Flywheel</text>
+      <!-- 6 nodes around the circle -->
+      <g class="show"><text x="150" y="18" text-anchor="middle" class="val" style="font-size:10px;font-weight:600">Mehr Makler</text></g>
+      <g class="show"><text x="262" y="86" text-anchor="start" class="val" style="font-size:10px">Mehr Deals</text></g>
+      <g class="show-2"><text x="262" y="224" text-anchor="start" class="val" style="font-size:10px">Mehr Investoren</text></g>
+      <g class="show-2"><text x="150" y="292" text-anchor="middle" class="val" style="font-size:10px;font-weight:600;fill:var(--accent)">Besseres Matching</text></g>
+      <g class="show-3"><text x="38" y="224" text-anchor="end" class="val" style="font-size:10px">Mehr Transaktionen</text></g>
+      <g class="show-3"><text x="38" y="86" text-anchor="end" class="val" style="font-size:10px;font-weight:600">Stärkeres Netzwerk</text></g>
+      <!-- Arrows between nodes -->
+      <path d="M190,30 L230,60" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <path d="M260,120 L260,180" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <path d="M230,245 L190,270" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <path d="M110,270 L70,245" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <path d="M40,180 L40,120" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <path d="M70,60 L110,30" fill="none" stroke="var(--text-muted)" stroke-width="1" marker-end="url(#arr)"/>
+      <defs><marker id="arr" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L6,3 L0,6Z" fill="var(--text-muted)"/></marker></defs>
     </svg>
     <div class="flywheel-labels">
-      <div class="fly-item"><div class="fly-dot"></div><div class="fly-text">Jede Transaktion verbessert die Matching-Genauigkeit</div></div>
-      <div class="fly-item"><div class="fly-dot"></div><div class="fly-text">Besseres Matching → höhere Abschlussquoten</div></div>
-      <div class="fly-item"><div class="fly-dot"></div><div class="fly-text">Höhere Quoten ziehen mehr Makler und Deals an</div></div>
-      <div class="fly-item"><div class="fly-dot"></div><div class="fly-text">Netzwerk wächst exponentiell mit jedem Knotenpunkt</div></div>
+      <div class="fly-item"><div class="fly-dot" style="background:var(--accent)"></div><div class="fly-text">Mehr Makler → mehr Deals auf der Plattform</div></div>
+      <div class="fly-item"><div class="fly-dot" style="background:var(--accent)"></div><div class="fly-text">Mehr Deals → mehr Investoren werden angezogen</div></div>
+      <div class="fly-item"><div class="fly-dot" style="background:var(--accent)"></div><div class="fly-text">Mehr Investoren → besseres Matching und mehr Transaktionen</div></div>
+      <div class="fly-item"><div class="fly-dot" style="background:var(--accent)"></div><div class="fly-text">Mehr Transaktionen → stärkeres Netzwerk → Makler kommen zurück</div></div>
     </div>
   </div>
 </div>
@@ -450,22 +464,72 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
   </div>
 </div>
 
-<!-- SLIDE 9: Business Model -->
+<!-- SLIDE 9: Platform Economics -->
 <div class="slide">
-  <div class="eyebrow">Geschäftsmodell</div>
-  <h1>Provisionsbasiert.<br>Asset-Light.</h1>
-  <p class="subtitle">Umsatz skaliert direkt mit Transaktionsvolumen</p>
+  <div class="eyebrow">Plattformökonomie</div>
+  <h1>Transaktionsbasierte<br>Umsatzlogik</h1>
+  <p class="subtitle">OffMarketPool verdient eine Plattform-Beteiligung an Transaktionsprovisionen</p>
   <div class="comm-flow">
-    <div class="comm-box"><div class="comm-title">Verkäufer-Makler</div><div class="comm-val">Provision</div></div>
+    <div class="comm-box"><div class="comm-title">Transaktionsvolumen</div><div class="comm-val">€10M</div></div>
     <div class="comm-arrow">→</div>
-    <div class="comm-box highlight"><div class="comm-title">Plattform-Anteil</div><div class="comm-val">Provisionsteilung</div></div>
-    <div class="comm-arrow">←</div>
-    <div class="comm-box"><div class="comm-title">Käufer-Makler</div><div class="comm-val">Provision</div></div>
+    <div class="comm-box highlight"><div class="comm-title">Plattform Take Rate</div><div class="comm-val">2–3%</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-box"><div class="comm-title">Plattformumsatz</div><div class="comm-val" style="color:var(--accent)">€200–300k</div></div>
   </div>
-  <div class="comm-note">Kein Inventar · Kein Bilanzrisiko · Hohe Bruttomargen · Zukünftig: Premium-Partner-Tiers, Daten-API</div>
+  <div class="comm-note">Beispielrechnung · Umsatz skaliert linear mit Transaktionsvolumen · Keine Bestandsrisiken</div>
+  <div class="metric-row" style="margin-top:1.5rem">
+    <div class="metric-card"><div class="num">2–3%</div><div class="lbl">Take Rate</div></div>
+    <div class="metric-card"><div class="num accent">€19M</div><div class="lbl">TV 2025 realisiert</div></div>
+    <div class="metric-card"><div class="num">€100M</div><div class="lbl">TV Ziel 2026</div></div>
+    <div class="metric-card"><div class="num">€500M</div><div class="lbl">TV Trajektorie 2027</div></div>
+  </div>
 </div>
 
-<!-- SLIDE 10: Partner Network -->
+<!-- SLIDE 10: Asset-Light Model -->
+<div class="slide">
+  <div class="eyebrow">Kostenstruktur</div>
+  <h1>Asset-Light.<br>Hoher Hebel.</h1>
+  <p class="subtitle">Plattform operiert mit minimalen Fixkosten — Kosten skalieren mit abgeschlossenen Deals</p>
+  <div class="block-grid">
+    <div class="v-block" style="border-color:var(--accent);background:var(--accent-dim)">
+      <div class="title" style="color:var(--accent);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase">Fixkosten</div>
+      <div class="desc" style="font-size:1.4rem;font-weight:600;color:var(--accent);margin:.4rem 0">Sehr niedrig</div>
+      <div class="desc">Kein eigenes Inventar · Keine Immobilien auf Bilanz · Kleine Kernmannschaft</div>
+    </div>
+    <div class="v-block">
+      <div class="title" style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)">Variable Kosten</div>
+      <div class="desc" style="font-size:1.4rem;font-weight:600;color:var(--text);margin:.4rem 0">Provisionsbasiert</div>
+      <div class="desc">Makler- und Partner-Beteiligung erst nach Transaktionsabschluss</div>
+    </div>
+  </div>
+  <div class="kpi-row" style="margin-top:1.5rem">
+    <div class="kpi"><span class="kpi-val">0</span><span class="kpi-lbl">Inventar</span></div>
+    <div class="kpi"><span class="kpi-val">0</span><span class="kpi-lbl">Bilanzrisiko</span></div>
+    <div class="kpi"><span class="kpi-val">Hoch</span><span class="kpi-lbl">Operating Leverage</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Pipeline Leverage -->
+<div class="slide">
+  <div class="eyebrow">Pipeline-Hebel</div>
+  <h1>€6,2 Mrd. Pipeline.<br>Enormes Potenzial.</h1>
+  <p class="subtitle">Schon eine kleine Konversionsrate erzeugt signifikantes Transaktionsvolumen</p>
+  <div class="comm-flow">
+    <div class="comm-box"><div class="comm-title">Deal-Pipeline</div><div class="comm-val" style="font-size:1.3rem;font-weight:600">€6,2 Mrd.</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-box highlight"><div class="comm-title">Konversionsrate</div><div class="comm-val">1–2%</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-box"><div class="comm-title">Transaktionsvolumen</div><div class="comm-val" style="font-size:1.3rem;font-weight:600">€62–124M</div></div>
+  </div>
+  <div class="comm-note">607 aktive Deals · 7.000+ Investorenprofile · Jeder neue Deal und Investor erhöht die Konversionswahrscheinlichkeit</div>
+  <div class="metric-row" style="margin-top:1.5rem">
+    <div class="metric-card"><div class="num">607</div><div class="lbl">Aktive Deals</div></div>
+    <div class="metric-card"><div class="num">€6,2 Mrd.</div><div class="lbl">Objektvolumen</div></div>
+    <div class="metric-card"><div class="num accent">7.000+</div><div class="lbl">Investorenprofile</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 12: Partner Network -->
 <div class="slide">
   <div class="eyebrow">Partnernetzwerk</div>
   <h1>Partner sind Vertrieb,<br>keine Kosten</h1>
@@ -502,7 +566,7 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
   </div>
 </div>
 
-<!-- SLIDE 11: Expansion -->
+<!-- SLIDE 13: Expansion -->
 <div class="slide">
   <div class="eyebrow">Expansionsstrategie</div>
   <h1>Markt-für-Markt<br>nach ganz Europa</h1>
@@ -518,10 +582,11 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
   </div>
 </div>
 
-<!-- SLIDE 12: Vision -->
+<!-- SLIDE 14: Vision -->
 <div class="slide">
   <div class="eyebrow">Vision</div>
-  <h1>Die Schienen für<br>Off-Market-Immobilien</h1>
+  <h1>Transaktionsinfrastruktur<br>für Off-Market-Immobilien</h1>
+  <p class="subtitle">Die Plattform wird wertvoller mit jedem Deal, jedem Investor und jedem Partner</p>
   <div class="block-grid">
     <div class="v-block">
       <span class="icon">◈</span>
@@ -546,7 +611,7 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
   </div>
 </div>
 
-<!-- SLIDE 13: Team -->
+<!-- SLIDE 15: Team -->
 <div class="slide">
   <div class="eyebrow">Gründer</div>
   <h1>Dr. Marcel Hofeditz</h1>
@@ -564,7 +629,7 @@ h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem
   </div>
 </div>
 
-<!-- SLIDE 14: CTA / Fundraise -->
+<!-- SLIDE 16: CTA / Fundraise -->
 <div class="slide cta-center">
   <div class="eyebrow">Die Anfrage</div>
   <h1>Investieren Sie in Europas<br>Off-Market-Infrastruktur</h1>
