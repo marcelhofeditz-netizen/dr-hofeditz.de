@@ -11,7 +11,7 @@ This presentation positions OffMarketPool as a scalable technology company disru
 **OffMarketPool – The Infrastructure Layer for Off-Market Real Estate**
 
 - AI-powered platform for off-market deal distribution
-- 607 deals · €6.2B asset volume · 7,000+ investor profiles
+- 607 active deals · €19M transaction volume · 7,000+ investor profiles
 - Pan-European network with regional partner model
 - Founded by Dr. Marcel Hofeditz
 
@@ -81,8 +81,9 @@ This presentation positions OffMarketPool as a scalable technology company disru
 
 **Proven Product-Market Fit**
 
-- 607 completed deals on the platform
-- €6.2 billion in cumulative asset volume
+- 607 active deals on the platform since beta launch (April 2025)
+- €19M in transaction volume closed since launch
+- 2026 YTD: €7M closed – targeting €50–100M by year-end
 - 7,000+ investor profiles with stored search criteria
 - AI matching algorithm operational and continuously improving
 - Active partner network across European markets
