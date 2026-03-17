@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useLocale } from '@/lib/locale-context'
 
 const BOOK_KNOWLEDGE = `
-Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Research: Organizational Trust, Compliance, Strategy. Co-CEO Mollerherm Immobilien (2015–2023), €600M+ transaction volume. Founder Dr. Hofeditz Real Estate GmbH. Author "Die Immobilienluge".
+Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Research: Organizational Trust, Compliance, Strategy. Co-CEO mittelständisches Immobilienunternehmen (2015–2023), €600M+ transaction volume. Founder Dr. Hofeditz Real Estate GmbH. Author "Die Immobilienluge".
 
 PROJECTS:
 1. Offmarketpool – Europe's leading off-market real estate platform. AI matching, 7,000+ investor profiles. 607 deals, €6.2B asset volume.
