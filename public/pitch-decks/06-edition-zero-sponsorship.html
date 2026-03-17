@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Edition Zero – Exclusive Access Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0B0B;--bg-card:#111111;--bg-elevated:#161616;
+  --text:#F6F6F6;--text-secondary:#888888;--text-muted:#555555;
+  --border:#1E1E1E;--border-hover:#333333;
+  --accent:#C9A96E;--accent-dim:rgba(201,169,110,.10);
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:relative;width:100%;height:100%}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:6vw 8vw;opacity:0;pointer-events:none;overflow-y:auto}
+.slide.active{opacity:1;pointer-events:auto}
+.eyebrow{font-size:clamp(.55rem,.8vw,.7rem);letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:1.2rem;opacity:0;transform:translateY(20px)}
+.slide.active .eyebrow{animation:fadeUp .7s ease forwards}
+h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.8rem,4.5vw,3.8rem);margin-bottom:.8rem;opacity:0;transform:translateY(30px)}
+.slide.active h1{animation:fadeUp .8s .15s ease forwards}
+.subtitle{font-size:clamp(.85rem,1.5vw,1.3rem);font-weight:300;color:var(--text-secondary);margin-bottom:2rem;max-width:42ch;line-height:1.45;opacity:0;transform:translateY(25px)}
+.slide.active .subtitle{animation:fadeUp .8s .25s ease forwards}
+
+/* Metric cards */
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.2rem;margin-top:1.5rem}
+.metric-card{border:1px solid var(--border);padding:1.2rem 1.5rem;opacity:0;transform:translateY(20px)}
+.metric-card .num{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.metric-card .num.accent{color:var(--accent)}
+.metric-card .lbl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);margin-top:.35rem}
+.slide.active .metric-card:nth-child(1){animation:fadeUp .6s .3s ease forwards}
+.slide.active .metric-card:nth-child(2){animation:fadeUp .6s .4s ease forwards}
+.slide.active .metric-card:nth-child(3){animation:fadeUp .6s .5s ease forwards}
+.slide.active .metric-card:nth-child(4){animation:fadeUp .6s .6s ease forwards}
+
+/* Visual blocks */
+.block-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.v-block{border:1px solid var(--border);padding:1.2rem 1.4rem;opacity:0;transform:translateY(18px)}
+.v-block .icon{font-size:1.3rem;margin-bottom:.6rem;display:block}
+.v-block .title{font-size:.8rem;font-weight:500;margin-bottom:.3rem;letter-spacing:-.01em}
+.v-block .desc{font-size:.7rem;color:var(--text-secondary);line-height:1.5}
+.slide.active .v-block:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .v-block:nth-child(2){animation:fadeUp .5s .4s ease forwards}
+.slide.active .v-block:nth-child(3){animation:fadeUp .5s .5s ease forwards}
+.slide.active .v-block:nth-child(4){animation:fadeUp .5s .6s ease forwards}
+.slide.active .v-block:nth-child(5){animation:fadeUp .5s .7s ease forwards}
+.slide.active .v-block:nth-child(6){animation:fadeUp .5s .8s ease forwards}
+
+/* Pipeline / flow */
+.pipeline{display:flex;align-items:center;gap:0;margin-top:2rem;flex-wrap:wrap}
+.pipe-step{display:flex;flex-direction:column;align-items:center;text-align:center;width:clamp(80px,12vw,120px);opacity:0;transform:translateY(20px)}
+.pipe-icon{width:44px;height:44px;border:1.5px solid var(--border-hover);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.5rem;background:var(--bg-card)}
+.pipe-label{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);line-height:1.3}
+.pipe-arrow{color:var(--text-muted);font-size:1rem;opacity:0;margin:0 .2rem;flex-shrink:0}
+.slide.active .pipe-step:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .pipe-arrow:nth-child(2){animation:fadeIn .4s .45s ease forwards}
+.slide.active .pipe-step:nth-child(3){animation:fadeUp .5s .5s ease forwards}
+.slide.active .pipe-arrow:nth-child(4){animation:fadeIn .4s .6s ease forwards}
+.slide.active .pipe-step:nth-child(5){animation:fadeUp .5s .65s ease forwards}
+.slide.active .pipe-arrow:nth-child(6){animation:fadeIn .4s .75s ease forwards}
+.slide.active .pipe-step:nth-child(7){animation:fadeUp .5s .8s ease forwards}
+
+/* Stats row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;margin-top:2rem}
+.stat{text-align:center;opacity:0;transform:translateY(20px)}
+.stat-number{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:600;letter-spacing:-.02em}
+.stat-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-top:.4rem}
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:var(--accent)}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+.slide.active .stat:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .stat:nth-child(2){animation:fadeUp .7s .4s ease forwards}
+.slide.active .stat:nth-child(3){animation:fadeUp .7s .5s ease forwards}
+.slide.active .stat:nth-child(4){animation:fadeUp .7s .6s ease forwards}
+
+/* KPI row */
+.kpi-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.kpi{opacity:0;transform:translateY(15px)}
+.kpi-val{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:600;margin-right:.4rem}
+.kpi-lbl{font-size:.65rem;color:var(--text-secondary);letter-spacing:.05em}
+.slide.active .kpi:nth-child(1){animation:fadeUp .6s .8s ease forwards}
+.slide.active .kpi:nth-child(2){animation:fadeUp .6s .9s ease forwards}
+.slide.active .kpi:nth-child(3){animation:fadeUp .6s 1s ease forwards}
+
+/* Bullets */
+.bullets{list-style:none;display:flex;flex-direction:column;gap:.7rem;max-width:48ch}
+.bullets li{font-size:clamp(.72rem,1vw,.85rem);line-height:1.6;color:var(--text-secondary);padding-left:1.2em;position:relative;opacity:0;transform:translateY(18px)}
+.bullets li::before{content:'';position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.slide.active .bullets li:nth-child(1){animation:fadeUp .5s .35s ease forwards}
+.slide.active .bullets li:nth-child(2){animation:fadeUp .5s .45s ease forwards}
+.slide.active .bullets li:nth-child(3){animation:fadeUp .5s .55s ease forwards}
+.slide.active .bullets li:nth-child(4){animation:fadeUp .5s .65s ease forwards}
+.slide.active .bullets li:nth-child(5){animation:fadeUp .5s .75s ease forwards}
+.slide.active .bullets li:nth-child(6){animation:fadeUp .5s .85s ease forwards}
+
+/* Value items */
+.value-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.5rem}
+.value-item{border:1px solid var(--border);padding:1.2rem 1.5rem;opacity:0;transform:translateY(18px)}
+.value-item .value-num{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-weight:500}
+.value-item .value-title{font-size:.85rem;font-weight:500;margin-bottom:.3rem}
+.value-item .value-desc{font-size:.68rem;color:var(--text-secondary);line-height:1.5}
+.slide.active .value-item:nth-child(1){animation:fadeUp .5s .3s ease forwards}
+.slide.active .value-item:nth-child(2){animation:fadeUp .5s .4s ease forwards}
+.slide.active .value-item:nth-child(3){animation:fadeUp .5s .5s ease forwards}
+.slide.active .value-item:nth-child(4){animation:fadeUp .5s .6s ease forwards}
+.slide.active .value-item:nth-child(5){animation:fadeUp .5s .7s ease forwards}
+
+/* Divider line */
+.divider{width:40px;height:1px;background:var(--accent);margin:1.5rem 0;opacity:0;transform:scaleX(0);transform-origin:left}
+.slide.active .divider{animation:scaleIn .8s .4s ease forwards}
+@keyframes scaleIn{to{opacity:1;transform:scaleX(1)}}
+
+/* Quote */
+.quote{font-size:clamp(1rem,2vw,1.6rem);font-weight:300;font-style:italic;color:var(--text-secondary);line-height:1.5;max-width:36ch;opacity:0;transform:translateY(20px)}
+.slide.active .quote{animation:fadeUp .8s .3s ease forwards}
+
+/* CTA */
+.cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cta-link{font-size:clamp(.75rem,1.2vw,1rem);color:var(--accent);letter-spacing:.08em;margin-top:1.5rem;opacity:0;transform:translateY(15px);text-decoration:none;border-bottom:1px solid var(--accent)}
+.slide.active .cta-link{animation:fadeUp .6s .6s ease forwards}
+.cta-sub{font-size:.65rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.8rem;opacity:0;transform:translateY(10px)}
+.slide.active .cta-sub{animation:fadeUp .5s .8s ease forwards}
+
+/* Nav */
+.progress{position:fixed;bottom:0;left:0;height:2px;background:var(--accent);transition:width .4s ease;z-index:100}
+.counter{position:fixed;bottom:1.5rem;right:2rem;font-size:.65rem;letter-spacing:.1em;color:var(--text-muted);z-index:100}
+.nav-hint{position:fixed;bottom:1.5rem;left:2rem;font-size:.6rem;letter-spacing:.08em;color:var(--text-muted);z-index:100;opacity:1;transition:opacity 1s ease}
+.nav-hint.hidden{opacity:0}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{to{opacity:1}}
+
+@media(max-width:600px){
+  .slide{padding:5vw 6vw}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .metric-row{grid-template-columns:repeat(2,1fr)}
+  .block-grid{grid-template-columns:1fr}
+  .value-grid{grid-template-columns:1fr}
+  .pipeline{flex-direction:column;gap:.5rem}
+  .pipe-arrow{transform:rotate(90deg)}
+  .kpi-row{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- SLIDE 1: Cover -->
+<div class="slide active">
+  <div class="eyebrow">Exclusive Access Partnership</div>
+  <h1>Edition Zero</h1>
+  <p class="subtitle">Private Dinner & House Night<br>25. September 2025 · Hamburg</p>
+  <div class="divider"></div>
+  <div class="metric-row" style="margin-top:1rem">
+    <div class="metric-card"><div class="num">120</div><div class="lbl">Kuratierte Gäste</div></div>
+    <div class="metric-card"><div class="num accent">1</div><div class="lbl">Exklusiver Partner</div></div>
+    <div class="metric-card"><div class="num">0</div><div class="lbl">Öffentlicher Zugang</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Positioning -->
+<div class="slide">
+  <div class="eyebrow">Das Format</div>
+  <h1>Kein Event.<br>Ein Raum.</h1>
+  <p class="subtitle">Ein kuratierter, ausschließlich auf Einladung zugänglicher Abend für die relevantesten Akteure im Hamburger Immobilienmarkt.</p>
+  <ul class="bullets">
+    <li>Keine Bühne. Keine Panels. Keine Keynotes.</li>
+    <li>Kein Content. Nur Gespräche.</li>
+    <li>Private Villa. Geschlossener Kreis.</li>
+    <li>Erste Ausgabe eines jährlich wiederkehrenden Formats.</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: The Audience -->
+<div class="slide">
+  <div class="eyebrow">Die Gäste</div>
+  <h1>Das Who-is-Who<br>des Hamburger Marktes</h1>
+  <p class="subtitle">Kapital, Entwicklung und Stadt in einem Raum</p>
+  <div class="block-grid">
+    <div class="v-block">
+      <div class="title">Projektentwickler</div>
+      <div class="desc">Führende Entwickler mit aktiven Projekten in der Metropolregion</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Institutionelle Investoren & Family Offices</div>
+      <div class="desc">Kapitalgeber mit direktem Entscheidungsmandat</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Makler mit Direktmandaten</div>
+      <div class="desc">Selektierte Vermittler mit exklusivem Deal-Zugang</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Off-Market & Restrukturierung</div>
+      <div class="desc">Spezialisten für nicht-öffentliche Transaktionen und Sondersituationen</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Stadt & Politik</div>
+      <div class="desc">Perspektiven aus Stadtentwicklung, Wohnungsbau und öffentlicher Planung</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Privates Netzwerk</div>
+      <div class="desc">Unternehmer und selektierte Persönlichkeiten aus dem erweiterten Netzwerk</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Exclusivity -->
+<div class="slide">
+  <div class="eyebrow">Exklusivität</div>
+  <h1>200+ Anfragen.<br>120 Plätze.</h1>
+  <div class="stats">
+    <div class="stat"><div class="stat-number">120</div><div class="stat-label">Strikte Kapazität</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:60%"></div></div></div>
+    <div class="stat"><div class="stat-number">200+</div><div class="stat-label">Kuratierte Profile</div><div class="stat-bar"><div class="stat-fill" style="--w:100%"></div></div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Öffentliche Tickets</div><div class="stat-bar"><div class="stat-fill" style="--w:0%"></div></div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Presse</div><div class="stat-bar"><div class="stat-fill" style="--w:0%"></div></div></div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><span class="kpi-val" style="color:var(--accent)">Nur Einladung</span><span class="kpi-lbl">Persönliche Einladungscodes</span></div>
+    <div class="kpi"><span class="kpi-val">Kuratiert</span><span class="kpi-lbl">Gästeliste aktiv gesteuert</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Curation -->
+<div class="slide">
+  <div class="eyebrow">Kuration</div>
+  <h1>Jeder Gast<br>ist ausgewählt.</h1>
+  <div class="pipeline">
+    <div class="pipe-step"><div class="pipe-icon" style="border-color:var(--accent)">01</div><div class="pipe-label">Persönliche Einladung</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">02</div><div class="pipe-label">Einladungscode</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon">03</div><div class="pipe-label">Private RSVP-Seite</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-icon" style="border-color:var(--accent)">04</div><div class="pipe-label">Aktive Gästelisten-Kuration</div></div>
+  </div>
+  <ul class="bullets" style="margin-top:2rem">
+    <li>Gästeliste kann mit dem Partner abgestimmt werden</li>
+    <li>Keine öffentliche Bewerbung möglich</li>
+    <li>Keine Weiterleitung von Einladungen</li>
+  </ul>
+</div>
+
+<!-- SLIDE 6: The Evening -->
+<div class="slide">
+  <div class="eyebrow">Der Abend</div>
+  <h1>Reception. Dinner.<br>House Night.</h1>
+  <p class="subtitle">Ein durchkomponierter Abend in drei Akten</p>
+  <div class="block-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="v-block" style="text-align:center;padding:1.4rem 1rem">
+      <div class="title" style="color:var(--accent);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Akt I</div>
+      <div class="title" style="font-size:1rem;margin-bottom:.4rem">Reception</div>
+      <div class="desc">Ankommen. Drinks. Erste Gespräche in der Villa.</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1.4rem 1rem">
+      <div class="title" style="color:var(--accent);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Akt II</div>
+      <div class="title" style="font-size:1rem;margin-bottom:.4rem">Seated Dinner</div>
+      <div class="desc">4-Gang-Menü. Kuratierte Sitzordnung. Gespräche auf Augenhöhe.</div>
+    </div>
+    <div class="v-block" style="text-align:center;padding:1.4rem 1rem">
+      <div class="title" style="color:var(--accent);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Akt III</div>
+      <div class="title" style="font-size:1rem;margin-bottom:.4rem">House Night</div>
+      <div class="desc">DJ. Drinks. Offene Atmosphäre bis ca. 2 Uhr.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Location -->
+<div class="slide">
+  <div class="eyebrow">Location</div>
+  <h1>Private Villa.<br>Heinepark, Hamburg.</h1>
+  <p class="subtitle">Nicht-öffentliche Location. Nur für den Abend geöffnet.</p>
+  <ul class="bullets">
+    <li>Private Villa in einer der exklusivsten Lagen Hamburgs</li>
+    <li>Geschlossenes Gelände, keine öffentliche Sichtbarkeit</li>
+    <li>Kuratierte Automotive-Präsenz vor der Villa (JB Motors)</li>
+    <li>Getränke inklusive über den gesamten Abend</li>
+  </ul>
+</div>
+
+<!-- SLIDE 8: Why This Format -->
+<div class="slide">
+  <div class="eyebrow">Warum dieses Format</div>
+  <h1>Kein passives Publikum.<br>Nur Entscheider.</h1>
+  <div class="block-grid">
+    <div class="v-block">
+      <div class="title">Keine Ablenkung</div>
+      <div class="desc">Kein Programm, keine Bühne, kein Warten. Jede Minute ist Gesprächszeit.</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Private Umgebung</div>
+      <div class="desc">Geschlossene Villa. Kein Zugang für Außenstehende. Vertrauensbasis.</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Hohe Entscheider-Dichte</div>
+      <div class="desc">120 Personen, jede einzelne relevant. Kein Füllmaterial.</div>
+    </div>
+    <div class="v-block">
+      <div class="title">Echte Gespräche</div>
+      <div class="desc">Sitzordnung bewusst gestaltet. Atmosphäre, die Offenheit erzeugt.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Partnership Model -->
+<div class="slide">
+  <div class="eyebrow">Partnerschaftsmodell</div>
+  <h1>Ein Partner.<br>Keine Konkurrenz.</h1>
+  <p class="subtitle">Exklusive Partnerschaft. Kein Co-Sponsoring. Keine konkurrierenden Marken.</p>
+  <div class="stats" style="margin-top:2.5rem">
+    <div class="stat"><div class="stat-number" style="color:var(--accent)">1</div><div class="stat-label">Exklusiver Partner</div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Co-Sponsoren</div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Konkurrierende Marken</div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Visueller Lärm</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Partner Value -->
+<div class="slide">
+  <div class="eyebrow">Partnerwert</div>
+  <h1>Zugang. Positionierung.<br>Integration.</h1>
+  <div class="value-grid">
+    <div class="value-item">
+      <div class="value-num">01 · Positionierung</div>
+      <div class="value-title">Einzige Marke im Raum</div>
+      <div class="value-desc">Subtile, hochwertige Integration. Keine Banner, keine Roll-Ups, kein visueller Lärm.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">02 · Zugang</div>
+      <div class="value-title">120 Entscheider. Direkt.</div>
+      <div class="value-desc">Höchste Entscheider-Dichte in privatem Setting. Natürliche Gespräche, keine erzwungenen Kontakte.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">03 · Gästekontingent</div>
+      <div class="value-title">10–20 eigene Gäste</div>
+      <div class="value-desc">Kuratiertes Kontingent. Nominierung durch den Partner, finale Abstimmung mit dem Gastgeber.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-num">04 · Markenintegration</div>
+      <div class="value-title">Exklusiver Partner-Status</div>
+      <div class="value-desc">Integration in Einladungsprozess, RSVP-Seite und raffinierte Vor-Ort-Präsenz.</div>
+    </div>
+    <div class="value-item" style="grid-column:1/-1;border-color:var(--accent);background:var(--accent-dim)">
+      <div class="value-num">05 · Langfristige Option</div>
+      <div class="value-title" style="color:var(--accent)">First Access für zukünftige Editionen</div>
+      <div class="value-desc">Vorkaufsrecht für Edition One, Two und folgende Ausgaben. Langfristige Partnerschaft statt Einmal-Sponsoring.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: About OffMarketPool -->
+<div class="slide">
+  <div class="eyebrow">Über OffMarketPool</div>
+  <h1>Das Netzwerk hinter<br>dem Abend.</h1>
+  <p class="subtitle">Plattform für Off-Market-Immobilientransaktionen in Europa</p>
+  <div class="metric-row">
+    <div class="metric-card"><div class="num">607</div><div class="lbl">Aktive Deals</div></div>
+    <div class="metric-card"><div class="num">€6,2 Mrd.</div><div class="lbl">Objektvolumen</div></div>
+    <div class="metric-card"><div class="num">7.000+</div><div class="lbl">Investorenprofile</div></div>
+  </div>
+  <ul class="bullets" style="margin-top:1.5rem">
+    <li>Kuratiertes Netzwerk aus Kapital, Deals und Operatoren</li>
+    <li>KI-gestützte Deal-Distribution in ganz Europa</li>
+    <li>Edition Zero ist die physische Extension dieses Netzwerks</li>
+  </ul>
+</div>
+
+<!-- SLIDE 12: Closing Quote -->
+<div class="slide" style="justify-content:center;align-items:center;text-align:center">
+  <div class="eyebrow" style="margin-bottom:2rem">Edition Zero</div>
+  <div class="quote" style="max-width:28ch;margin:0 auto">"Dies ist kein Event.<br><br>Es ist Zugang zu einem Raum, der normalerweise nicht existiert."</div>
+  <div class="divider" style="margin:2rem auto;transform-origin:center"></div>
+  <p class="subtitle" style="text-align:center;max-width:none;margin-bottom:0">25. September 2025 · Private Villa · Hamburg</p>
+</div>
+
+<!-- SLIDE 13: CTA -->
+<div class="slide cta-center">
+  <div class="eyebrow">Private Access</div>
+  <h1>Edition Zero</h1>
+  <p class="subtitle" style="text-align:center;max-width:none">Zugang ausschließlich mit Einladungscode.</p>
+  <a href="https://offmarketpool.de/edition-zero" class="cta-link" target="_blank" onclick="event.stopPropagation()">offmarketpool.de/edition-zero</a>
+  <div class="cta-sub">Access by invitation code only</div>
+  <div class="metric-row" style="margin-top:3rem;max-width:500px">
+    <div class="metric-card" style="text-align:center"><div class="num accent" style="font-size:clamp(1rem,1.8vw,1.3rem)">Dr. Marcel Hofeditz</div><div class="lbl">Host · OffMarketPool</div></div>
+  </div>
+</div>
+
+</div>
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="nav-hint" id="navHint">Tippen oder → drücken zum Navigieren</div>
+<script>
+const slides=document.querySelectorAll('.slide');const progress=document.getElementById('progress');const counter=document.getElementById('counter');const navHint=document.getElementById('navHint');let cur=0,total=slides.length,touchX=0;
+function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');slides[n].classList.add('active');cur=n;progress.style.width=((cur+1)/total*100)+'%';counter.textContent=(cur+1)+' / '+total;if(cur>0)navHint.classList.add('hidden')}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter')go(cur+1);if(e.key==='ArrowLeft'||e.key==='Backspace')go(cur-1)});
+document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?go(cur+1):go(cur-1)}},{passive:true});
+document.addEventListener('click',e=>{const x=e.clientX/window.innerWidth;x>.3?go(cur+1):go(cur-1)});
+go(0);
+</script>
+</body>
+</html>
