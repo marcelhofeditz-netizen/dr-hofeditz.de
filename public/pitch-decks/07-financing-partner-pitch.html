@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>OffMarketPool – Financing Partner Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0B0B;--bg-card:#111111;--bg-elevated:#161616;
+  --text:#F6F6F6;--text-secondary:#888888;--text-muted:#555555;
+  --border:#1E1E1E;--border-hover:#333333;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.deck{position:relative;width:100%;height:100%}
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:8vw;opacity:0;pointer-events:none;
+}
+.slide.active{opacity:1;pointer-events:auto}
+.eyebrow{font-size:clamp(.6rem,.9vw,.75rem);letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:1.5rem;opacity:0;transform:translateY(20px)}
+.slide.active .eyebrow{animation:fadeUp .7s ease forwards}
+h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5vw,4.2rem);margin-bottom:1.2rem;opacity:0;transform:translateY(30px)}
+.slide.active h1{animation:fadeUp .8s .15s ease forwards}
+.subtitle{font-size:clamp(1rem,2vw,1.6rem);font-weight:300;color:var(--text-secondary);margin-bottom:2.5rem;max-width:36ch;line-height:1.4;opacity:0;transform:translateY(25px)}
+.slide.active .subtitle{animation:fadeUp .8s .25s ease forwards}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:.9rem;max-width:52ch}
+.bullets li{font-size:clamp(.78rem,1.1vw,.95rem);line-height:1.6;color:var(--text-secondary);padding-left:1.4em;position:relative;opacity:0;transform:translateY(18px)}
+.bullets li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--text-muted)}
+.slide.active .bullets li:nth-child(1){animation:fadeUp .6s .35s ease forwards}
+.slide.active .bullets li:nth-child(2){animation:fadeUp .6s .45s ease forwards}
+.slide.active .bullets li:nth-child(3){animation:fadeUp .6s .55s ease forwards}
+.slide.active .bullets li:nth-child(4){animation:fadeUp .6s .65s ease forwards}
+.slide.active .bullets li:nth-child(5){animation:fadeUp .6s .75s ease forwards}
+.slide.active .bullets li:nth-child(6){animation:fadeUp .6s .85s ease forwards}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;margin-top:2rem}
+.stat{text-align:center;opacity:0;transform:translateY(20px)}
+.stat-number{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:500;letter-spacing:-.01em}
+.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin-top:.4rem}
+.slide.active .stat:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .stat:nth-child(2){animation:fadeUp .7s .4s ease forwards}
+.slide.active .stat:nth-child(3){animation:fadeUp .7s .5s ease forwards}
+.slide.active .stat:nth-child(4){animation:fadeUp .7s .6s ease forwards}
+.slide.active .stat:nth-child(5){animation:fadeUp .7s .7s ease forwards}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem}
+.step{padding:2rem;border:1px solid var(--border);opacity:0;transform:translateY(20px)}
+.step-num{font-size:2.5rem;font-weight:500;color:var(--border-hover);margin-bottom:.8rem}
+.step-title{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
+.step-desc{font-size:.82rem;line-height:1.6;color:var(--text-secondary)}
+.slide.active .step:nth-child(1){animation:fadeUp .7s .3s ease forwards}
+.slide.active .step:nth-child(2){animation:fadeUp .7s .45s ease forwards}
+.slide.active .step:nth-child(3){animation:fadeUp .7s .6s ease forwards}
+
+/* benefit cards */
+.benefit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-top:2rem}
+.benefit-card{padding:1.8rem;border:1px solid var(--border);opacity:0;transform:translateY(20px)}
+.benefit-card h3{font-size:.9rem;font-weight:500;margin-bottom:.4rem}
+.benefit-card p{font-size:.8rem;line-height:1.5;color:var(--text-secondary)}
+.slide.active .benefit-card:nth-child(1){animation:fadeUp .6s .3s ease forwards}
+.slide.active .benefit-card:nth-child(2){animation:fadeUp .6s .4s ease forwards}
+.slide.active .benefit-card:nth-child(3){animation:fadeUp .6s .5s ease forwards}
+.slide.active .benefit-card:nth-child(4){animation:fadeUp .6s .6s ease forwards}
+.slide.active .benefit-card:nth-child(5){animation:fadeUp .6s .7s ease forwards}
+
+/* role cards */
+.role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:2rem}
+.role-card{padding:2rem;border:1px solid var(--border);opacity:0;transform:translateY(20px)}
+.role-card .role-type{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.6rem}
+.role-card h3{font-size:1.05rem;font-weight:500;margin-bottom:.8rem}
+.role-card ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.role-card ul li{font-size:.78rem;line-height:1.5;color:var(--text-secondary);padding-left:1.1em;position:relative}
+.role-card ul li::before{content:'';position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--text-muted)}
+.role-card.highlight{border-color:var(--border-hover)}
+.slide.active .role-card:nth-child(1){animation:fadeUp .6s .3s ease forwards}
+.slide.active .role-card:nth-child(2){animation:fadeUp .6s .45s ease forwards}
+.slide.active .role-card:nth-child(3){animation:fadeUp .6s .6s ease forwards}
+
+/* badge visual */
+.badge-row{display:flex;gap:1.2rem;margin-top:2rem;flex-wrap:wrap}
+.badge-item{display:flex;align-items:center;gap:.8rem;padding:1.2rem 1.8rem;border:1px solid var(--border);opacity:0;transform:translateY(20px);min-width:220px}
+.badge-icon{font-size:1.8rem;flex-shrink:0}
+.badge-info h4{font-size:.85rem;font-weight:500;margin-bottom:.2rem}
+.badge-info p{font-size:.75rem;color:var(--text-secondary);line-height:1.4}
+.slide.active .badge-item:nth-child(1){animation:fadeUp .6s .35s ease forwards}
+.slide.active .badge-item:nth-child(2){animation:fadeUp .6s .50s ease forwards}
+.slide.active .badge-item:nth-child(3){animation:fadeUp .6s .65s ease forwards}
+
+/* filter grid */
+.filter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.filter-item{padding:1.4rem;border:1px solid var(--border);opacity:0;transform:translateY(18px)}
+.filter-item .filter-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.5rem}
+.filter-item .filter-value{font-size:.88rem;font-weight:400;color:var(--text-secondary);line-height:1.5}
+.slide.active .filter-item:nth-child(1){animation:fadeUp .6s .3s ease forwards}
+.slide.active .filter-item:nth-child(2){animation:fadeUp .6s .4s ease forwards}
+.slide.active .filter-item:nth-child(3){animation:fadeUp .6s .5s ease forwards}
+.slide.active .filter-item:nth-child(4){animation:fadeUp .6s .6s ease forwards}
+
+/* Stat growth bars */
+.stat-bar{width:70%;height:3px;background:var(--border);margin:.6rem auto 0;border-radius:2px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;width:0;background:var(--text)}
+.stat-fill-accent{height:100%;border-radius:2px;width:0;background:#4ade80}
+.slide.active .stat-fill,.slide.active .stat-fill-accent{width:var(--w);transition:width 1.2s .6s ease}
+
+/* Founder card */
+.founder-card{display:flex;gap:2.5rem;align-items:flex-start;margin-top:1.5rem;flex-wrap:wrap;opacity:0;transform:translateY(20px)}
+.slide.active .founder-card{animation:fadeUp .7s .3s ease forwards}
+.founder-avatar{width:clamp(80px,10vw,110px);height:clamp(80px,10vw,110px);border-radius:50%;background:var(--bg-elevated,#161616);border:1.5px solid var(--border-hover,#333);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.founder-info{flex:1;min-width:200px}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.cred{opacity:0;transform:translateY(12px)}
+.cred .cred-val{font-size:clamp(.9rem,1.4vw,1.1rem);font-weight:500}
+.cred .cred-lbl{font-size:.6rem;color:var(--text-secondary);letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}
+.slide.active .cred:nth-child(1){animation:fadeUp .5s .5s ease forwards}
+.slide.active .cred:nth-child(2){animation:fadeUp .5s .6s ease forwards}
+.slide.active .cred:nth-child(3){animation:fadeUp .5s .7s ease forwards}
+.slide.active .cred:nth-child(4){animation:fadeUp .5s .8s ease forwards}
+
+.cta-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cta-btn{display:inline-block;margin-top:2rem;padding:.9rem 2.5rem;background:var(--text);color:var(--bg);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:500;opacity:0;transform:translateY(15px)}
+.slide.active .cta-btn{animation:fadeUp .6s .7s ease forwards}
+.progress{position:fixed;bottom:0;left:0;height:2px;background:var(--text);transition:width .4s ease;z-index:100}
+.counter{position:fixed;bottom:1.5rem;right:2rem;font-size:.7rem;letter-spacing:.1em;color:var(--text-muted);z-index:100}
+.nav-hint{position:fixed;bottom:1.5rem;left:2rem;font-size:.65rem;letter-spacing:.08em;color:var(--text-muted);z-index:100;opacity:1;transition:opacity 1s ease}
+.nav-hint.hidden{opacity:0}
+.lang-toggle{position:fixed;top:1.5rem;right:2rem;z-index:200;text-decoration:none;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);padding:.35rem .8rem;transition:color .3s,border-color .3s}
+.lang-toggle:hover{color:var(--text);border-color:var(--border-hover)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.slide{padding:6vw 7vw}.benefit-grid,.role-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.badge-row{flex-direction:column}.filter-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a href="07-financing-partner-pitch-de.html" class="lang-toggle" onclick="event.stopPropagation()">DE</a>
+<div class="deck" id="deck">
+
+<!-- Slide 1: Title -->
+<div class="slide active">
+  <div class="eyebrow">Financing Partner Pitch</div>
+  <h1>Financing Meets<br>Off-Market Deal Flow</h1>
+  <p class="subtitle">A new role inside the OffMarketPool ecosystem</p>
+  <ul class="bullets">
+    <li>607 active deals · €6.2B asset volume · 7,000+ investor profiles</li>
+    <li>Curated access to off-market financing requests</li>
+    <li>Position directly on deals – not as an external service provider</li>
+    <li>Workflow-integrated role inside the transaction process</li>
+  </ul>
+</div>
+
+<!-- Slide 2: Why Financing Matters -->
+<div class="slide">
+  <div class="eyebrow">The Problem</div>
+  <h1>Financing Decides<br>Off-Market Deals</h1>
+  <ul class="bullets">
+    <li>Off-market transactions frequently fail due to lack of financing certainty</li>
+    <li>Investors search for financing partners outside the platform – broken workflow</li>
+    <li>Banks and mezzanine providers lack structured access to off-market deal flow</li>
+    <li>Financing readiness is a critical trust signal in the deal process</li>
+    <li>Those who signal financing early, win deals</li>
+  </ul>
+</div>
+
+<!-- Slide 3: The Role -->
+<div class="slide">
+  <div class="eyebrow">The Role</div>
+  <h1>Financing Partners<br>Inside OffMarketPool</h1>
+  <ul class="bullets">
+    <li>Not a passive ad format – an active role in the transaction process</li>
+    <li>Access to curated deals based on region, asset class, and volume</li>
+    <li>Incoming financing requests directly from investors on the platform</li>
+    <li>Visible positioning on deals through the badge system</li>
+    <li>Part of the deal ecosystem – not an external supplier</li>
+  </ul>
+</div>
+
+<!-- Slide 4: How Deal Flow Works -->
+<div class="slide">
+  <div class="eyebrow">Deal Flow</div>
+  <h1>How You Receive<br>Relevant Deals</h1>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Configure Profile</div>
+      <div class="step-desc">Define region, asset classes, ticket size, and financing type. Nationwide or radius-based.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Receive Relevant Deals</div>
+      <div class="step-desc">The platform filters automatically and surfaces only properties matching your profile.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Position & Finance</div>
+      <div class="step-desc">Set badges, accept financing requests, participate directly in the deal.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5: Financing Request Tool -->
+<div class="slide">
+  <div class="eyebrow">Financing Requests</div>
+  <h1>Leads Directly<br>From the Platform</h1>
+  <ul class="bullets">
+    <li>Investors can submit financing requests on any listed property</li>
+    <li>Requests are automatically routed to matching financing partners</li>
+    <li>Structured lead data: property, volume, asset class, location</li>
+    <li>No cold outreach – qualified requests from active deal context</li>
+    <li>Direct connection between capital demand and financing capability</li>
+  </ul>
+</div>
+
+<!-- Slide 6: Badge System -->
+<div class="slide">
+  <div class="eyebrow">Badge System</div>
+  <h1>Visible Financing<br>Readiness on Deals</h1>
+  <p class="subtitle">Badges signal financing capability directly on the property</p>
+  <div class="badge-row">
+    <div class="badge-item">
+      <div class="badge-icon">🏦</div>
+      <div class="badge-info">
+        <h4>Bank Badge</h4>
+        <p>Signals: Senior debt financing for this property is fundamentally feasible</p>
+      </div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-icon">◆</div>
+      <div class="badge-info">
+        <h4>Mezzanine Badge</h4>
+        <p>Signals: Equity-like or mezzanine financing potentially available</p>
+      </div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-icon">⟶</div>
+      <div class="badge-info">
+        <h4>Lead Access</h4>
+        <p>Intermediaries receive financing requests but do not set badges</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 7: Smart Filtering -->
+<div class="slide">
+  <div class="eyebrow">Smart Filtering</div>
+  <h1>Only Relevant Deals.<br>No Noise.</h1>
+  <div class="filter-grid">
+    <div class="filter-item">
+      <div class="filter-label">Region</div>
+      <div class="filter-value">State, city, radius, or nationwide – you define your territory</div>
+    </div>
+    <div class="filter-item">
+      <div class="filter-label">Asset Class</div>
+      <div class="filter-value">Residential, commercial, logistics, office, hotel, healthcare, industrial</div>
+    </div>
+    <div class="filter-item">
+      <div class="filter-label">Ticket Size</div>
+      <div class="filter-value">Minimum and maximum volume according to your financing criteria</div>
+    </div>
+    <div class="filter-item">
+      <div class="filter-label">Financing Type</div>
+      <div class="filter-value">Senior debt, mezzanine, equity bridge, whole loan – based on profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 8: Subtypes -->
+<div class="slide">
+  <div class="eyebrow">Three Profiles</div>
+  <h1>Bank · Mezzanine ·<br>Intermediary</h1>
+  <div class="role-grid">
+    <div class="role-card highlight">
+      <div class="role-type">Profile A</div>
+      <h3>Bank</h3>
+      <ul>
+        <li>Review financing opportunities</li>
+        <li>Set bank badge on deals</li>
+        <li>Receive financing requests as leads</li>
+        <li>Classic senior debt positioning</li>
+      </ul>
+    </div>
+    <div class="role-card highlight">
+      <div class="role-type">Profile B</div>
+      <h3>Mezzanine Provider</h3>
+      <ul>
+        <li>Indicate mezzanine / equity potential</li>
+        <li>Set mezzanine badge on deals</li>
+        <li>Complement classic bank financing</li>
+        <li>Structure equity-like capital layers</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <div class="role-type">Profile C</div>
+      <h3>Financing Intermediary</h3>
+      <ul>
+        <li>View relevant financing opportunities</li>
+        <li>Receive or facilitate financing leads</li>
+        <li>No official badge rights</li>
+        <li>Lead-based model</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 9: Platform Stats -->
+<div class="slide">
+  <div class="eyebrow">Platform at a Glance</div>
+  <h1>The Ecosystem</h1>
+  <div class="stats">
+    <div class="stat"><div class="stat-number">607</div><div class="stat-label">Active Deals</div><div class="stat-bar"><div class="stat-fill" style="--w:85%"></div></div></div>
+    <div class="stat"><div class="stat-number">€6.2B</div><div class="stat-label">Asset Volume</div><div class="stat-bar"><div class="stat-fill" style="--w:95%"></div></div></div>
+    <div class="stat"><div class="stat-number">7,000+</div><div class="stat-label">Investor Profiles</div><div class="stat-bar"><div class="stat-fill" style="--w:70%"></div></div></div>
+    <div class="stat"><div class="stat-number">12</div><div class="stat-label">Partners · Top Cities</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:50%"></div></div></div>
+    <div class="stat"><div class="stat-number">9</div><div class="stat-label">Asset Classes</div><div class="stat-bar"><div class="stat-fill-accent" style="--w:90%"></div></div></div>
+  </div>
+</div>
+
+<!-- Slide 10: Future Revenue -->
+<div class="slide">
+  <div class="eyebrow">Future Model</div>
+  <h1>Revenue-Ready.<br>Not Yet Active.</h1>
+  <ul class="bullets">
+    <li>Onboarding and usage are currently free – early-mover advantage</li>
+    <li>The system is already designed for future monetization</li>
+    <li>Planned: success-based fee, e.g. 0.2% of financed volume</li>
+    <li>Transparent model that ties value to transaction success</li>
+    <li>Early positioning secures market share inside the ecosystem</li>
+  </ul>
+</div>
+
+<!-- Slide 11: Founder -->
+<div class="slide">
+  <div class="eyebrow">Founder</div>
+  <h1>Dr. Marcel Hofeditz</h1>
+  <p class="subtitle">Academic rigor meets operational excellence</p>
+  <div class="founder-card">
+    <img src="../IMG_8225.webp" alt="Dr. Marcel Hofeditz" class="founder-avatar" style="object-fit:cover">
+    <div class="founder-info">
+      <div class="cred-grid">
+        <div class="cred"><div class="cred-val">€600M+</div><div class="cred-lbl">Transaction Volume</div></div>
+        <div class="cred"><div class="cred-val">No. 1</div><div class="cred-lbl">Capital Broker Compass</div></div>
+        <div class="cred"><div class="cred-val">Dr. rer. pol.</div><div class="cred-lbl">Summa cum laude · Uni Münster</div></div>
+        <div class="cred"><div class="cred-val">13 Publications</div><div class="cred-lbl">400+ Citations · Guest Lecturer</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 12: CTA -->
+<div class="slide cta-center">
+  <div class="eyebrow">Get Started</div>
+  <h1>Become a<br>Financing Partner</h1>
+  <p class="subtitle" style="text-align:center">Position yourself inside the off-market ecosystem.<br>Receive qualified financing requests. Set badges on relevant deals.</p>
+  <a href="https://offmarketpool.vercel.app" class="cta-btn" target="_blank">Apply now &rarr;</a>
+</div>
+
+</div>
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="nav-hint" id="navHint">Tap or press &rarr; to navigate</div>
+<script>
+const slides=document.querySelectorAll('.slide');const progress=document.getElementById('progress');const counter=document.getElementById('counter');const navHint=document.getElementById('navHint');let cur=0,total=slides.length,touchX=0;
+function go(n){if(n<0||n>=total)return;slides[cur].classList.remove('active');slides[n].classList.add('active');cur=n;progress.style.width=((cur+1)/total*100)+'%';counter.textContent=(cur+1)+' / '+total;if(cur>0)navHint.classList.add('hidden')}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter')go(cur+1);if(e.key==='ArrowLeft'||e.key==='Backspace')go(cur-1)});
+document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?go(cur+1):go(cur-1)}},{passive:true});
+document.addEventListener('click',e=>{const x=e.clientX/window.innerWidth;x>.3?go(cur+1):go(cur-1)});
+go(0);
+</script>
+</body>
+</html>
