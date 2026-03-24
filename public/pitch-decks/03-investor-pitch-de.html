@@ -98,10 +98,58 @@ h1{font-weight:500;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2rem,5
 .slide.active .cred:nth-child(4){animation:fadeUp .5s .8s ease forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.slide{padding:6vw 7vw}.steps{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* PDF Download Button */
+.pdf-btn{position:fixed;top:1.5rem;right:5.5rem;z-index:200;background:none;border:1px solid var(--border);padding:.3rem .7rem;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-family:inherit;cursor:pointer;transition:color .3s,border-color .3s}
+.pdf-btn:hover{color:var(--text);border-color:var(--border-hover)}
+
+/* Print-friendly PDF */
+@media print{
+  @page{size:landscape;margin:1.5cm}
+  html,body{height:auto;overflow:visible;background:#fff!important;color:#111!important}
+  .deck{position:static}
+  .slide{position:static!important;opacity:1!important;pointer-events:auto!important;page-break-after:always;page-break-inside:avoid;padding:2cm;display:flex!important}
+  .slide:last-child{page-break-after:auto}
+  .eyebrow,.subtitle,h1,.metric-card,.v-block,.pipe-step,.pipe-arrow,.stat,.kpi,.founder-card,.cred,.asset-card,.cta-btn,.badge-item,.filter-item,.step,.benefit-card,.role-card,.fund-item,.driver-col,.comm-box,.comm-arrow,.comm-note,.timeline-node,.timeline-connector,.fly-item,.milestone-row,.chart-box,.bullets li{opacity:1!important;transform:none!important;animation:none!important}
+  .eyebrow{color:#666!important}
+  h1{color:#111!important}
+  .subtitle,.v-block .desc,.bullets li,.step-desc,.benefit-card p,.role-card ul li,.filter-item .filter-value,.badge-info p,.stat-label,.kpi-lbl,.cred .cred-lbl,.metric-card .lbl,.pipe-label,.comm-note,.fly-item .fly-text,.timeline-sub,.driver-col .driver-item{color:#444!important}
+  .v-block .title,.step-title,.benefit-card h3,.role-card h3,.filter-item .filter-label,.badge-info h4,.stat-number,.kpi-val,.cred .cred-val,.metric-card .num,.comm-box .comm-val,.comm-box .comm-title,.timeline-label,.driver-col .driver-hd,.step-num,.role-card .role-type,.badge-icon,.founder-name{color:#111!important}
+  .metric-card .num.accent,.comm-box.highlight .comm-val,.stat-number.accent{color:#16a34a!important}
+  .metric-card,.v-block,.step,.benefit-card,.role-card,.filter-item,.badge-item,.asset-card,.fund-item,.comm-box,.chart-box{border-color:#ddd!important;background:#fff!important}
+  .comm-box.highlight{border-color:#16a34a!important;background:rgba(22,163,52,.06)!important}
+  .pipe-icon{border-color:#ccc!important;background:#f5f5f5!important;color:#111!important}
+  .pipe-arrow,.comm-arrow{color:#999!important}
+  .stat-bar{background:#e0e0e0!important}
+  .stat-fill{background:#333!important}
+  .stat-fill-accent{background:#16a34a!important}
+  .timeline-dot{background:#333!important}
+  .timeline-dot.active-dot{background:#16a34a!important;box-shadow:none!important}
+  .timeline-connector{background:#ccc!important}
+  .fly-item .fly-dot{background:#999!important}
+  .founder-avatar{border-color:#ccc!important;background:#f0f0f0!important}
+  .cta-btn{background:#111!important;color:#fff!important}
+  .role-card.highlight{border-color:#999!important}
+  .bullets li::before{background:#999!important}
+  .driver-col .driver-item::before{color:#666!important}
+  .chart-svg .lbl{fill:#666!important}
+  .chart-svg .val,.chart-svg .val-lg{fill:#111!important}
+  .chart-svg .val-accent{fill:#16a34a!important}
+  .chart-svg .axis{stroke:#ccc!important}
+  .chart-svg .grid-line{stroke:#e0e0e0!important}
+  .chart-svg .data-line{stroke:#333!important}
+  .chart-svg .data-area{fill:rgba(0,0,0,0.04)!important}
+  .chart-svg .data-bar{fill:#333!important}
+  .chart-svg .data-bar-accent{fill:#16a34a!important}
+  .data-line-draw{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  .chart-svg .show,.chart-svg .show-2,.chart-svg .show-3{opacity:1!important;animation:none!important}
+  .progress,.counter,.nav-hint,.lang-toggle,.pdf-btn{display:none!important}
+}
 </style>
 </head>
 <body>
 <a href="03-investor-pitch.html" class="lang-toggle" onclick="event.stopPropagation()">EN</a>
+<button class="pdf-btn" onclick="event.stopPropagation();window.print()">PDF &#8595;</button>
 <div class="deck" id="deck">
 
 <div class="slide active">
