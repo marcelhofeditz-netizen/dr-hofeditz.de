@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OffMarketPool – Pitch Decks</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0B0B;--bg-card:#111111;--bg-elevated:#161616;
+  --text:#F6F6F6;--text-secondary:#888888;--text-muted:#555555;
+  --border:#1E1E1E;--border-hover:#333333;
+  --accent:#4ade80;--accent-dim:rgba(74,222,128,.12);
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:6vw 5vw}
+.eyebrow{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:1.2rem}
+h1{font-weight:600;letter-spacing:-.03em;line-height:1.05;font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:.6rem}
+.subtitle{font-size:clamp(.85rem,1.3vw,1.1rem);font-weight:300;color:var(--text-secondary);margin-bottom:3rem;max-width:42ch;line-height:1.45}
+.deck-list{display:flex;flex-direction:column;gap:0}
+.deck-row{display:grid;grid-template-columns:2.5rem 1fr auto auto;gap:1.5rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid var(--border)}
+.deck-row:first-child{border-top:1px solid var(--border)}
+.deck-num{font-size:.65rem;letter-spacing:.1em;color:var(--text-muted);font-weight:500}
+.deck-title{font-size:.85rem;font-weight:400;color:var(--text);letter-spacing:-.01em}
+.deck-link{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;padding:.35rem .8rem;border:1px solid var(--border);transition:color .3s,border-color .3s}
+.deck-link:hover{color:var(--text);border-color:var(--border-hover)}
+.back-link{display:inline-block;margin-top:3rem;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .3s}
+.back-link:hover{color:var(--text)}
+@media(max-width:600px){
+  .deck-row{grid-template-columns:2rem 1fr;gap:.8rem}
+  .deck-link{grid-column:2}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="eyebrow">OffMarketPool</div>
+  <h1>Pitch Decks</h1>
+  <p class="subtitle">Alle Pitch Decks im Überblick — Deutsch & English.</p>
+
+  <div class="deck-list">
+    <div class="deck-row">
+      <span class="deck-num">01</span>
+      <span class="deck-title">Broker Pitch</span>
+      <a href="01-broker-pitch-de.html" class="deck-link">DE</a>
+      <a href="01-broker-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">02</span>
+      <span class="deck-title">Partner Pitch</span>
+      <a href="02-partner-pitch-de.html" class="deck-link">DE</a>
+      <a href="02-partner-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">03</span>
+      <span class="deck-title">Investor Pitch</span>
+      <a href="03-investor-pitch-de.html" class="deck-link">DE</a>
+      <a href="03-investor-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">04</span>
+      <span class="deck-title">Venture Capital Pitch</span>
+      <a href="04-venture-capital-pitch-de.html" class="deck-link">DE</a>
+      <a href="04-venture-capital-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">05</span>
+      <span class="deck-title">Country Manager Pitch</span>
+      <a href="05-country-manager-pitch-de.html" class="deck-link">DE</a>
+      <a href="05-country-manager-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">06</span>
+      <span class="deck-title">Edition Zero Sponsorship</span>
+      <a href="06-edition-zero-sponsorship.html" class="deck-link">DE</a>
+      <a href="06-edition-zero-sponsorship-en.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">07</span>
+      <span class="deck-title">Finanzierungspartner Pitch</span>
+      <a href="07-financing-partner-pitch-de.html" class="deck-link">DE</a>
+      <a href="07-financing-partner-pitch.html" class="deck-link">EN</a>
+    </div>
+    <div class="deck-row">
+      <span class="deck-num">08</span>
+      <span class="deck-title">Gewerbenutzer Pitch</span>
+      <a href="08-gewerbenutzer-pitch-de.html" class="deck-link">DE</a>
+      <a href="08-gewerbenutzer-pitch.html" class="deck-link">EN</a>
+    </div>
+  </div>
+
+  <a href="https://offmarketpool.vercel.app" class="back-link">&larr; Zurück zu OffMarketPool</a>
+</div>
+</body>
+</html>

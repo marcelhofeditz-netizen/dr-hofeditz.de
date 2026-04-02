@@ -28,6 +28,8 @@ const de = {
     thesisFramework: 'These / Intellektuelles Fundament',
     platformExecution: 'Plattform / Umsetzung',
     address: 'Jevenstedter Straße 176a',
+    pitchDecks: 'Pitch Decks',
+    pitchDecksSub: 'Alle Pitch Decks im Überblick',
   },
   home: {
     badge: 'Hamburg · 2026',
@@ -92,6 +94,7 @@ const de = {
     platformPositioning: 'Europas führende Offmarket-Immobilien Plattform',
     platformScale: 'Assets im Volumen von über 6,2 Milliarden Euro',
     platformSectionDesc: '607 Deals. KI-basiertes Matching mit 7.000+ Investorenprofilen. Diskret. Präzise. Europäisch.',
+    viewPitchDeck: 'Pitch Deck ansehen',
     learnMore: 'Mehr erfahren',
     featureMatching: 'KI-basiertes Matching',
     featureMatchingDesc: 'Einzigartig entwickelter Algorithmus – 100+ gewichtete Kriterien für diskrete Platzierung.',
@@ -364,6 +367,8 @@ const en = {
     thesisFramework: 'Thesis / Intellectual framework',
     platformExecution: 'Platform / Execution',
     address: 'Jevenstedter Straße 176a',
+    pitchDecks: 'Pitch Decks',
+    pitchDecksSub: 'All pitch decks at a glance',
   },
   home: {
     badge: 'Hamburg · 2026',
@@ -428,6 +433,7 @@ const en = {
     platformPositioning: "Europe's leading off-market real estate investment platform",
     platformScale: 'Assets representing more than €6.2 billion',
     platformSectionDesc: '607 deals. AI-based matching with 7,000+ investor profiles. Discreet. Precise. European.',
+    viewPitchDeck: 'View Pitch Deck',
     learnMore: 'Learn more',
     featureMatching: 'AI-Based Matching',
     featureMatchingDesc: 'Uniquely developed algorithm – 100+ weighted criteria for discreet placement.',

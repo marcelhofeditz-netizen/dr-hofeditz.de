@@ -8,7 +8,7 @@ import { SocialSection } from '@/components/SocialSection'
 import { useLocale } from '@/lib/locale-context'
 
 export default function Home() {
-  const { d } = useLocale()
+  const { d, locale } = useLocale()
 
   return (
     <>
@@ -263,6 +263,15 @@ export default function Home() {
               </BtnPrimary>
               <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>
             </div>
+            <a
+              href={locale === 'de' ? '/pitch-decks/03-investor-pitch-de.html' : '/pitch-decks/03-investor-pitch.html'}
+              target="_blank"
+              rel="noopener"
+              className="inline-block mt-4 text-[0.68rem] tracking-[0.15em] uppercase text-grey-muted hover:text-text-primary transition-colors duration-200"
+              style={{ fontFamily: 'monospace' }}
+            >
+              {d.home.viewPitchDeck} &rarr;
+            </a>
           </div>
 
           {/* Feature list */}
