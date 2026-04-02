@@ -18,6 +18,7 @@ export function Footer() {
     { label: d.footer.drHofeditz, sub: d.footer.founderResearch, href: '/', external: false },
     { label: d.footer.offmarketpool, sub: d.footer.platformExecution, href: 'https://offmarketpool.vercel.app', external: true },
     { label: d.footer.dieImmobilienluge, sub: d.footer.thesisFramework, href: '/buch', external: false },
+    { label: d.footer.pitchDecks, sub: d.footer.pitchDecksSub, href: '/pitch-decks/index.html', external: false },
   ]
 
   return (
