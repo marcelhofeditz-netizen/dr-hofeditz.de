@@ -148,4 +148,4 @@ This presentation positions OffMarketPool as a scalable technology company disru
 - Scale AI capabilities and platform technology
 - Expand into priority markets: DACH → Benelux → Nordics → Southern Europe
 - Build the category-defining platform for off-market real estate
-- Contact: offmarketpool.vercel.app
+- Contact: offmarketpool.de

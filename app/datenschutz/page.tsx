@@ -30,8 +30,8 @@ export default function DatenschutzPage() {
             <p>
               Dr. Marcel Hofeditz<br />
               Dr. Hofeditz Real Estate GmbH<br />
-              Jevenstedter Straße 176a<br />
-              22547 Hamburg<br />
+              Am Klein Flottbeker Bahnhof 55<br />
+              22609 Hamburg<br />
               E-Mail: info@dr-hofeditz.de
             </p>
           </div>

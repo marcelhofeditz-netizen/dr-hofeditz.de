@@ -23,10 +23,10 @@ export default function PlattformPage() {
             {d.platform.desc}
           </p>
           <div className="flex flex-wrap gap-4">
-            <BtnPrimary href="https://offmarketpool.vercel.app" external>
+            <BtnPrimary href="https://offmarketpool.de" external>
               {d.home.toPlatform} &rarr;
             </BtnPrimary>
-            <BtnOutline href="https://offmarketpool.vercel.app/login" external>
+            <BtnOutline href="https://offmarketpool.de/login" external>
               {d.platform.login}
             </BtnOutline>
           </div>
@@ -160,7 +160,7 @@ export default function PlattformPage() {
         <p className="mb-10 text-[0.9rem] mx-auto max-w-[40ch] text-grey-secondary">
           {d.platform.ctaDesc}
         </p>
-        <BtnPrimary href="https://offmarketpool.vercel.app" external>
+        <BtnPrimary href="https://offmarketpool.de" external>
           {d.home.toPlatform} &rarr;
         </BtnPrimary>
       </section>

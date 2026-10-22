@@ -50,7 +50,7 @@ export function Nav() {
         })}
         <li>
           <a
-            href="https://offmarketpool.vercel.app"
+            href="https://offmarketpool.de"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[0.74rem] tracking-[0.1em] uppercase px-4 py-2 transition-all duration-200 bg-text-primary text-black hover:opacity-80"
@@ -106,7 +106,7 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href="https://offmarketpool.vercel.app"
+            href="https://offmarketpool.de"
             target="_blank"
             rel="noopener noreferrer"
             className="px-[5vw] py-4 text-[0.8rem] tracking-[0.1em] uppercase text-text-primary"

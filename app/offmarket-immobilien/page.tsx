@@ -39,7 +39,7 @@ export default function OffmarketImmobilienPage() {
               : 'Von Dr. Marcel Hofeditz – Gründer von OffMarketPool, Europas führender Offmarket-Immobilienplattform.'}
           </p>
           <div className="flex flex-wrap gap-4">
-            <BtnPrimary href="https://offmarketpool.vercel.app" external>
+            <BtnPrimary href="https://offmarketpool.de" external>
               {isEn ? 'Open OffMarketPool' : 'Zu OffMarketPool'} &rarr;
             </BtnPrimary>
             <BtnOutline href="/plattform">
@@ -262,7 +262,7 @@ export default function OffmarketImmobilienPage() {
             ? 'Register on OffMarketPool and gain access to Europe\'s discreet investor network.'
             : 'Registrieren Sie sich auf OffMarketPool und erhalten Sie Zugang zum diskreten europäischen Investorennetzwerk.'}
         </p>
-        <BtnPrimary href="https://offmarketpool.vercel.app" external>
+        <BtnPrimary href="https://offmarketpool.de" external>
           {isEn ? 'Open OffMarketPool' : 'Zu OffMarketPool'} &rarr;
         </BtnPrimary>
       </section>

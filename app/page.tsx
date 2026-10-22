@@ -117,7 +117,7 @@ export default function Home() {
                 title: d.home.pillar3Title,
                 desc: d.home.pillar3Desc,
                 cta: d.home.pillar3Cta,
-                href: 'https://offmarketpool.vercel.app',
+                href: 'https://offmarketpool.de',
                 external: true,
                 marker: '03',
               },
@@ -258,7 +258,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="https://offmarketpool.vercel.app" external>
+              <BtnPrimary href="https://offmarketpool.de" external>
                 {d.home.toPlatform} &rarr;
               </BtnPrimary>
               <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>

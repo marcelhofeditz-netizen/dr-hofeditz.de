@@ -145,5 +145,5 @@ This presentation speaks to real estate brokers who want to place deals faster, 
 - Upload your first deal on OffMarketPool
 - Instant access to Europe's largest off-market investor network
 - No upfront cost – commission-based model
-- Contact: offmarketpool.vercel.app
+- Contact: offmarketpool.de
 - Discreet. Precise. European.
