@@ -264,7 +264,7 @@ export default function Home() {
               <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>
             </div>
             <a
-              href={locale === 'de' ? '/pitch-decks/03-investor-pitch-de.html' : '/pitch-decks/03-investor-pitch.html'}
+              href={locale === 'de' ? 'https://offmarketpool.de/pitch-decks/03-investor-pitch-de.html' : 'https://offmarketpool.de/pitch-decks/03-investor-pitch.html'}
               target="_blank"
               rel="noopener"
               className="inline-block mt-4 text-[0.68rem] tracking-[0.15em] uppercase text-grey-muted hover:text-text-primary transition-colors duration-200"
@@ -288,6 +288,40 @@ export default function Home() {
                   <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
                   <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ── KAPITALANLAGEN ── */}
+      <section className="px-[5vw] py-28">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <Eyebrow>{d.home.capitalSection}</Eyebrow>
+            <SectionTitle className="mb-6">
+              {d.home.capitalHeadline1}<br />
+              {d.home.capitalHeadline2}
+            </SectionTitle>
+            <p className="text-[0.92rem] leading-[1.7] mb-10 max-w-[46ch] text-grey-secondary">
+              {d.home.capitalDesc}
+            </p>
+            <BtnPrimary href="https://offmarketpool.de/kapitalanlagen" external>
+              {d.home.capitalCta} &rarr;
+            </BtnPrimary>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              { title: d.home.capitalFeature1, desc: d.home.capitalFeature1Desc },
+              { title: d.home.capitalFeature2, desc: d.home.capitalFeature2Desc },
+              { title: d.home.capitalFeature3, desc: d.home.capitalFeature3Desc },
+            ].map(({ title, desc }) => (
+              <div key={title} className="p-6 border border-grey-light bg-bg-card">
+                <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
+                <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
               </div>
             ))}
           </div>
@@ -387,7 +421,13 @@ export default function Home() {
         <p className="text-[0.9rem] leading-relaxed mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
           {d.home.ctaDesc}
         </p>
-        <BtnPrimary href="/kontakt">{d.home.inquireNow}</BtnPrimary>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <BtnPrimary href="https://calendly.com/marcel-hofeditz-svtq" external>
+            {d.home.strategyCallCta}
+          </BtnPrimary>
+          <BtnOutline href="/kontakt">{d.home.inquireNow}</BtnOutline>
+        </div>
+        <p className="text-[0.78rem] mt-5 text-grey-muted">{d.home.strategyCallDesc}</p>
       </section>
     </>
   )

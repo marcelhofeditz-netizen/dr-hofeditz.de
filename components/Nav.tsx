@@ -16,6 +16,7 @@ export function Nav() {
     { href: '/buch', label: d.nav.book },
     { href: '/coaching', label: d.nav.coaching },
     { href: '/forschung', label: d.nav.research },
+    { href: '/blog', label: d.nav.blog },
     { href: '/kontakt', label: d.nav.contact },
   ]
 
