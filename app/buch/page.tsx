@@ -46,6 +46,9 @@ export default function BuchPage() {
               Die<br />
               <em className="italic">Immobilien&shy;luge</em>
             </SectionTitle>
+            <p className="text-[0.82rem] tracking-[0.06em] uppercase mb-4 text-text-primary">
+              {d.book.publisherNote}
+            </p>
             <p className="text-[0.92rem] leading-relaxed mb-3 max-w-[44ch] text-grey-secondary">
               {d.book.heroDesc1}
             </p>

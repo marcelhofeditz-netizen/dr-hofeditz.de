@@ -11,6 +11,7 @@ export function Footer() {
     { href: '/buch', label: d.nav.book },
     { href: '/coaching', label: d.nav.coaching },
     { href: '/forschung', label: d.nav.research },
+    { href: '/blog', label: d.nav.blog },
     { href: '/kontakt', label: d.nav.contact },
   ]
 
@@ -18,7 +19,7 @@ export function Footer() {
     { label: d.footer.drHofeditz, sub: d.footer.founderResearch, href: '/', external: false },
     { label: d.footer.offmarketpool, sub: d.footer.platformExecution, href: 'https://offmarketpool.de', external: true },
     { label: d.footer.dieImmobilienluge, sub: d.footer.thesisFramework, href: '/buch', external: false },
-    { label: d.footer.pitchDecks, sub: d.footer.pitchDecksSub, href: '/pitch-decks/index.html', external: false },
+    { label: d.footer.pitchDecks, sub: d.footer.pitchDecksSub, href: 'https://offmarketpool.de/pitch-decks/', external: true },
   ]
 
   return (
