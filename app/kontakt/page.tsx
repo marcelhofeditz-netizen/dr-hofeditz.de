@@ -26,7 +26,7 @@ export default function KontaktPage() {
             {[
               { label: d.contact.address, value: `${d.footer.address}\nHamburg` },
               { label: d.contact.hours, value: d.contact.hoursValue },
-              { label: d.contact.platformLabel, value: 'offmarketpool.vercel.app', link: 'https://offmarketpool.vercel.app' },
+              { label: d.contact.platformLabel, value: 'offmarketpool.de', link: 'https://offmarketpool.de' },
             ].map(({ label, value, link }) => (
               <div key={label}>
                 <span className="text-[0.65rem] tracking-[0.18em] uppercase block mb-1 text-grey-secondary">

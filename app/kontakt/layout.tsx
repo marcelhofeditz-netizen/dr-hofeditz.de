@@ -9,7 +9,7 @@ const localBusinessJsonLd = {
     'Offmarket-Immobilientransaktionen, Immobilien-Coaching und Beratung durch Dr. Marcel Hofeditz.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Jevenstedter Straße 176a',
+    streetAddress: 'Am Klein Flottbeker Bahnhof 55',
     addressLocality: 'Hamburg',
     addressCountry: 'DE',
   },

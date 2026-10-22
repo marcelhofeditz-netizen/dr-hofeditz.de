@@ -181,7 +181,7 @@ export default function BuchPage() {
               </span>
             </a>
             <a
-              href="https://offmarketpool.vercel.app"
+              href="https://offmarketpool.de"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-6 border border-grey-light bg-bg-card hover:border-grey-secondary transition-all duration-300"

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Impressum',
-  description: 'Impressum der Website dr-hofeditz.de – Angaben gemäß § 5 TMG.',
+  description: 'Impressum der Website dr-hofeditz.de – Angaben gemäß § 5 DDG.',
   alternates: { canonical: 'https://www.dr-hofeditz.de/impressum' },
   robots: { index: true, follow: true },
 }
@@ -25,13 +25,19 @@ export default function ImpressumPage() {
         <div className="space-y-8 text-[0.9rem] leading-[1.8] text-grey-secondary">
           <div>
             <h2 className="text-text-primary font-medium text-[1rem] mb-2">
-              Angaben gemäß § 5 TMG
+              Angaben gemäß § 5 DDG
             </h2>
             <p>
-              Dr. Marcel Hofeditz<br />
               Dr. Hofeditz Real Estate GmbH<br />
-              Jevenstedter Straße 176a<br />
-              22547 Hamburg
+              Am Klein Flottbeker Bahnhof 55<br />
+              22609 Hamburg
+            </p>
+            <p className="mt-3">
+              Vertreten durch den Geschäftsführer: Dr. Marcel Hofeditz
+            </p>
+            <p className="mt-3">
+              Registergericht: Amtsgericht Hamburg<br />
+              Handelsregister: HRB 180163
             </p>
           </div>
 
@@ -40,18 +46,47 @@ export default function ImpressumPage() {
               Kontakt
             </h2>
             <p>
+              Telefon: +49 (0) 1515 0467537<br />
               E-Mail: info@dr-hofeditz.de
             </p>
           </div>
 
           <div>
             <h2 className="text-text-primary font-medium text-[1rem] mb-2">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+              Aufsichtsbehörde und Berufsrecht
+            </h2>
+            <p>
+              Erlaubnis als Immobilienmakler nach § 34c Abs. 1 GewO, erteilt durch die
+              zuständige Erlaubnisbehörde der Freien und Hansestadt Hamburg
+              (Bezirksamt Altona, Verbraucherschutzamt).
+            </p>
+            <p className="mt-3">
+              Es gelten die berufsrechtlichen Regelungen der Gewerbeordnung (GewO) und
+              der Makler- und Bauträgerverordnung (MaBV), einsehbar unter{' '}
+              <a href="https://www.gesetze-im-internet.de" target="_blank" rel="noopener noreferrer" className="underline hover:text-text-primary">
+                www.gesetze-im-internet.de
+              </a>.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-text-primary font-medium text-[1rem] mb-2">
+              Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
             <p>
               Dr. Marcel Hofeditz<br />
-              Jevenstedter Straße 176a<br />
-              22547 Hamburg
+              Am Klein Flottbeker Bahnhof 55<br />
+              22609 Hamburg
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-text-primary font-medium text-[1rem] mb-2">
+              Verbraucherstreitbeilegung
+            </h2>
+            <p>
+              Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren
+              vor einer Verbraucherschlichtungsstelle teilzunehmen.
             </p>
           </div>
 

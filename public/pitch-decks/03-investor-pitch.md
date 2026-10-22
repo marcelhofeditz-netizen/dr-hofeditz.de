@@ -145,5 +145,5 @@ This presentation targets real estate investors looking for off-market deal acce
 - Create your investor profile on OffMarketPool
 - Define your search criteria and investment preferences
 - Start receiving matched off-market opportunities
-- Contact: offmarketpool.vercel.app
+- Contact: offmarketpool.de
 - Discreet. Precise. European.

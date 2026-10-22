@@ -145,5 +145,5 @@ This presentation explains the OffMarketPool partner model to prospective region
 - Apply for exclusive partner status in your region
 - Onboarding support and dedicated partner management
 - Start sourcing and distributing from day one
-- Contact: offmarketpool.vercel.app
+- Contact: offmarketpool.de
 - Discreet. Precise. European.

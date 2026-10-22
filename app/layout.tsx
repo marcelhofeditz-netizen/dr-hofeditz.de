@@ -112,7 +112,7 @@ function JsonLd() {
     ],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Jevenstedter Straße 176a',
+      streetAddress: 'Am Klein Flottbeker Bahnhof 55',
       addressLocality: 'Hamburg',
       addressCountry: 'DE',
     },
@@ -133,7 +133,7 @@ function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'OffMarketPool',
-    url: 'https://offmarketpool.vercel.app',
+    url: 'https://offmarketpool.de',
     logo: `${BASE_URL}/IMG_8225.webp`,
     description:
       'Europas führende Offmarket-Immobilienplattform. KI-basiertes Matching, 607 Deals, €6,2 Mrd. Asset-Volumen.',
