@@ -80,5 +80,5 @@ export async function POST(req: NextRequest) {
   }
 
   const content = data.content?.[0]?.text ?? 'Entschuldigung, es gab einen Fehler.'
-  return NextResponse.json({ content }, { headers: cors(req) })
+  return NextResponse.json(data?.error ? { content, error: data.error.type ?? 'error' } : { content }, { headers: cors(req) })
 }
