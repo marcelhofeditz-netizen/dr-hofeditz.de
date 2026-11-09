@@ -26,8 +26,8 @@ export default function BuchPage() {
               }}
             >
               <Image
-                src="/book-cover.png"
-                alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
+                src="/book-cover-psychologie.jpg"
+                alt="Psychologie beim Immobilienkauf – Dr. Marcel Hofeditz (Arbeitscover)"
                 width={340}
                 height={500}
                 className="object-cover"
@@ -60,7 +60,8 @@ export default function BuchPage() {
               &bdquo;{d.book.quote}&ldquo;
             </blockquote>
             <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="#doc-agent">{d.book.askDocAgent}</BtnPrimary>
+              <BtnPrimary href="https://www.immobilienluege.de" external>immobilienluege.de &rarr;</BtnPrimary>
+              <BtnOutline href="#doc-agent">{d.book.askDocAgent}</BtnOutline>
               <BtnOutline href="/kontakt">{d.book.releaseDate}</BtnOutline>
             </div>
           </div>
