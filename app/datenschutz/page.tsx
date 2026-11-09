@@ -92,6 +92,36 @@ export default function DatenschutzPage() {
               Datenschutzmodus (youtube-nocookie.com).
             </p>
           </div>
+
+          <div>
+            <h2 className="text-text-primary font-extrabold tracking-[-0.02em] text-[1rem] mb-2">
+              7. Warteliste und Newsletter zum Buch (immobilienluege.de / thepropertylie.com)
+            </h2>
+            <p>
+              Wenn Sie sich auf der Warteliste zum Buch „Psychologie beim Immobilienkauf“
+              eintragen, speichern wir Ihre E-Mail-Adresse, optional Vorname und Ihre Angabe,
+              wer Sie sind, sowie Sprache, Herkunft des Eintrags und Zeitpunkt und Wortlaut Ihrer
+              Einwilligung. Zweck: Information zum Erscheinen und Vorbestellen des Buchs sowie
+              unser Newsletter mit Beiträgen zur Immobilienpsychologie. Rechtsgrundlage ist Ihre
+              Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie jederzeit per Abmeldelink in
+              jeder Mail oder an info@dr-hofeditz.de widerrufen können. Die Daten liegen bei
+              Supabase (Rechenzentrum in Irland, EU) als Auftragsverarbeiter und werden bis
+              zum Widerruf gespeichert. Für den Versand von Newsletter-Mails kann ein
+              E-Mail-Dienstleister mit Sitz in der EU eingesetzt werden; vor dem ersten
+              Newsletter bestätigen Sie Ihre Adresse per Link (Double-Opt-in).
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-text-primary font-extrabold tracking-[-0.02em] text-[1rem] mb-2">
+              8. KI-Agent „Doc“
+            </h2>
+            <p>
+              Fragen an den KI-Agenten „Doc“ werden zur Beantwortung an Anthropic PBC
+              (USA) übermittelt und von uns nicht gespeichert. Bitte geben Sie dort keine
+              personenbezogenen oder vertraulichen Daten ein.
+            </p>
+          </div>
         </div>
 
         <div className="mt-16 pt-8 border-t border-grey-light">
