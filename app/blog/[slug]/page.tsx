@@ -66,8 +66,8 @@ export default function BlogPostPage({ params }: Props) {
             Das Buch zum Blog
           </p>
           <p className="text-[0.88rem] leading-relaxed mb-5 text-grey-secondary">
-            Dieser Essay gehört zur Kapitelwelt der „Immobilienlüge&ldquo; – Verlagsveröffentlichung
-            geplant für Sommer 2027. Vormerken lohnt sich.
+            Dieser Essay gehört zur Kapitelwelt der „Immobilienlüge&ldquo; – Erscheint im Herbst 2027
+            bei Econ (Ullstein Buchverlage). Vormerken lohnt sich.
           </p>
           <Link
             href="/buch"
