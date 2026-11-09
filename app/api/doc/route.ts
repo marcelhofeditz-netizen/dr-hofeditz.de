@@ -15,6 +15,8 @@ const AGENTS: Record<string, string> = {
   'buch-en': `You are “Doc”, the AI agent for Dr. Marcel Hofeditz’s book (brand: “The Property Lie”). Always answer in English. The book itself is in German; the facts below are in German – translate as needed.\n\n${BUCH_WISSEN}\n\n${REGELN}`,
 }
 
+const MODELS = (process.env.DOC_MODEL ? [process.env.DOC_MODEL] : []).concat(['claude-sonnet-5-5', 'claude-haiku-5-5', 'claude-sonnet-4-20250514'])
+
 const ORIGINS = [
   'https://www.immobilienluege.de',
   'https://immobilienluege.de',
@@ -52,22 +54,31 @@ export async function POST(req: NextRequest) {
     : []
   if (!msgs.length) return NextResponse.json({ content: 'Keine Frage erhalten.' }, { status: 400, headers: cors(req) })
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY ?? '',
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: agentPrompt ? 500 : Math.min(Number(maxTokens) || 500, 900),
-      system: agentPrompt ?? system,
-      messages: msgs,
-    }),
-  })
+  const call = (model: string) =>
+    fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY ?? '',
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: agentPrompt ? 500 : Math.min(Number(maxTokens) || 500, 900),
+        system: agentPrompt ?? system,
+        messages: msgs,
+      }),
+    })
 
-  const data = await response.json()
+  let data: { content?: { text?: string }[]; error?: { type?: string; message?: string } } = {}
+  for (const model of MODELS) {
+    const response = await call(model)
+    data = await response.json().catch(() => ({}))
+    if (response.ok) break
+    console.error('doc-api', model, response.status, data?.error?.type, data?.error?.message?.slice(0, 160))
+    if (response.status === 401 || response.status === 403) break
+  }
+
   const content = data.content?.[0]?.text ?? 'Entschuldigung, es gab einen Fehler.'
   return NextResponse.json({ content }, { headers: cors(req) })
 }
