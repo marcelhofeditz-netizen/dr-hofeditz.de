@@ -9,7 +9,7 @@ Dr. Marcel Hofeditz, Dr. rer. pol. summa cum laude (Universitat Munster). Resear
 
 PROJECTS:
 1. Offmarketpool – Europe's leading off-market real estate platform. AI matching, 7,000+ investor profiles. 607 deals, €6.2B asset volume.
-2. Die Immobilienluge – Non-fiction, coming autumn 2027 with Econ (Ullstein). 21 chapters on behavioral economics, game theory, market psychology.
+2. Die Immobilienluge – Brand/project; the book "Psychologie beim Immobilienkauf" is coming autumn 2027 with Econ (Ullstein). 21 chapters on behavioral economics, game theory, market psychology.
 3. Immolab – Individual coaching for real estate investors.
 
 RESEARCH: 5 journal articles (HRM, Personnel Review, IJBM, zfo), 5 conference papers, 3 working papers. 400+ citations.

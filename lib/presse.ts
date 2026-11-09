@@ -59,7 +59,7 @@ export const marken: Marke[] = [
     url: `${BASE}/buch`,
     kurz: 'Buch',
     beschreibung:
-      'Sachbuch von Dr. Marcel Hofeditz über Verhaltensökonomie, Spieltheorie und Marktpsychologie im deutschen Immobilienmarkt. Erscheint im Herbst 2027 bei Econ (Ullstein Buchverlage).',
+      'Projekt und Marke rund um Verhaltensökonomie, Spieltheorie und Marktpsychologie im deutschen Immobilienmarkt. Das Buch dazu, „Psychologie beim Immobilienkauf“ von Dr. Marcel Hofeditz, erscheint im Herbst 2027 bei Econ (Ullstein Buchverlage).',
     sichtbar: true,
   },
 ]

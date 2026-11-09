@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 const bookJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Book',
-  name: 'Die Immobilienlüge',
-  alternateName: 'Warum wir mit Immobilien nicht reich werden',
+  name: 'Psychologie beim Immobilienkauf',
+  alternateName: 'Die Immobilienlüge',
   author: {
     '@type': 'Person',
     name: 'Dr. Marcel Hofeditz',
@@ -27,7 +27,7 @@ const bookJsonLd = {
 export const metadata: Metadata = {
   title: 'Die Immobilienlüge – Warum wir mit Immobilien nicht reich werden',
   description:
-    'Sachbuch von Dr. Marcel Hofeditz, erscheint im Herbst 2027 bei Econ. 21 Kapitel über Verhaltensökonomie, Spieltheorie und Immobilienpsychologie. Mit KI-Agent Doc für interaktive Buchanalyse.',
+    'Die Immobilienlüge – das Buch „Psychologie beim Immobilienkauf“ von Dr. Marcel Hofeditz erscheint im Herbst 2027 bei Econ. 21 Kapitel über Verhaltensökonomie, Spieltheorie und Immobilienpsychologie. Mit KI-Agent Doc für interaktive Buchanalyse.',
   alternates: {
     canonical: 'https://www.dr-hofeditz.de/buch',
   },
