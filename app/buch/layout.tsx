@@ -21,7 +21,7 @@ const bookJsonLd = {
     name: 'Econ (Ullstein Buchverlage)',
   },
   url: 'https://www.dr-hofeditz.de/buch',
-  image: 'https://www.dr-hofeditz.de/book-cover.png',
+  image: 'https://www.dr-hofeditz.de/book-cover-psychologie.jpg',
 }
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: 'book',
     images: [
       {
-        url: '/book-cover.png',
+        url: '/book-cover-psychologie.jpg',
         width: 680,
         height: 1000,
         alt: 'Die Immobilienlüge – Buchcover',

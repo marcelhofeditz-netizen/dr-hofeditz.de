@@ -60,8 +60,8 @@ export const assets: Asset[] = [
   {
     id: 'immobilienluege',
     name: 'Die Immobilienlüge',
-    domain: 'Buch & Marke',
-    url: '/buch',
+    domain: 'immobilienluege.de',
+    url: utm('https://www.immobilienluege.de', 'assets'),
     img: '/story/buch-fassade.webp',
     sichtbar: true,
     de: {

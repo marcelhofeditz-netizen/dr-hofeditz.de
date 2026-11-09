@@ -56,7 +56,7 @@ export const marken: Marke[] = [
   {
     id: 'buch',
     name: 'Die Immobilienlüge',
-    url: `${BASE}/buch`,
+    url: 'https://www.immobilienluege.de',
     kurz: 'Buch',
     beschreibung:
       'Projekt und Marke rund um Verhaltensökonomie, Spieltheorie und Marktpsychologie im deutschen Immobilienmarkt. Das Buch dazu, „Psychologie beim Immobilienkauf“ von Dr. Marcel Hofeditz, erscheint im Herbst 2027 bei Econ (Ullstein Buchverlage).',
