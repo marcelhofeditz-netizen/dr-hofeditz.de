@@ -70,15 +70,17 @@ export async function POST(req: NextRequest) {
       }),
     })
 
-  let data: { content?: { text?: string }[]; error?: { type?: string; message?: string } } = {}
+  let data: { content?: { type?: string; text?: string }[]; error?: { type?: string; message?: string }; stop_reason?: string } = {}
+  let status = 0
   for (const model of MODELS) {
     const response = await call(model)
+    status = response.status
     data = await response.json().catch(() => ({}))
     if (response.ok) break
     console.error('doc-api', model, response.status, data?.error?.type, data?.error?.message?.slice(0, 160))
     if (response.status === 401 || response.status === 403) break
   }
 
-  const content = data.content?.[0]?.text ?? 'Entschuldigung, es gab einen Fehler.'
-  return NextResponse.json(data?.error ? { content, error: data.error.type ?? 'error' } : { content }, { headers: cors(req) })
+  const content = data.content?.find((b) => b.type === 'text' && b.text)?.text ?? 'Entschuldigung, es gab einen Fehler.'
+  return NextResponse.json(data?.error || !data.content ? { content, error: data?.error?.type ?? `status_${status}` } : { content }, { headers: cors(req) })
 }
