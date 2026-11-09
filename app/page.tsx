@@ -2,165 +2,311 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Eyebrow, SectionTitle, Stat, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
 import { PodcastSection } from '@/components/PodcastSection'
 import { SocialSection } from '@/components/SocialSection'
 import { useLocale } from '@/lib/locale-context'
+import { fmtDatum, getMarke, veroeffentlichte } from '@/lib/presse'
+
+const OMP = 'https://offmarketpool.de'
+const utm = (content: string) => `${OMP}/?utm_source=dr-hofeditz.de&utm_medium=referral&utm_campaign=holding&utm_content=${content}`
+
+const T = {
+  de: {
+    heroKicker: 'Dr. Marcel Hofeditz · Hamburg',
+    heroTitle: ['Der beste', 'Markt ist', 'unsichtbar.'],
+    heroLead:
+      'Die meisten Investmentimmobilien wechseln den Eigentümer, ohne je inseriert zu werden. Ich erforsche, warum Menschen bei Immobilien so entscheiden, wie sie entscheiden – und baue die Plattform, die diesen verborgenen Markt öffnet.',
+    heroCta1: 'Off-Market-Objekte ansehen',
+    heroCta2: 'Die Geschichte',
+    ticker: ['Off-Market-Immobilien', 'KI-Matching', 'Investmentimmobilien', 'Verhaltensökonomie', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
+    c1Kicker: 'Kapitel 01 · Die Lüge',
+    c1Title: 'Immobilien sind kein Markt aus Beton.',
+    c1Text:
+      'Sie sind ein Markt aus Psychologie. Anker, Besitztumseffekt, Herdentrieb: Die größte Vermögensentscheidung der meisten Menschen folgt Erwartungen und Geschichten, nicht Kalkulation. Darüber schreibe ich – in „Die Immobilienlüge“ und im Buch „Psychologie beim Immobilienkauf“, das im Herbst 2027 bei Econ erscheint.',
+    c1Cta: 'Zum Buch',
+    c1Cta2: 'Essays im Blog',
+    c2Kicker: 'Kapitel 02 · Die Tür',
+    c2Title: 'Hinter der Tür liegt der eigentliche Markt.',
+    c2Text:
+      'Eigentümer, die diskret verkaufen wollen, inserieren nicht. Käufer mit Kapital suchen nicht auf Portalen. Offmarketpool bringt beide zusammen: Die KI gleicht jedes Objekt mit hinterlegten Ankaufsprofilen ab, Exposé und Adresse gehen erst nach Zustimmung des Eigentümers raus.',
+    c2Stats: [
+      { n: '1.100+', l: 'Objekte im Pool' },
+      { n: '€10 Mrd.+', l: 'Objektvolumen' },
+      { n: '7.000+', l: 'Investorenprofile' },
+      { n: '50/50', l: 'für Mitmakler' },
+    ],
+    c2Cta: 'Zu Offmarketpool',
+    c2Cta2: 'Was ist Off-Market?',
+    c2Links: [
+      { label: 'Off-Market-Investmentimmobilien kaufen', href: utm('investment') },
+      { label: 'Immobilie diskret verkaufen', href: utm('verkaufen') },
+      { label: 'Kapitalanlagen ohne Käuferprovision', href: utm('kapitalanlagen') },
+      { label: 'Gemeinschaftsgeschäfte für Makler', href: utm('makler') },
+    ],
+    c3Kicker: 'Kapitel 03 · Die Maschine',
+    c3Title: 'Agenten statt Formulare.',
+    c3Text:
+      'Was früher Sachbearbeitung war, erledigt heute eine KI im Chat. Offmarketpool läuft als Connector direkt in Claude und ChatGPT. Mit Elsterbot entsteht dieselbe Idee für die Steuer: Unterlagen hochladen, die KI rechnet, eine Steuerkanzlei prüft auf Wunsch und gibt frei.',
+    c3Cards: [
+      { t: 'Offmarketpool im Chat', d: 'Objekte suchen, Käufer matchen, Exposés anfordern – direkt aus Claude oder ChatGPT.', href: utm('connector'), ext: true },
+      { t: 'Elsterbot', d: 'Steuererklärung im KI-Chat. Kanzleien schließen sich per fester Monatslizenz an. Derzeit in der Beta.', href: 'https://www.elsterbot.de', ext: true },
+      { t: 'Newsroom', d: 'Pressemitteilungen, Profile und Pressekontakt aller Marken an einem Ort.', href: '/presse', ext: false },
+    ],
+    c4Kicker: 'Kapitel 04 · Die Methode',
+    c4Title: 'Erst forschen, dann handeln.',
+    c4Text:
+      'Promotion summa cum laude an der Universität Münster zu Vertrauen, Compliance und Strategie, über 400 Zitationen. Danach sieben Jahre Co-CEO eines Maklerunternehmens mit mehr als 600 Mio. € verantwortetem Transaktionsvolumen. Seit 2023 die Dr. Hofeditz Real Estate GmbH – mit Fokus auf Investment- und Off-Market-Transaktionen.',
+    c4Cta: 'Zur Forschung',
+    c4Cta2: 'Immolab Coaching',
+    pressKicker: 'Presse',
+    pressTitle: 'Aus dem Newsroom',
+    pressEmpty: 'Die ersten Meldungen erscheinen in Kürze.',
+    pressCta: 'Alle Meldungen',
+    finalKicker: 'Der nächste Schritt',
+    finalTitle: 'Hinter die Tür schauen.',
+    finalText: 'Off-Market-Objekte sehen, ein Gesuch hinterlegen oder ein Objekt diskret anbieten – kostenlos registrieren auf Offmarketpool.',
+    finalCta: 'Jetzt zu Offmarketpool',
+    finalCta2: 'Kontakt',
+  },
+  en: {
+    heroKicker: 'Dr. Marcel Hofeditz · Hamburg',
+    heroTitle: ['The best', 'market is', 'invisible.'],
+    heroLead:
+      'Most investment properties change hands without ever being listed. I research why people decide the way they do about real estate – and build the platform that opens up this hidden market.',
+    heroCta1: 'View off-market properties',
+    heroCta2: 'The story',
+    ticker: ['Off-market real estate', 'AI matching', 'Investment properties', 'Behavioral economics', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
+    c1Kicker: 'Chapter 01 · The lie',
+    c1Title: 'Real estate is not a market made of concrete.',
+    c1Text:
+      'It is a market made of psychology. Anchors, the endowment effect, herd behaviour: most people’s biggest financial decision follows expectations and stories, not calculation. That is what I write about – in “Die Immobilienlüge” and in the book “Psychologie beim Immobilienkauf”, coming in autumn 2027 from Econ.',
+    c1Cta: 'The book',
+    c1Cta2: 'Essays',
+    c2Kicker: 'Chapter 02 · The door',
+    c2Title: 'Behind the door lies the real market.',
+    c2Text:
+      'Owners who want to sell discreetly don’t list. Buyers with capital don’t search portals. Offmarketpool brings both together: AI matches every property against stored acquisition profiles, and details are only released with the owner’s consent.',
+    c2Stats: [
+      { n: '1,100+', l: 'Properties in the pool' },
+      { n: '€10bn+', l: 'Asset volume' },
+      { n: '7,000+', l: 'Investor profiles' },
+      { n: '50/50', l: 'for co-brokers' },
+    ],
+    c2Cta: 'Go to Offmarketpool',
+    c2Cta2: 'What is off-market?',
+    c2Links: [
+      { label: 'Buy off-market investment properties', href: utm('investment') },
+      { label: 'Sell a property discreetly', href: utm('verkaufen') },
+      { label: 'Buy-to-let apartments', href: utm('kapitalanlagen') },
+      { label: 'Joint deals for brokers', href: utm('makler') },
+    ],
+    c3Kicker: 'Chapter 03 · The machine',
+    c3Title: 'Agents instead of forms.',
+    c3Text:
+      'What used to be paperwork is now done by AI in a chat. Offmarketpool runs as a connector inside Claude and ChatGPT. Elsterbot applies the same idea to taxes: upload your documents, the AI calculates, and a tax firm reviews and files on request.',
+    c3Cards: [
+      { t: 'Offmarketpool in chat', d: 'Search properties, match buyers, request exposés – right from Claude or ChatGPT.', href: utm('connector'), ext: true },
+      { t: 'Elsterbot', d: 'German tax returns in an AI chat. Tax firms join via a fixed monthly licence. Currently in beta.', href: 'https://www.elsterbot.de', ext: true },
+      { t: 'Newsroom', d: 'Press releases, profiles and press contact for all brands in one place.', href: '/presse', ext: false },
+    ],
+    c4Kicker: 'Chapter 04 · The method',
+    c4Title: 'Research first, then act.',
+    c4Text:
+      'PhD summa cum laude at the University of Münster on trust, compliance and strategy, 400+ citations. Then seven years as co-CEO of a brokerage with more than €600m in transaction volume. Since 2023 Dr. Hofeditz Real Estate GmbH – focused on investment and off-market transactions.',
+    c4Cta: 'Research',
+    c4Cta2: 'Immolab coaching',
+    pressKicker: 'Press',
+    pressTitle: 'From the newsroom',
+    pressEmpty: 'The first releases will be published shortly.',
+    pressCta: 'All releases',
+    finalKicker: 'Next step',
+    finalTitle: 'Look behind the door.',
+    finalText: 'See off-market properties, store a search profile or offer a property discreetly – register for free on Offmarketpool.',
+    finalCta: 'Go to Offmarketpool',
+    finalCta2: 'Contact',
+  },
+}
+
+function Chapter({
+  img,
+  alt,
+  kicker,
+  title,
+  text,
+  reverse,
+  children,
+}: {
+  img: string
+  alt: string
+  kicker: string
+  title: string
+  text: string
+  reverse?: boolean
+  children?: React.ReactNode
+}) {
+  return (
+    <section className="px-[5vw] py-24 md:py-32 border-t border-grey-light">
+      <div className={`max-w-[1200px] mx-auto grid gap-12 md:gap-20 items-center md:grid-cols-2`}>
+        <div className={`relative overflow-hidden aspect-[16/10] ${reverse ? 'md:order-last' : ''}`}>
+          <Image src={img} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+        </div>
+        <div>
+          <p className="kicker mb-5">{kicker}</p>
+          <h2 className="h-section text-text-primary mb-6" style={{ fontSize: 'clamp(2rem, 4.2vw, 3.6rem)' }}>
+            {title}
+          </h2>
+          <p className="text-[1.05rem] leading-[1.75] text-[#cfcfcf] max-w-[38rem]">{text}</p>
+          {children}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function Home() {
-  const { d, locale } = useLocale()
+  const { locale } = useLocale()
+  const t = T[locale] ?? T.de
+  const meldungen = veroeffentlichte().filter((m) => getMarke(m.marke).sichtbar).slice(0, 3)
 
   return (
     <>
+      <div className="grain" aria-hidden="true" />
+
       {/* ── HERO ── */}
-      <section className="min-h-[92vh] flex items-center px-[5vw] py-20">
-        <div className="max-w-[1100px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Photo — shows first on mobile */}
-          <div className="flex justify-center md:justify-end order-first md:order-last">
-            <div className="relative">
-              <div className="absolute inset-0 translate-x-3 translate-y-3 -z-10 border border-grey-light" />
-              <Image
-                src="/IMG_8225.webp"
-                alt="Dr. Marcel Hofeditz"
-                width={380}
-                height={460}
-                className="object-cover object-top"
-                style={{
-                  maxWidth: 'clamp(240px, 30vw, 380px)',
-                  width: '100%',
-                  height: 'auto',
-                  aspectRatio: '5/6',
-                }}
-                priority
-              />
-            </div>
-          </div>
-
-          <div>
-            <span className="inline-flex items-center gap-2 border border-grey-light text-[0.68rem] tracking-[0.2em] uppercase px-4 py-2 mb-8 text-grey-secondary">
-              {d.home.badge}
-            </span>
-
-            <h1
-              className="font-sans font-medium tracking-[-0.02em] leading-[1.08] mb-8 text-text-primary"
-              style={{ fontSize: 'clamp(2.6rem, 5vw, 4.2rem)' }}
-            >
-              Dr. Marcel<br />
-              Hofeditz
-            </h1>
-
-            {/* Three role lines */}
-            <div className="space-y-2 mb-8">
-              {[d.home.heroRole1, d.home.heroRole2, d.home.heroRole3].map((role) => (
-                <p
-                  key={role}
-                  className="text-[0.88rem] tracking-[0.04em] text-grey-secondary flex items-start gap-3"
-                >
-                  <span className="text-grey-muted flex-shrink-0 mt-[1px]">&mdash;</span>
-                  {role}
-                </p>
+      <section className="relative min-h-[100svh] flex items-end overflow-hidden isolate -mt-[1px]">
+        <div className="absolute inset-y-0 right-0 left-0 md:left-[28%] -z-20">
+          <Image
+            src="/story/hero-tuer.webp"
+            alt="Schwere Tür in der Hamburger Speicherstadt, durch das Schlüsselloch fällt Licht"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover kenburns"
+            style={{ objectPosition: '60% 45%' }}
+          />
+        </div>
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ background: 'linear-gradient(90deg,#0B0B0B 0%,#0B0B0B 28%,#0B0B0B99 40%,#0B0B0B00 60%),linear-gradient(0deg,#0B0B0B 0%,#0B0B0B00 40%)' }}
+        />
+        <div className="w-full px-[5vw] pt-36 pb-24">
+          <div className="max-w-[1200px] mx-auto">
+            <p className="kicker mb-6">{t.heroKicker}</p>
+            <h1 className="display text-text-primary mb-8" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
+              {t.heroTitle.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
               ))}
-            </div>
-
-            {/* Intersection paragraph */}
-            <p className="text-[0.92rem] leading-[1.7] mb-10 max-w-[44ch] text-grey-secondary">
-              {d.home.heroDesc}
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/plattform">OffMarketPool</BtnPrimary>
-              <BtnOutline href="/buch">{d.home.toBook}</BtnOutline>
+            </h1>
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.6] text-[#dddddd] max-w-[36rem] mb-10">{t.heroLead}</p>
+            <div className="flex flex-wrap gap-3">
+              <a href={utm('hero')} className="btn-solid-x">
+                {t.heroCta1}
+              </a>
+              <a href="#geschichte" className="btn-ghost-x">
+                {t.heroCta2}
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── AUTHORITY STRIP ── */}
-      <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
-        <Stat number={d.home.stat1n} label={d.home.stat1l} />
-        <Stat number={d.home.stat2n} label={d.home.stat2l} />
-        <Stat number={d.home.stat3n} label={d.home.stat3l} />
-        <Stat number={d.home.stat4n} label={d.home.stat4l} />
+      {/* ── TICKER ── */}
+      <div className="border-y border-grey-light overflow-hidden whitespace-nowrap" aria-hidden="true">
+        <div className="ticker-track">
+          {[...t.ticker, ...t.ticker].map((w, i) => (
+            <span key={i}>{w}</span>
+          ))}
+        </div>
       </div>
 
-      {/* ── ECOSYSTEM ── */}
-      <section className="px-[5vw] py-28">
-        <div className="max-w-[1100px] mx-auto">
-          <Eyebrow>{d.home.ecosystem}</Eyebrow>
-          <SectionTitle className="mb-4 max-w-[24ch]">
-            {d.home.ecosystemHeadline}
-          </SectionTitle>
-          <p className="text-[0.9rem] leading-relaxed mb-16 max-w-[52ch] text-grey-secondary">
-            {d.home.ecosystemDesc}
-          </p>
+      {/* ── KAPITEL 01 ── */}
+      <div id="geschichte" className="scroll-mt-20">
+        <Chapter
+          img="/story/buch-fassade.webp"
+          alt="Ein Mensch steht vor einer riesigen, hell erleuchteten Hausfassade"
+          kicker={t.c1Kicker}
+          title={t.c1Title}
+          text={t.c1Text}
+        >
+          <div className="flex flex-wrap gap-3 mt-9">
+            <Link href="/buch" className="btn-solid-x">
+              {t.c1Cta}
+            </Link>
+            <Link href="/blog" className="btn-ghost-x">
+              {t.c1Cta2}
+            </Link>
+          </div>
+        </Chapter>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-grey-light">
-            {[
-              {
-                eyebrow: d.home.pillar1Eyebrow,
-                title: d.home.pillar1Title,
-                desc: d.home.pillar1Desc,
-                cta: d.home.pillar1Cta,
-                href: '/forschung',
-                marker: '01',
-              },
-              {
-                eyebrow: d.home.pillar2Eyebrow,
-                title: d.home.pillar2Title,
-                desc: d.home.pillar2Desc,
-                cta: d.home.pillar2Cta,
-                href: '/buch',
-                marker: '02',
-              },
-              {
-                eyebrow: d.home.pillar3Eyebrow,
-                title: d.home.pillar3Title,
-                desc: d.home.pillar3Desc,
-                cta: d.home.pillar3Cta,
-                href: 'https://offmarketpool.de',
-                external: true,
-                marker: '03',
-              },
-            ].map(({ eyebrow, title, desc, cta, href, external, marker }) => {
-              const content = (
-                <div className="group p-8 md:p-10 flex flex-col justify-between h-full border-b md:border-b-0 md:border-r border-grey-light last:border-0 transition-colors duration-300 hover:bg-bg-elevated">
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <span className="text-[0.65rem] tracking-[0.22em] uppercase text-grey-secondary">
-                        {eyebrow}
-                      </span>
-                      <span className="text-[0.85rem] text-grey-muted">
-                        {marker}
-                      </span>
-                    </div>
-                    <h3
-                      className="font-sans font-medium tracking-[-0.01em] leading-[1.15] mb-4 text-text-primary"
-                      style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)' }}
-                    >
-                      {title}
-                    </h3>
-                    <p className="text-[0.84rem] leading-relaxed text-grey-secondary">
-                      {desc}
-                    </p>
-                  </div>
-                  <div className="mt-8 pt-6 border-t border-grey-light">
-                    <span className="text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 text-text-primary group-hover:text-grey-secondary">
-                      {cta} &rarr;
-                    </span>
-                  </div>
-                </div>
+      {/* ── KAPITEL 02 · OFFMARKETPOOL ── */}
+      <Chapter
+        img="/story/schluesselloch-stadt.webp"
+        alt="Blick durch ein Schlüsselloch auf eine Stadt bei Nacht – Off-Market-Immobilien"
+        kicker={t.c2Kicker}
+        title={t.c2Title}
+        text={t.c2Text}
+        reverse
+      >
+        <div className="grid grid-cols-2 gap-px bg-grey-light border border-grey-light mt-9 max-w-[38rem]">
+          {t.c2Stats.map((s) => (
+            <div key={s.l} className="bg-black p-5">
+              <p className="text-[1.6rem] font-extrabold tracking-[-0.02em] text-text-primary">{s.n}</p>
+              <p className="text-[0.7rem] tracking-[0.18em] uppercase text-grey-secondary mt-1">{s.l}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-3 mt-8">
+          <a href={utm('kapitel-tuer')} className="btn-solid-x">
+            {t.c2Cta}
+          </a>
+          <Link href="/offmarket-immobilien" className="btn-ghost-x">
+            {t.c2Cta2}
+          </Link>
+        </div>
+        <ul className="mt-8 space-y-2">
+          {t.c2Links.map((l) => (
+            <li key={l.label}>
+              <a href={l.href} className="text-[0.92rem] text-text-primary underline decoration-grey-muted underline-offset-4 hover:decoration-text-primary">
+                {l.label} &rarr;
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Chapter>
+
+      {/* ── KAPITEL 03 · KI ── */}
+      <section className="relative px-[5vw] py-24 md:py-32 border-t border-grey-light overflow-hidden isolate">
+        <div className="absolute inset-0 -z-20">
+          <Image src="/story/elsterbot-flug.webp" alt="" fill sizes="100vw" className="object-cover opacity-40" />
+        </div>
+        <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(0deg,#0B0B0B 10%,#0B0B0Bcc 60%,#0B0B0B99 100%)' }} />
+        <div className="max-w-[1200px] mx-auto">
+          <p className="kicker mb-5">{t.c3Kicker}</p>
+          <h2 className="h-section text-text-primary mb-6 max-w-[16ch]" style={{ fontSize: 'clamp(2rem, 4.8vw, 4rem)' }}>
+            {t.c3Title}
+          </h2>
+          <p className="text-[1.05rem] leading-[1.75] text-[#cfcfcf] max-w-[42rem]">{t.c3Text}</p>
+          <div className="grid gap-px bg-grey-light border border-grey-light mt-14 md:grid-cols-3">
+            {t.c3Cards.map((c, i) => {
+              const inner = (
+                <>
+                  <span className="text-[0.7rem] tracking-[0.2em] text-grey-muted">0{i + 1}</span>
+                  <h3 className="text-[0.85rem] tracking-[0.22em] uppercase text-text-primary font-semibold mt-3 mb-3">{c.t}</h3>
+                  <p className="text-[0.95rem] leading-relaxed text-[#bdbdbd]">{c.d}</p>
+                  <span className="inline-block mt-5 text-[0.72rem] tracking-[0.14em] uppercase text-text-primary">&rarr;</span>
+                </>
               )
-
-              if (external) {
-                return (
-                  <a key={title} href={href} target="_blank" rel="noopener noreferrer" className="block">
-                    {content}
-                  </a>
-                )
-              }
-              return (
-                <Link key={title} href={href} className="block">
-                  {content}
+              const cls = 'block bg-black/90 p-8 hover:bg-bg-elevated transition-colors duration-300'
+              return c.ext ? (
+                <a key={c.t} href={c.href} target={c.href.startsWith(OMP) ? undefined : '_blank'} rel="noopener" className={cls}>
+                  {inner}
+                </a>
+              ) : (
+                <Link key={c.t} href={c.href} className={cls}>
+                  {inner}
                 </Link>
               )
             })}
@@ -168,266 +314,69 @@ export default function Home() {
         </div>
       </section>
 
-      <Divider />
-
-      {/* ── ABOUT / BIO ── */}
-      <section className="px-[5vw] py-28" id="ueber">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <div>
-            <Eyebrow>{d.home.aboutMe}</Eyebrow>
-            <SectionTitle className="mb-8">
-              Dr. Marcel<br />
-              Hofeditz
-            </SectionTitle>
-
-            <p className="text-[0.85rem] tracking-[0.08em] uppercase mb-6 text-grey-secondary">
-              {d.home.roleDesc}
-            </p>
-
-            <div className="space-y-4 text-[0.92rem] leading-[1.7] text-grey-secondary">
-              <p>
-                {d.home.bio1}{' '}
-                <strong className="text-text-primary font-normal">{d.home.bio1bold}</strong>{' '}
-                {d.home.bio1end}
-              </p>
-              <p>
-                {d.home.bio2}{' '}
-                <strong className="text-text-primary font-normal">{d.home.bio2bold}</strong>{' '}
-                {d.home.bio2end}
-              </p>
-              <p>
-                {d.home.bio3}{' '}
-                <strong className="text-text-primary font-normal">{d.home.bio3bold}</strong>{' '}
-                {d.home.bio3end}
-              </p>
-            </div>
-          </div>
-
-          {/* Credentials */}
-          <div className="grid grid-cols-1 gap-5 mt-2">
-            {[
-              { label: d.home.academic, items: d.home.academicItems },
-              { label: d.home.entrepreneurial, items: d.home.entrepreneurialItems },
-            ].map(({ label, items }) => (
-              <div key={label} className="p-7 border border-grey-light bg-bg-card">
-                <span className="text-[0.68rem] tracking-[0.18em] uppercase block mb-5 text-grey-secondary">
-                  {label}
-                </span>
-                <ul className="space-y-2.5">
-                  {items.map((item) => (
-                    <li key={item} className="flex gap-3 text-[0.82rem] text-grey-secondary">
-                      <span className="text-grey-muted flex-shrink-0">&mdash;</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+      {/* ── KAPITEL 04 · FORSCHUNG ── */}
+      <Chapter
+        img="/story/forschung-bibliothek.webp"
+        alt="Universitätsbibliothek bei Nacht mit Forschungsunterlagen"
+        kicker={t.c4Kicker}
+        title={t.c4Title}
+        text={t.c4Text}
+      >
+        <div className="flex items-center gap-5 mt-9">
+          <Image src="/IMG_8225.webp" alt="Dr. Marcel Hofeditz" width={72} height={72} className="grayscale object-cover w-[72px] h-[72px]" />
+          <div className="flex flex-wrap gap-3">
+            <Link href="/forschung" className="btn-solid-x">
+              {t.c4Cta}
+            </Link>
+            <Link href="/coaching" className="btn-ghost-x">
+              {t.c4Cta2}
+            </Link>
           </div>
         </div>
-      </section>
+      </Chapter>
 
-      <Divider />
-
-      {/* ── PODCAST ── */}
       <PodcastSection />
-
-      {/* ── SOCIAL ── */}
       <SocialSection />
 
-      {/* ── PLATFORM REFERENCE ── */}
-      <section className="px-[5vw] py-28">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <Eyebrow>{d.home.platformSection}</Eyebrow>
-            <SectionTitle className="mb-6">
-              {d.home.platformHeadline1}<br />
-              {d.home.platformHeadline2}
-            </SectionTitle>
-
-            {/* Exact positioning text */}
-            <p className="text-[0.95rem] leading-[1.6] mb-2 text-text-primary">
-              {d.home.platformPositioning}
-            </p>
-            <p className="text-[0.95rem] leading-[1.6] mb-8 text-text-primary">
-              {d.home.platformScale}
-            </p>
-
-            <p className="text-[0.9rem] leading-relaxed mb-10 max-w-[44ch] text-grey-secondary">
-              {d.home.platformSectionDesc}
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="https://offmarketpool.de" external>
-                {d.home.toPlatform} &rarr;
-              </BtnPrimary>
-              <BtnOutline href="/plattform">{d.home.learnMore}</BtnOutline>
-            </div>
-            <a
-              href={locale === 'de' ? 'https://offmarketpool.de/pitch-decks/03-investor-pitch-de.html' : 'https://offmarketpool.de/pitch-decks/03-investor-pitch.html'}
-              target="_blank"
-              rel="noopener"
-              className="inline-block mt-4 text-[0.68rem] tracking-[0.15em] uppercase text-grey-muted hover:text-text-primary transition-colors duration-200"
-              style={{ fontFamily: 'monospace' }}
-            >
-              {d.home.viewPitchDeck} &rarr;
-            </a>
-          </div>
-
-          {/* Feature list */}
-          <div className="space-y-4">
-            {[
-              { title: d.home.featureMatching, desc: d.home.featureMatchingDesc },
-              { title: d.home.featureInvestors, desc: d.home.featureInvestorsDesc },
-              { title: d.home.featurePool, desc: d.home.featurePoolDesc },
-              { title: d.home.featureDoc, desc: d.home.featureDocDesc },
-            ].map(({ title, desc }) => (
-              <div key={title} className="flex gap-4 p-6 border border-grey-light bg-bg-card">
-                <span className="text-grey-muted flex-shrink-0 mt-[2px]">&bull;</span>
-                <div>
-                  <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
-                  <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
-                </div>
-              </div>
+      {/* ── PRESSE ── */}
+      <section className="px-[5vw] py-24 border-t border-grey-light">
+        <div className="max-w-[1200px] mx-auto">
+          <p className="kicker mb-5">{t.pressKicker}</p>
+          <h2 className="h-section text-text-primary mb-10" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3rem)' }}>
+            {t.pressTitle}
+          </h2>
+          <div className="border-t border-grey-light">
+            {meldungen.length === 0 && <p className="py-8 text-grey-secondary border-b border-grey-light">{t.pressEmpty}</p>}
+            {meldungen.map((m) => (
+              <Link key={m.slug} href={`/presse/${m.slug}`} className="block py-8 border-b border-grey-light hover:bg-bg-elevated px-2 -mx-2 transition-colors">
+                <p className="text-[0.65rem] tracking-[0.2em] uppercase text-grey-muted mb-2">
+                  {fmtDatum(m.datum)} · {getMarke(m.marke).name}
+                </p>
+                <p className="text-[1.2rem] text-text-primary font-medium">{m.titel}</p>
+              </Link>
             ))}
           </div>
+          <Link href="/presse" className="inline-block mt-8 text-[0.76rem] tracking-[0.14em] uppercase text-text-primary hover:text-grey-secondary">
+            {t.pressCta} &rarr;
+          </Link>
         </div>
       </section>
 
-      <Divider />
-
-      {/* ── KAPITALANLAGEN ── */}
-      <section className="px-[5vw] py-28">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <div>
-            <Eyebrow>{d.home.capitalSection}</Eyebrow>
-            <SectionTitle className="mb-6">
-              {d.home.capitalHeadline1}<br />
-              {d.home.capitalHeadline2}
-            </SectionTitle>
-            <p className="text-[0.92rem] leading-[1.7] mb-10 max-w-[46ch] text-grey-secondary">
-              {d.home.capitalDesc}
-            </p>
-            <BtnPrimary href="https://offmarketpool.de/kapitalanlagen" external>
-              {d.home.capitalCta} &rarr;
-            </BtnPrimary>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            {[
-              { title: d.home.capitalFeature1, desc: d.home.capitalFeature1Desc },
-              { title: d.home.capitalFeature2, desc: d.home.capitalFeature2Desc },
-              { title: d.home.capitalFeature3, desc: d.home.capitalFeature3Desc },
-            ].map(({ title, desc }) => (
-              <div key={title} className="p-6 border border-grey-light bg-bg-card">
-                <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
-                <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── BOOK TEASER ── */}
-      <section className="px-[5vw] py-28">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Book cover */}
-          <div className="flex justify-center">
-            <div
-              style={{
-                transform: 'perspective(900px) rotateY(-8deg) rotateX(2deg)',
-                transition: 'transform 0.5s ease',
-              }}
-            >
-              <Image
-                src="/book-cover.png"
-                alt="Die Immobilienlüge – Dr. Marcel Hofeditz"
-                width={300}
-                height={440}
-                className="object-cover"
-                style={{
-                  width: 'clamp(180px, 22vw, 300px)',
-                  height: 'auto',
-                  filter: 'drop-shadow(-8px 16px 40px rgba(0,0,0,0.5))',
-                }}
-              />
-            </div>
-          </div>
-
-          <div>
-            <Eyebrow>{d.home.bookSection}</Eyebrow>
-            <SectionTitle className="mb-6">
-              {d.home.bookHeadline1} {d.home.bookHeadline2}
-            </SectionTitle>
-            <p className="text-[0.92rem] leading-[1.7] mb-6 max-w-[44ch] text-grey-secondary">
-              {d.home.bookSectionDesc}
-            </p>
-            <blockquote className="text-[1rem] leading-relaxed mb-8 pl-5 border-l-2 border-grey-light text-grey-secondary italic">
-              {d.home.bookQuote}
-            </blockquote>
-            <div className="flex flex-wrap gap-4">
-              <BtnPrimary href="/buch">{d.home.toBookAgent}</BtnPrimary>
-              <BtnOutline href="/buch">{d.home.leseprobe}</BtnOutline>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── COACHING TEASER ── */}
-      <section className="px-[5vw] py-28">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <div>
-            <Eyebrow>{d.home.coachingSection}</Eyebrow>
-            <SectionTitle className="mb-6">
-              {d.home.coachingHeadline1} {d.home.coachingHeadline2}
-            </SectionTitle>
-            <p className="text-[0.92rem] leading-[1.7] mb-10 text-grey-secondary">
-              {d.home.coachingSectionDesc}
-            </p>
-            <BtnPrimary href="/coaching">{d.home.toCoaching}</BtnPrimary>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            {[
-              { title: d.home.coachingFeature1, desc: d.home.coachingFeature1Desc },
-              { title: d.home.coachingFeature2, desc: d.home.coachingFeature2Desc },
-              { title: d.home.coachingFeature3, desc: d.home.coachingFeature3Desc },
-              { title: d.home.coachingFeature4, desc: d.home.coachingFeature4Desc },
-            ].map(({ title, desc }) => (
-              <div key={title} className="p-6 border border-grey-light bg-bg-card">
-                <p className="text-[0.88rem] mb-1 text-text-primary font-normal">{title}</p>
-                <p className="text-[0.8rem] text-grey-secondary">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* ── CONTACT CTA ── */}
-      <section className="px-[5vw] py-32 text-center">
-        <Eyebrow>{d.home.directContact}</Eyebrow>
-        <h2
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-6 mx-auto text-text-primary"
-          style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', maxWidth: '22ch' }}
-        >
-          {d.home.ctaHeadline1} {d.home.ctaHeadline2}
+      {/* ── FINALE ── */}
+      <section className="px-[5vw] py-32 border-t border-grey-light text-center">
+        <p className="kicker mb-5">{t.finalKicker}</p>
+        <h2 className="display text-text-primary mb-8 mx-auto" style={{ fontSize: 'clamp(2.6rem, 7vw, 6rem)' }}>
+          {t.finalTitle}
         </h2>
-        <p className="text-[0.9rem] leading-relaxed mb-10 mx-auto text-grey-secondary" style={{ maxWidth: '44ch' }}>
-          {d.home.ctaDesc}
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <BtnPrimary href="https://calendly.com/marcel-hofeditz-svtq" external>
-            {d.home.strategyCallCta}
-          </BtnPrimary>
-          <BtnOutline href="/kontakt">{d.home.inquireNow}</BtnOutline>
+        <p className="text-[1.05rem] text-[#cfcfcf] max-w-[36rem] mx-auto mb-10">{t.finalText}</p>
+        <div className="flex flex-wrap gap-3 justify-center">
+          <a href={utm('finale')} className="btn-solid-x">
+            {t.finalCta}
+          </a>
+          <Link href="/kontakt" className="btn-ghost-x">
+            {t.finalCta2}
+          </Link>
         </div>
-        <p className="text-[0.78rem] mt-5 text-grey-muted">{d.home.strategyCallDesc}</p>
       </section>
     </>
   )

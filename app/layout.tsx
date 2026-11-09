@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s | Dr. Marcel Hofeditz',
   },
   description:
-    'Dr. Marcel Hofeditz – promovierter Managementforscher, Gründer von OffMarketPool (€6,2 Mrd. Dealvolumen) und Autor von „Die Immobilienlüge". Offmarket-Immobilien, Immolab Coaching, Hamburg.',
+    'Dr. Marcel Hofeditz – promovierter Managementforscher, Gründer von Offmarketpool (Off-Market-Investmentimmobilien, 1.100+ Objekte, €10 Mrd.+ Volumen) und Autor von „Die Immobilienlüge". Offmarket-Immobilien, Immolab Coaching, Hamburg.',
   keywords: [
     'Dr. Marcel Hofeditz',
     'Offmarket Immobilien',
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     'Die Immobilienlüge',
     'Immobilien Hamburg',
     'Offmarketpool',
+    'Off-Market Investmentimmobilien kaufen',
+    'Immobilie diskret verkaufen',
+    'Elsterbot',
+    'Psychologie beim Immobilienkauf',
     'Immolab',
     'Immobilien Coaching',
     'Immobilienpsychologie',
@@ -48,9 +52,9 @@ export const metadata: Metadata = {
       'OffMarketPool Plattform (€6,2 Mrd. Dealvolumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
     images: [
       {
-        url: '/IMG_8225.webp',
-        width: 800,
-        height: 960,
+        url: '/story/hero-tuer.webp',
+        width: 1920,
+        height: 1072,
         alt: 'Dr. Marcel Hofeditz – Managementforscher und Immobilienunternehmer',
       },
     ],
@@ -60,7 +64,7 @@ export const metadata: Metadata = {
     title: 'Dr. Marcel Hofeditz – Offmarket Immobilien, Forschung & Autor',
     description:
       'Gründer von OffMarketPool, Autor von „Die Immobilienlüge", Immolab Coaching.',
-    images: ['/IMG_8225.webp'],
+    images: ['/story/hero-tuer.webp'],
   },
   robots: {
     index: true,
@@ -136,7 +140,7 @@ function JsonLd() {
     url: 'https://offmarketpool.de',
     logo: `${BASE_URL}/IMG_8225.webp`,
     description:
-      'Europas führende Offmarket-Immobilienplattform. KI-basiertes Matching, 607 Deals, €6,2 Mrd. Asset-Volumen.',
+      'Plattform für Off-Market-Investmentimmobilien mit KI-Matching. Über 1.100 Objekte und mehr als 10 Mrd. € Objektvolumen im Pool.',
     founder: { '@type': 'Person', name: 'Dr. Marcel Hofeditz' },
     foundingDate: '2025-04',
     areaServed: 'Europe',

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -66,3 +66,19 @@ body {
   background: var(--accent);
   color: var(--bg);
 }
+
+/* ── Story-Design (2026-11) ── */
+.grain{pointer-events:none;position:fixed;inset:0;z-index:60;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.kicker{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:#a8a8a8}
+.display{font-weight:800;letter-spacing:-.035em;text-transform:uppercase;line-height:.92}
+.h-section{font-weight:800;letter-spacing:-.025em;line-height:1}
+.ticker-track{display:inline-flex;gap:48px;padding:18px 0;animation:ticker 45s linear infinite;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:#cfcfcf}
+.ticker-track span::after{content:"■";margin-left:48px;font-size:8px;vertical-align:middle;color:#666}
+@keyframes ticker{to{transform:translateX(-50%)}}
+@keyframes slowzoom{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+.kenburns{animation:slowzoom 24s ease-in-out infinite alternate}
+.btn-solid-x{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;background:#F6F6F6;color:#0B0B0B;border:1px solid #F6F6F6;transition:all .2s}
+.btn-solid-x:hover{background:transparent;color:#F6F6F6}
+.btn-ghost-x{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#F6F6F6;border:1px solid #F6F6F6;transition:all .2s}
+.btn-ghost-x:hover{background:#F6F6F6;color:#0B0B0B}
+@media (prefers-reduced-motion:reduce){.ticker-track,.kenburns{animation:none}}
