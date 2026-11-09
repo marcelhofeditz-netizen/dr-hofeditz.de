@@ -195,7 +195,7 @@ export default function Home() {
             <h1 className="display text-text-primary mb-8" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
               {t.heroTitle.map((line) => (
                 <span key={line} className="block">
-                  {line}
+                  {line}{' '}
                 </span>
               ))}
             </h1>
