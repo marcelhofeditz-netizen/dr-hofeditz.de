@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useLocale } from '@/lib/locale-context'
-import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
+import { Eyebrow, SectionTitle, BtnPrimary, Divider, HeroBg } from '@/components/ui'
 
 const journalPapers = [
   {
@@ -120,12 +120,13 @@ export default function ForschungPage() {
   return (
     <>
       {/* HERO */}
-      <section className="px-[5vw] py-24 min-h-[50vh] flex items-center">
+      <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[80vh] flex items-end">
+        <HeroBg src="/story/forschung-bibliothek.webp" strength="strong" />
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>{d.research.heroEyebrow}</Eyebrow>
           <h1
-            className="font-sans font-medium tracking-[-0.01em] leading-[1.05] mb-6 text-text-primary"
-            style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
+            className="display mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
           >
             {locale === 'de' ? 'For' : 'Re'}<em className="italic">{locale === 'de' ? 'schung' : 'search'}</em>
           </h1>
@@ -145,7 +146,7 @@ export default function ForschungPage() {
       <div className="px-[5vw] py-12 grid grid-cols-1 md:grid-cols-3 gap-6 border-y border-grey-light">
         {schwerpunkte.map(({ title, desc }) => (
           <div key={title} className="text-center px-4">
-            <p className="font-sans font-medium tracking-[-0.01em] text-[1.1rem] mb-2 text-text-primary">
+            <p className="font-sans font-extrabold tracking-[-0.02em] text-[1.1rem] mb-2 text-text-primary">
               {title}
             </p>
             <p className="text-[0.8rem] text-grey-secondary">
@@ -175,11 +176,11 @@ export default function ForschungPage() {
                 <div className="p-7 border border-grey-light group-hover:border-text-primary transition-colors duration-300 relative">
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-text-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
                   <div className="flex gap-6 items-start">
-                    <span className="font-sans font-medium tracking-[-0.01em] text-[2rem] leading-none flex-shrink-0 w-16 text-grey-light">
+                    <span className="font-sans font-extrabold tracking-[-0.02em] text-[2rem] leading-none flex-shrink-0 w-16 text-grey-light">
                       {year}
                     </span>
                     <div className="flex-1">
-                      <h3 className="font-sans font-medium tracking-[-0.01em] text-[1.1rem] leading-[1.3] mb-2 text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
+                      <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1.1rem] leading-[1.3] mb-2 text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                         {title}
                       </h3>
                       <p className="text-[0.78rem] mb-3 text-grey-secondary">
@@ -215,11 +216,11 @@ export default function ForschungPage() {
                 className="p-6 border border-grey-light"
               >
                 <div className="flex gap-6 items-start">
-                  <span className="font-sans font-medium tracking-[-0.01em] text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
+                  <span className="font-sans font-extrabold tracking-[-0.02em] text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
                     {year}
                   </span>
                   <div className="flex-1">
-                    <h3 className="font-sans font-medium tracking-[-0.01em] text-[1rem] leading-[1.3] mb-2 text-text-primary">
+                    <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1rem] leading-[1.3] mb-2 text-text-primary">
                       {title}
                     </h3>
                     <p className="text-[0.78rem] mb-2 text-grey-secondary">
@@ -251,11 +252,11 @@ export default function ForschungPage() {
                 className="p-6 border border-grey-light"
               >
                 <div className="flex gap-6 items-start">
-                  <span className="font-sans font-medium tracking-[-0.01em] text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
+                  <span className="font-sans font-extrabold tracking-[-0.02em] text-[1.6rem] leading-none flex-shrink-0 w-14 text-grey-light">
                     {year}
                   </span>
                   <div className="flex-1">
-                    <h3 className="font-sans font-medium tracking-[-0.01em] text-[1rem] leading-[1.3] mb-2 text-text-primary">
+                    <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1rem] leading-[1.3] mb-2 text-text-primary">
                       {title}
                     </h3>
                     <p className="text-[0.78rem] mb-2 text-grey-secondary">
@@ -279,7 +280,7 @@ export default function ForschungPage() {
         <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map(({ n, l }) => (
             <div key={l}>
-              <div className="font-sans font-medium tracking-[-0.01em] leading-none mb-2 text-text-primary"
+              <div className="font-sans font-extrabold tracking-[-0.02em] leading-none mb-2 text-text-primary"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {n}
               </div>
@@ -307,7 +308,7 @@ export default function ForschungPage() {
                 OffMarketPool
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
-                {locale === 'de' ? 'KI-Matching, 607 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 607 deals, €6.2B volume.'}
+                {locale === 'de' ? 'KI-Matching, 1.100+ Objekte, €10 Mrd.+ Volumen.' : 'AI matching, 1,100+ assets, €10bn+ volume.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {locale === 'de' ? 'Mehr erfahren' : 'Learn more'} &rarr;
@@ -349,7 +350,7 @@ export default function ForschungPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{d.research.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '24ch', lineHeight: 1.1 }}
         >
           {d.research.ctaHeadline1} <em className="italic">{d.research.ctaHeadline2}</em>

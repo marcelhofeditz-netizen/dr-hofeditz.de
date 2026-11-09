@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, Stat } from '@/components/ui'
+import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, Stat, HeroBg } from '@/components/ui'
 import { useLocale } from '@/lib/locale-context'
 
 export default function OffmarketImmobilienPage() {
@@ -13,14 +13,15 @@ export default function OffmarketImmobilienPage() {
   return (
     <>
       {/* Hero */}
-      <section className="px-[5vw] py-24 min-h-[60vh] flex items-center">
+      <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[80vh] flex items-end">
+        <HeroBg src="/story/hero-tuer.webp" strength="strong" />
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>
             {isEn ? 'Off-Market Real Estate · Guide' : 'Off-Market Immobilien · Ratgeber'}
           </Eyebrow>
           <h1
-            className="font-sans font-medium tracking-[-0.02em] leading-[1.05] mb-6 text-text-primary"
-            style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}
+            className="display mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
           >
             {isEn ? (
               <>Off-Market<br />Real Estate</>
@@ -51,8 +52,8 @@ export default function OffmarketImmobilienPage() {
 
       {/* Stats */}
       <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
-        <Stat number="607" label={isEn ? 'Completed Deals' : 'Abgeschlossene Deals'} />
-        <Stat number="€6,2 Mrd." label={isEn ? 'Asset Volume' : 'Asset-Volumen'} />
+        <Stat number="1.100+" label={isEn ? 'Assets in the pool' : 'Objekte im Pool'} />
+        <Stat number="€10 Mrd.+" label={isEn ? 'Volume' : 'Volumen'} />
         <Stat number="7.000+" label={isEn ? 'Investor Profiles' : 'Investorenprofile'} />
         <Stat number="KI" label={isEn ? 'Matching Algorithm' : 'Matching-Algorithmus'} />
       </div>
@@ -123,7 +124,7 @@ export default function OffmarketImmobilienPage() {
               },
             ].map(({ title, desc }) => (
               <div key={title} className="p-7 border border-grey-light bg-bg-card">
-                <h3 className="font-sans font-medium text-[1.05rem] mb-3 text-text-primary">
+                <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1.05rem] mb-3 text-text-primary">
                   {title}
                 </h3>
                 <p className="text-[0.85rem] leading-relaxed text-grey-secondary">
@@ -173,8 +174,8 @@ export default function OffmarketImmobilienPage() {
               {
                 q: isEn ? 'What is OffMarketPool?' : 'Was ist OffMarketPool?',
                 a: isEn
-                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 607 completed deals, €6.2B+ asset volume.'
-                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, 607 abgeschlossene Deals und ein Asset-Volumen von über €6,2 Milliarden.',
+                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 1,100+ assets in the pool, €10bn+ volume.'
+                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, über 1.100 Objekte im Pool und mehr als €10 Mrd. Volumen.',
               },
             ].map(({ q, a }) => (
               <div key={q} className="p-6 border border-grey-light">
@@ -205,8 +206,8 @@ export default function OffmarketImmobilienPage() {
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
                 {isEn
-                  ? 'AI matching, 607 deals, €6.2B volume.'
-                  : 'KI-Matching, 607 Deals, €6,2 Mrd. Volumen.'}
+                  ? 'AI matching, 1,100+ assets, €10bn+ volume.'
+                  : 'KI-Matching, 1.100+ Objekte, €10 Mrd.+ Volumen.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {isEn ? 'Learn more' : 'Mehr erfahren'} &rarr;
@@ -252,7 +253,7 @@ export default function OffmarketImmobilienPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{isEn ? 'Get started' : 'Jetzt starten'}</Eyebrow>
         <h2
-          className="font-sans font-medium tracking-[-0.02em] mb-6 mx-auto text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
           {isEn ? 'Your property doesn\'t belong on a portal.' : 'Ihr Objekt gehört nicht ins Portal.'}

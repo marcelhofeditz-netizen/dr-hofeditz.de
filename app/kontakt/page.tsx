@@ -1,19 +1,20 @@
 'use client'
 
-import { Eyebrow } from '@/components/ui'
+import { Eyebrow, HeroBg } from '@/components/ui'
 import { useLocale } from '@/lib/locale-context'
 
 export default function KontaktPage() {
   const { d } = useLocale()
 
   return (
-    <section className="px-[5vw] py-24 min-h-[80vh]">
+    <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[80vh]">
+        <HeroBg src="/story/hero-tuer.webp" strength="soft" />
       <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         <div>
           <Eyebrow>{d.contact.eyebrow}</Eyebrow>
           <h1
-            className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-6 text-text-primary"
-            style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)' }}
+            className="display mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
           >
             {d.contact.headline1}<br />
             <em className="italic">{d.contact.headline2}</em>

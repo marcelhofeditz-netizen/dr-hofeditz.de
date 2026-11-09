@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, Stat } from '@/components/ui'
+import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, Stat, HeroBg } from '@/components/ui'
 import { DocAgent } from '@/components/DocAgent'
 import { useLocale } from '@/lib/locale-context'
 
@@ -14,7 +14,8 @@ export default function BuchPage() {
       <DocAgent />
 
       {/* BOOK HERO */}
-      <section className="px-[5vw] py-24">
+      <section className="relative isolate overflow-hidden px-[5vw] py-28">
+        <HeroBg src="/story/buch-fassade.webp" strength="soft" />
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Cover */}
           <div className="flex justify-center">
@@ -44,7 +45,7 @@ export default function BuchPage() {
             <Eyebrow>{d.book.heroEyebrow}</Eyebrow>
             <SectionTitle className="mb-6">
               Die<br />
-              <em className="italic">Immobilien&shy;luge</em>
+              <span>Immobilien&shy;lüge</span>
             </SectionTitle>
             <p className="text-[0.82rem] tracking-[0.06em] uppercase mb-4 text-text-primary">
               {d.book.publisherNote}
@@ -79,7 +80,7 @@ export default function BuchPage() {
                 key={nr}
                 className="flex gap-6 p-6 border border-grey-light group hover:border-text-primary transition-colors duration-300"
               >
-                <span className="font-sans font-medium tracking-[-0.01em] text-[1.8rem] leading-none flex-shrink-0 w-16 text-grey-light">
+                <span className="font-sans font-extrabold tracking-[-0.02em] text-[1.8rem] leading-none flex-shrink-0 w-16 text-grey-light">
                   {nr}
                 </span>
                 <div>
@@ -108,7 +109,7 @@ export default function BuchPage() {
             { n: d.book.stat4n, l: d.book.stat4l },
           ].map(({ n, l }) => (
             <div key={l}>
-              <div className="font-sans font-medium tracking-[-0.01em] leading-none mb-2 text-text-primary"
+              <div className="font-sans font-extrabold tracking-[-0.02em] leading-none mb-2 text-text-primary"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 {n}
               </div>
@@ -207,7 +208,7 @@ export default function BuchPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{d.book.notifyEyebrow}</Eyebrow>
         <h2
-          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
           {d.book.notifyHeadline}

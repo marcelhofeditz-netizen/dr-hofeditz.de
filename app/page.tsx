@@ -6,6 +6,7 @@ import { PodcastSection } from '@/components/PodcastSection'
 import { SocialSection } from '@/components/SocialSection'
 import { useLocale } from '@/lib/locale-context'
 import { fmtDatum, getMarke, veroeffentlichte } from '@/lib/presse'
+import { AssetsGrid } from '@/components/AssetsGrid'
 
 const OMP = 'https://offmarketpool.de'
 const utm = (content: string) => `${OMP}/?utm_source=dr-hofeditz.de&utm_medium=referral&utm_campaign=holding&utm_content=${content}`
@@ -58,6 +59,9 @@ const T = {
       'Promotion summa cum laude an der Universität Münster zu Vertrauen, Compliance und Strategie, über 400 Zitationen. Danach sieben Jahre Co-CEO eines Maklerunternehmens mit mehr als 600 Mio. € verantwortetem Transaktionsvolumen. Seit 2023 die Dr. Hofeditz Real Estate GmbH – mit Fokus auf Investment- und Off-Market-Transaktionen.',
     c4Cta: 'Zur Forschung',
     c4Cta2: 'Immolab Coaching',
+    assetsKicker: 'Unternehmen & Assets',
+    assetsTitle: 'Was unter dem Dach entsteht',
+    assetsCta: 'Alle Unternehmen',
     pressKicker: 'Presse',
     pressTitle: 'Aus dem Newsroom',
     pressEmpty: 'Die ersten Meldungen erscheinen in Kürze.',
@@ -115,6 +119,9 @@ const T = {
       'PhD summa cum laude at the University of Münster on trust, compliance and strategy, 400+ citations. Then seven years as co-CEO of a brokerage with more than €600m in transaction volume. Since 2023 Dr. Hofeditz Real Estate GmbH – focused on investment and off-market transactions.',
     c4Cta: 'Research',
     c4Cta2: 'Immolab coaching',
+    assetsKicker: 'Companies & assets',
+    assetsTitle: 'What we build under one roof',
+    assetsCta: 'All companies',
     pressKicker: 'Press',
     pressTitle: 'From the newsroom',
     pressEmpty: 'The first releases will be published shortly.',
@@ -334,6 +341,20 @@ export default function Home() {
           </div>
         </div>
       </Chapter>
+
+      {/* ── UNTERNEHMEN / ASSETS ── */}
+      <section id="unternehmen" className="px-[5vw] py-24 border-t border-grey-light">
+        <div className="max-w-[1200px] mx-auto">
+          <p className="kicker mb-5">{t.assetsKicker}</p>
+          <h2 className="h-section uppercase text-text-primary mb-12" style={{ fontSize: 'clamp(2.1rem, 4.6vw, 3.8rem)' }}>
+            {t.assetsTitle}
+          </h2>
+          <AssetsGrid />
+          <Link href="/unternehmen" className="inline-block mt-8 text-[0.76rem] font-bold tracking-[0.14em] uppercase text-text-primary hover:text-grey-secondary">
+            {t.assetsCta} &rarr;
+          </Link>
+        </div>
+      </section>
 
       <PodcastSection />
       <SocialSection />

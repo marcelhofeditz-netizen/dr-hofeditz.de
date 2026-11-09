@@ -33,7 +33,7 @@ export default function BlogPostPage({ params }: Props) {
           {fmt(post.date)} · {post.readingMinutes} Min. Lesezeit
         </p>
         <h1
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.15] mb-4 text-text-primary"
+          className="h-section uppercase mb-4 text-text-primary"
           style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)' }}
         >
           {post.title}
@@ -46,7 +46,7 @@ export default function BlogPostPage({ params }: Props) {
           {post.sections.map((section, i) => (
             <div key={i}>
               {section.heading && (
-                <h2 className="font-sans font-medium text-[1.15rem] leading-[1.3] mb-4 text-text-primary">
+                <h2 className="font-sans font-extrabold tracking-[-0.02em] text-[1.15rem] leading-[1.3] mb-4 text-text-primary">
                   {section.heading}
                 </h2>
               )}

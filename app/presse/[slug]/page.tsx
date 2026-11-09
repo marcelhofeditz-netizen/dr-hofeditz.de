@@ -47,7 +47,7 @@ export default function MeldungPage({ params }: Props) {
           Pressemitteilung · {marke.name}
         </p>
         <h1
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.15] mb-8 text-text-primary"
+          className="h-section uppercase mb-8 text-text-primary"
           style={{ fontSize: 'clamp(1.7rem, 3.3vw, 2.4rem)' }}
         >
           {m.titel}

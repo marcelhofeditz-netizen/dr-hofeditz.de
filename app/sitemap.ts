@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
+    { url: `${BASE}/unternehmen`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/presse`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     ...veroeffentlichte().map((m) => ({
       url: `${BASE}/presse/${m.slug}`,
