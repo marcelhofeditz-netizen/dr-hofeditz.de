@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useLocale } from '@/lib/locale-context'
-import { Eyebrow, SectionTitle, BtnPrimary, Divider } from '@/components/ui'
+import { Eyebrow, SectionTitle, BtnPrimary, Divider, HeroBg } from '@/components/ui'
 
 export default function CoachingPage() {
   const { d } = useLocale()
@@ -10,12 +10,13 @@ export default function CoachingPage() {
   return (
     <>
       {/* HERO */}
-      <section className="px-[5vw] py-24 min-h-[60vh] flex items-center">
+      <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[80vh] flex items-end">
+        <HeroBg src="/story/buch-fassade.webp" strength="strong" />
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>{d.coaching.heroEyebrow}</Eyebrow>
           <h1
-            className="font-sans font-medium tracking-[-0.01em] leading-[1.05] mb-6 text-text-primary"
-            style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
+            className="display mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
           >
             Immo<em className="italic">lab</em>
           </h1>
@@ -37,7 +38,7 @@ export default function CoachingPage() {
           { title: d.coaching.principle3, desc: d.coaching.principle3Desc },
         ].map(({ title, desc }) => (
           <div key={title} className="text-center px-4">
-            <p className="font-sans font-medium tracking-[-0.01em] text-[1.1rem] mb-2 text-text-primary">
+            <p className="font-sans font-extrabold tracking-[-0.02em] text-[1.1rem] mb-2 text-text-primary">
               {title}
             </p>
             <p className="text-[0.8rem] text-grey-secondary">
@@ -60,7 +61,7 @@ export default function CoachingPage() {
                 key={title}
                 className="p-7 border border-grey-light group hover:border-text-primary transition-colors duration-300"
               >
-                <h3 className="font-sans font-medium tracking-[-0.01em] text-[1.15rem] mb-3 text-text-primary">
+                <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1.15rem] mb-3 text-text-primary">
                   {title}
                 </h3>
                 <p className="text-[0.83rem] leading-relaxed mb-4 text-grey-secondary">
@@ -123,7 +124,7 @@ export default function CoachingPage() {
                 OffMarketPool
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
-                {d.coaching.forWhom === 'Für wen' ? 'KI-Matching, 607 Deals, €6,2 Mrd. Volumen.' : 'AI matching, 607 deals, €6.2B volume.'}
+                {d.coaching.forWhom === 'Für wen' ? 'KI-Matching, 1.100+ Objekte, €10 Mrd.+ Volumen.' : 'AI matching, 1,100+ assets, €10bn+ volume.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {d.coaching.forWhom === 'Für wen' ? 'Mehr erfahren' : 'Learn more'} &rarr;
@@ -165,7 +166,7 @@ export default function CoachingPage() {
       <section className="px-[5vw] py-28 text-center border-t border-grey-light">
         <Eyebrow>{d.coaching.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '22ch', lineHeight: 1.1 }}
         >
           {d.coaching.ctaHeadline}

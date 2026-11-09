@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="text-[0.7rem] tracking-[0.22em] uppercase block mb-4 text-grey-secondary">
+    <span className="kicker block mb-5">
       {children}
     </span>
   )
@@ -20,8 +20,8 @@ export function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-sans font-medium tracking-[-0.02em] leading-[1.1] text-text-primary ${className}`}
-      style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
+      className={`h-section uppercase text-text-primary ${className}`}
+      style={{ fontSize: 'clamp(2.1rem, 4.6vw, 3.8rem)' }}
     >
       {children}
     </h2>
@@ -46,7 +46,7 @@ export function BtnPrimary({
   external?: boolean
 }) {
   const cls =
-    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 font-medium transition-all duration-200 hover:opacity-80 bg-text-primary text-black'
+    'btn-solid-x'
 
   if (external) {
     return (
@@ -72,7 +72,7 @@ export function BtnOutline({
   external?: boolean
 }) {
   const cls =
-    'inline-block text-[0.76rem] tracking-[0.12em] uppercase px-7 py-3 transition-all duration-200 border border-grey-light text-text-primary hover:border-grey-secondary'
+    'btn-ghost-x'
 
   if (external) {
     return (
@@ -111,12 +111,12 @@ export function ProjectCard({
       {/* Top bar accent */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-text-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
       <div>
-        <span className="text-[0.68rem] tracking-[0.2em] uppercase block mb-5 text-grey-secondary">
+        <span className="kicker block mb-5">
           {eyebrow}
         </span>
         <h3
-          className="font-sans font-medium tracking-[-0.01em] leading-[1.15] mb-4 text-text-primary"
-          style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}
+          className="h-section uppercase mb-4 text-text-primary"
+          style={{ fontSize: 'clamp(1.5rem, 2.4vw, 2.1rem)' }}
           dangerouslySetInnerHTML={{ __html: title }}
         />
         <p className="text-[0.85rem] leading-relaxed text-grey-secondary">
@@ -124,7 +124,7 @@ export function ProjectCard({
         </p>
       </div>
       <div className="mt-8">
-        <span className="text-[0.75rem] tracking-[0.12em] uppercase transition-colors duration-200 text-text-primary group-hover:text-grey-secondary">
+        <span className="text-[0.75rem] font-bold tracking-[0.14em] uppercase transition-colors duration-200 text-text-primary group-hover:text-grey-secondary">
           {cta} &rarr;
         </span>
       </div>
@@ -153,14 +153,33 @@ export function Stat({ number, label }: { number: string; label: string }) {
   return (
     <div className="text-center">
       <div
-        className="font-sans font-medium tracking-[-0.02em] leading-none text-text-primary"
-        style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
+        className="font-extrabold tracking-[-0.03em] leading-none text-text-primary"
+        style={{ fontSize: 'clamp(2.2rem, 4.6vw, 3.8rem)' }}
       >
         {number}
       </div>
       <div className="text-[0.72rem] tracking-[0.12em] uppercase mt-3 text-grey-secondary">
         {label}
       </div>
+    </div>
+  )
+}
+
+/* ── Page hero background (story images) ── */
+
+export function HeroBg({ src, strength = 'strong' }: { src: string; strength?: 'strong' | 'soft' }) {
+  return (
+    <div aria-hidden className="absolute inset-0 -z-10">
+      <div
+        className="absolute inset-y-0 right-0 left-0 md:left-[30%] bg-cover bg-center kenburns"
+        style={{ backgroundImage: `url(${src})`, opacity: strength === 'soft' ? 0.35 : 0.85 }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: 'linear-gradient(90deg,#0B0B0B 0%,#0B0B0B 30%,#0B0B0BCC 45%,#0B0B0B33 75%,#0B0B0B00 100%)' }}
+      />
+      <div className="absolute inset-0 md:hidden bg-[#0B0B0B]/55" />
+      <div className="absolute inset-x-0 bottom-0 h-40" style={{ background: 'linear-gradient(0deg,#0B0B0B,#0B0B0B00)' }} />
     </div>
   )
 }

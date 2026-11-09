@@ -16,7 +16,7 @@ export default function DatenschutzPage() {
           Rechtliches
         </p>
         <h1
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-10 text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] leading-[1.1] mb-10 text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
         >
           Datenschutzerklärung

@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'Dr. Marcel Hofeditz',
     title: 'Dr. Marcel Hofeditz – Offmarket Immobilien, Forschung & Autor',
     description:
-      'OffMarketPool Plattform (€6,2 Mrd. Dealvolumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
+      'OffMarketPool Plattform (1.100+ Objekte, €10 Mrd.+ Volumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
     images: [
       {
         url: '/story/hero-tuer.webp',

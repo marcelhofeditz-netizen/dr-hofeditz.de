@@ -1,6 +1,6 @@
 'use client'
 
-import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider } from '@/components/ui'
+import { Eyebrow, SectionTitle, BtnPrimary, BtnOutline, Divider, HeroBg } from '@/components/ui'
 import { PodcastSection } from '@/components/PodcastSection'
 import { useLocale } from '@/lib/locale-context'
 
@@ -10,12 +10,13 @@ export default function PlattformPage() {
   return (
     <>
       {/* HERO */}
-      <section className="px-[5vw] py-24 min-h-[60vh] flex items-center">
+      <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[80vh] flex items-end">
+        <HeroBg src="/story/schluesselloch-stadt.webp" strength="strong" />
         <div className="max-w-[1100px] mx-auto w-full">
           <Eyebrow>{d.platform.eyebrow}</Eyebrow>
           <h1
-            className="font-sans font-medium tracking-[-0.02em] leading-[1.05] mb-6 text-text-primary"
-            style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
+            className="display mb-6 text-text-primary"
+            style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
           >
             {d.platform.headline}
           </h1>
@@ -42,7 +43,7 @@ export default function PlattformPage() {
           { n: d.platform.stat4n, l: d.platform.stat4l },
         ].map(({ n, l }) => (
           <div key={l} className="text-center">
-            <div className="font-sans font-medium tracking-[-0.01em] leading-none text-text-primary"
+            <div className="font-sans font-extrabold tracking-[-0.02em] leading-none text-text-primary"
               style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}>
               {n}
             </div>
@@ -84,10 +85,10 @@ export default function PlattformPage() {
                 key={step}
                 className="p-8 border border-grey-light"
               >
-                <div className="font-sans font-medium tracking-[-0.01em] text-[3rem] leading-none mb-5 text-grey-light">
+                <div className="font-sans font-extrabold tracking-[-0.02em] text-[3rem] leading-none mb-5 text-grey-light">
                   {step}
                 </div>
-                <h3 className="font-sans font-medium tracking-[-0.01em] text-[1.2rem] mb-3 text-text-primary">
+                <h3 className="font-sans font-extrabold tracking-[-0.02em] text-[1.2rem] mb-3 text-text-primary">
                   {title}
                 </h3>
                 <p className="text-[0.82rem] leading-relaxed text-grey-secondary">
@@ -152,7 +153,7 @@ export default function PlattformPage() {
       <section className="px-[5vw] py-24 text-center border-t border-grey-light">
         <Eyebrow>{d.platform.ctaEyebrow}</Eyebrow>
         <h2
-          className="font-sans font-medium tracking-[-0.01em] mb-6 mx-auto text-text-primary"
+          className="font-sans font-extrabold tracking-[-0.02em] mb-6 mx-auto text-text-primary"
           style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', maxWidth: '20ch', lineHeight: 1.1 }}
         >
           {d.platform.ctaHeadline}

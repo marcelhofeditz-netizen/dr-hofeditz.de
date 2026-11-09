@@ -10,6 +10,7 @@ const de = {
     coaching: 'Immolab',
     research: 'Forschung',
     blog: 'Blog',
+    ventures: 'Unternehmen',
     press: 'Presse',
     contact: 'Kontakt',
     toPlatform: 'Zur Plattform',
@@ -149,7 +150,7 @@ const de = {
   platform: {
     eyebrow: 'Europas führende Offmarket-Plattform',
     headline: 'Offmarketpool',
-    desc: 'Europas führende Offmarket-Immobilien Plattform. Assets im Volumen von über €6,2 Milliarden. KI-basiertes Matching · 7.000+ Investoren · 607 Deals. Diskret. Präzise. Europäisch.',
+    desc: 'Europas führende Offmarket-Immobilien Plattform. 1.100+ Objekte im Pool, über €10 Mrd. Volumen. KI-basiertes Matching · 7.000+ Investoren. Diskret. Präzise. Europäisch.',
     login: 'Login',
     stat1n: '1.100+',
     stat1l: 'Objekte im Pool',
@@ -183,7 +184,7 @@ const de = {
     faqEyebrow: 'FAQ',
     faqHeadline: 'Häufige Fragen',
     faqs: [
-      { q: 'Was unterscheidet Offmarketpool von anderen Plattformen?', a: 'Offmarketpool ist Europas führende Offmarket-Plattform mit einem einzigartigen KI-Matching-System, 607 abgeschlossenen Deals und einem Asset-Volumen von über €6,2 Milliarden.' },
+      { q: 'Was unterscheidet Offmarketpool von anderen Plattformen?', a: 'Offmarketpool ist Europas führende Offmarket-Plattform mit einem einzigartigen KI-Matching-System, über 1.100 Objekten im Pool und einem Volumen von über €10 Mrd..' },
       { q: 'Wie funktioniert das KI-Matching?', a: 'Ein über 7 Jahre entwickelter Algorithmus filtert aus 100+ Kriterien die entscheidenden Faktoren und bringt Objekte mit passenden Investorenprofilen zusammen.' },
       { q: 'Warum Offmarket verkaufen?', a: 'Die Immobilie wird nicht am Markt verbrannt. Käufer fühlen sich besonders behandelt und sind bereit, bessere Preise zu zahlen. Diskretion schützt Verkäufer und Objekt.' },
       { q: 'Für wen ist die Plattform geeignet?', a: 'Für institutionelle Investoren, Family Offices, erfahrene Privatinvestoren und Eigentümer, die ihre Immobilie diskret veräußern möchten.' },
@@ -366,6 +367,7 @@ const en = {
     coaching: 'Immolab',
     research: 'Research',
     blog: 'Blog',
+    ventures: 'Companies',
     press: 'Press',
     contact: 'Contact',
     toPlatform: 'Open Platform',
@@ -505,7 +507,7 @@ const en = {
   platform: {
     eyebrow: "Europe's Leading Off-Market Platform",
     headline: 'Offmarketpool',
-    desc: "Europe's leading off-market real estate investment platform. Assets representing more than €6.2 billion. AI-based matching · 7,000+ investors · 607 deals. Discreet. Precise. European.",
+    desc: "Europe's leading off-market real estate investment platform. 1,100+ assets in the pool, more than €10bn in volume. AI-based matching · 7,000+ investors. Discreet. Precise. European.",
     login: 'Login',
     stat1n: '1,100+',
     stat1l: 'Listings in the pool',
@@ -539,7 +541,7 @@ const en = {
     faqEyebrow: 'FAQ',
     faqHeadline: 'Frequently Asked Questions',
     faqs: [
-      { q: 'What differentiates Offmarketpool from other platforms?', a: "Offmarketpool is Europe's leading off-market platform with a unique AI matching system, 607 completed deals, and an asset volume of over €6.2 billion." },
+      { q: 'What differentiates Offmarketpool from other platforms?', a: "Offmarketpool is Europe's leading off-market platform with a unique AI matching system, more than 1,100 assets in the pool and a volume of over €10bn." },
       { q: 'How does AI matching work?', a: 'An algorithm developed over 7 years filters the decisive factors from 100+ criteria and matches properties with suitable investor profiles.' },
       { q: 'Why sell off-market?', a: 'The property is not burned on the market. Buyers feel specially treated and are willing to pay better prices. Discretion protects sellers and property.' },
       { q: 'Who is the platform suitable for?', a: 'For institutional investors, family offices, experienced private investors, and owners who want to discreetly sell their property.' },

@@ -17,6 +17,7 @@ export function Nav() {
     { href: '/coaching', label: d.nav.coaching },
     { href: '/forschung', label: d.nav.research },
     { href: '/blog', label: d.nav.blog },
+    { href: '/unternehmen', label: d.nav.ventures },
     { href: '/presse', label: d.nav.press },
     { href: '/kontakt', label: d.nav.contact },
   ]
@@ -28,20 +29,20 @@ export function Nav() {
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-3 group">
-        <span className="text-[0.82rem] tracking-[0.18em] uppercase font-medium text-text-primary">
+        <span className="whitespace-nowrap text-[0.82rem] tracking-[0.18em] uppercase font-bold text-text-primary">
           Dr. Marcel Hofeditz
         </span>
       </Link>
 
       {/* Desktop links */}
-      <ul className="hidden md:flex items-center gap-7">
-        {links.map(({ href, label }) => {
+      <ul className="hidden lg:flex items-center gap-5 xl:gap-7 ml-10">
+        {links.filter(({ href }) => href !== '/').map(({ href, label }) => {
           const active = pathname === href
           return (
             <li key={href}>
               <Link
                 href={href}
-                className={`text-[0.74rem] tracking-[0.1em] uppercase transition-colors duration-200 ${
+                className={`whitespace-nowrap text-[0.72rem] tracking-[0.1em] uppercase transition-colors duration-200 ${
                   active ? 'text-text-primary' : 'text-grey-secondary hover:text-text-primary'
                 }`}
               >
@@ -55,7 +56,7 @@ export function Nav() {
             href="https://offmarketpool.de"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[0.74rem] tracking-[0.1em] uppercase px-4 py-2 transition-all duration-200 bg-text-primary text-black hover:opacity-80"
+            className="whitespace-nowrap font-bold text-[0.72rem] tracking-[0.12em] uppercase px-4 py-2 transition-all duration-200 bg-text-primary text-black hover:opacity-80"
           >
             {d.nav.toPlatform}
           </a>
@@ -71,7 +72,7 @@ export function Nav() {
       </ul>
 
       {/* Mobile burger */}
-      <div className="md:hidden flex items-center gap-3">
+      <div className="lg:hidden flex items-center gap-3">
         <button
           onClick={() => setLocale(locale === 'de' ? 'en' : 'de')}
           className="text-[0.72rem] tracking-[0.14em] uppercase px-2 py-1 border border-grey-light text-grey-secondary"

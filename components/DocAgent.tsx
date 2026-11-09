@@ -210,7 +210,7 @@ export function DocAgent() {
           </div>
 
           <h2
-            className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-5 text-text-primary"
+            className="font-sans font-extrabold tracking-[-0.02em] leading-[1.1] mb-5 text-text-primary"
             style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)' }}
           >
             {d.book.askDoc} <em className="italic">{d.book.docName}</em> –<br />

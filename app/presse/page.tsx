@@ -1,3 +1,4 @@
+import { HeroBg } from '@/components/ui'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { BASE, PRESSE_MAIL, fmtDatum, getMarke, marken, veroeffentlichte, type MarkeId } from '@/lib/presse'
@@ -27,14 +28,15 @@ export default function PresseIndex({ searchParams }: Props) {
     }`
 
   return (
-    <section className="px-[5vw] py-24 min-h-[70vh]">
+    <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[70vh]">
+        <HeroBg src="/story/elsterbot-flug.webp" strength="soft" />
       <div className="max-w-[860px] mx-auto">
         <p className="text-[0.7rem] tracking-[0.22em] uppercase mb-4 text-grey-secondary">
           Presse · Dr. Hofeditz Real Estate GmbH
         </p>
         <h1
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-6 text-text-primary"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+          className="display mb-6 text-text-primary"
+          style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
         >
           Newsroom
         </h1>
@@ -69,7 +71,7 @@ export default function PresseIndex({ searchParams }: Props) {
               <p className="text-[0.65rem] tracking-[0.2em] uppercase mb-3 text-grey-muted">
                 {fmtDatum(m.datum)} · {getMarke(m.marke).name}
               </p>
-              <h2 className="font-sans font-medium tracking-[-0.01em] leading-[1.25] mb-3 text-text-primary text-[1.3rem]">
+              <h2 className="font-sans font-extrabold tracking-[-0.02em] leading-[1.25] mb-3 text-text-primary text-[1.3rem]">
                 {m.titel}
               </h2>
               <p className="text-[0.86rem] leading-relaxed mb-4 max-w-[64ch] text-grey-secondary">{m.lead}</p>

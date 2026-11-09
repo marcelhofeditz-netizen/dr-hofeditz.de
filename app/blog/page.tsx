@@ -1,3 +1,4 @@
+import { HeroBg } from '@/components/ui'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { posts } from '@/lib/blog'
@@ -14,14 +15,15 @@ const fmt = (iso: string) =>
 
 export default function BlogIndex() {
   return (
-    <section className="px-[5vw] py-24 min-h-[70vh]">
+    <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-24 min-h-[70vh]">
+        <HeroBg src="/story/forschung-bibliothek.webp" strength="soft" />
       <div className="max-w-[760px] mx-auto">
         <p className="text-[0.7rem] tracking-[0.22em] uppercase mb-4 text-grey-secondary">
           Blog · Zum Buch „Die Immobilienlüge&ldquo;
         </p>
         <h1
-          className="font-sans font-medium tracking-[-0.02em] leading-[1.1] mb-6 text-text-primary"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}
+          className="display mb-6 text-text-primary"
+          style={{ fontSize: 'clamp(2.6rem, 7vw, 6.2rem)' }}
         >
           Der Markt aus Psychologie
         </h1>
@@ -41,7 +43,7 @@ export default function BlogIndex() {
               <p className="text-[0.65rem] tracking-[0.2em] uppercase mb-3 text-grey-muted">
                 {fmt(post.date)} · {post.readingMinutes} Min. Lesezeit
               </p>
-              <h2 className="font-sans font-medium tracking-[-0.01em] leading-[1.2] mb-3 text-text-primary text-[1.35rem]">
+              <h2 className="font-sans font-extrabold tracking-[-0.02em] leading-[1.2] mb-3 text-text-primary text-[1.35rem]">
                 {post.title}
               </h2>
               <p className="text-[0.86rem] leading-relaxed mb-4 max-w-[60ch] text-grey-secondary">
