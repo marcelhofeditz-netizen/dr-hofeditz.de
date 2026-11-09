@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://www.dr-hofeditz.de/sitemap.xml',
+    sitemap: ['https://www.dr-hofeditz.de/sitemap.xml', 'https://www.dr-hofeditz.de/presse/news-sitemap.xml'],
   }
 }

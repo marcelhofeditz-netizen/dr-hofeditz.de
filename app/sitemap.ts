@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { posts } from '@/lib/blog'
+import { veroeffentlichte } from '@/lib/presse'
 
 const BASE = 'https://www.dr-hofeditz.de'
 
@@ -20,6 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(p.date).toISOString(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
+    })),
+    { url: `${BASE}/presse`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    ...veroeffentlichte().map((m) => ({
+      url: `${BASE}/presse/${m.slug}`,
+      lastModified: new Date(m.datum).toISOString(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
     })),
     { url: `${BASE}/impressum`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${BASE}/datenschutz`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
