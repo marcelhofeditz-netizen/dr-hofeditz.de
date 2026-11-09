@@ -13,12 +13,23 @@ const utm = (content: string) => `${OMP}/?utm_source=dr-hofeditz.de&utm_medium=r
 
 const T = {
   de: {
-    heroKicker: 'Dr. Marcel Hofeditz · Hamburg',
-    heroTitle: ['Der beste', 'Markt ist', 'unsichtbar.'],
+    heroKicker: 'Forscher · Unternehmer · Autor',
+    heroTitle: ['Marcel', 'Hofeditz.'],
     heroLead:
-      'Die meisten Investmentimmobilien wechseln den Eigentümer, ohne je inseriert zu werden. Ich erforsche, warum Menschen bei Immobilien so entscheiden, wie sie entscheiden – und baue die Plattform, die diesen verborgenen Markt öffnet.',
-    heroCta1: 'Off-Market-Objekte ansehen',
-    heroCta2: 'Die Geschichte',
+      'Ich habe promoviert, Deals über Hunderte Millionen verantwortet, ein Unternehmen gegründet und ein Buch geschrieben. Heute baue ich mit KI das, was mir in der Branche immer gefehlt hat: Transparenz. Meistens vom Laptop aus, oft nicht in Deutschland.',
+    heroCta1: 'Meine Geschichte',
+    heroCta2: 'Off-Market-Objekte',
+    manifestKicker: 'Wofür ich stehe',
+    manifest: ['Erst verstehen,', 'dann handeln.', 'Lieber die unbequeme Wahrheit', 'als die bequeme Lüge.', 'Bauen statt reden.'],
+    lifeKicker: 'Kapitel 05 · Überall',
+    lifeTitle: 'Kein Büro. Kein Feierabend-Ritual. Ein Laptop.',
+    lifeText:
+      'Ich arbeite komplett digital und ortsunabhängig – aktuell von der Pazifikküste Ecuadors aus. Morgens im deutschen Zeitfenster Deals, Code und Calls, nachmittags das Leben. Offmarketpool hat Country Manager in mehreren Ländern; die Arbeit passiert in der App, nicht im Konferenzraum.',
+    golfKicker: 'Kapitel 06 · Abseits vom Deal',
+    golfTitle: 'Handicap 13. Ehrgeiz: unverändert.',
+    golfText:
+      'Auf dem Platz bin ich „The Rookie“ im AK30-Team von gutgut Golf – mit eigenem Kanal auf Instagram und YouTube. Golf ist für mich dasselbe wie Investieren: Wer sich selbst belügt, verliert. Hinter den Kulissen gibt es alles auf Instagram.',
+    instaCta: 'Instagram @marcel_hofeditz',
     ticker: ['Off-Market-Immobilien', 'KI-Matching', 'Investmentimmobilien', 'Verhaltensökonomie', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
     c1Kicker: 'Kapitel 01 · Die Lüge',
     c1Title: 'Immobilien sind kein Markt aus Beton.',
@@ -73,12 +84,23 @@ const T = {
     finalCta2: 'Kontakt',
   },
   en: {
-    heroKicker: 'Dr. Marcel Hofeditz · Hamburg',
-    heroTitle: ['The best', 'market is', 'invisible.'],
+    heroKicker: 'Researcher · Founder · Author',
+    heroTitle: ['Marcel', 'Hofeditz.'],
     heroLead:
-      'Most investment properties change hands without ever being listed. I research why people decide the way they do about real estate – and build the platform that opens up this hidden market.',
-    heroCta1: 'View off-market properties',
-    heroCta2: 'The story',
+      'I earned a doctorate, led deals worth hundreds of millions, founded a company and wrote a book. Today I use AI to build what the industry always lacked: transparency. Mostly from a laptop, often far from Germany.',
+    heroCta1: 'My story',
+    manifestKicker: 'What I stand for',
+    manifest: ['Understand first,', 'then act.', 'The uncomfortable truth', 'beats the comfortable lie.', 'Build, don’t talk.'],
+    lifeKicker: 'Chapter 05 · Anywhere',
+    lifeTitle: 'No office. No 9-to-5. One laptop.',
+    lifeText:
+      'I work fully digital and location-independent – right now from Ecuador’s Pacific coast. Mornings in the German time window: deals, code and calls. Afternoons: life. Offmarketpool has country managers in several countries; the work happens in the app, not in a meeting room.',
+    golfKicker: 'Chapter 06 · Off the deal',
+    golfTitle: 'Handicap 13. Ambition: unchanged.',
+    golfText:
+      'On the course I’m “The Rookie” in the AK30 team of gutgut Golf – with its own channel on Instagram and YouTube. Golf is like investing: lie to yourself and you lose. Behind the scenes: Instagram.',
+    instaCta: 'Instagram @marcel_hofeditz',
+    heroCta2: 'Off-market properties',
     ticker: ['Off-market real estate', 'AI matching', 'Investment properties', 'Behavioral economics', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
     c1Kicker: 'Chapter 01 · The lie',
     c1Title: 'Real estate is not a market made of concrete.',
@@ -181,25 +203,28 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-[100svh] flex items-end overflow-hidden isolate -mt-[1px]">
-        <div className="absolute inset-y-0 right-0 left-0 md:left-[28%] -z-20">
-          <Image
-            src="/story/hero-tuer.webp"
-            alt="Schwere Tür in der Hamburger Speicherstadt, durch das Schlüsselloch fällt Licht"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover kenburns"
-            style={{ objectPosition: '60% 45%' }}
+        <div className="absolute inset-x-0 top-0 h-[60svh] md:h-auto md:inset-y-0 md:left-[22%] -z-20">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: '70% 30%' }}
+            src="/marcel/hero.mp4"
+            poster="/marcel/tuer1.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label="Dr. Marcel Hofeditz vor einer Tür mit leuchtendem Schlüsselloch"
           />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 md:hidden" style={{ background: 'linear-gradient(0deg,#0B0B0B,#0B0B0B00)' }} />
         </div>
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: 'linear-gradient(90deg,#0B0B0B 0%,#0B0B0B 28%,#0B0B0B99 40%,#0B0B0B00 60%),linear-gradient(0deg,#0B0B0B 0%,#0B0B0B00 40%)' }}
+          style={{ background: 'linear-gradient(90deg,#0B0B0B 0%,#0B0B0B 22%,#0B0B0B88 34%,#0B0B0B00 52%),linear-gradient(0deg,#0B0B0B 0%,#0B0B0B00 45%)' }}
         />
-        <div className="w-full px-[5vw] pt-36 pb-24">
+        <div className="w-full px-[5vw] pt-[50svh] md:pt-36 pb-20 md:pb-24">
           <div className="max-w-[1200px] mx-auto">
             <p className="kicker mb-6">{t.heroKicker}</p>
-            <h1 className="display text-text-primary mb-8" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
+            <h1 className="display text-text-primary mb-8" style={{ fontSize: 'clamp(3.4rem, 11vw, 10rem)' }}>
               {t.heroTitle.map((line) => (
                 <span key={line} className="block">
                   {line}{' '}
@@ -208,10 +233,10 @@ export default function Home() {
             </h1>
             <p className="text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.6] text-[#dddddd] max-w-[36rem] mb-10">{t.heroLead}</p>
             <div className="flex flex-wrap gap-3">
-              <a href={utm('hero')} className="btn-solid-x">
+              <a href="#manifest" className="btn-solid-x">
                 {t.heroCta1}
               </a>
-              <a href="#geschichte" className="btn-ghost-x">
+              <a href={utm('hero')} className="btn-ghost-x">
                 {t.heroCta2}
               </a>
             </div>
@@ -227,6 +252,24 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* ── MANIFEST ── */}
+      <section id="manifest" className="scroll-mt-20 relative isolate overflow-hidden px-[5vw] py-28 md:py-40">
+        <div aria-hidden className="absolute inset-0 -z-10">
+          <Image src="/marcel/tuer2.webp" alt="" fill sizes="100vw" className="object-cover opacity-30" style={{ objectPosition: '20% 30%' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#0B0B0B00 0%,#0B0B0BCC 45%,#0B0B0B 70%)' }} />
+        </div>
+        <div className="max-w-[1200px] mx-auto md:pl-[38%]">
+          <p className="kicker mb-8">{t.manifestKicker}</p>
+          <p className="display text-text-primary" style={{ fontSize: 'clamp(2.2rem, 5.6vw, 5rem)' }}>
+            {t.manifest.map((l, i) => (
+              <span key={l} className={`block ${i % 2 ? 'text-grey-secondary' : ''}`}>
+                {l}{' '}
+              </span>
+            ))}
+          </p>
+        </div>
+      </section>
 
       {/* ── KAPITEL 01 ── */}
       <div id="geschichte" className="scroll-mt-20">
@@ -323,8 +366,8 @@ export default function Home() {
 
       {/* ── KAPITEL 04 · FORSCHUNG ── */}
       <Chapter
-        img="/story/forschung-bibliothek.webp"
-        alt="Universitätsbibliothek bei Nacht mit Forschungsunterlagen"
+        img="/marcel/uni.webp"
+        alt="Dr. Marcel Hofeditz in einer Universitätsbibliothek vor einer Tafel mit Entscheidungsbäumen"
         kicker={t.c4Kicker}
         title={t.c4Title}
         text={t.c4Text}
@@ -339,6 +382,18 @@ export default function Home() {
               {t.c4Cta2}
             </Link>
           </div>
+        </div>
+      </Chapter>
+
+      {/* ── KAPITEL 05 · ÜBERALL ── */}
+      <Chapter img="/marcel/ecuador.webp" alt="Dr. Marcel Hofeditz arbeitet am Laptop auf den Stufen eines Strandhauses an der Pazifikküste" kicker={t.lifeKicker} title={t.lifeTitle} text={t.lifeText} reverse />
+
+      {/* ── KAPITEL 06 · GOLF ── */}
+      <Chapter img="/marcel/golf.webp" alt="Dr. Marcel Hofeditz lachend nach einem Abschlag auf dem Golfplatz" kicker={t.golfKicker} title={t.golfTitle} text={t.golfText}>
+        <div className="flex flex-wrap gap-3 mt-9">
+          <a href="https://www.instagram.com/marcel_hofeditz/" target="_blank" rel="noopener" className="btn-solid-x">
+            {t.instaCta} &rarr;
+          </a>
         </div>
       </Chapter>
 

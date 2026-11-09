@@ -52,9 +52,9 @@ export const metadata: Metadata = {
       'OffMarketPool Plattform (1.100+ Objekte, €10 Mrd.+ Volumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
     images: [
       {
-        url: '/story/hero-tuer.webp',
-        width: 1920,
-        height: 1072,
+        url: '/marcel/og.jpg',
+        width: 1200,
+        height: 670,
         alt: 'Dr. Marcel Hofeditz – Managementforscher und Immobilienunternehmer',
       },
     ],
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: 'Dr. Marcel Hofeditz – Offmarket Immobilien, Forschung & Autor',
     description:
       'Gründer von OffMarketPool, Autor von „Die Immobilienlüge", Immolab Coaching.',
-    images: ['/story/hero-tuer.webp'],
+    images: ['/marcel/og.jpg'],
   },
   robots: {
     index: true,
