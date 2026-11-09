@@ -5,7 +5,7 @@ import { posts } from '@/lib/blog'
 export const metadata: Metadata = {
   title: 'Blog – Die Immobilienlüge',
   description:
-    'Essays zu Verhaltensökonomie, Spieltheorie und Marktpsychologie im Immobilienmarkt – begleitend zum Buch „Die Immobilienlüge" (erscheint Sommer 2027).',
+    'Essays zu Verhaltensökonomie, Spieltheorie und Marktpsychologie im Immobilienmarkt – begleitend zum Buch „Die Immobilienlüge" (erscheint Herbst 2027 bei Econ).',
   alternates: { canonical: 'https://www.dr-hofeditz.de/blog' },
 }
 
@@ -26,8 +26,8 @@ export default function BlogIndex() {
           Der Markt aus Psychologie
         </h1>
         <p className="text-[0.92rem] leading-[1.7] mb-16 max-w-[52ch] text-grey-secondary">
-          Essays entlang der Kapitel der „Immobilienlüge&ldquo; (Verlagsveröffentlichung geplant für
-          Sommer 2027): Verhaltensökonomie, Spieltheorie und Marktmechanik – angewendet auf den
+          Essays entlang der Kapitel der „Immobilienlüge&ldquo; (erscheint im Herbst 2027 bei Econ,
+          Ullstein Buchverlage): Verhaltensökonomie, Spieltheorie und Marktmechanik – angewendet auf den
           deutschen Immobilienmarkt.
         </p>
 
