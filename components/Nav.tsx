@@ -17,6 +17,7 @@ export function Nav() {
     { href: '/coaching', label: d.nav.coaching },
     { href: '/forschung', label: d.nav.research },
     { href: '/blog', label: d.nav.blog },
+    { href: '/presse', label: d.nav.press },
     { href: '/kontakt', label: d.nav.contact },
   ]
 
