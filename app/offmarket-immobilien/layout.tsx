@@ -41,7 +41,7 @@ const faqJsonLd = {
       name: 'Was ist OffMarketPool?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. Mit KI-basiertem Matching, über 1.100 Objekten im Pool und mehr als €10 Mrd. Volumen.',
+        text: 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. Mit KI-basiertem Matching, über 500 Objekten im Pool und rund €4,9 Mrd. Volumen.',
       },
     },
   ],

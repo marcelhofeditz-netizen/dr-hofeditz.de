@@ -42,8 +42,8 @@ const T = {
     c2Text:
       'Eigentümer, die diskret verkaufen wollen, inserieren nicht. Käufer mit Kapital suchen nicht auf Portalen. Offmarketpool bringt beide zusammen: Die KI gleicht jedes Objekt mit hinterlegten Ankaufsprofilen ab, Exposé und Adresse gehen erst nach Zustimmung des Eigentümers raus.',
     c2Stats: [
-      { n: '1.100+', l: 'Objekte im Pool' },
-      { n: '€10 Mrd.+', l: 'Objektvolumen' },
+      { n: '500+', l: 'Objekte im Pool' },
+      { n: 'ca. €4,9 Mrd.', l: 'Objektvolumen' },
       { n: '7.000+', l: 'Investorenprofile' },
       { n: '50/50', l: 'für Mitmakler' },
     ],
@@ -113,8 +113,8 @@ const T = {
     c2Text:
       'Owners who want to sell discreetly don’t list. Buyers with capital don’t search portals. Offmarketpool brings both together: AI matches every property against stored acquisition profiles, and details are only released with the owner’s consent.',
     c2Stats: [
-      { n: '1,100+', l: 'Properties in the pool' },
-      { n: '€10bn+', l: 'Asset volume' },
+      { n: '500+', l: 'Properties in the pool' },
+      { n: 'approx. €4.9bn', l: 'Asset volume' },
       { n: '7,000+', l: 'Investor profiles' },
       { n: '50/50', l: 'for co-brokers' },
     ],

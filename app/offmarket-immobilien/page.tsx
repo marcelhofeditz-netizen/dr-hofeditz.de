@@ -52,8 +52,8 @@ export default function OffmarketImmobilienPage() {
 
       {/* Stats */}
       <div className="py-14 px-[5vw] grid grid-cols-2 md:grid-cols-4 gap-8 border-y border-grey-light">
-        <Stat number="1.100+" label={isEn ? 'Assets in the pool' : 'Objekte im Pool'} />
-        <Stat number="€10 Mrd.+" label={isEn ? 'Volume' : 'Volumen'} />
+        <Stat number="500+" label={isEn ? 'Assets in the pool' : 'Objekte im Pool'} />
+        <Stat number="ca. €4,9 Mrd." label={isEn ? 'Volume' : 'Volumen'} />
         <Stat number="7.000+" label={isEn ? 'Investor Profiles' : 'Investorenprofile'} />
         <Stat number="KI" label={isEn ? 'Matching Algorithm' : 'Matching-Algorithmus'} />
       </div>
@@ -174,8 +174,8 @@ export default function OffmarketImmobilienPage() {
               {
                 q: isEn ? 'What is OffMarketPool?' : 'Was ist OffMarketPool?',
                 a: isEn
-                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 1,100+ assets in the pool, €10bn+ volume.'
-                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, über 1.100 Objekte im Pool und mehr als €10 Mrd. Volumen.',
+                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 500+ assets in the pool, approx. €4.9bn volume.'
+                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, über 500 Objekte im Pool und rund €4,9 Mrd. Volumen.',
               },
             ].map(({ q, a }) => (
               <div key={q} className="p-6 border border-grey-light">
@@ -206,8 +206,8 @@ export default function OffmarketImmobilienPage() {
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
                 {isEn
-                  ? 'AI matching, 1,100+ assets, €10bn+ volume.'
-                  : 'KI-Matching, 1.100+ Objekte, €10 Mrd.+ Volumen.'}
+                  ? 'AI matching, 500+ assets, approx. €4.9bn volume.'
+                  : 'KI-Matching, 500+ Objekte, ca. €4,9 Mrd. Volumen.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {isEn ? 'Learn more' : 'Mehr erfahren'} &rarr;

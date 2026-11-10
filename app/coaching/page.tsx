@@ -124,7 +124,7 @@ export default function CoachingPage() {
                 OffMarketPool
               </span>
               <span className="text-[0.8rem] text-grey-secondary block mb-3">
-                {d.coaching.forWhom === 'Für wen' ? 'KI-Matching, 1.100+ Objekte, €10 Mrd.+ Volumen.' : 'AI matching, 1,100+ assets, €10bn+ volume.'}
+                {d.coaching.forWhom === 'Für wen' ? 'KI-Matching, 500+ Objekte, ca. €4,9 Mrd. Volumen.' : 'AI matching, 500+ assets, approx. €4.9bn volume.'}
               </span>
               <span className="text-[0.72rem] tracking-[0.12em] uppercase text-text-primary group-hover:text-grey-secondary transition-colors duration-200">
                 {d.coaching.forWhom === 'Für wen' ? 'Mehr erfahren' : 'Learn more'} &rarr;
