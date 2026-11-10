@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s | Dr. Marcel Hofeditz',
   },
   description:
-    'Dr. Marcel Hofeditz – promovierter Managementforscher, Gründer von Offmarketpool (Off-Market-Investmentimmobilien, 1.100+ Objekte, €10 Mrd.+ Volumen) und Autor von „Die Immobilienlüge". Offmarket-Immobilien, Immolab Coaching, Hamburg.',
+    'Dr. Marcel Hofeditz – promovierter Managementforscher, Gründer von Offmarketpool (Off-Market-Investmentimmobilien, 500+ Objekte, ca. €4,9 Mrd. Volumen) und Autor von „Die Immobilienlüge". Offmarket-Immobilien, Immolab Coaching, Hamburg.',
   keywords: [
     'Dr. Marcel Hofeditz',
     'Offmarket Immobilien',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'Dr. Marcel Hofeditz',
     title: 'Dr. Marcel Hofeditz – Offmarket Immobilien, Forschung & Autor',
     description:
-      'OffMarketPool Plattform (1.100+ Objekte, €10 Mrd.+ Volumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
+      'OffMarketPool Plattform (500+ Objekte, ca. €4,9 Mrd. Volumen), Buch „Die Immobilienlüge" und Immolab Coaching. Hamburg.',
     images: [
       {
         url: '/marcel/og.jpg',
@@ -140,7 +140,7 @@ function JsonLd() {
     url: 'https://offmarketpool.de',
     logo: `${BASE_URL}/IMG_8225.webp`,
     description:
-      'Plattform für Off-Market-Investmentimmobilien mit KI-Matching. Über 1.100 Objekte und mehr als 10 Mrd. € Objektvolumen im Pool.',
+      'Plattform für Off-Market-Investmentimmobilien mit KI-Matching. Über 500 Objekte und rund 4,9 Mrd. € Objektvolumen im Pool.',
     founder: { '@type': 'Person', name: 'Dr. Marcel Hofeditz' },
     foundingDate: '2025-04',
     areaServed: 'Europe',
