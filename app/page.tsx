@@ -24,7 +24,7 @@ const T = {
     lifeKicker: 'Kapitel 05 · Überall',
     lifeTitle: 'Kein Büro. Kein Feierabend-Ritual. Ein Laptop.',
     lifeText:
-      'Ich arbeite komplett digital und ortsunabhängig – aktuell von der Pazifikküste Ecuadors aus. Morgens im deutschen Zeitfenster Deals, Code und Calls, nachmittags das Leben. Offmarketpool hat Country Manager in mehreren Ländern; die Arbeit passiert in der App, nicht im Konferenzraum.',
+      'Ich arbeite komplett digital und ortsunabhängig. Die Zentrale ist Hamburg – von hier aus führe ich die Dr. Hofeditz Real Estate GmbH und Offmarketpool. Morgens Deals, Code und Calls, nachmittags das Leben. Offmarketpool hat Country Manager in mehreren Ländern; die Arbeit passiert in der App, nicht im Konferenzraum.',
     golfKicker: 'Kapitel 06 · Abseits vom Deal',
     golfTitle: 'Handicap 13. Ehrgeiz: unverändert.',
     golfText:
@@ -94,7 +94,7 @@ const T = {
     lifeKicker: 'Chapter 05 · Anywhere',
     lifeTitle: 'No office. No 9-to-5. One laptop.',
     lifeText:
-      'I work fully digital and location-independent – right now from Ecuador’s Pacific coast. Mornings in the German time window: deals, code and calls. Afternoons: life. Offmarketpool has country managers in several countries; the work happens in the app, not in a meeting room.',
+      'I work fully digital and location-independent. Headquarters is Hamburg – that’s where Dr. Hofeditz Real Estate GmbH and Offmarketpool are run from. Mornings: deals, code and calls. Afternoons: life. Offmarketpool has country managers in several countries; the work happens in the app, not in a meeting room.',
     golfKicker: 'Chapter 06 · Off the deal',
     golfTitle: 'Handicap 13. Ambition: unchanged.',
     golfText:
@@ -386,7 +386,7 @@ export default function Home() {
       </Chapter>
 
       {/* ── KAPITEL 05 · ÜBERALL ── */}
-      <Chapter img="/marcel/ecuador.webp" alt="Dr. Marcel Hofeditz arbeitet am Laptop auf den Stufen eines Strandhauses an der Pazifikküste" kicker={t.lifeKicker} title={t.lifeTitle} text={t.lifeText} reverse />
+      <Chapter img="/marcel/unterwegs.webp" alt="Dr. Marcel Hofeditz arbeitet unterwegs am Laptop" kicker={t.lifeKicker} title={t.lifeTitle} text={t.lifeText} reverse />
 
       {/* ── KAPITEL 06 · GOLF ── */}
       <Chapter img="/marcel/golf.webp" alt="Dr. Marcel Hofeditz lachend nach einem Abschlag auf dem Golfplatz" kicker={t.golfKicker} title={t.golfTitle} text={t.golfText}>
