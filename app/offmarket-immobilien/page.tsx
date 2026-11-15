@@ -32,12 +32,12 @@ export default function OffmarketImmobilienPage() {
           <p className="text-[1rem] leading-relaxed mb-4 max-w-[56ch] text-grey-secondary">
             {isEn
               ? 'Off-market properties are traded discreetly – outside of public portals. No exposure, no price pressure, maximum discretion. How it works and why Europe\'s largest investors rely on it.'
-              : 'Offmarket-Immobilien werden diskret gehandelt – abseits öffentlicher Portale. Keine Exposition, kein Preisdruck, maximale Diskretion. Wie es funktioniert und warum Europas größte Investoren darauf setzen.'}
+              : 'Offmarket-Immobilien werden diskret gehandelt – abseits öffentlicher Portale. Keine Exposition, kein Preisdruck, maximale Diskretion. Wie es funktioniert und warum gerade institutionelle Investoren darauf setzen.'}
           </p>
           <p className="text-[0.88rem] leading-relaxed mb-10 max-w-[56ch] text-grey-secondary">
             {isEn
-              ? 'By Dr. Marcel Hofeditz – founder of OffMarketPool, Europe\'s leading off-market real estate platform.'
-              : 'Von Dr. Marcel Hofeditz – Gründer von OffMarketPool, Europas führender Offmarket-Immobilienplattform.'}
+              ? 'By Dr. Marcel Hofeditz – founder of OffMarketPool, an off-market real estate platform.'
+              : 'Von Dr. Marcel Hofeditz – Gründer von OffMarketPool, der Off-Market-Plattform für Investmentimmobilien.'}
           </p>
           <div className="flex flex-wrap gap-4">
             <BtnPrimary href="https://offmarketpool.de" external>
@@ -174,8 +174,8 @@ export default function OffmarketImmobilienPage() {
               {
                 q: isEn ? 'What is OffMarketPool?' : 'Was ist OffMarketPool?',
                 a: isEn
-                  ? 'OffMarketPool is Europe\'s leading off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 1,100+ assets in the pool, €10bn+ volume.'
-                  : 'OffMarketPool ist Europas führende Offmarket-Immobilienplattform, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, über 1.100 Objekte im Pool und mehr als €10 Mrd. Volumen.',
+                  ? 'OffMarketPool is an off-market real estate platform, founded by Dr. Marcel Hofeditz. AI-based matching, 1,100+ assets in the pool, €10bn+ volume.'
+                  : 'OffMarketPool ist Off-Market-Plattform für Investmentimmobilien, gegründet von Dr. Marcel Hofeditz. KI-basiertes Matching, über 1.100 Objekte im Pool und mehr als €10 Mrd. Volumen.',
               },
             ].map(({ q, a }) => (
               <div key={q} className="p-6 border border-grey-light">
