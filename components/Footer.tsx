@@ -72,7 +72,10 @@ export function Footer() {
                     className="block group"
                   >
                     <span className="text-[0.8rem] text-grey-secondary transition-colors duration-200 group-hover:text-text-primary">
-                      {label} &nearr;
+                      {label}
+                      <span aria-hidden="true" className="ml-1.5 inline-block text-[0.7em] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        {"↗"}
+                      </span>
                     </span>
                     <span className="block text-[0.65rem] text-grey-muted mt-0.5">{sub}</span>
                   </a>
