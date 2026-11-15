@@ -3,7 +3,7 @@
 // auf /presse, im RSS-Feed und in der News-Sitemap sichtbar.
 
 export const BASE = 'https://www.dr-hofeditz.de'
-export const PRESSE_MAIL = 'info@dr-hofeditz.de'
+export const PRESSE_MAIL = 'marcel@dr-hofeditz.de'
 
 export type MarkeId = 'holding' | 'offmarketpool' | 'elsterbot' | 'vibe-league' | 'buch'
 

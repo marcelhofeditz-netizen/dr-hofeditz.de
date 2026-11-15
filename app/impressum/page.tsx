@@ -47,7 +47,7 @@ export default function ImpressumPage() {
             </h2>
             <p>
               Telefon: +49 (0) 1515 0467537<br />
-              E-Mail: info@dr-hofeditz.de
+              E-Mail: marcel@dr-hofeditz.de
             </p>
           </div>
 
@@ -56,9 +56,9 @@ export default function ImpressumPage() {
               Aufsichtsbehörde und Berufsrecht
             </h2>
             <p>
-              Erlaubnis als Immobilienmakler nach § 34c Abs. 1 GewO, erteilt durch die
-              zuständige Erlaubnisbehörde der Freien und Hansestadt Hamburg
-              (Bezirksamt Altona, Verbraucherschutzamt).
+              Erlaubnis als Immobilienmakler nach § 34c Abs. 1 GewO. Zuständige
+              Aufsichtsbehörde: Bezirksamt Altona – Fachamt Verbraucherschutz, Gewerbe
+              und Umwelt, Jessenstraße 1–3, 22767 Hamburg.
             </p>
             <p className="mt-3">
               Es gelten die berufsrechtlichen Regelungen der Gewerbeordnung (GewO) und
@@ -77,6 +77,19 @@ export default function ImpressumPage() {
               Dr. Marcel Hofeditz<br />
               Am Klein Flottbeker Bahnhof 55<br />
               22609 Hamburg
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-text-primary font-medium text-[1rem] mb-2">
+              Offmarketpool
+            </h2>
+            <p>
+              Die Plattform Offmarketpool wird ebenfalls von der Dr. Hofeditz Real Estate GmbH
+              betrieben; Impressum und Datenschutzerklärung der Plattform finden Sie unter{' '}
+              <a href="https://offmarketpool.de/impressum" className="underline hover:text-text-primary">offmarketpool.de/impressum</a>.
+              Dieses Impressum gilt auch für die Profile von Dr. Marcel Hofeditz bei LinkedIn,
+              Instagram, TikTok, YouTube und Spotify.
             </p>
           </div>
 
