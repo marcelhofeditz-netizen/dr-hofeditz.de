@@ -1,54 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { Eyebrow, SectionTitle, Divider } from '@/components/ui'
-import { SpotifyEmbed } from '@/components/LazyEmbed'
+import { SpotifyEmbed, LazyYouTube } from '@/components/LazyEmbed'
 import { useLocale } from '@/lib/locale-context'
 
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@offmarketpool'
-
-function LazyYouTubeEmbed() {
-  const [loaded, setLoaded] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setLoaded(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '300px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div ref={ref} className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-      {loaded ? (
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube-nocookie.com/embed/EldDVaBX698"
-          title="OffMarketPool Podcast"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="lazy"
-          style={{ border: 0 }}
-        />
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-bg-card border border-grey-light">
-          <span className="text-grey-secondary text-[0.8rem] tracking-[0.1em] uppercase">
-            Loading...
-          </span>
-        </div>
-      )}
-    </div>
-  )
-}
 
 export function PodcastSection() {
   const { d } = useLocale()
@@ -66,7 +22,7 @@ export function PodcastSection() {
           </p>
 
           {/* YouTube – latest episodes */}
-          <LazyYouTubeEmbed />
+          <LazyYouTube videoId="EldDVaBX698" title="OffMarketPool Podcast" />
 
           {/* YouTube channel link */}
           <div className="mt-6 text-right">

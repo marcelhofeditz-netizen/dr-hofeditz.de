@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
+import '@fontsource/inter/300.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/inter/700.css'
+import '@fontsource/inter/800.css'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
 import { DocFloat } from '@/components/DocFloat'
 import { LocaleProvider } from '@/lib/locale-context'
+
 
 const BASE_URL = 'https://www.dr-hofeditz.de'
 
