@@ -58,6 +58,26 @@ export const assets: Asset[] = [
     },
   },
   {
+    id: 'trainingsbot',
+    name: 'Trainingsbot',
+    domain: 'trainingsbot.de',
+    url: utm('https://www.trainingsbot.de', 'assets'),
+    img: '/story/trainingsbot-professor.webp',
+    sichtbar: true,
+    de: {
+      rolle: 'KI · Lernen mit Connector',
+      status: 'Beta',
+      text: 'Der Trainingsbot bringt Menschen bei, mit KI zu arbeiten – direkt als Connector in Claude oder ChatGPT. Kurse zu KI, Steuern und Immobilien, die sich dem eigenen Level anpassen, dazu Trainer, Rangliste und ein wöchentliches Weekly in der Community.',
+      cta: 'Zum Trainingsbot',
+    },
+    en: {
+      rolle: 'AI · Learning via connector',
+      status: 'Beta',
+      text: 'Trainingsbot teaches people how to work with AI – as a connector right inside Claude or ChatGPT. Courses on AI, taxes and real estate that adapt to your level, plus trainers, leaderboards and a weekly community call.',
+      cta: 'Visit Trainingsbot',
+    },
+  },
+  {
     id: 'immobilienluege',
     name: 'Die Immobilienlüge',
     domain: 'immobilienluege.de',
