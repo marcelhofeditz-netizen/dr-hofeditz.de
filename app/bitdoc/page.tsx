@@ -57,6 +57,54 @@ const actionLabel: Record<string, string> = {
   'stop-order': 'Stop-Loss',
 }
 
+/* Turnier-Backtest vom 16.11.2026: Kraken-Tageskurse BTC/EUR, 13.06.2025–14.11.2026,
+   100 € pro Monat, 0,25 % Gebühr je Order, 180 Varianten getestet. */
+type Variant = { name: string; note: string; total: number; trades: number; bitdoc?: boolean; hold?: boolean }
+const TOURNAMENT: Variant[] = [
+  { name: 'Testsieger 3/20', note: 'sehr nervös', total: 7.4, trades: 36 },
+  { name: '5/30 · Stop 8 %', note: 'schneller', total: 1.2, trades: 26 },
+  { name: 'BitDoc 5/100 · Stop 8 %', note: 'unsere Regel', total: -1.7, trades: 12, bitdoc: true },
+  { name: '20/50', note: 'Klassiker', total: -10.9, trades: 16 },
+  { name: '50/200', note: '„Golden Cross“', total: -17.8, trades: 3 },
+  { name: 'Nur Halten', note: 'jeden Monat kaufen', total: -18.0, trades: 1, hold: true },
+]
+
+function TournamentBars() {
+  const NEG = 26, POS = 18, span = NEG + POS
+  const zero = (NEG / span) * 100
+  return (
+    <div className="border-t border-grey-light" role="list" aria-label="Rendite verschiedener Regeln im Backtest">
+      {TOURNAMENT.map((v) => {
+        const w = (Math.abs(v.total) / span) * 100
+        const color = v.bitdoc ? 'bg-text-primary' : v.hold ? 'bg-grey-muted' : 'bg-grey-secondary'
+        return (
+          <div key={v.name} role="listitem" className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-x-6 gap-y-2 py-4 border-b border-grey-light">
+            <div>
+              <p className={`text-[0.95rem] ${v.bitdoc ? 'font-extrabold text-text-primary' : 'font-bold text-grey-secondary'}`}>{v.name}</p>
+              <p className="text-[0.75rem] text-grey-muted">
+                {v.note} · {v.trades} {v.trades === 1 ? 'Trade' : 'Trades'}
+              </p>
+            </div>
+            <div className="relative h-7 self-center">
+              <div className="absolute top-0 bottom-0 border-l border-dashed border-grey-muted" style={{ left: `${zero}%` }} />
+              <div
+                className={`absolute top-1 bottom-1 ${color}`}
+                style={v.total >= 0 ? { left: `${zero}%`, width: `${w}%` } : { right: `${100 - zero}%`, width: `${w}%` }}
+              />
+              <span
+                className={`absolute top-0 leading-7 whitespace-nowrap text-[0.85rem] font-bold tabular-nums ${v.bitdoc ? 'text-text-primary' : 'text-grey-secondary'}`}
+                style={v.total >= 0 ? { left: `calc(${zero + w}% + 8px)` } : { right: `calc(${100 - zero + w}% + 8px)` }}
+              >
+                {pct(v.total)}
+              </span>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 function Chart({ series }: { series: Point[] }) {
   if (series.length < 2) {
     return (
@@ -253,6 +301,44 @@ export default async function BitDocPage() {
               Ehrlicherweise: Der große Vorsprung ab 2018 stammt fast komplett aus dem Crash 2022, in dem BitDoc draußen war.
               Bei einer Einmalanlage ohne monatliche Einzahlungen lag reines Halten 2023–2026 vorn. Vergangenheit ist keine Garantie.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="divider my-0 mx-[5vw]" />
+
+      {/* TURNIER */}
+      <section className="px-[5vw] py-20">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="kicker mb-4">Das Turnier · November 2026</p>
+          <h2 className="h-section uppercase text-text-primary mb-3" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 2.8rem)' }}>
+            180 Regeln gegeneinander
+          </h2>
+          <p className="text-[0.92rem] leading-relaxed text-grey-secondary mb-10 max-w-[70ch]">
+            Ist BitDoc die beste Regel? Ich habe Claude 180 Varianten gegeneinander antreten lassen – echte Kraken-Kurse
+            von Juni 2025 bis November 2026, 100 € pro Monat, 0,25 % Gebühr je Order. In dieser Zeit fiel Bitcoin von
+            rund 90.000 € auf unter 60.000 €.
+          </p>
+          <TournamentBars />
+          <div className="grid md:grid-cols-3 gap-8 mt-12 text-[0.9rem] leading-relaxed text-grey-secondary">
+            <div>
+              <p className="text-text-primary font-bold mb-2">Jede Trendregel schlägt Halten.</p>
+              <p>In einem fallenden Markt rettet das Aussteigen. In einem starken Bullenmarkt wäre es umgekehrt – dann gewinnt Halten.</p>
+            </div>
+            <div>
+              <p className="text-text-primary font-bold mb-2">BitDoc: Platz 59 von 180.</p>
+              <p>
+                Aber am stabilsten. Im Crash-Halbjahr (Juni 2025–Feb. 2026) verlor BitDoc nur 5,1 % – der Testsieger 11,5 %,
+                Halten 34,9 %.
+              </p>
+            </div>
+            <div>
+              <p className="text-text-primary font-bold mb-2">Darum bleibt alles, wie es ist.</p>
+              <p>
+                Der Testsieger handelt dreimal so oft und gewann vor allem in den letzten Monaten. Die Regel im Nachhinein
+                umzustellen, wäre Rückspiegel-Optimierung.
+              </p>
+            </div>
           </div>
         </div>
       </section>
