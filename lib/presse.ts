@@ -5,7 +5,7 @@
 export const BASE = 'https://www.dr-hofeditz.de'
 export const PRESSE_MAIL = 'marcel@dr-hofeditz.de'
 
-export type MarkeId = 'holding' | 'offmarketpool' | 'elsterbot' | 'vibe-league' | 'buch'
+export type MarkeId = 'holding' | 'offmarketpool' | 'elsterbot' | 'trainingsbot' | 'vibe-league' | 'buch'
 
 export type Marke = {
   id: MarkeId
@@ -43,6 +43,15 @@ export const marken: Marke[] = [
     kurz: 'Elsterbot',
     beschreibung:
       'Steuererklärung im KI-Chat: Elsterbot wird als Connector in Claude oder ChatGPT verbunden und berechnet die Einkommensteuer aus den Unterlagen des Nutzers. Prüfung und Übermittlung übernehmen angeschlossene Steuerkanzleien. Derzeit in der Beta; kein Angebot der Finanzverwaltung.',
+    sichtbar: true,
+  },
+  {
+    id: 'trainingsbot',
+    name: 'Trainingsbot',
+    url: 'https://www.trainingsbot.de',
+    kurz: 'Trainingsbot',
+    beschreibung:
+      'Lernplattform, die Menschen beibringt, mit KI zu arbeiten: Der Trainingsbot wird als Connector in Claude oder ChatGPT verbunden und führt durch Kurse zu KI, Steuern und Immobilien, die sich dem Level der Teilnehmenden anpassen. Trainer und Bildungsträger können eigene Kurse anbieten. Derzeit in der Beta.',
     sichtbar: true,
   },
   {

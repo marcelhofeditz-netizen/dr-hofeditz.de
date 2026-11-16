@@ -32,6 +32,7 @@ export const metadata: Metadata = {
     'Off-Market Investmentimmobilien kaufen',
     'Immobilie diskret verkaufen',
     'Elsterbot',
+    'Trainingsbot',
     'Psychologie beim Immobilienkauf',
     'Immolab',
     'Immobilien Coaching',

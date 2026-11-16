@@ -10,7 +10,7 @@ export function AssetsGrid() {
   const list = sichtbareAssets()
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-grey-light border border-grey-light">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-grey-light border border-grey-light">
       {list.map((a, i) => {
         const t = en ? a.en : a.de
         const ext = a.url.startsWith('http')
