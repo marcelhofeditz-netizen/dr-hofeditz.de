@@ -284,22 +284,22 @@ export default async function BitDocPage() {
               Was die Regel früher gebracht hätte
             </h2>
             <p className="text-[0.92rem] leading-relaxed text-grey-secondary mb-6">
-              Getestet mit Bitcoin-Tageskursen, 100 € pro Monat, inklusive 0,4 % Gebühr je Order:
+              Getestet mit Bitcoin-Tageskursen (BTC/EUR, Bitstamp) bis 15.11.2026, 100 € pro Monat, inklusive 0,25 % Gebühr je Order – wie bei BitDoc auf Kraken:
             </p>
             <div className="border-t border-grey-light text-[0.92rem]">
               <div className="grid grid-cols-3 py-3 border-b border-grey-light text-grey-muted text-[0.72rem] uppercase tracking-[0.14em]">
                 <span>Start</span><span>BitDoc</span><span>Halten</span>
               </div>
               <div className="grid grid-cols-3 py-3 border-b border-grey-light tabular-nums">
-                <span className="text-grey-secondary">Jan. 2018</span><span className="text-text-primary font-bold">+757 %</span><span className="text-grey-secondary">+315 %</span>
+                <span className="text-grey-secondary">Jan. 2018</span><span className="text-text-primary font-bold">+719 %</span><span className="text-grey-secondary">+309 %</span>
               </div>
               <div className="grid grid-cols-3 py-3 border-b border-grey-light tabular-nums">
-                <span className="text-grey-secondary">Jan. 2023</span><span className="text-text-primary font-bold">+45 %</span><span className="text-grey-secondary">+33 %</span>
+                <span className="text-grey-secondary">Jan. 2023</span><span className="text-text-primary font-bold">+57 %</span><span className="text-grey-secondary">+27 %</span>
               </div>
             </div>
             <p className="text-[0.8rem] leading-relaxed text-grey-muted mt-6">
-              Ehrlicherweise: Der große Vorsprung ab 2018 stammt fast komplett aus dem Crash 2022, in dem BitDoc draußen war.
-              Bei einer Einmalanlage ohne monatliche Einzahlungen lag reines Halten 2023–2026 vorn. Vergangenheit ist keine Garantie.
+              Ehrlicherweise: Ein großer Teil des Vorsprungs stammt aus dem Crash 2022 – BitDoc −12 %, Halten −39 %. Bei einer
+              Einmalanlage ab 2023 ohne monatliche Einzahlungen lag reines Halten vorn (+281 % gegen +239 %). Vergangenheit ist keine Garantie.
             </p>
           </div>
         </div>
