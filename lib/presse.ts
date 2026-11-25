@@ -42,7 +42,7 @@ export const marken: Marke[] = [
     url: 'https://www.elsterbot.de',
     kurz: 'Elsterbot',
     beschreibung:
-      'Steuererklärung im KI-Chat: Elsterbot wird als Connector in Claude oder ChatGPT verbunden und berechnet die Einkommensteuer aus den Unterlagen des Nutzers. Prüfung und Übermittlung übernehmen angeschlossene Steuerkanzleien. Derzeit in der Beta; kein Angebot der Finanzverwaltung.',
+      'Steuererklärung im KI-Chat: Elsterbot berechnet Einkommensteuer und Anlage EÜR aus den Unterlagen des Nutzers – in der App, im Website-Chat oder als Connector in Claude und ChatGPT. Nutzer senden die Erklärung nach einmaliger Identifizierung selbst ans Finanzamt, ohne eigenes ELSTER-Konto, oder lassen sie von einer Partnerkanzlei prüfen und übermitteln. Derzeit in der Beta; kein Angebot der Finanzverwaltung und keine Steuerberatung.',
     sichtbar: true,
   },
   {
@@ -89,6 +89,26 @@ export type Meldung = {
 }
 
 export const meldungen: Meldung[] = [
+  {
+    slug: 'elsterbot-steuererklaerung-direkt-ans-finanzamt',
+    marke: 'elsterbot',
+    datum: '2026-11-25',
+    titel: 'Elsterbot: Steuererklärung aus dem KI-Chat direkt ans Finanzamt – ohne eigenes ELSTER-Konto',
+    ort: 'Hamburg',
+    lead:
+      'Mit Elsterbot können Privatpersonen ihre Einkommensteuererklärung jetzt nicht nur im Chat berechnen, sondern auch selbst rechtsverbindlich an das Finanzamt übermitteln. Ein eigenes ELSTER-Konto oder Zertifikat ist dafür nicht nötig.',
+    absaetze: [
+      'Elsterbot liest Lohnsteuerbescheinigung und Belege aus, stimmt die Werte mit dem Nutzer ab und berechnet die Erklärung für die Jahre 2023 bis 2025 – auf Wunsch einschließlich Anlage EÜR für Selbständige und Freiberufler. Das funktioniert in der iOS-App, im Chat auf elsterbot.de und als Connector in Claude oder ChatGPT.',
+      'Vor dem Versand läuft die amtliche ELSTER-Prüfung, auch ein Testversand ist möglich. Für den rechtsverbindlichen Versand identifiziert sich der Nutzer einmalig mit Ausweis und Selfie; Elsterbot übermittelt die Erklärung danach in seinem Auftrag mit dem eigenen Elsterbot-Zertifikat. Vor dem Senden bestätigt der Nutzer die Zusammenfassung ausdrücklich.',
+      'Rechnen, Prüfen und Testversand sind kostenlos. Bezahlt wird erst beim rechtsverbindlichen Versand: 39 Euro je Jahr für Arbeitnehmer und Rentner, 69 Euro mit Vermietung oder privatem Veräußerungsgeschäft, jeweils inklusive Mehrwertsteuer (Einführungspreise). Wer eine Prüfung möchte, wählt im Chat eine Partnerkanzlei, die zu ihrem eigenen Festpreis prüft und übermittelt.',
+      'Der Direktversand ist als Beta gestartet. Elsterbot ist kein Angebot der Finanzverwaltung und leistet keine Steuerberatung; die Server stehen in Frankfurt.',
+    ],
+    zitat: {
+      text: 'Die Steuererklärung soll so einfach sein wie eine Nachricht schreiben – vom Beleg bis zum Finanzamt in einem Chat.',
+      person: 'Dr. Marcel Hofeditz, Gründer',
+    },
+    veroeffentlicht: true,
+  },
   {
     slug: 'elsterbot-steuererklaerung-im-ki-chat',
     marke: 'elsterbot',
