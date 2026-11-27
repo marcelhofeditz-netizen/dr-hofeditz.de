@@ -1,7 +1,8 @@
 'use client'
 
 import { HeroBg, BtnPrimary, BtnOutline } from '@/components/ui'
-import { AssetsGrid } from '@/components/AssetsGrid'
+import { AssetsGrid, ProjektUebersicht } from '@/components/AssetsGrid'
+import { sichtbareAssets, neueAssets } from '@/lib/unternehmen'
 import { useLocale } from '@/lib/locale-context'
 
 const T = {
@@ -14,6 +15,13 @@ const T = {
     holdingD: 'Immobilienunternehmen mit Erlaubnis nach § 34c GewO, Sitz Hamburg. Gründer und Geschäftsführer: Dr. Marcel Hofeditz. Die Gesellschaft hält und entwickelt die Marken, betreibt den Newsroom und ist Ansprechpartner für Presse, Partner und Investoren.',
     press: 'Newsroom',
     contact: 'Kontakt',
+    overviewK: 'Auf einen Blick',
+    overviewT: 'Alle Projekte',
+    newK: 'Neu dazugekommen',
+    newT: 'Neu dabei',
+    newD: 'Die jüngsten Marken unter dem Dach – gebaut nach demselben Prinzip: KI im Chat statt Formulare.',
+    moreK: 'Etabliert',
+    moreT: 'Weitere Projekte',
   },
   en: {
     kicker: 'Dr. Hofeditz Real Estate GmbH · Hamburg',
@@ -24,12 +32,21 @@ const T = {
     holdingD: 'Licensed real estate company (§ 34c GewO), based in Hamburg. Founder and managing director: Dr. Marcel Hofeditz. The company owns and develops the brands, runs the newsroom and is the contact for press, partners and investors.',
     press: 'Newsroom',
     contact: 'Contact',
+    overviewK: 'At a glance',
+    overviewT: 'All projects',
+    newK: 'Recently added',
+    newT: 'New arrivals',
+    newD: 'The latest brands under one roof – built on the same principle: AI in a chat instead of forms.',
+    moreK: 'Established',
+    moreT: 'More projects',
   },
 }
 
 export default function UnternehmenPage() {
   const { locale } = useLocale()
   const t = T[locale === 'en' ? 'en' : 'de']
+  const neu = neueAssets()
+  const bestand = sichtbareAssets().filter((a) => !a.neu)
   return (
     <>
       <section className="relative isolate overflow-hidden px-[5vw] pt-36 pb-20 min-h-[72vh] flex items-end">
@@ -47,7 +64,28 @@ export default function UnternehmenPage() {
 
       <section className="px-[5vw] py-20">
         <div className="max-w-[1200px] mx-auto">
-          <AssetsGrid />
+          <p className="kicker mb-5">{t.overviewK}</p>
+          <h2 className="h-section uppercase text-text-primary mb-12" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)' }}>{t.overviewT}</h2>
+          <ProjektUebersicht />
+        </div>
+      </section>
+
+      {neu.length > 0 && (
+        <section className="px-[5vw] py-20 border-t border-grey-light">
+          <div className="max-w-[1200px] mx-auto">
+            <p className="kicker mb-5">{t.newK}</p>
+            <h2 className="h-section uppercase text-text-primary mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)' }}>{t.newT}</h2>
+            <p className="text-[1rem] leading-relaxed text-grey-secondary max-w-[56ch] mb-12">{t.newD}</p>
+            <AssetsGrid items={neu} cols={3} />
+          </div>
+        </section>
+      )}
+
+      <section className="px-[5vw] py-20 border-t border-grey-light">
+        <div className="max-w-[1200px] mx-auto">
+          <p className="kicker mb-5">{t.moreK}</p>
+          <h2 className="h-section uppercase text-text-primary mb-12" style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)' }}>{t.moreT}</h2>
+          <AssetsGrid items={bestand} />
         </div>
       </section>
 
