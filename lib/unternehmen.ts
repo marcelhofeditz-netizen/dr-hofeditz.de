@@ -2,13 +2,25 @@
 // Jede Marke mit eigener Website wird hier einzeln gelistet (Startseite + /unternehmen).
 // `sichtbar: false` = noch nicht öffentlich (z. B. Vibe League bis zum Okay von Sebastian Diemer).
 
+export type Kategorie = 'immobilien' | 'ki' | 'medien' | 'commerce'
+
+export const kategorien: { id: Kategorie; de: string; en: string }[] = [
+  { id: 'immobilien', de: 'Immobilien', en: 'Real estate' },
+  { id: 'ki', de: 'KI-Bots', en: 'AI bots' },
+  { id: 'medien', de: 'Bücher & Medien', en: 'Books & media' },
+  { id: 'commerce', de: 'Commerce', en: 'Commerce' },
+]
+
 export type Asset = {
   id: string
   name: string
   domain: string
   url: string
-  img: string
+  img?: string
   sichtbar: boolean
+  /** Neu dazugekommen – bekommt das NEU-Label und steht oben in „Neu dabei“ */
+  neu?: boolean
+  kategorie: Kategorie
   de: { rolle: string; status: string; text: string; cta: string }
   en: { rolle: string; status: string; text: string; cta: string }
 }
@@ -19,6 +31,7 @@ const utm = (url: string, campaign: string) =>
 export const assets: Asset[] = [
   {
     id: 'offmarketpool',
+    kategorie: 'immobilien',
     name: 'Offmarketpool',
     domain: 'offmarketpool.de',
     url: utm('https://offmarketpool.de', 'assets'),
@@ -39,6 +52,7 @@ export const assets: Asset[] = [
   },
   {
     id: 'elsterbot',
+    kategorie: 'ki',
     name: 'Elsterbot',
     domain: 'elsterbot.de',
     url: utm('https://www.elsterbot.de', 'assets'),
@@ -59,6 +73,7 @@ export const assets: Asset[] = [
   },
   {
     id: 'trainingsbot',
+    kategorie: 'ki',
     name: 'Trainingsbot',
     domain: 'trainingsbot.de',
     url: utm('https://www.trainingsbot.de', 'assets'),
@@ -79,6 +94,7 @@ export const assets: Asset[] = [
   },
   {
     id: 'immobilienluege',
+    kategorie: 'medien',
     name: 'Die Immobilienlüge',
     domain: 'immobilienluege.de',
     url: utm('https://www.immobilienluege.de', 'assets'),
@@ -98,7 +114,71 @@ export const assets: Asset[] = [
     },
   },
   {
+    id: 'finanzenbot',
+    kategorie: 'ki',
+    neu: true,
+    name: 'Finanzenbot',
+    domain: 'finanzenbot.de',
+    url: utm('https://www.finanzenbot.de', 'assets'),
+    sichtbar: true,
+    de: {
+      rolle: 'KI · Finanzen im Chat',
+      status: 'In Entwicklung',
+      text: 'Der Finanzenbot liest die eigenen Kontoumsätze über eine Bankschnittstelle, erkennt Abos und Fixkosten und zeigt, wo sich sparen lässt – als App und als Connector in Claude oder ChatGPT, kombinierbar mit Elsterbot. Keine Anlageberatung.',
+      cta: 'Zum Finanzenbot',
+    },
+    en: {
+      rolle: 'AI · Personal finance in chat',
+      status: 'In development',
+      text: 'Finanzenbot reads your account transactions via a bank interface, spots subscriptions and fixed costs and shows where to save – as an app and as a connector for Claude or ChatGPT, combinable with Elsterbot. No investment advice.',
+      cta: 'Visit Finanzenbot',
+    },
+  },
+  {
+    id: 'selfpublishbot',
+    kategorie: 'medien',
+    neu: true,
+    name: 'Selfpublishbot',
+    domain: 'selfpublishbot.de',
+    url: utm('https://www.selfpublishbot.de', 'assets'),
+    sichtbar: true,
+    de: {
+      rolle: 'KI · Eigenes Buch veröffentlichen',
+      status: 'Alpha',
+      text: 'Veröffentliche dein eigenes Buch mit KI: Geschichte im Chat erzählen, der Selfpublishbot macht daraus Roman oder Sachbuch, Cover und Hörbuch – und stellt es ins öffentliche Bücherregal zum Lesen, Hören und Bewerten.',
+      cta: 'Zum Selfpublishbot',
+    },
+    en: {
+      rolle: 'AI · Publish your own book',
+      status: 'Alpha',
+      text: 'Publish your own book with AI: tell your story in the chat, Selfpublishbot turns it into a novel or non-fiction book, cover and audiobook – and puts it on a public shelf to read, listen to and rate.',
+      cta: 'Visit Selfpublishbot',
+    },
+  },
+  {
+    id: 'latienda',
+    kategorie: 'commerce',
+    neu: true,
+    name: 'La Tienda',
+    domain: 'latienda.ec',
+    url: utm('https://www.latienda.ec', 'assets'),
+    sichtbar: true,
+    de: {
+      rolle: 'KI · Online-Shop in 2 Minuten',
+      status: 'Pilot',
+      text: 'Händler verbinden Instagram, Facebook oder WhatsApp – die KI baut daraus automatisch einen eigenen Online-Shop mit Bezahlung und Lieferung, gesteuert per Chat. Dazu ein Marktplatz als App. Pilotmarkt Lateinamerika.',
+      cta: 'Zu La Tienda',
+    },
+    en: {
+      rolle: 'AI · Online shop in 2 minutes',
+      status: 'Pilot',
+      text: 'Merchants connect Instagram, Facebook or WhatsApp – the AI automatically builds their own online shop with payment and delivery, managed via chat. Plus a marketplace app. Pilot market: Latin America.',
+      cta: 'Visit La Tienda',
+    },
+  },
+  {
     id: 'vibe-league',
+    kategorie: 'ki',
     name: 'Vibe League',
     domain: 'vibe-league.com',
     url: 'https://vibe-league.com',
@@ -110,3 +190,4 @@ export const assets: Asset[] = [
 ]
 
 export const sichtbareAssets = () => assets.filter((a) => a.sichtbar)
+export const neueAssets = () => sichtbareAssets().filter((a) => a.neu)

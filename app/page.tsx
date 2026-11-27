@@ -30,7 +30,7 @@ const T = {
     golfText:
       'Auf dem Platz bin ich „The Rookie“ im AK30-Team von gutgut Golf – mit eigenem Kanal auf Instagram und YouTube. Golf ist für mich dasselbe wie Investieren: Wer sich selbst belügt, verliert. Hinter den Kulissen gibt es alles auf Instagram.',
     instaCta: 'Instagram @marcel_hofeditz',
-    ticker: ['Off-Market-Immobilien', 'KI-Matching', 'Investmentimmobilien', 'Verhaltensökonomie', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
+    ticker: ['Off-Market-Immobilien', 'KI-Matching', 'Investmentimmobilien', 'Verhaltensökonomie', 'Die Immobilienlüge', 'Elsterbot', 'Trainingsbot', 'Finanzenbot', 'Selfpublishbot', 'La Tienda', 'Hamburg'],
     c1Kicker: 'Kapitel 01 · Die Lüge',
     c1Title: 'Immobilien sind kein Markt aus Beton.',
     c1Text:
@@ -101,7 +101,7 @@ const T = {
       'On the course I’m “The Rookie” in the AK30 team of gutgut Golf – with its own channel on Instagram and YouTube. Golf is like investing: lie to yourself and you lose. Behind the scenes: Instagram.',
     instaCta: 'Instagram @marcel_hofeditz',
     heroCta2: 'Off-market properties',
-    ticker: ['Off-market real estate', 'AI matching', 'Investment properties', 'Behavioral economics', 'Die Immobilienlüge', 'Elsterbot', 'Hamburg'],
+    ticker: ['Off-market real estate', 'AI matching', 'Investment properties', 'Behavioral economics', 'Die Immobilienlüge', 'Elsterbot', 'Trainingsbot', 'Finanzenbot', 'Selfpublishbot', 'La Tienda', 'Hamburg'],
     c1Kicker: 'Chapter 01 · The lie',
     c1Title: 'Real estate is not a market made of concrete.',
     c1Text:
@@ -404,10 +404,7 @@ export default function Home() {
           <h2 className="h-section uppercase text-text-primary mb-12" style={{ fontSize: 'clamp(2.1rem, 4.6vw, 3.8rem)' }}>
             {t.assetsTitle}
           </h2>
-          <AssetsGrid />
-          <Link href="/unternehmen" className="inline-block mt-8 text-[0.76rem] font-bold tracking-[0.14em] uppercase text-text-primary hover:text-grey-secondary">
-            {t.assetsCta} &rarr;
-          </Link>
+          <AssetsGrid moreHref="/unternehmen" />
         </div>
       </section>
 
